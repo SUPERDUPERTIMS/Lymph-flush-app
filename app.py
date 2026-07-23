@@ -29,11 +29,11 @@ if not st.session_state.user_name:
 else:
     st.success(f"Welcome back, {st.session_state.user_name}!")
 
-# Protocol Steps Definition based on standard protocol[span_4](start_span)[span_4](end_span)
+# Protocol Steps Definition with corresponding visual diagram layout mapping based on standard protocol[span_0](start_span)[span_0](end_span)
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
-        "duration": 90,  # seconds total (45s per side)[span_5](start_span)[span_5](end_span)
+        "duration": 90,  # seconds total (45s per side)[span_1](start_span)[span_1](end_span)
         "where": (
             "Groin creases where legs meet torso, 1 cm to 2 cm inward toward"
             " pubic crease."
@@ -46,10 +46,19 @@ protocol_steps = [
             "Unlocks primary superficial inguinal lymph nodes for unobstructed"
             " clearance."
         ),
+        "visual_desc": (
+            "🔍 Diagram Focus: Step 1 - Inguinal Gate Opening (Top-Left"
+            " Quadrant)"
+        ),
+        "benefit_milestone": 45,
+        "benefit_text": (
+            "💡 Benefit Note: Primary drainage gates are unlocking to allow"
+            " unobstructed exit clearance."
+        ),
     },
     {
         "step": "Step 2: Sub-Umbilical Mid-Release",
-        "duration": 45,  # seconds[span_6](start_span)[span_6](end_span)
+        "duration": 45,  # seconds[span_2](start_span)[span_2](end_span)
         "where": (
             "Sub-umbilical zone 3 cm to 10 cm directly below your navel across a"
             " 10 cm wide band."
@@ -62,7 +71,11 @@ protocol_steps = [
             "Pre-clears mid-level fascial tightness and breaks up stagnant"
             " water retention."
         ),
-        "benefit_milestone": 22,  # halfway point
+        "visual_desc": (
+            "🔍 Diagram Focus: Step 2 - Sub-Umbilical Mid-Release (Top-Right"
+            " Quadrant)"
+        ),
+        "benefit_milestone": 22,
         "benefit_text": (
             "💡 Benefit Note: Mid-level fascial tension is releasing and"
             " stagnant water retention is breaking up."
@@ -70,7 +83,7 @@ protocol_steps = [
     },
     {
         "step": "Step 3: Extended Low-Pelvic Release",
-        "duration": 120,  # seconds[span_7](start_span)[span_7](end_span)
+        "duration": 120,  # seconds[span_3](start_span)[span_3](end_span)
         "where": (
             "Low-pelvic zone 12 cm to 15 cm below the navel over the central"
             " pubic border."
@@ -83,7 +96,11 @@ protocol_steps = [
             "Mobilizes fluid pooled at the lowest base while releasing lower"
             " anchor fascial tension."
         ),
-        "benefit_milestone": 60,  # halfway point
+        "visual_desc": (
+            "🔍 Diagram Focus: Step 3 - Low-Pelvic Release Channel"
+            " (Bottom-Left Quadrant)"
+        ),
+        "benefit_milestone": 60,
         "benefit_text": (
             "💡 Benefit Note: Fluid pooled at the lowest base of the belly is"
             " actively mobilizing."
@@ -91,7 +108,7 @@ protocol_steps = [
     },
     {
         "step": "Step 4: The Deep Downward V-Sweep",
-        "duration": 90,  # seconds[span_8](start_span)[span_8](end_span)
+        "duration": 90,  # seconds[span_4](start_span)[span_4](end_span)
         "where": (
             "Start from vertical centerline at 14-15 cm below navel, sweeping"
             " into groin folds."
@@ -104,7 +121,11 @@ protocol_steps = [
             "Mechanically sweeps mobilized fluid straight into open drainage"
             " nodes."
         ),
-        "benefit_milestone": 45,  # halfway point
+        "visual_desc": (
+            "🔍 Diagram Focus: Step 4 - Deep V-Sweep Arc (Bottom-Right"
+            " Quadrant)"
+        ),
+        "benefit_milestone": 45,
         "benefit_text": (
             "💡 Benefit Note: Fluid is being mechanically swept straight into"
             " open drainage nodes for clearance."
@@ -132,7 +153,7 @@ st.subheader("Interactive Protocol Session")
 # Technique Reminder Note Box
 st.info(
     "⚠️ **Technique Note:** Always use a **low vibration setting** and a"
-    " **soft touch**. Do not apply deep pressure[span_9](start_span)[span_9](end_span)."
+    " **soft touch**. Do not apply deep pressure[span_5](start_span)[span_5](end_span)."
 )
 
 # Session State Initialization
@@ -144,12 +165,18 @@ current_idx = st.session_state.current_step_index
 if current_idx < len(protocol_steps):
     step_info = protocol_steps[current_idx]
 
+    # Display active step header and visual diagram mapping indicator
     st.markdown(f"### {step_info['step']}")
+    st.caption(step_info["visual_desc"])
+
+    # If you have uploaded individual quadrant images to your repo (e.g., step1.png, step2.png, etc.),
+    # you can dynamically render them here using: st.image(f"step{current_idx+1}.png")
+    # For now, we display the structured step parameters cleanly:
     st.info(f"**Where:** {step_info['where']}")
     st.warning(f"**Action:** {step_info['action']}")
     st.success(f"**Goal:** {step_info['goal']}")
 
-    st.markdown(f"**Target Duration:** {step_info['duration']} seconds[span_10](start_span)[span_10](end_span)")
+    st.markdown(f"**Target Duration:** {step_info['duration']} seconds[span_6](start_span)[span_6](end_span)")
 
     # Timer Component
     if st.button("Start Step Timer", type="primary"):
@@ -200,7 +227,7 @@ if current_idx < len(protocol_steps):
             if st.button("Finish Protocol"):
                 st.success(
                     f"🎉 Congratulations {st.session_state.user_name}! Protocol"
-                    " complete! Remember to drink 300-500 mL of fresh water[span_11](start_span)[span_11](end_span)."
+                    " complete! Remember to drink 300-500 mL of fresh water[span_7](start_span)[span_7](end_span)."
                 )
                 st.session_state.current_step_index = 0
                 st.rerun()
