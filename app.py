@@ -107,7 +107,7 @@ st.title("💧 Advanced Lower Pelvic & Abdominal Flush Protocol")
 st.markdown("##### *Targeted Interstitial Fluid Drainage & Deep Pelvic Wall Release*")
 st.markdown("---")
 
-# Name Input & Safety Gate Initialization
+# Name Input & Safety Gate Initialization with Expanded Confirmations
 if "user_name" not in st.session_state:
     st.session_state.user_name = ""
 if "safety_cleared" not in st.session_state:
@@ -116,34 +116,40 @@ if "safety_cleared" not in st.session_state:
 if not st.session_state.user_name or not st.session_state.safety_cleared:
     st.markdown("""
         <div class="protocol-card">
-            <h3>Welcome to Clinical Protocol Access</h3>
-            <p>Please enter your profile name and confirm your clinical clearance status to begin.</p>
+            <h3>Clinical Protocol Access & Safety Verification</h3>
+            <p>Please enter your profile name and complete all required safety verifications below to begin your session.</p>
         </div>
     """, unsafe_allow_html=True)
     
     entered_name = st.text_input("Your Name:")
     
     st.warning(
-        "⚠️ **CONTRAINDICATIONS CHECK:** Do NOT perform if you have an active "
-        "abdominal or inguinal hernia, severe acute digestive issues (e.g., acute IBD, appendicitis), "
-        "recent abdominal surgery, or if you are pregnant."
+        "⚠️ **MEDICAL DISCLAIMER & SAFETY NOTICE:**\n\n"
+        "1. **Contraindications Check:** Do NOT perform if you have an active abdominal or inguinal hernia, "
+        "severe acute digestive issues (e.g., acute IBD, appendicitis), recent abdominal surgery, or if you are pregnant.\n\n"
+        "2. **Professional Guidance:** We strongly recommend consulting your physician, physical therapist, or a medical "
+        "practitioner specializing in the lymphatic system prior to starting this program.\n\n"
+        "3. **Age Requirement:** You must be 18 years of age or older to use this protocol."
     )
     
-    agreed = st.checkbox("I confirm I have no active contraindications listed above.")
+    # Required confirmation checkboxes
+    agree_contraindications = st.checkbox("I confirm I have no active contraindications or medical restrictions listed above.")
+    agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a qualified physician or lymphatic specialist before starting.")
+    agree_age = st.checkbox("I confirm that I am 18 years of age or older.")
     
     if st.button("Initialize Clinical Session", type="primary"):
-        if entered_name.strip() and agreed:
+        if entered_name.strip() and agree_contraindications and agree_medical_consult and agree_age:
             st.session_state.user_name = entered_name.strip()
             st.session_state.safety_cleared = True
             scroll_to_top()
             st.rerun()
         else:
-            st.error("Please enter your name and check the confirmation box to proceed.")
+            st.error("Please enter your name and check all three confirmation boxes above to proceed.")
     st.stop()
 else:
     st.success(f"Session Active | Practitioner: **{st.session_state.user_name}**")
 
-# Protocol Steps Definition (Restored Step 3 duration to 120 seconds)
+# Protocol Steps Definition
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
@@ -407,7 +413,7 @@ else:
         st.markdown("---")
         st.markdown("### 📈 Session Analysis & Journey Milestone Feedback")
 
-        # Journey-specific milestone message (incorporating your exact wording preferences)
+        # Journey-specific milestone message
         if "Week 1" in week_selected:
             st.info("🌱 **Journey Milestone (Week 1 of 8):** Well done on starting! Now get your routine going (aim to complete steps every 2 to 3 days going forward to unlock the benefits).")
         elif "Week 2" in week_selected:
