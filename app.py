@@ -336,13 +336,13 @@ if current_idx < len(protocol_steps):
                 scroll_to_top()
                 st.rerun()
 else:
-    # --- POST-PROTOCOL EVALUATION & SCORING SYSTEM ---
+    # --- POST-PROTOCOL EVALUATION & JOURNEY TRACKING SYSTEM ---
     if "evaluation_complete" not in st.session_state:
         st.session_state.evaluation_complete = False
 
     st.markdown("---")
-    st.markdown("### 🎯 Post-Protocol Session Evaluation & Effectiveness Scoring")
-    st.markdown("Please answer the quick questions below to calculate your session's effectiveness score.")
+    st.markdown("### 🎯 Post-Protocol Session Evaluation & Journey Milestone")
+    st.markdown("Please answer the quick questions below to evaluate your session and log your current program progress.")
 
     with st.form("evaluation_form"):
         selected_diagram = st.selectbox(
@@ -369,7 +369,23 @@ else:
             ]
         )
 
-        submit_evaluation = st.form_submit_button("Calculate Effectiveness Score", type="primary")
+        st.markdown("---")
+        st.markdown("#### 📅 Select Your Current Week in the 8-Week Journey:")
+        journey_week = st.radio(
+            "Choose your current progress week:",
+            [
+                "Week 1 of 8",
+                "Week 2 of 8",
+                "Week 3 of 8",
+                "Week 4 of 8",
+                "Week 5 of 8",
+                "Week 6 of 8",
+                "Week 7 of 8",
+                "Week 8 of 8"
+            ]
+        )
+
+        submit_evaluation = st.form_submit_button("Calculate Score & View Program Progress", type="primary")
 
     if submit_evaluation:
         base_score = time_percentage
@@ -380,37 +396,51 @@ else:
 
         final_effectiveness_score = int(base_score * vibration_multiplier)
         st.session_state.final_score = final_effectiveness_score
+        st.session_state.journey_week = journey_week
         st.session_state.evaluation_complete = True
-        st.success(f"Evaluation Saved! Your Calculated Effectiveness Score is: {final_effectiveness_score}/100")
+        st.success(f"Evaluation Saved! Calculated Effectiveness Score: {final_effectiveness_score}/100")
 
     if st.session_state.get("evaluation_complete", False):
         score = st.session_state.final_score
+        week_selected = st.session_state.journey_week
+        
         st.markdown("---")
-        st.markdown("### 📈 Session Analysis & Next-Session Motivations")
+        st.markdown("### 📈 Session Analysis & Journey Milestone Feedback")
 
+        # Journey-specific milestone message
+        if "Week 1" in week_selected:
+            st.info("🌱 **Journey Milestone (Week 1 of 8):** Well done on starting! Now get your routine going (aim to complete steps every 2 to 3 days going forward to unlock the benefits).")
+        elif "Week 2" in week_selected:
+            st.info("🌟 **Journey Milestone (Week 2 of 8):** Congratulations! You are on your way. This week, focus on getting breathing correct throughout the steps.")
+        elif "Week 3" in week_selected:
+            st.info("🔥 **Journey Milestone (Week 3 of 8):** You have got a habit going!! Now focus on Step 3, slow movement over the 120 seconds and try and hold for 5 seconds 14 to 15 cm below belly button.")
+        elif "Week 4" in week_selected:
+            st.info("🎯 **Journey Milestone (Week 4 of 8):** Step 4 is our focus this week, slow movement. Work downwards and hold for 5 seconds then sideways along fold.")
+        elif "Week 5" in week_selected:
+            st.info("⚡ **Journey Milestone (Week 5 of 8):** Almost done with 6 weeks. Keep it going! Breathe!!")
+        elif "Week 6" in week_selected:
+            st.info("🚀 **Journey Milestone (Week 6 of 8):** Great work! Keep pushing through your routine with consistent pacing.")
+        elif "Week 7" in week_selected:
+            st.info("💪 **Journey Milestone (Week 7 of 8):** Keep going!! You are deep into the advanced phase of your tissue adaptation.")
+        elif "Week 8" in week_selected:
+            st.info("🏆 **Journey Milestone (Week 8 of 8):** 8 weeks done!!! You have done it!! Exceptional commitment and execution.")
+
+        # Score-based breakdown
         if score >= 90:
             st.markdown(f"""
-                🏆 **Score: {score}/100 - Elite Execution!**\n
-                * **What you did right:** Your positioning alignment and medium-low vibration control were exceptionally accurate.\n
-                * **How to improve next session:** Maintain this exact rhythm. Focus on deep, slow diaphragmatic breathing to enhance fluid resonance further.
+                * **Score Breakdown ({score}/100 - Elite Execution):** Your positioning alignment and medium-low vibration control were exceptionally accurate. Maintain this exact rhythm.
             """)
         elif score >= 75:
             st.markdown(f"""
-                👍 **Score: {score}/100 - Strong Session!**\n
-                * **What you did right:** You successfully covered the target zones with good overall consistency.\n
-                * **How to improve next session:** Watch out for slight drift during the 2-minute Low-Pelvic release phase. Ensure you do not press hard against the bone structure and keep the device light.
+                * **Score Breakdown ({score}/100 - Strong Session):** You successfully covered the target zones with good overall consistency. Watch out for slight drift during the low-pelvic release phase.
             """)
         elif score >= 50:
             st.markdown(f"""
-                ⚠️ **Score: {score}/100 - Moderate Adherence.**\n
-                * **What to adjust:** Your time percentage or vibration intensity deviated from optimal guidelines.\n
-                * **How to improve next session:** Ensure your device is locked on the *medium-low* setting rather than higher speeds, and double-check that you are staying the full duration on the primary drainage gates (Step 1).
+                * **Score Breakdown ({score}/100 - Moderate Adherence):** Your time percentage or vibration intensity deviated from optimal guidelines. Ensure your device stays on the *medium-low* setting.
             """)
         else:
             st.markdown(f"""
-                🔴 **Score: {score}/100 - Needs Structural Adjustment.**\n
-                * **Critical Fix Required:** Your configuration (either high vibration pressure or low timing accuracy) reduced drainage efficiency.\n
-                * **How to improve next session:** Review the setup guide carefully. Use a feather-light touch—let the device weight do the work—and strictly pace each step using the built-in timer.
+                * **Score Breakdown ({score}/100 - Needs Structural Adjustment):** Your configuration reduced drainage efficiency. Use a feather-light touch—let the device weight do the work.
             """)
 
     if st.button("Restart New Protocol Session"):
