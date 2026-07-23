@@ -143,7 +143,7 @@ if not st.session_state.user_name or not st.session_state.safety_cleared:
 else:
     st.success(f"Session Active | Practitioner: **{st.session_state.user_name}**")
 
-# Protocol Steps Definition
+# Protocol Steps Definition (Restored Step 3 duration to 120 seconds)
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
@@ -169,21 +169,21 @@ protocol_steps = [
         "step": "Step 3: Extended Low-Pelvic Release",
         "duration": 120,
         "image_file": "step3.png",
-        "distance": "12 cm - 15 cm below navel",
+        "distance": "14 cm - 15 cm below navel",
         "where": "Low-pelvic zone directly over the central pubic border / lower anchor area.",
-        "action": "Do not lift, maintain massage gun contact for full duration to ensure drainage. Hold perpendicular (90°) to pubic bone with continuous vertical glides.",
-        "goal": "Mobilizes fluid pooled at the lowest base of the belly while completely releasing lower anchor fascial tension.",
-        "benefit_text": "💡 Benefit Note: Fluid pooled at the lowest base of the belly is actively mobilizing.",
+        "action": "Execute slow movement over the 120 seconds and try and hold for 5 seconds 14 to 15 cm below belly button.",
+        "goal": "Mobilizes fluid pooled at the lowest base of the belly through slow, controlled tissue contact.",
+        "benefit_text": "💡 Benefit Note: Slow movement over the 120 seconds is actively mobilizing fluid pooled at the base.",
     },
     {
         "step": "Step 4: The Deep Downward V-Sweep",
         "duration": 90,
         "image_file": "step4.png",
-        "distance": "14 cm - 15 cm below navel → Outer",
+        "distance": "14 cm - 15 cm below navel → Outer Fold",
         "where": "Start from vertical centerline, extending 8 cm to 12 cm diagonally outward into deep groin fold creases.",
-        "action": "Pause at bottom centerline for 3-5 seconds. Sweep diagonally outward into left crease (0.5 cm/sec). Repeat right side.",
-        "goal": "Mechanically sweeps all mobilized fluid from the lowest central pocket straight into open drainage nodes.",
-        "benefit_text": "💡 Benefit Note: Fluid is being mechanically swept straight into open drainage nodes for clearance.",
+        "action": "Focus on slow movement. Work downwards and hold for 5 seconds then sideways along fold.",
+        "goal": "Mechanically directs and flushes all accumulated fluid straight into the cleared drainage pathways with perfect directional form.",
+        "benefit_text": "💡 Benefit Note: Fluid is being precisely channeled and swept straight into open drainage nodes for final clearance.",
     },
 ]
 
@@ -407,7 +407,7 @@ else:
         st.markdown("---")
         st.markdown("### 📈 Session Analysis & Journey Milestone Feedback")
 
-        # Journey-specific milestone message
+        # Journey-specific milestone message (incorporating your exact wording preferences)
         if "Week 1" in week_selected:
             st.info("🌱 **Journey Milestone (Week 1 of 8):** Well done on starting! Now get your routine going (aim to complete steps every 2 to 3 days going forward to unlock the benefits).")
         elif "Week 2" in week_selected:
@@ -419,11 +419,11 @@ else:
         elif "Week 5" in week_selected:
             st.info("⚡ **Journey Milestone (Week 5 of 8):** Almost done with 6 weeks. Keep it going! Breathe!!")
         elif "Week 6" in week_selected:
-            st.info("🚀 **Journey Milestone (Week 6 of 8):** Great work! Keep pushing through your routine with consistent pacing.")
+            st.info("🚀 **Journey Milestone (Week 6 of 8):** Great work!")
         elif "Week 7" in week_selected:
-            st.info("💪 **Journey Milestone (Week 7 of 8):** Keep going!! You are deep into the advanced phase of your tissue adaptation.")
+            st.info("💪 **Journey Milestone (Week 7 of 8):** Keep going!!")
         elif "Week 8" in week_selected:
-            st.info("🏆 **Journey Milestone (Week 8 of 8):** 8 weeks done!!! You have done it!! Exceptional commitment and execution.")
+            st.info("🏆 **Journey Milestone (Week 8 of 8):** 8 weeks done!!! You have done it!!")
 
         # Score-based breakdown
         if score >= 90:
