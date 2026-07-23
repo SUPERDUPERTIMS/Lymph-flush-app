@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import time
 from PIL import Image, ImageDraw
@@ -71,7 +72,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# JavaScript snippet to force the window scroll position back to the absolute top
+
+# Helper function to force window scroll to top
 def scroll_to_top():
     components.html(
         """
@@ -82,6 +84,23 @@ def scroll_to_top():
         height=0,
         width=0
     )
+
+
+# Helper function to log user metrics locally to a CSV file
+def log_session_to_csv(name, rating, notes):
+    import csv
+    file_exists = os.path.isfile('session_logs.csv')
+    with open('session_logs.csv', mode='a', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            writer.writerow(["Timestamp", "Practitioner Name", "Tension Rating", "Notes"])
+        writer.writerow([
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            name,
+            rating,
+            notes
+        ])
+
 
 # App Title & Professional Header
 st.title("💧 Advanced Lower Pelvic & Abdominal Flush Protocol")
@@ -181,6 +200,7 @@ daily_rating = st.sidebar.slider("Rate session tension relief (1-10):", 1, 10, 7
 daily_notes = st.sidebar.text_area("Practitioner Notes:")
 
 if st.sidebar.button("Save Session Metrics"):
+    log_session_to_csv(st.session_state.user_name, daily_rating, daily_notes)
     st.sidebar.success(f"Saved log for {st.session_state.user_name} (Rating: {daily_rating}/10)")
 
 # Main Execution Flow
@@ -312,15 +332,89 @@ if current_idx < len(protocol_steps):
                 st.rerun()
         else:
             if st.button("🏁 Complete Protocol", type="primary"):
-                st.success(
-                    f"🎉 Congratulations {st.session_state.user_name}! Protocol complete! "
-                    "Remember to drink 300-500 mL of fresh water."
-                )
-                st.session_state.current_step_index = 0
+                st.session_state.current_step_index += 1
                 scroll_to_top()
                 st.rerun()
 else:
-    if st.button("Restart Protocol"):
+    # --- POST-PROTOCOL EVALUATION & SCORING SYSTEM ---
+    if "evaluation_complete" not in st.session_state:
+        st.session_state.evaluation_complete = False
+
+    st.markdown("---")
+    st.markdown("### 🎯 Post-Protocol Session Evaluation & Effectiveness Scoring")
+    st.markdown("Please answer the quick questions below to calculate your session's effectiveness score.")
+
+    with st.form("evaluation_form"):
+        selected_diagram = st.selectbox(
+            "1. Which diagram/step zone was your primary placement focus?",
+            [
+                "Step 1: Primary Drainage Gates (Groin creases)",
+                "Step 2: Sub-Umbilical Mid-Release (3-10 cm below navel)",
+                "Step 3: Extended Low-Pelvic Release (Central pubic border)",
+                "Step 4: Deep Downward V-Sweep (Centerline to outer crease)"
+            ]
+        )
+
+        time_percentage = st.slider(
+            "2. What percentage of the required time did you accurately maintain this placement? (0% - 100%)",
+            min_value=0, max_value=100, value=80, step=5
+        )
+
+        vibration_setting = st.radio(
+            "3. Confirm the vibration intensity setting used during the session:",
+            [
+                "Medium-Low (Correct Protocol Setting)",
+                "High / Aggressive (Incorrect Setting)",
+                "Low / Minimal"
+            ]
+        )
+
+        submit_evaluation = st.form_submit_button("Calculate Effectiveness Score", type="primary")
+
+    if submit_evaluation:
+        base_score = time_percentage
+        if "Medium-Low" in vibration_setting:
+            vibration_multiplier = 1.0
+        else:
+            vibration_multiplier = 0.75
+
+        final_effectiveness_score = int(base_score * vibration_multiplier)
+        st.session_state.final_score = final_effectiveness_score
+        st.session_state.evaluation_complete = True
+        st.success(f"Evaluation Saved! Your Calculated Effectiveness Score is: {final_effectiveness_score}/100")
+
+    if st.session_state.get("evaluation_complete", False):
+        score = st.session_state.final_score
+        st.markdown("---")
+        st.markdown("### 📈 Session Analysis & Next-Session Motivations")
+
+        if score >= 90:
+            st.markdown(f"""
+                🏆 **Score: {score}/100 - Elite Execution!**\n
+                * **What you did right:** Your positioning alignment and medium-low vibration control were exceptionally accurate.\n
+                * **How to improve next session:** Maintain this exact rhythm. Focus on deep, slow diaphragmatic breathing to enhance fluid resonance further.
+            """)
+        elif score >= 75:
+            st.markdown(f"""
+                👍 **Score: {score}/100 - Strong Session!**\n
+                * **What you did right:** You successfully covered the target zones with good overall consistency.\n
+                * **How to improve next session:** Watch out for slight drift during the 2-minute Low-Pelvic release phase. Ensure you do not press hard against the bone structure and keep the device light.
+            """)
+        elif score >= 50:
+            st.markdown(f"""
+                ⚠️ **Score: {score}/100 - Moderate Adherence.**\n
+                * **What to adjust:** Your time percentage or vibration intensity deviated from optimal guidelines.\n
+                * **How to improve next session:** Ensure your device is locked on the *medium-low* setting rather than higher speeds, and double-check that you are staying the full duration on the primary drainage gates (Step 1).
+            """)
+        else:
+            st.markdown(f"""
+                🔴 **Score: {score}/100 - Needs Structural Adjustment.**\n
+                * **Critical Fix Required:** Your configuration (either high vibration pressure or low timing accuracy) reduced drainage efficiency.\n
+                * **How to improve next session:** Review the setup guide carefully. Use a feather-light touch—let the device weight do the work—and strictly pace each step using the built-in timer.
+            """)
+
+    if st.button("Restart New Protocol Session"):
         st.session_state.current_step_index = 0
+        st.session_state.evaluation_complete = False
         scroll_to_top()
         st.rerun()
