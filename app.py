@@ -1,5 +1,6 @@
 import os
 import time
+from PIL import Image, ImageDraw
 import streamlit as st
 
 # Page configuration
@@ -30,7 +31,7 @@ if not st.session_state.user_name:
 else:
     st.success(f"Welcome back, {st.session_state.user_name}!")
 
-# Protocol Steps Definition with image filename mapping based on standard protocol[span_0](start_span)[span_0](end_span)
+# Protocol Steps Definition based on standard protocol[span_0](start_span)[span_0](end_span)
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
@@ -47,11 +48,6 @@ protocol_steps = [
         "goal": (
             "Unlocks primary superficial inguinal lymph nodes for unobstructed"
             " clearance."
-        ),
-        "benefit_milestone": 45,
-        "benefit_text": (
-            "💡 Benefit Note: Primary drainage gates are unlocking to allow"
-            " unobstructed exit clearance."
         ),
     },
     {
@@ -70,11 +66,6 @@ protocol_steps = [
             "Pre-clears mid-level fascial tightness and breaks up stagnant"
             " water retention."
         ),
-        "benefit_milestone": 22,
-        "benefit_text": (
-            "💡 Benefit Note: Mid-level fascial tension is releasing and"
-            " stagnant water retention is breaking up."
-        ),
     },
     {
         "step": "Step 3: Extended Low-Pelvic Release",
@@ -92,11 +83,6 @@ protocol_steps = [
             "Mobilizes fluid pooled at the lowest base while releasing lower"
             " anchor fascial tension."
         ),
-        "benefit_milestone": 60,
-        "benefit_text": (
-            "💡 Benefit Note: Fluid pooled at the lowest base of the belly is"
-            " actively mobilizing."
-        ),
     },
     {
         "step": "Step 4: The Deep Downward V-Sweep",
@@ -113,11 +99,6 @@ protocol_steps = [
         "goal": (
             "Mechanically sweeps mobilized fluid straight into open drainage"
             " nodes."
-        ),
-        "benefit_milestone": 45,
-        "benefit_text": (
-            "💡 Benefit Note: Fluid is being mechanically swept straight into"
-            " open drainage nodes for clearance."
         ),
     },
 ]
@@ -154,19 +135,42 @@ current_idx = st.session_state.current_step_index
 if current_idx < len(protocol_steps):
     step_info = protocol_steps[current_idx]
 
+    # Notice guiding user to review description/image at top before scrolling to start
+    st.toast("📌 New step loaded! Review instructions above, then scroll down to start timer.", icon="👆")
+
     st.markdown(f"### {step_info['step']}")
 
-    # Render image if it exists in the GitHub repository folder
-    if os.path.exists(step_info["image_file"]):
+    # Render image with dynamic processing for Step 3
+    img_path = step_info["image_file"]
+    if os.path.exists(img_path):
+        img = Image.open(img_path)
+
+        # Programmatically overlay a polished semi-transparent coloured vertical strip for Step 3
+        if current_idx == 2:
+            width, height = img.size
+            overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            draw = ImageDraw.Draw(overlay)
+            strip_left = int(width * 0.42)
+            strip_right = int(width * 0.58)
+            strip_top = int(height * 0.20)
+            strip_bottom = int(height * 0.85)
+            draw.rectangle(
+                [strip_left, strip_top, strip_right, strip_bottom],
+                fill=(46, 139, 87, 160),
+            )
+            img = Image.alpha_composite(img.convert("RGBA"), overlay).convert(
+                "RGB"
+            )
+
         st.image(
-            step_info["image_file"],
+            img,
             use_container_width=True,
             caption=f"Visual Guide for {step_info['step']}",
         )
     else:
         st.warning(
-            f"⚠️ Image file `{step_info['image_file']}` not found in repository."
-            " Upload cropped quadrant images to display them here."
+            f"⚠️ Image file `{img_path}` not found in repository. Upload"
+            " cropped quadrant images to display them here."
         )
 
     st.info(f"**Where:** {step_info['where']}")
@@ -182,12 +186,15 @@ if current_idx < len(protocol_steps):
         benefit_placeholder = st.empty()
 
         total_time = step_info["duration"]
-        half_time = step_info.get("benefit_milestone", total_time // 2)
 
         # Initial breath reminder popup/alert
         st.toast(
             "🌿 Breathe deeply in and out. Relax your pelvic floor.", icon="🧘"
         )
+        
+        # Specific head position notice at the start of Step 3
+        if current_idx == 2:
+            st.toast("🛑 Reminder: Do NOT lift your head to ensure proper drainage.", icon="⚠️")
 
         for remaining in range(total_time, -1, -1):
             mins, secs = divmod(remaining, 60)
@@ -197,14 +204,34 @@ if current_idx < len(protocol_steps):
             )
             progress_bar.progress(1.0 - (remaining / total_time))
 
-            # Mid-step breathing & benefit trigger
             elapsed = total_time - remaining
-            if elapsed == half_time:
+
+            # Step 1: Switch sides prompt at 45 seconds
+            if current_idx == 0 and elapsed == 45:
+                st.toast("🔄 Switch sides! Move device to the right groin crease.", icon="👉")
+                benefit_placeholder.info("💡 Halfway: Switch to the opposite side now.")
+
+            # Step 2 mid-step trigger (around 22 seconds)
+            elif current_idx == 1 and elapsed == 22:
                 st.toast(
                     "🌿 Mid-step check: Breathe deep and stay relaxed.", icon="🧘"
                 )
-                if "benefit_text" in step_info:
-                    benefit_placeholder.info(step_info["benefit_text"])
+                benefit_placeholder.info("💡 Benefit Note: Mid-level fascial tension is releasing.")
+
+            # Step 3 mid-step trigger (60 seconds)
+            elif current_idx == 2 and elapsed == 60:
+                st.toast(
+                    "🌿 Mid-step check: Keep breathing deep and maintain head down.", icon="🧘"
+                )
+                benefit_placeholder.info("💡 Benefit Note: Fluid pooled at the lowest base is actively mobilizing.")
+
+            # Step 4: Speed reminder at start & switch sides halfway (45 seconds)
+            elif current_idx == 3:
+                if elapsed == 2:
+                    st.toast("🐢 Speed check: Maintain an ultra-slow pace (0.5 cm/sec).", icon="⏱️")
+                if elapsed == 45:
+                    st.toast("🔄 Switch sides! Move to the other groin crease.", icon="👉")
+                    benefit_placeholder.info("💡 Halfway: Switch to the opposite diagonal V-sweep.")
 
             time.sleep(1)
 
