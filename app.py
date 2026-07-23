@@ -1,3 +1,4 @@
+import os
 import time
 import streamlit as st
 
@@ -29,11 +30,12 @@ if not st.session_state.user_name:
 else:
     st.success(f"Welcome back, {st.session_state.user_name}!")
 
-# Protocol Steps Definition with corresponding visual diagram layout mapping based on standard protocol[span_0](start_span)[span_0](end_span)
+# Protocol Steps Definition with image filename mapping based on standard protocol[span_0](start_span)[span_0](end_span)
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
         "duration": 90,  # seconds total (45s per side)[span_1](start_span)[span_1](end_span)
+        "image_file": "step1.png",
         "where": (
             "Groin creases where legs meet torso, 1 cm to 2 cm inward toward"
             " pubic crease."
@@ -46,10 +48,6 @@ protocol_steps = [
             "Unlocks primary superficial inguinal lymph nodes for unobstructed"
             " clearance."
         ),
-        "visual_desc": (
-            "🔍 Diagram Focus: Step 1 - Inguinal Gate Opening (Top-Left"
-            " Quadrant)"
-        ),
         "benefit_milestone": 45,
         "benefit_text": (
             "💡 Benefit Note: Primary drainage gates are unlocking to allow"
@@ -59,6 +57,7 @@ protocol_steps = [
     {
         "step": "Step 2: Sub-Umbilical Mid-Release",
         "duration": 45,  # seconds[span_2](start_span)[span_2](end_span)
+        "image_file": "step2.png",
         "where": (
             "Sub-umbilical zone 3 cm to 10 cm directly below your navel across a"
             " 10 cm wide band."
@@ -71,10 +70,6 @@ protocol_steps = [
             "Pre-clears mid-level fascial tightness and breaks up stagnant"
             " water retention."
         ),
-        "visual_desc": (
-            "🔍 Diagram Focus: Step 2 - Sub-Umbilical Mid-Release (Top-Right"
-            " Quadrant)"
-        ),
         "benefit_milestone": 22,
         "benefit_text": (
             "💡 Benefit Note: Mid-level fascial tension is releasing and"
@@ -84,6 +79,7 @@ protocol_steps = [
     {
         "step": "Step 3: Extended Low-Pelvic Release",
         "duration": 120,  # seconds[span_3](start_span)[span_3](end_span)
+        "image_file": "step3.png",
         "where": (
             "Low-pelvic zone 12 cm to 15 cm below the navel over the central"
             " pubic border."
@@ -96,10 +92,6 @@ protocol_steps = [
             "Mobilizes fluid pooled at the lowest base while releasing lower"
             " anchor fascial tension."
         ),
-        "visual_desc": (
-            "🔍 Diagram Focus: Step 3 - Low-Pelvic Release Channel"
-            " (Bottom-Left Quadrant)"
-        ),
         "benefit_milestone": 60,
         "benefit_text": (
             "💡 Benefit Note: Fluid pooled at the lowest base of the belly is"
@@ -109,6 +101,7 @@ protocol_steps = [
     {
         "step": "Step 4: The Deep Downward V-Sweep",
         "duration": 90,  # seconds[span_4](start_span)[span_4](end_span)
+        "image_file": "step4.png",
         "where": (
             "Start from vertical centerline at 14-15 cm below navel, sweeping"
             " into groin folds."
@@ -120,10 +113,6 @@ protocol_steps = [
         "goal": (
             "Mechanically sweeps mobilized fluid straight into open drainage"
             " nodes."
-        ),
-        "visual_desc": (
-            "🔍 Diagram Focus: Step 4 - Deep V-Sweep Arc (Bottom-Right"
-            " Quadrant)"
         ),
         "benefit_milestone": 45,
         "benefit_text": (
@@ -165,13 +154,21 @@ current_idx = st.session_state.current_step_index
 if current_idx < len(protocol_steps):
     step_info = protocol_steps[current_idx]
 
-    # Display active step header and visual diagram mapping indicator
     st.markdown(f"### {step_info['step']}")
-    st.caption(step_info["visual_desc"])
 
-    # If you have uploaded individual quadrant images to your repo (e.g., step1.png, step2.png, etc.),
-    # you can dynamically render them here using: st.image(f"step{current_idx+1}.png")
-    # For now, we display the structured step parameters cleanly:
+    # Render image if it exists in the GitHub repository folder
+    if os.path.exists(step_info["image_file"]):
+        st.image(
+            step_info["image_file"],
+            use_container_width=True,
+            caption=f"Visual Guide for {step_info['step']}",
+        )
+    else:
+        st.warning(
+            f"⚠️ Image file `{step_info['image_file']}` not found in repository."
+            " Upload cropped quadrant images to display them here."
+        )
+
     st.info(f"**Where:** {step_info['where']}")
     st.warning(f"**Action:** {step_info['action']}")
     st.success(f"**Goal:** {step_info['goal']}")
@@ -188,7 +185,9 @@ if current_idx < len(protocol_steps):
         half_time = step_info.get("benefit_milestone", total_time // 2)
 
         # Initial breath reminder popup/alert
-        st.toast("🌿 Breathe deeply in and out. Relax your pelvic floor.", icon="🧘")
+        st.toast(
+            "🌿 Breathe deeply in and out. Relax your pelvic floor.", icon="🧘"
+        )
 
         for remaining in range(total_time, -1, -1):
             mins, secs = divmod(remaining, 60)
@@ -196,14 +195,14 @@ if current_idx < len(protocol_steps):
             placeholder.markdown(
                 f"### ⏱️ Time Remaining: **{time_display}**"
             )
-            progress_bar.progress(
-                1.0 - (remaining / total_time)
-            )
+            progress_bar.progress(1.0 - (remaining / total_time))
 
             # Mid-step breathing & benefit trigger
             elapsed = total_time - remaining
             if elapsed == half_time:
-                st.toast("🌿 Mid-step check: Breathe deep and stay relaxed.", icon="🧘")
+                st.toast(
+                    "🌿 Mid-step check: Breathe deep and stay relaxed.", icon="🧘"
+                )
                 if "benefit_text" in step_info:
                     benefit_placeholder.info(step_info["benefit_text"])
 
