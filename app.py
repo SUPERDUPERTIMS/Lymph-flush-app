@@ -49,6 +49,10 @@ protocol_steps = [
             "Unlocks primary superficial inguinal lymph nodes for unobstructed"
             " clearance."
         ),
+        "benefit_text": (
+            "💡 Benefit Note: Primary drainage gates are unlocking to allow"
+            " unobstructed exit clearance."
+        ),
     },
     {
         "step": "Step 2: Sub-Umbilical Mid-Release",
@@ -65,6 +69,10 @@ protocol_steps = [
         "goal": (
             "Pre-clears mid-level fascial tightness and breaks up stagnant"
             " water retention."
+        ),
+        "benefit_text": (
+            "💡 Benefit Note: Mid-level fascial tension is releasing and"
+            " stagnant water retention is breaking up."
         ),
     },
     {
@@ -83,6 +91,10 @@ protocol_steps = [
             "Mobilizes fluid pooled at the lowest base while releasing lower"
             " anchor fascial tension."
         ),
+        "benefit_text": (
+            "💡 Benefit Note: Fluid pooled at the lowest base of the belly is"
+            " actively mobilizing."
+        ),
     },
     {
         "step": "Step 4: The Deep Downward V-Sweep",
@@ -99,6 +111,10 @@ protocol_steps = [
         "goal": (
             "Mechanically sweeps mobilized fluid straight into open drainage"
             " nodes."
+        ),
+        "benefit_text": (
+            "💡 Benefit Note: Fluid is being mechanically swept straight into"
+            " open drainage nodes for clearance."
         ),
     },
 ]
@@ -192,9 +208,9 @@ if current_idx < len(protocol_steps):
             "🌿 Breathe deeply in and out. Relax your pelvic floor.", icon="🧘"
         )
         
-        # Specific head position notice at the start of Step 3
+        # Updated correct notice at the start of Step 3
         if current_idx == 2:
-            st.toast("🛑 Reminder: Do NOT lift your head to ensure proper drainage.", icon="⚠️")
+            st.toast("⚠️ Do not lift, maintain massage gun contact for full duration to ensure drainage.", icon="✊")
 
         for remaining in range(total_time, -1, -1):
             mins, secs = divmod(remaining, 60)
@@ -206,32 +222,34 @@ if current_idx < len(protocol_steps):
 
             elapsed = total_time - remaining
 
-            # Step 1: Switch sides prompt at 45 seconds
-            if current_idx == 0 and elapsed == 45:
-                st.toast("🔄 Switch sides! Move device to the right groin crease.", icon="👉")
-                benefit_placeholder.info("💡 Halfway: Switch to the opposite side now.")
+            # Step 1: Switch sides prompt at 45 seconds & show benefit
+            if current_idx == 0:
+                if elapsed == 45:
+                    st.toast("🔄 Switch sides! Move device to the right groin crease.", icon="👉")
+                if elapsed == 22 or elapsed == 68:
+                    benefit_placeholder.info(step_info["benefit_text"])
 
-            # Step 2 mid-step trigger (around 22 seconds)
+            # Step 2 mid-step trigger & benefit
             elif current_idx == 1 and elapsed == 22:
                 st.toast(
                     "🌿 Mid-step check: Breathe deep and stay relaxed.", icon="🧘"
                 )
-                benefit_placeholder.info("💡 Benefit Note: Mid-level fascial tension is releasing.")
+                benefit_placeholder.info(step_info["benefit_text"])
 
-            # Step 3 mid-step trigger (60 seconds)
+            # Step 3 mid-step trigger & benefit (60 seconds)
             elif current_idx == 2 and elapsed == 60:
                 st.toast(
-                    "🌿 Mid-step check: Keep breathing deep and maintain head down.", icon="🧘"
+                    "🌿 Mid-step check: Maintain constant gentle contact.", icon="🧘"
                 )
-                benefit_placeholder.info("💡 Benefit Note: Fluid pooled at the lowest base is actively mobilizing.")
+                benefit_placeholder.info(step_info["benefit_text"])
 
-            # Step 4: Speed reminder at start & switch sides halfway (45 seconds)
+            # Step 4: Speed reminder at start & switch sides halfway (45 seconds) + benefit
             elif current_idx == 3:
                 if elapsed == 2:
                     st.toast("🐢 Speed check: Maintain an ultra-slow pace (0.5 cm/sec).", icon="⏱️")
                 if elapsed == 45:
                     st.toast("🔄 Switch sides! Move to the other groin crease.", icon="👉")
-                    benefit_placeholder.info("💡 Halfway: Switch to the opposite diagonal V-sweep.")
+                    benefit_placeholder.info(step_info["benefit_text"])
 
             time.sleep(1)
 
