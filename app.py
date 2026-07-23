@@ -74,7 +74,7 @@ if not st.session_state.user_name or not st.session_state.safety_cleared:
     st.warning(
         "⚠️ **CONTRAINDICATIONS CHECK:** Do NOT perform if you have an active "
         "abdominal or inguinal hernia, severe acute digestive issues (e.g., acute IBD, appendicitis), "
-        "recent abdominal surgery, or if you are pregnant[span_2](start_span)[span_2](end_span)."
+        "recent abdominal surgery, or if you are pregnant."
     )
     
     agreed = st.checkbox("I confirm I have no active contraindications listed above.")
@@ -90,56 +90,56 @@ if not st.session_state.user_name or not st.session_state.safety_cleared:
 else:
     st.success(f"Session Active | Practitioner: **{st.session_state.user_name}**")
 
-# Protocol Steps Definition strictly mapped to official documentation[span_3](start_span)[span_3](end_span)
+# Protocol Steps Definition
 protocol_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
-        "duration": 90,  # Total seconds (45s per side)[span_4](start_span)[span_4](end_span)
+        "duration": 90,
         "image_file": "step1.png",
-        "distance": "12 cm - 15 cm below navel[span_5](start_span)[span_5](end_span)",
-        "where": "Groin creases where legs meet torso, 1 cm to 2 cm inward toward pubic crease[span_6](start_span)[span_6](end_span).",
-        "action": "Hold the device stationary with a light touch for 45 to 60 seconds on the left side, then 45 to 60 seconds on the right side[span_7](start_span)[span_7](end_span).",
-        "goal": "Unlocks primary superficial inguinal lymph nodes so mobilized fluid has an unobstructed exit clearance route[span_8](start_span)[span_8](end_span).",
-        "benefit_text": "💡 Benefit Note: Primary drainage gates are unlocking to allow unobstructed exit clearance[span_9](start_span)[span_9](end_span).",
+        "distance": "12 cm - 15 cm below navel",
+        "where": "Groin creases where legs meet torso, 1 cm to 2 cm inward toward pubic crease.",
+        "action": "Hold the device stationary with a light touch for 45 to 60 seconds on the left side, then 45 to 60 seconds on the right side.",
+        "goal": "Unlocks primary superficial inguinal lymph nodes so mobilized fluid has an unobstructed exit clearance route.",
+        "benefit_text": "💡 Benefit Note: Primary drainage gates are unlocking to allow unobstructed exit clearance.",
     },
     {
         "step": "Step 2: Sub-Umbilical Mid-Release",
-        "duration": 45,  # Seconds[span_10](start_span)[span_10](end_span)
+        "duration": 45,
         "image_file": "step2.png",
-        "distance": "3 cm - 10 cm below navel[span_11](start_span)[span_11](end_span)",
-        "where": "Sub-umbilical zone directly below your navel across a 10 cm wide band (5 cm left/right of center)[span_12](start_span)[span_12](end_span).",
-        "action": "Angle the device 45° downward toward feet. Perform steady downward glides (2 cm/sec) from 3 cm down to 10 cm[span_13](start_span)[span_13](end_span).",
-        "goal": "Pre-clears mid-level abdominal fascial tightness and breaks up stagnant water retention to prevent bottlenecking[span_14](start_span)[span_14](end_span).",
-        "benefit_text": "💡 Benefit Note: Mid-level fascial tension is releasing and stagnant water retention is breaking up[span_15](start_span)[span_15](end_span).",
+        "distance": "3 cm - 10 cm below navel",
+        "where": "Sub-umbilical zone directly below your navel across a 10 cm wide band (5 cm left/right of center).",
+        "action": "Angle the device 45° downward toward feet. Perform steady downward glides (2 cm/sec) from 3 cm down to 10 cm.",
+        "goal": "Pre-clears mid-level abdominal fascial tightness and breaks up stagnant water retention to prevent bottlenecking.",
+        "benefit_text": "💡 Benefit Note: Mid-level fascial tension is releasing and stagnant water retention is breaking up.",
     },
     {
         "step": "Step 3: Extended Low-Pelvic Release",
-        "duration": 120,  # Seconds[span_16](start_span)[span_16](end_span)
+        "duration": 120,
         "image_file": "step3.png",
-        "distance": "12 cm - 15 cm below navel[span_17](start_span)[span_17](end_span)",
-        "where": "Low-pelvic zone directly over the central pubic border / lower anchor area[span_18](start_span)[span_18](end_span).",
-        "action": "Hold the device perpendicular (90°) to the pubic bone. Maintain continuous vertical glides across this central zone[span_19](start_span)[span_19](end_span).",
-        "goal": "Mobilizes fluid pooled at the lowest base of the belly while completely releasing lower anchor fascial tension[span_20](start_span)[span_20](end_span).",
-        "benefit_text": "💡 Benefit Note: Fluid pooled at the lowest base of mật/belly is actively mobilizing[span_21](start_span)[span_21](end_span).",
+        "distance": "12 cm - 15 cm below navel",
+        "where": "Low-pelvic zone directly over the central pubic border / lower anchor area.",
+        "action": "Hold the device perpendicular (90°) to the pubic bone. Maintain continuous vertical glides across this central zone.",
+        "goal": "Mobilizes fluid pooled at the lowest base of the belly while completely releasing lower anchor fascial tension.",
+        "benefit_text": "💡 Benefit Note: Fluid pooled at the lowest base of the belly is actively mobilizing.",
     },
     {
         "step": "Step 4: The Deep Downward V-Sweep",
-        "duration": 90,  # Seconds[span_22](start_span)[span_22](end_span)
+        "duration": 90,
         "image_file": "step4.png",
-        "distance": "14 cm - 15 cm below navel → Outer[span_23](start_span)[span_23](end_span)",
-        "where": "Start from vertical centerline, extending 8 cm to 12 cm diagonally outward into deep groin fold creases[span_24](start_span)[span_24](end_span).",
-        "action": "Pause at bottom centerline for 3-5 seconds. Sweep diagonally outward into left crease (0.5 cm/sec). Repeat right side[span_25](start_span)[span_25](end_span).",
-        "goal": "Mechanically sweeps all mobilized fluid from the lowest central pocket straight into open drainage nodes[span_26](start_span)[span_26](end_span).",
-        "benefit_text": "💡 Benefit Note: Fluid is being mechanically swept straight into open drainage nodes for clearance[span_27](start_span)[span_27](end_span).",
+        "distance": "14 cm - 15 cm below navel → Outer",
+        "where": "Start from vertical centerline, extending 8 cm to 12 cm diagonally outward into deep groin fold creases.",
+        "action": "Pause at bottom centerline for 3-5 seconds. Sweep diagonally outward into left crease (0.5 cm/sec). Repeat right side.",
+        "goal": "Mechanically sweeps all mobilized fluid from the lowest central pocket straight into open drainage nodes.",
+        "benefit_text": "💡 Benefit Note: Fluid is being mechanically swept straight into open drainage nodes for clearance.",
     },
 ]
 
 # Sidebar for Professional Tracking & Setup Guide
 st.sidebar.header("📊 Clinical Setup & Log")
 st.sidebar.markdown("""
-* **Positioning:** Lie flat, knees bent at 90°[span_28](start_span)[span_28](end_span).
-* **Device Setup:** Flat-head attachment on medium-low vibration setting[span_29](start_span)[span_29](end_span).
-* **Breathing:** Maintain slow, deep belly breaths into the lower pelvis[span_30](start_span)[span_30](end_span).
+* **Positioning:** Lie flat, knees bent at 90°.
+* **Device Setup:** Flat-head attachment on medium-low vibration setting.
+* **Breathing:** Maintain slow, deep belly breaths into the lower pelvis.
 """)
 
 daily_rating = st.sidebar.slider("Rate session tension relief (1-10):", 1, 10, 7)
@@ -151,13 +151,11 @@ if st.sidebar.button("Save Session Metrics"):
 # Main Execution Flow
 st.subheader("Clinical Protocol Session Execution")
 
-# Technique Reminder Note Box
 st.info(
-    "⚠️ **Protocol Rules Reminder:** Keep total execution time between 5 and 7 minutes[span_31](start_span)[span_31](end_span). "
-    "Drink 300 to 500 mL of fresh water immediately upon completion[span_32](start_span)[span_32](end_span)."
+    "⚠️ **Protocol Rules Reminder:** Keep total execution time between 5 and 7 minutes. "
+    "Drink 300 to 500 mL of fresh water immediately upon completion."
 )
 
-# Session State Initialization
 if "current_step_index" not in st.session_state:
     st.session_state.current_step_index = 0
 
@@ -166,17 +164,14 @@ current_idx = st.session_state.current_step_index
 if current_idx < len(protocol_steps):
     step_info = protocol_steps[current_idx]
 
-    # Persistent prominent notice guiding user to review instructions at top before starting timer
     st.toast("📌 Step loaded! Review specifications and layout below, then scroll down to execute.", icon="👆")
 
     st.markdown(f"### {step_info['step']}")
 
-    # Render image with dynamic processing for Step 3
     img_path = step_info["image_file"]
     if os.path.exists(img_path):
         img = Image.open(img_path)
 
-        # Programmatically overlay a polished semi-transparent colored vertical strip for Step 3
         if current_idx == 2:
             width, height = img.size
             overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
@@ -201,7 +196,6 @@ if current_idx < len(protocol_steps):
     else:
         st.warning(f"⚠️ Image file `{img_path}` pending upload in repository root.")
 
-    # Structured Protocol Metadata Card Display
     st.markdown(f"""
         <div class="metric-container">
             <b>📍 Target Depth / Zone:</b> {step_info['distance']}<br>
@@ -211,9 +205,8 @@ if current_idx < len(protocol_steps):
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"**Target Duration:** {step_info['duration']} seconds[span_33](start_span)[span_33](end_span)")
+    st.markdown(f"**Target Duration:** {step_info['duration']} seconds")
 
-    # Timer Component with Expanded Visibility Pop-ups
     if st.button("Start Step Timer & Monitor", type="primary"):
         placeholder = st.empty()
         progress_bar = st.progress(0)
@@ -221,10 +214,8 @@ if current_idx < len(protocol_steps):
 
         total_time = step_info["duration"]
 
-        # Initial breath reminder popup/alert
-        st.toast("🌿 Breathe deeply in and out. Relax your pelvic floor[span_34](start_span)[span_34](end_span).", icon="🧘")
+        st.toast("🌿 Breathe deeply in and out. Relax your pelvic floor.", icon="🧘")
         
-        # Step 3 Specific Instruction Prompt
         if current_idx == 2:
             st.toast("⚠️ Do not lift, maintain massage gun contact for full duration to ensure drainage.", icon="✊")
 
@@ -238,7 +229,6 @@ if current_idx < len(protocol_steps):
 
             elapsed = total_time - remaining
 
-            # Timing triggers & benefit popups
             if current_idx == 0:
                 if elapsed == 45:
                     st.toast("🔄 Switch sides! Move device to the right groin crease.", icon="👉")
@@ -257,9 +247,9 @@ if current_idx < len(protocol_steps):
 
             elif current_idx == 3:
                 if elapsed == 2:
-                    st.toast("🐢 Speed check: Maintain an ultra-slow pace (0.5 cm/sec)[span_35](start_span)[span_35](end_span).", icon="⏱️")
+                    st.toast("🐢 Speed check: Maintain an ultra-slow pace (0.5 cm/sec).", icon="⏱️")
                 if elapsed == 45:
-                    st.toast("🔄 Switch sides! Move to the other groin crease[span_36](start_span)[span_36](end_span).", icon="👉")
+                    st.toast("🔄 Switch sides! Move to the other groin crease.", icon="👉")
                     benefit_placeholder.info(step_info["benefit_text"])
 
             time.sleep(1)
@@ -283,7 +273,7 @@ if current_idx < len(protocol_steps):
             if st.button("🏁 Complete Protocol", type="primary"):
                 st.success(
                     f"🎉 Congratulations {st.session_state.user_name}! Protocol complete! "
-                    "Remember to drink 300-500 mL of fresh water[span_37](start_span)[span_37](end_span)."
+                    "Remember to drink 300-500 mL of fresh water."
                 )
                 st.session_state.current_step_index = 0
                 st.rerun()
