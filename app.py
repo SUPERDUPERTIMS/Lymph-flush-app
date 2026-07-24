@@ -7,8 +7,8 @@ import streamlit.components.v1 as components
 
 # Page configuration
 st.set_page_config(
-    page_title="Advanced Lower Pelvic & Abdominal Flush Protocol",
-    page_icon="💧",
+    page_title="KineticPulse: Multi-Protocol Tissue & Performance Suite",
+    page_icon="⚡",
     layout="centered",
     initial_sidebar_state="expanded"
 )
@@ -87,37 +87,43 @@ def scroll_to_top():
 
 
 # Helper function to log user metrics locally to a CSV file
-def log_session_to_csv(name, rating, notes):
+def log_session_to_csv(name, protocol_name, rating, notes):
     import csv
-    file_exists = os.path.isfile('session_logs.csv')
-    with open('session_logs.csv', mode='a', newline='', encoding='utf-8') as f:
+    file_exists = os.path.isfile('kinetic_session_logs.csv')
+    with open('kinetic_session_logs.csv', mode='a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["Timestamp", "Practitioner Name", "Tension Rating", "Notes"])
+            writer.writerow(["Timestamp", "Practitioner Name", "Protocol", "Tension Rating", "Notes"])
         writer.writerow([
             datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             name,
+            protocol_name,
             rating,
             notes
         ])
 
 
 # App Title & Professional Header
-st.title("💧 Advanced Lower Pelvic & Abdominal Flush Protocol")
-st.markdown("##### *Targeted Interstitial Fluid Drainage & Deep Pelvic Wall Release*")
+st.title("⚡ KineticPulse: Tissue & Performance Suite")
+st.markdown("##### *Advanced Myofascial Maintenance & Mechanical Alignment Protocols*")
 st.markdown("---")
 
-# Name Input & Safety Gate Initialization with Expanded Confirmations
+# Session State Initialization for Safety Gate
 if "user_name" not in st.session_state:
     st.session_state.user_name = ""
 if "safety_cleared" not in st.session_state:
     st.session_state.safety_cleared = False
+if "selected_protocol" not in st.session_state:
+    st.session_state.selected_protocol = "Advanced Lower Pelvic & Abdominal Flush Protocol"
+if "current_step_index" not in st.session_state:
+    st.session_state.current_step_index = 0
 
+# --- SAFETY VERIFICATION GATE ---
 if not st.session_state.user_name or not st.session_state.safety_cleared:
     st.markdown("""
         <div class="protocol-card">
             <h3>Clinical Protocol Access & Safety Verification</h3>
-            <p>Please enter your profile name and complete all required safety verifications below to begin your session.</p>
+            <p>Please enter your profile name and complete all required safety verifications below to begin your training session.</p>
         </div>
     """, unsafe_allow_html=True)
     
@@ -125,16 +131,15 @@ if not st.session_state.user_name or not st.session_state.safety_cleared:
     
     st.warning(
         "⚠️ **MEDICAL DISCLAIMER & SAFETY NOTICE:**\n\n"
-        "1. **Contraindications Check:** Do NOT perform if you have an active abdominal or inguinal hernia, "
-        "severe acute digestive issues (e.g., acute IBD, appendicitis), recent abdominal surgery, or if you are pregnant.\n\n"
+        "1. **Contraindications Check:** Do NOT perform these protocols if you have an active abdominal or inguinal hernia, "
+        "severe acute digestive issues, recent surgery, or if you are pregnant.\n\n"
         "2. **Professional Guidance:** We strongly recommend consulting your physician, physical therapist, or a medical "
-        "practitioner specializing in the lymphatic system prior to starting this program.\n\n"
+        "practitioner specializing in the lymphatic system or sports rehabilitation prior to starting this program.\n\n"
         "3. **Age Requirement:** You must be 18 years of age or older to use this protocol."
     )
     
-    # Required confirmation checkboxes
     agree_contraindications = st.checkbox("I confirm I have no active contraindications or medical restrictions listed above.")
-    agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a qualified physician or lymphatic specialist before starting.")
+    agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a qualified physician, physical therapist, or lymphatic specialist before starting.")
     agree_age = st.checkbox("I confirm that I am 18 years of age or older.")
     
     if st.button("Initialize Clinical Session", type="primary"):
@@ -149,8 +154,29 @@ if not st.session_state.user_name or not st.session_state.safety_cleared:
 else:
     st.success(f"Session Active | Practitioner: **{st.session_state.user_name}**")
 
-# Protocol Steps Definition
-protocol_steps = [
+# --- PROTOCOL SELECTOR SCREEN ---
+st.markdown("### 📋 Select Training Protocol")
+protocol_choice = st.selectbox(
+    "Choose your session protocol:",
+    [
+        "Advanced Lower Pelvic & Abdominal Flush Protocol",
+        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
+    ]
+)
+
+# Reset step index if protocol changes
+if st.session_state.selected_protocol != protocol_choice:
+    st.session_state.selected_protocol = protocol_choice
+    st.session_state.current_step_index = 0
+    scroll_to_top()
+    st.rerun()
+
+st.markdown("---")
+
+# --- DEFINE PROTOCOLS ---
+
+# 1. Lymph Flush Protocol Steps (Restored step 3 duration to 120 seconds)
+lymph_steps = [
     {
         "step": "Step 1: Open Primary Drainage Gates",
         "duration": 90,
@@ -193,32 +219,87 @@ protocol_steps = [
     },
 ]
 
+# 2. Hip Flexor Protocol Steps (16 Minutes Total from PDF)
+hip_steps = [
+    {
+        "step": "Step 1: The Outer Hip (TFL)",
+        "duration": 180,
+        "image_file": "hip_step1.png",
+        "distance": "Outer hip flare",
+        "where": "Just below the hard bony flare of your outer hip.",
+        "action": "Set device to high speed. Position at a 45-degree angle. Maintain steady, continuous contact for 90 seconds straight per side.",
+        "goal": "Unloads Tensor Fasciae Latae tension to clear lateral hip restrictions.",
+        "benefit_text": "💡 Benefit Note: Continuous 90-second sensory pressure is dropping protective muscle guarding.",
+    },
+    {
+        "step": "Step 2: Rear Hip, Glutes & Deep Lateral Rotators",
+        "duration": 360,
+        "image_file": "hip_step2.png",
+        "distance": "Gluteal upper outer quadrant & mid-rotator pocket",
+        "where": "Part A: Upper outer quadrant of buttock. Part B (Option E): Midway between outer hip bone and tailbone in 'Figure 4' cross-leg position.",
+        "action": "Part A (90s/side): Medium-high speed global flush (stay off sacrum/spine). Part B (90s/side): Medium speed with slow, oscillating circles in Figure 4 shape.",
+        "goal": "Unlocks true end-range rotational tracking required for fluid, powerful hip-clearing mechanics during rapid turning kicks (mawashi-geri).",
+        "benefit_text": "💡 Benefit Note: Unlocking deep rotational mobility behind the hip joint capsule for clean kicking rotation.",
+    },
+    {
+        "step": "Step 3: Inner Thigh & Advanced Leverage Zone",
+        "duration": 360,
+        "image_file": "hip_step3.png",
+        "distance": "Inner thigh to lower pubic ramus",
+        "where": "Part A: Inner thigh from 10 cm above knee to groin. Part B (Option A): Inner border seam 5-10 cm down from underwear line in half-butterfly position.",
+        "action": "Part A (90s/side): High speed with light sweeping pressure. Part B (90s/side): Highest speed tracing a tight 5 cm path upward, stopping right at the pelvic bone boundary.",
+        "goal": "Removes the neurological 'brakes' that restrict sudden vertical hip chambering, immediately freeing up range for maximum kick height.",
+        "benefit_text": "💡 Benefit Note: Clearing the boundary between high adductor and lower pubic ramus to eliminate kicking brakes.",
+    },
+    {
+        "step": "Step 4: The Structural Integration Lunge",
+        "duration": 60,
+        "image_file": "hip_step4.png",
+        "distance": "Front pocket line / Hip flexor stretch",
+        "where": "Low kneeling lunge position on a soft mat.",
+        "action": "Actively tuck tailbone completely under to square pelvis. Shift weight forward a fraction of a centimeter until clean stretch is felt in front pocket line (30s per side).",
+        "goal": "Locks in mechanical alignment and length following percussion tissue release.",
+        "benefit_text": "💡 Benefit Note: Reinforcing structural integration and optimal pelvic tilt.",
+    },
+]
+
+# Assign active protocol configuration based on selection
+if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+    protocol_steps = lymph_steps
+else:
+    protocol_steps = hip_steps
+
 # Sidebar for Professional Tracking & Setup Guide
 st.sidebar.header("📊 Clinical Setup & Log")
-st.sidebar.markdown("""
-* **Positioning:** Lie flat, knees bent at 90°.
-* **Device Setup:** Flat-head attachment on **medium-low vibration setting**.
-* **Pressure Rule:** **Do NOT press hard**; use a light touch to optimize tissue resonance.
-* **Breathing:** Maintain slow, deep belly breaths (4s inhale, 6s exhale) into the lower pelvis.
-""")
+if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+    st.sidebar.markdown("""
+    * **Positioning:** Lie flat, knees bent at 90°.
+    * **Device Setup:** Flat-head attachment on **medium-low vibration setting**.
+    * **Pressure Rule:** **Do NOT press hard**; use a light touch to optimize tissue resonance.
+    * **Breathing:** Maintain slow, deep belly breaths (4s inhale, 6s exhale).
+    """)
+else:
+    st.sidebar.markdown("""
+    * **Positioning:** Mat work, sitting, or kneeling lunge.
+    * **Device Setup:** High or medium-high speed per step instructions.
+    * **The 90-Second Rule:** Maintain uninterrupted sensory contact for full duration.
+    * **Continuous Breathing:** Inhale deeply into low belly, exhale immediately as a soft sigh (no breath-holding).
+    """)
 
-daily_rating = st.sidebar.slider("Rate session tension relief (1-10):", 1, 10, 7)
+daily_rating = st.sidebar.slider("Rate session tension relief (1-10):", 1, 10, 8)
 daily_notes = st.sidebar.text_area("Practitioner Notes:")
 
 if st.sidebar.button("Save Session Metrics"):
-    log_session_to_csv(st.session_state.user_name, daily_rating, daily_notes)
+    log_session_to_csv(st.session_state.user_name, st.session_state.selected_protocol, daily_rating, daily_notes)
     st.sidebar.success(f"Saved log for {st.session_state.user_name} (Rating: {daily_rating}/10)")
 
-# Main Execution Flow
-st.subheader("Clinical Protocol Session Execution")
+# --- MAIN EXECUTION FLOW ---
+st.subheader(f"Execution: {st.session_state.selected_protocol}")
 
-st.info(
-    "⚠️ **Protocol Rules Reminder:** Keep total execution time between 5 and 7 minutes. "
-    "Drink 300 to 500 mL of fresh water immediately upon completion."
-)
-
-if "current_step_index" not in st.session_state:
-    st.session_state.current_step_index = 0
+if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+    st.info("⚠️ **Protocol Rules Reminder:** Keep total execution time between 5 and 7 minutes. Drink 300 to 500 mL of water upon completion.")
+else:
+    st.info("⚠️ **Performance Rules Reminder:** Maintain continuous breathing throughout. Never hold your breath. Stay strictly off bone flares.")
 
 current_idx = st.session_state.current_step_index
 
@@ -227,37 +308,21 @@ if current_idx < len(protocol_steps):
 
     st.markdown(f"### {step_info['step']}")
 
-    # Prominent Pressure and Vibration Reminder Callout
-    st.markdown(
-        '<div class="pressure-warning">⚠️ TECHNIQUE REMINDER: Use a <b>medium-low vibration setting</b> and <b>do NOT press hard</b>. Allow the device weight and light touch to handle the tissue resonance.</div>',
-        unsafe_allow_html=True
-    )
+    if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+        st.markdown(
+            '<div class="pressure-warning">⚠️ TECHNIQUE REMINDER: Use a <b>medium-low vibration setting</b> and <b>do NOT press hard</b>. Allow device weight to handle tissue resonance.</div>',
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            '<div class="pressure-warning">⚠️ 90-SECOND RULE & BREATHING: Maintain uninterrupted contact. Inhale into low belly, exhale as a soft sigh without pausing.</div>',
+            unsafe_allow_html=True
+        )
 
     img_path = step_info["image_file"]
     if os.path.exists(img_path):
         img = Image.open(img_path)
-
-        if current_idx == 2:
-            width, height = img.size
-            overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
-            draw = ImageDraw.Draw(overlay)
-            strip_left = int(width * 0.42)
-            strip_right = int(width * 0.58)
-            strip_top = int(height * 0.20)
-            strip_bottom = int(height * 0.85)
-            draw.rectangle(
-                [strip_left, strip_top, strip_right, strip_bottom],
-                fill=(46, 139, 87, 160),
-            )
-            img = Image.alpha_composite(img.convert("RGBA"), overlay).convert(
-                "RGB"
-            )
-
-        st.image(
-            img,
-            use_container_width=True,
-            caption=f"Visual Guide: {step_info['step']}",
-        )
+        st.image(img, use_container_width=True, caption=f"Visual Guide: {step_info['step']}")
     else:
         st.warning(f"⚠️ Image file `{img_path}` pending upload in repository root.")
 
@@ -270,9 +335,9 @@ if current_idx < len(protocol_steps):
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"**Target Duration:** {step_info['duration']} seconds")
+    total_duration_secs = step_info['duration']
+    st.markdown(f"**Target Duration:** {total_duration_secs} seconds ({total_duration_secs // 60} minutes)")
 
-    # Timer Component with Persistent Breathing & Benefit Display for Steps 3 & 4
     if st.button("Start Step Timer & Monitor", type="primary"):
         placeholder = st.empty()
         progress_bar = st.progress(0)
@@ -280,41 +345,34 @@ if current_idx < len(protocol_steps):
         benefit_placeholder = st.empty()
 
         total_time = step_info["duration"]
+        half_time = total_time // 2
 
         for remaining in range(total_time, -1, -1):
             mins, secs = divmod(remaining, 60)
             time_display = f"{mins:02d}:{secs:02d}"
-            placeholder.markdown(
-                f"### ⏱️ Time Remaining: **{time_display}**"
-            )
+            placeholder.markdown(f"### ⏱️ Time Remaining: **{time_display}**")
             progress_bar.progress(1.0 - (remaining / total_time))
 
             elapsed = total_time - remaining
 
-            # Active Breath Guidance Pacing (4s Inhale, 6s Exhale cycle = 10s total loop)
-            breath_cycle = elapsed % 10
-            if breath_cycle < 4:
-                breath_placeholder.markdown(
-                    '<div class="breath-box">🌬️ Inhale Deeply (Into Lower Pelvis)... (4s)</div>', 
-                    unsafe_allow_html=True
-                )
+            if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+                breath_cycle = elapsed % 10
+                if breath_cycle < 4:
+                    breath_placeholder.markdown('<div class="breath-box">🌬️ Inhale Deeply (Into Lower Pelvis)... (4s)</div>', unsafe_allow_html=True)
+                else:
+                    breath_placeholder.markdown('<div class="breath-box">😌 Exhale Slowly & Release Tension... (6s)</div>', unsafe_allow_html=True)
             else:
-                breath_placeholder.markdown(
-                    '<div class="breath-box">😌 Exhale Slowly & Release Tension... (6s)</div>', 
-                    unsafe_allow_html=True
-                )
+                breath_cycle = elapsed % 8
+                if breath_cycle < 4:
+                    breath_placeholder.markdown('<div class="breath-box">🌬️ Deep belly inhale...</div>', unsafe_allow_html=True)
+                else:
+                    breath_placeholder.markdown('<div class="breath-box">😌 Soft relaxed sigh exhale...</div>', unsafe_allow_html=True)
 
-            # Persistent Benefit Callouts for Steps 3 and 4
-            if current_idx >= 2:
+            if "benefit_text" in step_info:
                 benefit_placeholder.info(step_info["benefit_text"])
 
-            # Step-specific side/action prompts
-            if current_idx == 0:
-                if elapsed == 45:
-                    st.toast("🔄 Switch sides! Move device to the right groin crease.", icon="👉")
-            elif current_idx == 3:
-                if elapsed == 45:
-                    st.toast("🔄 Switch sides! Move to the other groin crease.", icon="👉")
+            if total_time > 60 and elapsed == half_time:
+                st.toast("🔄 Switch sides! Move device to the opposite limb/side.", icon="👉")
 
             time.sleep(1)
 
@@ -342,115 +400,10 @@ if current_idx < len(protocol_steps):
                 scroll_to_top()
                 st.rerun()
 else:
-    # --- POST-PROTOCOL EVALUATION & JOURNEY TRACKING SYSTEM ---
-    if "evaluation_complete" not in st.session_state:
-        st.session_state.evaluation_complete = False
-
     st.markdown("---")
-    st.markdown("### 🎯 Post-Protocol Session Evaluation & Journey Milestone")
-    st.markdown("Please answer the quick questions below to evaluate your session and log your current program progress.")
-
-    with st.form("evaluation_form"):
-        selected_diagram = st.selectbox(
-            "1. Which diagram/step zone was your primary placement focus?",
-            [
-                "Step 1: Primary Drainage Gates (Groin creases)",
-                "Step 2: Sub-Umbilical Mid-Release (3-10 cm below navel)",
-                "Step 3: Extended Low-Pelvic Release (Central pubic border)",
-                "Step 4: Deep Downward V-Sweep (Centerline to outer crease)"
-            ]
-        )
-
-        time_percentage = st.slider(
-            "2. What percentage of the required time did you accurately maintain this placement? (0% - 100%)",
-            min_value=0, max_value=100, value=80, step=5
-        )
-
-        vibration_setting = st.radio(
-            "3. Confirm the vibration intensity setting used during the session:",
-            [
-                "Medium-Low (Correct Protocol Setting)",
-                "High / Aggressive (Incorrect Setting)",
-                "Low / Minimal"
-            ]
-        )
-
-        st.markdown("---")
-        st.markdown("#### 📅 Select Your Current Week in the 8-Week Journey:")
-        journey_week = st.radio(
-            "Choose your current progress week:",
-            [
-                "Week 1 of 8",
-                "Week 2 of 8",
-                "Week 3 of 8",
-                "Week 4 of 8",
-                "Week 5 of 8",
-                "Week 6 of 8",
-                "Week 7 of 8",
-                "Week 8 of 8"
-            ]
-        )
-
-        submit_evaluation = st.form_submit_button("Calculate Score & View Program Progress", type="primary")
-
-    if submit_evaluation:
-        base_score = time_percentage
-        if "Medium-Low" in vibration_setting:
-            vibration_multiplier = 1.0
-        else:
-            vibration_multiplier = 0.75
-
-        final_effectiveness_score = int(base_score * vibration_multiplier)
-        st.session_state.final_score = final_effectiveness_score
-        st.session_state.journey_week = journey_week
-        st.session_state.evaluation_complete = True
-        st.success(f"Evaluation Saved! Calculated Effectiveness Score: {final_effectiveness_score}/100")
-
-    if st.session_state.get("evaluation_complete", False):
-        score = st.session_state.final_score
-        week_selected = st.session_state.journey_week
-        
-        st.markdown("---")
-        st.markdown("### 📈 Session Analysis & Journey Milestone Feedback")
-
-        # Journey-specific milestone message
-        if "Week 1" in week_selected:
-            st.info("🌱 **Journey Milestone (Week 1 of 8):** Well done on starting! Now get your routine going (aim to complete steps every 2 to 3 days going forward to unlock the benefits).")
-        elif "Week 2" in week_selected:
-            st.info("🌟 **Journey Milestone (Week 2 of 8):** Congratulations! You are on your way. This week, focus on getting breathing correct throughout the steps.")
-        elif "Week 3" in week_selected:
-            st.info("🔥 **Journey Milestone (Week 3 of 8):** You have got a habit going!! Now focus on Step 3, slow movement over the 120 seconds and try and hold for 5 seconds 14 to 15 cm below belly button.")
-        elif "Week 4" in week_selected:
-            st.info("🎯 **Journey Milestone (Week 4 of 8):** Step 4 is our focus this week, slow movement. Work downwards and hold for 5 seconds then sideways along fold.")
-        elif "Week 5" in week_selected:
-            st.info("⚡ **Journey Milestone (Week 5 of 8):** Almost done with 6 weeks. Keep it going! Breathe!!")
-        elif "Week 6" in week_selected:
-            st.info("🚀 **Journey Milestone (Week 6 of 8):** Great work!")
-        elif "Week 7" in week_selected:
-            st.info("💪 **Journey Milestone (Week 7 of 8):** Keep going!!")
-        elif "Week 8" in week_selected:
-            st.info("🏆 **Journey Milestone (Week 8 of 8):** 8 weeks done!!! You have done it!!")
-
-        # Score-based breakdown
-        if score >= 90:
-            st.markdown(f"""
-                * **Score Breakdown ({score}/100 - Elite Execution):** Your positioning alignment and medium-low vibration control were exceptionally accurate. Maintain this exact rhythm.
-            """)
-        elif score >= 75:
-            st.markdown(f"""
-                * **Score Breakdown ({score}/100 - Strong Session):** You successfully covered the target zones with good overall consistency. Watch out for slight drift during the low-pelvic release phase.
-            """)
-        elif score >= 50:
-            st.markdown(f"""
-                * **Score Breakdown ({score}/100 - Moderate Adherence):** Your time percentage or vibration intensity deviated from optimal guidelines. Ensure your device stays on the *medium-low* setting.
-            """)
-        else:
-            st.markdown(f"""
-                * **Score Breakdown ({score}/100 - Needs Structural Adjustment):** Your configuration reduced drainage efficiency. Use a feather-light touch—let the device weight do the work.
-            """)
-
-    if st.button("Restart New Protocol Session"):
+    st.success(f"🏆 **Protocol Completed Successfully!** Great work completing the {st.session_state.selected_protocol}.")
+    
+    if st.button("Restart Session"):
         st.session_state.current_step_index = 0
-        st.session_state.evaluation_complete = False
         scroll_to_top()
         st.rerun()
