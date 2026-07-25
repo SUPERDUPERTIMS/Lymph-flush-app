@@ -269,7 +269,7 @@ elif st.session_state.app_page == 2:
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Conditionally show details based on selection (with unsafe_allow_html=True enabled)
+    # Conditionally show details based on selection (with corrected HTML formatting)
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         st.markdown("""
             <div class="metric-container">
@@ -303,38 +303,39 @@ elif st.session_state.app_page == 2:
     elif chosen_option == "Massage Gun General Information & Usage Tips":
         st.markdown("""
             <div class="metric-container">
-                <h3 style="margin-top:0; color:#ff9800;">Massage Gun Speeds and Techniques for First-Time Users</h3>
+                <h4 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques for First-Time Users</h4>
                 
-                <p><b>1. Speed Settings and Operational Mechanics</b></p>
-                <p>Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:</p>
-                <ul>
-                    <li><b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.</li>
-                    <li><b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.</li>
-                    <li><b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.</li>
-                </ul>
+                <p><b>1. Speed Settings and Operational Mechanics</b><br>
+                Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:</p>
+                <p style="margin-left: 15px;">
+                • <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.<br><br>
+                • <b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.<br><br>
+                • <b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.
+                </p>
                 
-                <p><b>2. Fittings and Attachment Selection</b></p>
-                <p>Different attachment heads alter how percussive therapy interacts with soft tissue during a session:</p>
-                <ul>
-                    <li><b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.</li>
-                    <li><b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.</li>
-                </ul>
+                <p><b>2. Fittings and Attachment Selection</b><br>
+                Different attachment heads alter how percussive therapy interacts with soft tissue during a session:</p>
+                <p style="margin-left: 15px;">
+                • <b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.<br><br>
+                • <b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.
+                </p>
                 
-                <p><b>3. General Massage Gun Techniques & Rules</b></p>
-                <p>First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:</p>
-                <ul>
-                    <li><b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.</li>
-                    <li><b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.</li>
-                    <li><b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.</li>
-                </ul>
+                <p><b>3. General Massage Gun Techniques & Rules</b><br>
+                First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:</p>
+                <p style="margin-left: 15px;">
+                • <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br><br>
+                • <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br><br>
+                • <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.
+                </p>
                 
-                <h3 style="color:#ff9800; margin-top:20px;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h3>
+                <h4 style="color:#ff9800; margin-top:20px;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h4>
+                
                 <p>Comparing percussive therapy devices to traditional methods highlights several distinct mechanical advantages:</p>
-                <ul>
-                    <li><b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.</li>
-                    <li><b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.</li>
-                    <li><b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows (such as 16-minute performance protocols or 5-to-7-minute drainage sessions).</li>
-                </ul>
+                <p style="margin-left: 15px;">
+                • <b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.<br><br>
+                • <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br><br>
+                • <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows.
+                </p>
             </div>
         """, unsafe_allow_html=True)
 
