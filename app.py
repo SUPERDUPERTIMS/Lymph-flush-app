@@ -231,13 +231,17 @@ elif st.session_state.app_page == 2:
     protocol_options = [
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
+        "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)",
+        "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)",
         "Massage Gun General Information & Usage Tips"
     ]
     
     preview_images = {
         protocol_options[0]: "step1.png",
         protocol_options[1]: "hip_master_guide.png",
-        protocol_options[2]: "step1.png"
+        protocol_options[2]: "forearm_guide.png",
+        protocol_options[3]: "ankle_guide.png",
+        protocol_options[4]: "step1.png"
     }
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
@@ -300,6 +304,36 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This proto
 </div>
 """, unsafe_allow_html=True)
 
+    elif chosen_option == "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)":
+        st.markdown("""
+<div class="metric-container">
+<b>🎯 Why It Must Be Done:</b><br>
+Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate "tennis/padel elbow" strain while restoring posterior shoulder mobility for fluid internal/external rotation under load.<br><br>
+<b>✨ Key Benefits:</b><br>
+• <b>Elbow Relief:</b> Decompresses the brachioradialis and wrist extensor mass to reduce lateral joint strain.<br>
+• <b>Restored Shoulder Rotation:</b> Clears posterior capsule and infraspinatus restrictions for unimpeded overhead reach.<br>
+• <b>Fluid Wrist Snaps:</b> Restores elastic recoil and power transfer through racquet strikes.<br><br>
+<b>⏱️ Recommended Frequency:</b><br>
+• <b>Schedule:</b> 2 to 3 times per week, specifically after matches or heavy hitting sessions.<br>
+• <b>Duration:</b> 12 minutes total execution time across 4 targeted steps.
+</div>
+""", unsafe_allow_html=True)
+
+    elif chosen_option == "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)":
+        st.markdown("""
+<div class="metric-container">
+<b>🎯 Why It Must Be Done:</b><br>
+Restricted ankle dorsiflexion forces the knees and lower back to absorb excess rotational and impact shear forces during directional changes. Unlocking the soleus and peroneal complex restores proper ground-force transmission.<br><br>
+<b>✨ Key Benefits:</b><br>
+• <b>Deeper Mobility:</b> Increases ankle dorsiflexion, enabling deeper squatting, lunging, and lower stance capacity.<br>
+• <b>Lateral Stability:</b> Frees the peroneal complex to stabilize sudden cuts on court surfaces.<br>
+• <b>Knee & Back Protection:</b> Reduces compensatory stress transferred upward along the posterior kinetic chain.<br><br>
+<b>⏱️ Recommended Frequency:</b><br>
+• <b>Schedule:</b> 2 to 3 times per week as part of a pre-workout mobility warm-up or recovery session.<br>
+• <b>Duration:</b> 14 minutes total execution time across 4 targeted steps.
+</div>
+""", unsafe_allow_html=True)
+
     elif chosen_option == "Massage Gun General Information & Usage Tips":
         st.markdown("""
 <div class="metric-container">
@@ -336,6 +370,30 @@ First-time users should adhere to strict foundational mechanics to prevent tissu
 • <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br><br>
 • <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows.
 </p>
+
+<hr style="border: 0; height: 1px; background: #e0e0e0; margin: 25px 0 15px 0;">
+
+<div style="text-align: center;">
+    <p style="font-weight: bold; font-size: 1.05rem; color: #222222; margin-bottom: 12px;">
+        Looking to purchase a recommended massage gun?
+    </p>
+    <a href="https://www.amazon.com/s?k=massage+gun&tag=YOUR_AFFILIATE_TAG" target="_blank" style="
+        display: inline-block;
+        background-color: #ff9900;
+        color: #111111;
+        padding: 14px 24px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
+    ">
+        🛒 View Top Rated Massage Guns on Amazon
+    </a>
+    <p style="font-size: 0.75rem; color: #888888; margin-top: 10px;">
+        As an Amazon Associate, earnings may be generated from qualifying purchases.
+    </p>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -447,10 +505,101 @@ elif st.session_state.app_page == 3:
         },
     ]
 
+    forearm_steps = [
+        {
+            "step": "Step 1: Lateral Extensor Mass & Brachioradialis",
+            "duration": 180,
+            "image_file": "forearm_guide.png",
+            "distance": "Outer Forearm Mass",
+            "where": "Position 3 cm below outer elbow crease over fleshy forearm mass.",
+            "action": "Medium Speed (Flat/Cushion attachment). Palm facing down. Glide slowly down toward wrist (1 cm/sec) and back up (90s per arm).",
+            "goal": "Relieves tension at the lateral epicondyle to eliminate tennis/padel elbow strain.",
+            "benefit_text": "💡 Decompressing wrist extensors to restore fluid wrist snaps.",
+        },
+        {
+            "step": "Step 2: Medial Flexor & Pronator Teres Release",
+            "duration": 180,
+            "image_file": "forearm_guide.png",
+            "distance": "Inner Forearm Belly",
+            "where": "Start 3 cm below inner elbow joint (avoid inner elbow groove nerve channel).",
+            "action": "Low-to-Medium Speed. Palm facing up. Trace narrow path along inner forearm belly down toward mid-forearm (90s per arm).",
+            "goal": "Releases tight flexor group from repetitive gripping and rotational strikes.",
+            "benefit_text": "💡 Releasing forearm flexors to prevent medial joint strain.",
+        },
+        {
+            "step": "Step 3: Posterior Capsule & Infraspinatus",
+            "duration": 240,
+            "image_file": "forearm_guide.png",
+            "distance": "Posterior Scapular Pocket",
+            "where": "Fleshy muscular pocket behind shoulder blade below the spine of the scapula.",
+            "action": "Medium-High Speed (Bullet/Ball attachment). Reach arm across chest. Use slow, deep circular sweeps (120s per shoulder).",
+            "goal": "Clears posterior capsule restriction to restore full shoulder rotation.",
+            "benefit_text": "💡 Unlocking deep posterior shoulder rotation for overhead power.",
+        },
+        {
+            "step": "Step 4: Pec Minor & Anterior Wall Clearance",
+            "duration": 120,
+            "image_file": "forearm_guide.png",
+            "distance": "Sub-Clavicular Chest Wall",
+            "where": "Just below collarbone, moving diagonally toward front shoulder joint.",
+            "action": "Low Speed (Flat attachment). Opposite hand behind lower back. Angle device at 45° on soft muscle tissue (60s per side).",
+            "goal": "Opens the chest wall and prevents forward shoulder protraction.",
+            "benefit_text": "💡 Opening front shoulder wall to optimize scapular posture.",
+        },
+    ]
+
+    ankle_steps = [
+        {
+            "step": "Step 1: Gastrocnemius & Deep Soleus Flush",
+            "duration": 240,
+            "image_file": "ankle_guide.png",
+            "distance": "Calf Muscle Belly to Achilles Transition",
+            "where": "Upper calf down to lower third where muscle transitions into Achilles tendon.",
+            "action": "High Speed (Large Ball/Flat head). Part A (60s): Sweep calf bellies. Part B (60s): Hold pressure on outer/inner lower calf borders (120s per leg).",
+            "goal": "Frees deep calf stiffness to immediately increase ankle dorsiflexion.",
+            "benefit_text": "💡 Increasing ankle dorsiflexion for deeper squatting and lunging.",
+        },
+        {
+            "step": "Step 2: Peroneal Complex (Lateral Lower Leg)",
+            "duration": 180,
+            "image_file": "ankle_guide.png",
+            "distance": "Lateral Lower Leg Channel",
+            "where": "Outer side of shin between shin bone and calf.",
+            "action": "Medium Speed. Turn leg slightly inward. Glide slowly along outer muscle channel from 5 cm below knee to 5 cm above ankle (90s per leg).",
+            "goal": "Improves ankle stability during sudden lateral cuts and changes of direction.",
+            "benefit_text": "💡 Stabilizing outer lower leg for rapid lateral court cuts.",
+        },
+        {
+            "step": "Step 3: Posterior Hamstring Insertion & Biceps Femoris",
+            "duration": 300,
+            "image_file": "ankle_guide.png",
+            "distance": "Mid-Hamstring to Outer Knee Pocket",
+            "where": "Part A: Mid-to-outer hamstring belly. Part B: Outer hamstring pocket 5-10 cm above back of knee.",
+            "action": "Medium-High Speed. Sit on chair edge. Part A (90s): Longitudinal glides up to gluteal fold. Part B (60s): Hold outer pocket (150s per leg).",
+            "goal": "Clears lateral knee pulling and unloads posterior kinetic chain tension.",
+            "benefit_text": "💡 Relieving posterior kinetic strain and outer knee tension.",
+        },
+        {
+            "step": "Step 4: Loaded Soleus Mobilization Stretch",
+            "duration": 120,
+            "image_file": "ankle_guide.png",
+            "distance": "Ankle Dorsiflexion End-Range",
+            "where": "Standing lunge facing wall with back heel flat on ground.",
+            "action": "Bend knees, driving front and back knees forward over toes without lifting heel. Hold end-range position with deep belly breaths (60s per leg).",
+            "goal": "Reinforces neurological lengthening and locks in ankle dorsiflexion range.",
+            "benefit_text": "💡 Locking in ankle end-range dorsiflexion with active mobilization.",
+        },
+    ]
+
+    # Map selected protocol to step configuration
     if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         protocol_steps = lymph_steps
-    else:
+    elif st.session_state.selected_protocol == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
         protocol_steps = hip_steps
+    elif st.session_state.selected_protocol == "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)":
+        protocol_steps = forearm_steps
+    else:
+        protocol_steps = ankle_steps
 
     st.markdown(f"""
 <div class="curved-header">
@@ -486,7 +635,7 @@ elif st.session_state.app_page == 3:
 
         st.markdown(f"""
 <div class="metric-container">
-    <b>📍 Target Depth:</b> {step_info['distance']}<br>
+    <b>📍 Target Zone:</b> {step_info['distance']}<br>
     <b>🗺️ Location:</b> {step_info['where']}<br>
     <b>⚡ Action:</b> {step_info['action']}<br>
     <b>🎯 Goal:</b> {step_info['goal']}
