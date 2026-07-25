@@ -271,7 +271,7 @@ elif st.session_state.app_page == 2:
                 <b>🎯 Why it should be done:</b><br>
                 To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
                 <b>⏱️ How often:</b><br>
-                2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session.<br><br>
+                2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.<br><br>
                 <b>✨ Benefits you will notice:</b><br>
                 • Flatter, more defined look<br>
                 • Physically feeling better<br>
