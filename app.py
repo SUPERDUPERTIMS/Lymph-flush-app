@@ -13,18 +13,22 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional Mobile-First Custom Styling (Headspace-Inspired Warm Orange Palette)
+# Professional Mobile-First Custom Styling (Forced Warm Orange Headspace Theme)
 st.markdown("""
     <style>
+    /* Force full background color on Streamlit app and main container */
+    .stApp {
+        background-color: #fcfbf9 !important;
+    }
     .main {
-        background-color: #fcfbf9;
+        background-color: #fcfbf9 !important;
         padding: 0px 4px;
     }
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* Global Typography & Card Styling */
+    /* Global Typography & Button Styling */
     .stButton>button {
         width: 100%;
         border-radius: 16px;
@@ -44,13 +48,24 @@ st.markdown("""
         transform: scale(0.98);
     }
 
+    /* Clean White Cards */
     .protocol-card {
-        background: white;
+        background: #ffffff;
         padding: 20px;
         border-radius: 20px;
         border: 1px solid #f3f4f6;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
         margin-bottom: 16px;
+    }
+
+    /* Selection Block Styling */
+    .selection-box {
+        background: #ffffff;
+        padding: 16px;
+        border-radius: 16px;
+        border: 2px solid #fde68a;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+        margin-bottom: 14px;
     }
 
     .metric-container {
@@ -121,7 +136,7 @@ def log_session_to_csv(name, protocol_name, rating, notes):
 
 # Initialize Session State Flow Control
 if "app_page" not in st.session_state:
-    st.session_state.app_page = 1  # Page 1: Name, Notes & Checks
+    st.session_state.app_page = 1
 if "user_name" not in st.session_state:
     st.session_state.user_name = ""
 if "session_notes" not in st.session_state:
@@ -163,13 +178,13 @@ if st.session_state.app_page == 1:
         if entered_name.strip() and agree_contraindications and agree_medical_consult and agree_age:
             st.session_state.user_name = entered_name.strip()
             st.session_state.session_notes = entered_notes.strip()
-            st.session_state.app_page = 2  # Proceed to Page 2
+            st.session_state.app_page = 2
             scroll_to_top()
             st.rerun()
         else:
             st.error("Please fill in your name and check all safety confirmation boxes to proceed.")
 
-# --- PAGE 2: PROTOCOL SELECTOR WITH PREVIEW IMAGES/LOGOS ---
+# --- PAGE 2: PROTOCOL SELECTOR WITH CARDS & PREVIEW LOGOS ---
 elif st.session_state.app_page == 2:
     st.title("⚡ Choose Protocol")
     st.markdown(f"##### *Welcome back, {st.session_state.user_name}*")
@@ -177,37 +192,40 @@ elif st.session_state.app_page == 2:
 
     st.markdown("### What would you like to focus on today?")
 
-    # Define the two options with thumbnail preview support
     protocol_options = [
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
         "Advanced Lower Pelvic & Abdominal Flush Protocol"
     ]
     
-    # Previews mapping
     preview_images = {
         protocol_options[0]: "hip_master_guide.png",
         protocol_options[1]: "step1.png"
     }
 
+    # Wrapped selection block styling
+    st.markdown('<div class="selection-box">', unsafe_allow_html=True)
     chosen_option = st.radio(
         "Select training focus:",
         protocol_options,
         index=0 if st.session_state.selected_protocol == protocol_options[0] else 1
     )
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    # Display small preview card next to/below selection resembling reference UI
     st.markdown("<br>", unsafe_allow_html=True)
     selected_img_path = preview_images[chosen_option]
     
+    # Display preview card matching reference UI blocks
+    st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
         if os.path.exists(selected_img_path):
-            st.image(selected_img_path, width=120)
+            st.image(selected_img_path, width=110)
         else:
             st.markdown("🍊 **[Preview]**")
     with col2:
-        st.markdown(f"**Selected:** {chosen_option}")
-        st.markdown("Tap continue to load your customized step-by-step routine.")
+        st.markdown(f"**Selected Focus:**\n\n{chosen_option}")
+        st.markdown("<small>Tap continue below to load your customized step-by-step routine.</small>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -221,13 +239,12 @@ elif st.session_state.app_page == 2:
         if st.button("Continue ➡️", type="primary"):
             st.session_state.selected_protocol = chosen_option
             st.session_state.current_step_index = 0
-            st.session_state.app_page = 3  # Proceed to Page 3 (Steps)
+            st.session_state.app_page = 3
             scroll_to_top()
             st.rerun()
 
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE (WARM ORANGE THEME) ---
 elif st.session_state.app_page == 3:
-    # Define protocol data structures
     hip_steps = [
         {
             "step": "Step 1: The Outer Hip (TFL)",
@@ -319,7 +336,6 @@ elif st.session_state.app_page == 3:
     else:
         protocol_steps = lymph_steps
 
-    # Top bar navigation back to selection
     col_top1, col_top2 = st.columns([3, 1])
     with col_top1:
         st.subheader("⚡ Routine Session")
@@ -417,7 +433,6 @@ elif st.session_state.app_page == 3:
         st.markdown("---")
         st.success("🏆 **Protocol Completed Successfully!** Great work.")
         
-        # Log session metrics automatically upon completion
         log_session_to_csv(st.session_state.user_name, st.session_state.selected_protocol, 10, st.session_state.session_notes)
         
         if st.button("Start New Session"):
