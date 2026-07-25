@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional Mobile-First Custom Styling (Based on 1000173890_2.jpg)
+# Professional Mobile-First Custom Styling
 st.markdown("""
     <style>
     /* Force full light gray background to make white cards pop */
@@ -31,7 +31,7 @@ st.markdown("""
     /* Vibrant Blue Pill-Shaped Primary Buttons */
     .stButton>button {
         width: 100%;
-        border-radius: 50px !important; /* Pill shape */
+        border-radius: 50px !important;
         font-weight: 700;
         font-size: 1.1rem;
         padding: 14px 20px;
@@ -39,7 +39,7 @@ st.markdown("""
         transition: all 0.2s ease;
     }
     .stButton>button[kind="primary"] {
-        background-color: #0c38ff !important; /* Bright Royal Blue */
+        background-color: #0c38ff !important;
         border: none;
         color: white;
         box-shadow: 0 8px 16px rgba(12, 56, 255, 0.2);
@@ -55,8 +55,8 @@ st.markdown("""
 
     /* Curved Orange Header Simulation */
     .curved-header {
-        background-color: #ff9800; /* Warm Orange */
-        margin: -4rem -2rem 2rem -2rem; /* Pulling header to the edges */
+        background-color: #ff9800;
+        margin: -4rem -2rem 2rem -2rem;
         padding: 4rem 2rem 3rem 2rem;
         border-bottom-left-radius: 50% 15%;
         border-bottom-right-radius: 50% 15%;
@@ -76,7 +76,7 @@ st.markdown("""
         margin-top: 5px;
     }
 
-    /* Clean White Cards (Pill style lists) */
+    /* Clean White Cards */
     .protocol-card {
         background: #ffffff;
         padding: 24px;
@@ -178,7 +178,6 @@ if "current_step_index" not in st.session_state:
 
 # --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
 if st.session_state.app_page == 1:
-    # Custom Curved Header
     st.markdown("""
         <div class="curved-header">
             <h1>KineticPulse</h1>
@@ -220,48 +219,55 @@ if st.session_state.app_page == 1:
 
 # --- PAGE 2: PROTOCOL SELECTOR WITH CARDS & PREVIEW LOGOS ---
 elif st.session_state.app_page == 2:
-    # Custom Curved Header
     st.markdown(f"""
         <div class="curved-header">
-            <h1>Choose Protocol</h1>
+            <h1>Choose Focus / Info</h1>
             <p>Welcome back, {st.session_state.user_name}</p>
         </div>
     """, unsafe_allow_html=True)
 
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
-    # Lymph Flush 1st, Hip Flexor 2nd
+    # Three options now available
     protocol_options = [
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
-        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
+        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
+        "Massage Gun General Information & Usage Tips"
     ]
     
     preview_images = {
         protocol_options[0]: "step1.png",
-        protocol_options[1]: "hip_master_guide.png"
+        protocol_options[1]: "hip_master_guide.png",
+        protocol_options[2]: "step1.png"
     }
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
+    
+    current_selected = st.session_state.selected_protocol
+    if current_selected in protocol_options:
+        default_idx = protocol_options.index(current_selected)
+    else:
+        default_idx = 0
+
     chosen_option = st.radio(
         "Select training focus:",
         protocol_options,
-        index=0 if st.session_state.selected_protocol == protocol_options[0] else 1,
+        index=default_idx,
         label_visibility="collapsed"
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
     selected_img_path = preview_images[chosen_option]
     
-    # Display preview card
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
-        if os.path.exists(selected_img_path):
+        if chosen_option != "Massage Gun General Information & Usage Tips" and os.path.exists(selected_img_path):
             st.image(selected_img_path, width=110)
         else:
-            st.markdown("🍊 **[Preview]**")
+            st.markdown("📘 **[Guide]**")
     with col2:
-        st.markdown(f"**Selected Focus:**\n\n{chosen_option}")
+        st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Conditionally show details based on selection
@@ -295,6 +301,36 @@ elif st.session_state.app_page == 2:
             </div>
         """, unsafe_allow_html=True)
 
+    elif chosen_option == "Massage Gun General Information & Usage Tips":
+        st.markdown("""
+            <div class="metric-container">
+                <h3 style="margin-top:0; color:#ff9800;">Massage Gun Speeds and Techniques for First-Time Users</h3>
+                
+                <b>1. Speed Settings and Operational Mechanics</b><br>
+                Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:<br>
+                • <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.<br>
+                • <b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.<br>
+                • <b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.<br><br>
+                
+                <b>2. Fittings and Attachment Selection</b><br>
+                Different attachment heads alter how percussive therapy interacts with soft tissue during a session:<br>
+                • <b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.<br>
+                • <b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.<br><br>
+                
+                <b>3. General Massage Gun Techniques & Rules</b><br>
+                First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:<br>
+                • <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br>
+                • <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br>
+                • <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.<br><br>
+                
+                <h3 style="color:#ff9800;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h3>
+                Comparing percussive therapy devices to traditional methods highlights several distinct mechanical advantages:<br>
+                • <b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.<br>
+                • <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br>
+                • <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows (such as 16-minute performance protocols or 5-to-7-minute drainage sessions).
+            </div>
+        """, unsafe_allow_html=True)
+
     st.markdown("<br>", unsafe_allow_html=True)
     
     col_back, col_next = st.columns(2)
@@ -304,10 +340,14 @@ elif st.session_state.app_page == 2:
             scroll_to_top()
             st.rerun()
     with col_next:
-        if st.button("Continue", type="primary"):
+        button_label = "Continue to Protocol" if chosen_option != "Massage Gun General Information & Usage Tips" else "Review Complete"
+        if st.button(button_label, type="primary"):
             st.session_state.selected_protocol = chosen_option
             st.session_state.current_step_index = 0
-            st.session_state.app_page = 3
+            if chosen_option == "Massage Gun General Information & Usage Tips":
+                st.session_state.app_page = 2
+            else:
+                st.session_state.app_page = 3
             scroll_to_top()
             st.rerun()
 
@@ -410,7 +450,7 @@ elif st.session_state.app_page == 3:
         </div>
     """, unsafe_allow_html=True)
 
-    if st.button("Change Protocol", type="secondary"):
+    if st.button("Change Protocol / View Info", type="secondary"):
         st.session_state.app_page = 2
         scroll_to_top()
         st.rerun()
