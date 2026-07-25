@@ -269,7 +269,7 @@ elif st.session_state.app_page == 2:
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Conditionally show details based on selection (using clean Markdown)
+    # Conditionally show details based on selection (with unsafe_allow_html=True enabled)
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         st.markdown("""
             <div class="metric-container">
