@@ -15,124 +15,124 @@ st.set_page_config(
 
 # Professional Mobile-First Custom Styling
 st.markdown("""
-    <style>
-    /* Force full light gray background to make white cards pop */
-    .stApp {
-        background-color: #f7f7f8 !important;
-    }
-    .main {
-        background-color: #f7f7f8 !important;
-        padding: 0px 4px;
-    }
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+<style>
+/* Force full light gray background to make white cards pop */
+.stApp {
+    background-color: #f7f7f8 !important;
+}
+.main {
+    background-color: #f7f7f8 !important;
+    padding: 0px 4px;
+}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 
-    /* Vibrant Blue Pill-Shaped Primary Buttons */
-    .stButton>button {
-        width: 100%;
-        border-radius: 50px !important;
-        font-weight: 700;
-        font-size: 1.1rem;
-        padding: 14px 20px;
-        letter-spacing: 0.3px;
-        transition: all 0.2s ease;
-    }
-    .stButton>button[kind="primary"] {
-        background-color: #0c38ff !important;
-        border: none;
-        color: white;
-        box-shadow: 0 8px 16px rgba(12, 56, 255, 0.2);
-    }
-    .stButton>button[kind="primary"]:active {
-        transform: scale(0.97);
-    }
-    .stButton>button[kind="secondary"] {
-        background-color: #ffffff !important;
-        border: 2px solid #eaeaea;
-        color: #333333;
-    }
+/* Vibrant Blue Pill-Shaped Primary Buttons */
+.stButton>button {
+    width: 100%;
+    border-radius: 50px !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 14px 20px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+}
+.stButton>button[kind="primary"] {
+    background-color: #0c38ff !important;
+    border: none;
+    color: white;
+    box-shadow: 0 8px 16px rgba(12, 56, 255, 0.2);
+}
+.stButton>button[kind="primary"]:active {
+    transform: scale(0.97);
+}
+.stButton>button[kind="secondary"] {
+    background-color: #ffffff !important;
+    border: 2px solid #eaeaea;
+    color: #333333;
+}
 
-    /* Curved Orange Header Simulation */
-    .curved-header {
-        background-color: #ff9800;
-        margin: -4rem -2rem 2rem -2rem;
-        padding: 4rem 2rem 3rem 2rem;
-        border-bottom-left-radius: 50% 15%;
-        border-bottom-right-radius: 50% 15%;
-        text-align: center;
-        color: white;
-        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
-    }
-    .curved-header h1 {
-        color: white !important;
-        margin-bottom: 0px;
-        font-size: 2.2rem;
-        font-weight: bold;
-    }
-    .curved-header p {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.1rem;
-        margin-top: 5px;
-    }
+/* Curved Orange Header Simulation */
+.curved-header {
+    background-color: #ff9800;
+    margin: -4rem -2rem 2rem -2rem;
+    padding: 4rem 2rem 3rem 2rem;
+    border-bottom-left-radius: 50% 15%;
+    border-bottom-right-radius: 50% 15%;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
+}
+.curved-header h1 {
+    color: white !important;
+    margin-bottom: 0px;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+.curved-header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
 
-    /* Clean White Cards */
-    .protocol-card {
-        background: #ffffff;
-        padding: 24px;
-        border-radius: 24px;
-        border: 1px solid #f0f0f0;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-        margin-bottom: 16px;
-    }
+/* Clean White Cards */
+.protocol-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    margin-bottom: 16px;
+}
 
-    /* Selection Block Styling */
-    .selection-box {
-        background: #ffffff;
-        padding: 20px;
-        border-radius: 24px;
-        border: 1px solid #f0f0f0;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
-        margin-bottom: 14px;
-    }
+/* Selection Block Styling */
+.selection-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 24px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    margin-bottom: 14px;
+}
 
-    /* Info Containers */
-    .metric-container {
-        background: #ffffff;
-        padding: 18px;
-        border-radius: 20px;
-        border-left: 5px solid #ff9800;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        margin: 14px 0;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #4a4a4a;
-    }
+/* Info Containers */
+.metric-container {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 20px;
+    border-left: 5px solid #ff9800;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    margin: 14px 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+}
 
-    .breath-box {
-        background: #ffffff;
-        border: 2px solid #0c38ff;
-        padding: 18px;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #0c38ff;
-        margin: 15px 0;
-        box-shadow: inset 0 2px 4px rgba(12, 56, 255, 0.05);
-    }
+.breath-box {
+    background: #ffffff;
+    border: 2px solid #0c38ff;
+    padding: 18px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0c38ff;
+    margin: 15px 0;
+    box-shadow: inset 0 2px 4px rgba(12, 56, 255, 0.05);
+}
 
-    .pressure-warning {
-        background: #fff8f0;
-        border: 1px solid #ffe0b2;
-        padding: 14px;
-        border-radius: 16px;
-        color: #d84315;
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin: 12px 0;
-    }
-    </style>
+.pressure-warning {
+    background: #fff8f0;
+    border: 1px solid #ffe0b2;
+    padding: 14px;
+    border-radius: 16px;
+    color: #d84315;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 12px 0;
+}
+</style>
 """, unsafe_allow_html=True)
 
 
@@ -179,18 +179,18 @@ if "current_step_index" not in st.session_state:
 # --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
 if st.session_state.app_page == 1:
     st.markdown("""
-        <div class="curved-header">
-            <h1>KineticPulse</h1>
-            <p>Start your session</p>
-        </div>
-    """, unsafe_allow_html=True)
+<div class="curved-header">
+    <h1>KineticPulse</h1>
+    <p>Start your session</p>
+</div>
+""", unsafe_allow_html=True)
 
     st.markdown("""
-        <div class="protocol-card">
-            <h3 style="margin-top:0;">Welcome</h3>
-            <p style="color: #666;">Please enter your profile details and complete safety verifications to begin.</p>
-        </div>
-    """, unsafe_allow_html=True)
+<div class="protocol-card">
+    <h3 style="margin-top:0;">Welcome</h3>
+    <p style="color: #666;">Please enter your profile details and complete safety verifications to begin.</p>
+</div>
+""", unsafe_allow_html=True)
 
     entered_name = st.text_input("Your Name:", value=st.session_state.user_name)
     entered_notes = st.text_area("Session Notes / Focus Areas:", value=st.session_state.session_notes)
@@ -220,11 +220,11 @@ if st.session_state.app_page == 1:
 # --- PAGE 2: PROTOCOL SELECTOR WITH CARDS & PREVIEW LOGOS ---
 elif st.session_state.app_page == 2:
     st.markdown(f"""
-        <div class="curved-header">
-            <h1>Choose Focus / Info</h1>
-            <p>Welcome back, {st.session_state.user_name}</p>
-        </div>
-    """, unsafe_allow_html=True)
+<div class="curved-header">
+    <h1>Choose Focus / Info</h1>
+    <p>Welcome back, {st.session_state.user_name}</p>
+</div>
+""", unsafe_allow_html=True)
 
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
@@ -269,75 +269,75 @@ elif st.session_state.app_page == 2:
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Conditionally show details based on selection (with corrected HTML formatting)
+    # Conditionally show details based on selection
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         st.markdown("""
-            <div class="metric-container">
-                <b>🎯 Why it should be done:</b><br>
-                To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
-                <b>⏱️ How often:</b><br>
-                2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.<br><br>
-                <b>✨ Benefits you will notice:</b><br>
-                • Flatter, more defined look<br>
-                • Physically feeling better<br>
-                • Complete fluid clearance
-            </div>
-        """, unsafe_allow_html=True)
+<div class="metric-container">
+<b>🎯 Why it should be done:</b><br>
+To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
+<b>⏱️ How often:</b><br>
+2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.<br><br>
+<b>✨ Benefits you will notice:</b><br>
+• Flatter, more defined look<br>
+• Physically feeling better<br>
+• Complete fluid clearance
+</div>
+""", unsafe_allow_html=True)
         
     elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
         st.markdown("""
-            <div class="metric-container">
-                <b>🎯 Why It Must Be Done:</b><br>
-                High-velocity, ballistic movements trigger defensive muscle guarding. This protocol uses 90-second unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors from locking up under mechanical strain.<br><br>
-                <b>✨ Key Benefits:</b><br>
-                • <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface, freeing up range for maximum vertical kick height and clean acceleration.<br>
-                • <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation required for turning kicks without losing joint stability.<br>
-                • <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.<br><br>
-                <b>⏱️ Recommended Frequency:</b><br>
-                • <b>Schedule:</b> 3 times per week (e.g., Monday, Wednesday, Friday) with at least 24 hours between sessions.<br>
-                • <b>Timing:</b> Ideal as a dedicated mobility pre-session or on non-consecutive recovery days.<br>
-                • <b>Limit:</b> Avoid running this specific deep 16-minute mechanical routine daily, as tissues need time to adjust and recover from the intense sensory input.
-            </div>
-        """, unsafe_allow_html=True)
+<div class="metric-container">
+<b>🎯 Why It Must Be Done:</b><br>
+High-velocity, ballistic movements trigger defensive muscle guarding. This protocol uses 90-second unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors from locking up under mechanical strain.<br><br>
+<b>✨ Key Benefits:</b><br>
+• <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface, freeing up range for maximum vertical kick height and clean acceleration.<br>
+• <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation required for turning kicks without losing joint stability.<br>
+• <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.<br><br>
+<b>⏱️ Recommended Frequency:</b><br>
+• <b>Schedule:</b> 3 times per week (e.g., Monday, Wednesday, Friday) with at least 24 hours between sessions.<br>
+• <b>Timing:</b> Ideal as a dedicated mobility pre-session or on non-consecutive recovery days.<br>
+• <b>Limit:</b> Avoid running this specific deep 16-minute mechanical routine daily, as tissues need time to adjust and recover from the intense sensory input.
+</div>
+""", unsafe_allow_html=True)
 
     elif chosen_option == "Massage Gun General Information & Usage Tips":
         st.markdown("""
-            <div class="metric-container">
-                <h4 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques for First-Time Users</h4>
-                
-                <p><b>1. Speed Settings and Operational Mechanics</b><br>
-                Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:</p>
-                <p style="margin-left: 15px;">
-                • <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.<br><br>
-                • <b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.<br><br>
-                • <b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.
-                </p>
-                
-                <p><b>2. Fittings and Attachment Selection</b><br>
-                Different attachment heads alter how percussive therapy interacts with soft tissue during a session:</p>
-                <p style="margin-left: 15px;">
-                • <b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.<br><br>
-                • <b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.
-                </p>
-                
-                <p><b>3. General Massage Gun Techniques & Rules</b><br>
-                First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:</p>
-                <p style="margin-left: 15px;">
-                • <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br><br>
-                • <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br><br>
-                • <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.
-                </p>
-                
-                <h4 style="color:#ff9800; margin-top:20px;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h4>
-                
-                <p>Comparing percussive therapy devices to traditional methods highlights several distinct mechanical advantages:</p>
-                <p style="margin-left: 15px;">
-                • <b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.<br><br>
-                • <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br><br>
-                • <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows.
-                </p>
-            </div>
-        """, unsafe_allow_html=True)
+<div class="metric-container">
+<h4 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques for First-Time Users</h4>
+
+<p><b>1. Speed Settings and Operational Mechanics</b><br>
+Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:</p>
+<p style="margin-left: 15px;">
+• <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.<br><br>
+• <b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.<br><br>
+• <b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.
+</p>
+
+<p><b>2. Fittings and Attachment Selection</b><br>
+Different attachment heads alter how percussive therapy interacts with soft tissue during a session:</p>
+<p style="margin-left: 15px;">
+• <b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.<br><br>
+• <b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.
+</p>
+
+<p><b>3. General Massage Gun Techniques & Rules</b><br>
+First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:</p>
+<p style="margin-left: 15px;">
+• <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br><br>
+• <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br><br>
+• <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.
+</p>
+
+<h4 style="color:#ff9800; margin-top:20px;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h4>
+
+<p>Comparing percussive therapy devices to traditional methods highlights several distinct mechanical advantages:</p>
+<p style="margin-left: 15px;">
+• <b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.<br><br>
+• <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br><br>
+• <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows.
+</p>
+</div>
+""", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -453,10 +453,10 @@ elif st.session_state.app_page == 3:
         protocol_steps = hip_steps
 
     st.markdown(f"""
-        <div class="curved-header">
-            <h1>Routine Session</h1>
-        </div>
-    """, unsafe_allow_html=True)
+<div class="curved-header">
+    <h1>Routine Session</h1>
+</div>
+""", unsafe_allow_html=True)
 
     if st.button("Change Protocol / View Info", type="secondary"):
         st.session_state.app_page = 2
@@ -485,13 +485,13 @@ elif st.session_state.app_page == 3:
             st.warning(f"⚠️ Image file `{img_path}` not found in folder.")
 
         st.markdown(f"""
-            <div class="metric-container">
-                <b>📍 Target Depth:</b> {step_info['distance']}<br>
-                <b>🗺️ Location:</b> {step_info['where']}<br>
-                <b>⚡ Action:</b> {step_info['action']}<br>
-                <b>🎯 Goal:</b> {step_info['goal']}
-            </div>
-        """, unsafe_allow_html=True)
+<div class="metric-container">
+    <b>📍 Target Depth:</b> {step_info['distance']}<br>
+    <b>🗺️ Location:</b> {step_info['where']}<br>
+    <b>⚡ Action:</b> {step_info['action']}<br>
+    <b>🎯 Goal:</b> {step_info['goal']}
+</div>
+""", unsafe_allow_html=True)
 
         total_duration_secs = step_info['duration']
         st.markdown(f"**Target Duration:** {total_duration_secs} seconds ({total_duration_secs // 60} mins)")
