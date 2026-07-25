@@ -13,91 +13,121 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional Mobile-First Custom Styling (Forced Warm Orange Headspace Theme)
+# Professional Mobile-First Custom Styling (Based on 1000173890_2.jpg)
 st.markdown("""
     <style>
-    /* Force full background color on Streamlit app and main container */
+    /* Force full light gray background to make white cards pop */
     .stApp {
-        background-color: #fcfbf9 !important;
+        background-color: #f7f7f8 !important;
     }
     .main {
-        background-color: #fcfbf9 !important;
+        background-color: #f7f7f8 !important;
         padding: 0px 4px;
     }
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* Global Typography & Button Styling */
+    /* Vibrant Blue Pill-Shaped Primary Buttons */
     .stButton>button {
         width: 100%;
-        border-radius: 16px;
-        font-weight: 600;
-        font-size: 1.05rem;
+        border-radius: 50px !important; /* Pill shape */
+        font-weight: 700;
+        font-size: 1.1rem;
         padding: 14px 20px;
         letter-spacing: 0.3px;
         transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
     }
     .stButton>button[kind="primary"] {
-        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        background-color: #0c38ff !important; /* Bright Royal Blue */
         border: none;
         color: white;
+        box-shadow: 0 8px 16px rgba(12, 56, 255, 0.2);
     }
     .stButton>button[kind="primary"]:active {
-        transform: scale(0.98);
+        transform: scale(0.97);
+    }
+    .stButton>button[kind="secondary"] {
+        background-color: #ffffff !important;
+        border: 2px solid #eaeaea;
+        color: #333333;
     }
 
-    /* Clean White Cards */
+    /* Curved Orange Header Simulation */
+    .curved-header {
+        background-color: #ff9800; /* Warm Orange */
+        margin: -4rem -2rem 2rem -2rem; /* Pulling header to the edges */
+        padding: 4rem 2rem 3rem 2rem;
+        border-bottom-left-radius: 50% 15%;
+        border-bottom-right-radius: 50% 15%;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
+    }
+    .curved-header h1 {
+        color: white !important;
+        margin-bottom: 0px;
+        font-size: 2.2rem;
+        font-weight: bold;
+    }
+    .curved-header p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        margin-top: 5px;
+    }
+
+    /* Clean White Cards (Pill style lists) */
     .protocol-card {
         background: #ffffff;
-        padding: 20px;
-        border-radius: 20px;
-        border: 1px solid #f3f4f6;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        padding: 24px;
+        border-radius: 24px;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
         margin-bottom: 16px;
     }
 
     /* Selection Block Styling */
     .selection-box {
         background: #ffffff;
-        padding: 16px;
-        border-radius: 16px;
-        border: 2px solid #fde68a;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+        padding: 20px;
+        border-radius: 24px;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
         margin-bottom: 14px;
     }
 
+    /* Info Containers */
     .metric-container {
-        background: #fffbeb;
-        padding: 16px;
-        border-radius: 16px;
-        border-left: 5px solid #f59e0b;
+        background: #ffffff;
+        padding: 18px;
+        border-radius: 20px;
+        border-left: 5px solid #ff9800;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         margin: 14px 0;
         font-size: 0.95rem;
-        line-height: 1.5;
-        color: #78350f;
+        line-height: 1.6;
+        color: #4a4a4a;
     }
 
     .breath-box {
-        background: #fef3c7;
-        border: 2px solid #f59e0b;
+        background: #ffffff;
+        border: 2px solid #0c38ff;
         padding: 18px;
-        border-radius: 16px;
+        border-radius: 50px;
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: bold;
-        color: #92400e;
+        color: #0c38ff;
         margin: 15px 0;
-        box-shadow: inset 0 2px 4px rgba(245, 158, 11, 0.1);
+        box-shadow: inset 0 2px 4px rgba(12, 56, 255, 0.05);
     }
 
     .pressure-warning {
-        background: #fff7ed;
-        border: 2px solid #fdba74;
+        background: #fff8f0;
+        border: 1px solid #ffe0b2;
         padding: 14px;
-        border-radius: 14px;
-        color: #c2410c;
+        border-radius: 16px;
+        color: #d84315;
         font-weight: 600;
         font-size: 0.95rem;
         margin: 12px 0;
@@ -142,20 +172,24 @@ if "user_name" not in st.session_state:
 if "session_notes" not in st.session_state:
     st.session_state.session_notes = ""
 if "selected_protocol" not in st.session_state:
-    st.session_state.selected_protocol = "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
+    st.session_state.selected_protocol = "Advanced Lower Pelvic & Abdominal Flush Protocol"
 if "current_step_index" not in st.session_state:
     st.session_state.current_step_index = 0
 
 # --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
 if st.session_state.app_page == 1:
-    st.title("⚡ KineticPulse")
-    st.markdown("##### *Start your session*")
-    st.markdown("---")
+    # Custom Curved Header
+    st.markdown("""
+        <div class="curved-header">
+            <h1>KineticPulse</h1>
+            <p>Start your session</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("""
         <div class="protocol-card">
-            <h3>Welcome to Your Daily Protocol</h3>
-            <p>Please enter your profile details and complete safety verifications to begin.</p>
+            <h3 style="margin-top:0;">Welcome</h3>
+            <p style="color: #666;">Please enter your profile details and complete safety verifications to begin.</p>
         </div>
     """, unsafe_allow_html=True)
 
@@ -186,35 +220,39 @@ if st.session_state.app_page == 1:
 
 # --- PAGE 2: PROTOCOL SELECTOR WITH CARDS & PREVIEW LOGOS ---
 elif st.session_state.app_page == 2:
-    st.title("⚡ Choose Protocol")
-    st.markdown(f"##### *Welcome back, {st.session_state.user_name}*")
-    st.markdown("---")
+    # Custom Curved Header
+    st.markdown(f"""
+        <div class="curved-header">
+            <h1>Choose Protocol</h1>
+            <p>Welcome back, {st.session_state.user_name}</p>
+        </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown("### What would you like to focus on today?")
+    st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
+    # Lymph Flush 1st, Hip Flexor 2nd
     protocol_options = [
-        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
-        "Advanced Lower Pelvic & Abdominal Flush Protocol"
+        "Advanced Lower Pelvic & Abdominal Flush Protocol",
+        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
     ]
     
     preview_images = {
-        protocol_options[0]: "hip_master_guide.png",
-        protocol_options[1]: "step1.png"
+        protocol_options[0]: "step1.png",
+        protocol_options[1]: "hip_master_guide.png"
     }
 
-    # Wrapped selection block styling
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
     chosen_option = st.radio(
         "Select training focus:",
         protocol_options,
-        index=0 if st.session_state.selected_protocol == protocol_options[0] else 1
+        index=0 if st.session_state.selected_protocol == protocol_options[0] else 1,
+        label_visibility="collapsed"
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
     selected_img_path = preview_images[chosen_option]
     
-    # Display preview card matching reference UI blocks
+    # Display preview card
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
@@ -224,70 +262,41 @@ elif st.session_state.app_page == 2:
             st.markdown("🍊 **[Preview]**")
     with col2:
         st.markdown(f"**Selected Focus:**\n\n{chosen_option}")
-        st.markdown("<small>Tap continue below to load your customized step-by-step routine.</small>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+    # Conditionally show details only when Lymph Drainage is selected
+    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
+        st.markdown("""
+            <div class="metric-container">
+                <b>🎯 Why it should be done:</b><br>
+                To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
+                <b>⏱️ How often:</b><br>
+                2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session.<br><br>
+                <b>✨ Benefits you will notice:</b><br>
+                • Flatter, more defined look<br>
+                • Physically feeling better<br>
+                • Complete fluid clearance
+            </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     
     col_back, col_next = st.columns(2)
     with col_back:
-        if st.button("⬅️ Back"):
+        if st.button("Back", kind="secondary"):
             st.session_state.app_page = 1
             scroll_to_top()
             st.rerun()
     with col_next:
-        if st.button("Continue ➡️", type="primary"):
+        if st.button("Continue", type="primary"):
             st.session_state.selected_protocol = chosen_option
             st.session_state.current_step_index = 0
             st.session_state.app_page = 3
             scroll_to_top()
             st.rerun()
 
-# --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE (WARM ORANGE THEME) ---
+# --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
-    hip_steps = [
-        {
-            "step": "Step 1: The Outer Hip (TFL)",
-            "duration": 180,
-            "image_file": "hip_master_guide.png",
-            "distance": "Outer hip flare (Panel 1)",
-            "where": "Just below hard bony flare of outer hip.",
-            "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
-            "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
-            "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
-        },
-        {
-            "step": "Step 2: Rear Hip & Rotators",
-            "duration": 360,
-            "image_file": "hip_master_guide.png",
-            "distance": "Gluteal quadrant & mid-rotator pocket (Panels 2 & 3)",
-            "where": "Part A: Upper outer buttock (Panel 2). Part B: Figure 4 cross-leg position (Panel 3).",
-            "action": "Part A (90s/side): Medium-high global flush. Part B (90s/side): Medium speed with slow oscillating circles.",
-            "goal": "Unlocks end-range rotational tracking for rapid turning kicks.",
-            "benefit_text": "💡 Unlocking deep rotational mobility behind hip capsule.",
-        },
-        {
-            "step": "Step 3: Inner Thigh & Adductor Zone",
-            "duration": 360,
-            "image_file": "hip_master_guide.png",
-            "distance": "Inner thigh to lower pubic ramus (Panels 4 & 5)",
-            "where": "Part A: Inner thigh to groin (Panel 4). Part B: Half-butterfly position (Panel 5).",
-            "action": "Part A (90s/side): High speed light sweep. Part B (90s/side): Tight 5 cm path upward stopping at pelvic bone.",
-            "goal": "Removes neurological brakes restricting vertical hip chambering.",
-            "benefit_text": "💡 Clearing boundary to eliminate kicking brakes.",
-        },
-        {
-            "step": "Step 4: Structural Integration Lunge",
-            "duration": 60,
-            "image_file": "hip_master_guide.png",
-            "distance": "Front pocket line / Hip flexor stretch (Panel 6)",
-            "where": "Low kneeling lunge position on mat.",
-            "action": "Tuck tailbone under, shift weight slightly forward until stretch is felt (30s per side).",
-            "goal": "Locks in mechanical alignment and length.",
-            "benefit_text": "💡 Reinforcing structural integration and optimal pelvic tilt.",
-        },
-    ]
-
     lymph_steps = [
         {
             "step": "Step 1: Open Primary Drainage Gates",
@@ -331,28 +340,73 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    if st.session_state.selected_protocol == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
-        protocol_steps = hip_steps
-    else:
+    hip_steps = [
+        {
+            "step": "Step 1: The Outer Hip (TFL)",
+            "duration": 180,
+            "image_file": "hip_master_guide.png",
+            "distance": "Outer hip flare (Panel 1)",
+            "where": "Just below hard bony flare of outer hip.",
+            "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
+            "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
+            "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
+        },
+        {
+            "step": "Step 2: Rear Hip & Rotators",
+            "duration": 360,
+            "image_file": "hip_master_guide.png",
+            "distance": "Gluteal quadrant & mid-rotator pocket (Panels 2 & 3)",
+            "where": "Part A: Upper outer buttock (Panel 2). Part B: Figure 4 cross-leg position (Panel 3).",
+            "action": "Part A (90s/side): Medium-high global flush. Part B (90s/side): Medium speed with slow oscillating circles.",
+            "goal": "Unlocks end-range rotational tracking for rapid turning kicks.",
+            "benefit_text": "💡 Unlocking deep rotational mobility behind hip capsule.",
+        },
+        {
+            "step": "Step 3: Inner Thigh & Adductor Zone",
+            "duration": 360,
+            "image_file": "hip_master_guide.png",
+            "distance": "Inner thigh to lower pubic ramus (Panels 4 & 5)",
+            "where": "Part A: Inner thigh to groin (Panel 4). Part B: Half-butterfly position (Panel 5).",
+            "action": "Part A (90s/side): High speed light sweep. Part B (90s/side): Tight 5 cm path upward stopping at pelvic bone.",
+            "goal": "Removes neurological brakes restricting vertical hip chambering.",
+            "benefit_text": "💡 Clearing boundary to eliminate kicking brakes.",
+        },
+        {
+            "step": "Step 4: Structural Integration Lunge",
+            "duration": 60,
+            "image_file": "hip_master_guide.png",
+            "distance": "Front pocket line / Hip flexor stretch (Panel 6)",
+            "where": "Low kneeling lunge position on mat.",
+            "action": "Tuck tailbone under, shift weight slightly forward until stretch is felt (30s per side).",
+            "goal": "Locks in mechanical alignment and length.",
+            "benefit_text": "💡 Reinforcing structural integration and optimal pelvic tilt.",
+        },
+    ]
+
+    if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         protocol_steps = lymph_steps
+    else:
+        protocol_steps = hip_steps
 
-    col_top1, col_top2 = st.columns([3, 1])
-    with col_top1:
-        st.subheader("⚡ Routine Session")
-    with col_top2:
-        if st.button("Change Protocol"):
-            st.session_state.app_page = 2
-            scroll_to_top()
-            st.rerun()
+    st.markdown(f"""
+        <div class="curved-header">
+            <h1>Routine Session</h1>
+        </div>
+    """, unsafe_allow_html=True)
 
-    st.markdown("---")
+    if st.button("Change Protocol", kind="secondary"):
+        st.session_state.app_page = 2
+        scroll_to_top()
+        st.rerun()
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     current_idx = st.session_state.current_step_index
 
     if current_idx < len(protocol_steps):
         step_info = protocol_steps[current_idx]
 
-        st.markdown(f"### {step_info['step']}")
+        st.markdown(f"<h3 style='text-align: center; color: #333;'>{step_info['step']}</h3>", unsafe_allow_html=True)
 
         st.markdown(
             '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact and calm, controlled breathing throughout.</div>',
@@ -389,7 +443,7 @@ elif st.session_state.app_page == 3:
 
             for remaining in range(total_time, -1, -1):
                 mins, secs = divmod(remaining, 60)
-                placeholder.markdown(f"### ⏱️ Time Remaining: **{mins:02d}:{secs:02d}**")
+                placeholder.markdown(f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>", unsafe_allow_html=True)
                 progress_bar.progress(1.0 - (remaining / total_time))
 
                 elapsed = total_time - remaining
@@ -406,7 +460,7 @@ elif st.session_state.app_page == 3:
 
                 time.sleep(1)
 
-            placeholder.markdown("### ✅ Step Complete!")
+            placeholder.markdown("<h3 style='text-align: center; color: #0c38ff;'>✅ Step Complete!</h3>", unsafe_allow_html=True)
             breath_placeholder.empty()
             st.balloons()
 
@@ -414,18 +468,18 @@ elif st.session_state.app_page == 3:
         col1, col2 = st.columns(2)
         with col1:
             if current_idx > 0:
-                if st.button("⬅️ Back"):
+                if st.button("Back", kind="secondary"):
                     st.session_state.current_step_index -= 1
                     scroll_to_top()
                     st.rerun()
         with col2:
             if current_idx < len(protocol_steps) - 1:
-                if st.button("Next ➡️", type="primary"):
+                if st.button("Next", type="primary"):
                     st.session_state.current_step_index += 1
                     scroll_to_top()
                     st.rerun()
             else:
-                if st.button("🏁 Finish", type="primary"):
+                if st.button("Finish", type="primary"):
                     st.session_state.current_step_index += 1
                     scroll_to_top()
                     st.rerun()
@@ -435,7 +489,7 @@ elif st.session_state.app_page == 3:
         
         log_session_to_csv(st.session_state.user_name, st.session_state.selected_protocol, 10, st.session_state.session_notes)
         
-        if st.button("Start New Session"):
+        if st.button("Start New Session", type="primary"):
             st.session_state.app_page = 1
             st.session_state.current_step_index = 0
             scroll_to_top()
