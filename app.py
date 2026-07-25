@@ -264,7 +264,7 @@ elif st.session_state.app_page == 2:
         st.markdown(f"**Selected Focus:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Conditionally show details only when Lymph Drainage is selected
+    # Conditionally show details based on selection
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         st.markdown("""
             <div class="metric-container">
@@ -278,12 +278,28 @@ elif st.session_state.app_page == 2:
                 • Complete fluid clearance
             </div>
         """, unsafe_allow_html=True)
+        
+    elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
+        st.markdown("""
+            <div class="metric-container">
+                <b>🎯 Why It Must Be Done:</b><br>
+                High-velocity, ballistic movements trigger defensive muscle guarding. This protocol uses 90-second unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors from locking up under mechanical strain.<br><br>
+                <b>✨ Key Benefits:</b><br>
+                • <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface, freeing up range for maximum vertical kick height and clean acceleration.<br>
+                • <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation required for turning kicks without losing joint stability.<br>
+                • <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.<br><br>
+                <b>⏱️ Recommended Frequency:</b><br>
+                • <b>Schedule:</b> 3 times per week (e.g., Monday, Wednesday, Friday) with at least 24 hours between sessions.<br>
+                • <b>Timing:</b> Ideal as a dedicated mobility pre-session or on non-consecutive recovery days.<br>
+                • <b>Limit:</b> Avoid running this specific deep 16-minute mechanical routine daily, as tissues need time to adjust and recover from the intense sensory input.
+            </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     
     col_back, col_next = st.columns(2)
     with col_back:
-        if st.button("Back", kind="secondary"):
+        if st.button("Back", type="secondary"):
             st.session_state.app_page = 1
             scroll_to_top()
             st.rerun()
@@ -394,7 +410,7 @@ elif st.session_state.app_page == 3:
         </div>
     """, unsafe_allow_html=True)
 
-    if st.button("Change Protocol", kind="secondary"):
+    if st.button("Change Protocol", type="secondary"):
         st.session_state.app_page = 2
         scroll_to_top()
         st.rerun()
@@ -468,7 +484,7 @@ elif st.session_state.app_page == 3:
         col1, col2 = st.columns(2)
         with col1:
             if current_idx > 0:
-                if st.button("Back", kind="secondary"):
+                if st.button("Back", type="secondary"):
                     st.session_state.current_step_index -= 1
                     scroll_to_top()
                     st.rerun()
