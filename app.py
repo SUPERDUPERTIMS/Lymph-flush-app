@@ -15,9 +15,13 @@ st.set_page_config(
 # --- GLOBAL CONSTANTS ---
 LOG_FILE = "kinetic_session_logs.csv"
 
-# --- CUSTOM CSS STYLING ---
+# --- CUSTOM CSS STYLING (UPDATED TO HIDE TOP BAR) ---
 st.markdown("""
     <style>
+        /* Hide Streamlit top header bar and deployment icons */
+        header {visibility: hidden;}
+        .stAppDeployButton {display: none;}
+        
         .stButton>button {
             width: 100%;
             border-radius: 8px;
