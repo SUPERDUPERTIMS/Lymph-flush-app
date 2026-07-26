@@ -54,21 +54,27 @@ header {visibility: hidden;}
     color: #333333;
 }
 
-/* Absolute Bottom Right Corner Floating Admin Button */
-.floating-admin-container {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-    z-index: 99999;
+/* ABSOLUTE BOTTOM RIGHT CORNER FLOATING ADMIN BUTTON */
+div[data-testid="stElementContainer"]:has(button[aria-label="Admin"]),
+div.element-container:has(button[aria-label="Admin"]) {
+    position: fixed !important;
+    bottom: 2px !important;
+    right: 2px !important;
+    z-index: 999999 !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
-.floating-admin-container .stButton>button {
+
+div[data-testid="stElementContainer"]:has(button[aria-label="Admin"]) button,
+div.element-container:has(button[aria-label="Admin"]) button {
     font-size: 0.65rem !important;
-    padding: 2px 8px !important;
-    border-radius: 12px !important;
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    padding: 3px 8px !important;
+    border-radius: 8px !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     border: 1px solid #ccc !important;
-    color: #555 !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    color: #333 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Curved Orange Header Simulation */
@@ -200,13 +206,11 @@ if "admin_authenticated" not in st.session_state:
     st.session_state.admin_authenticated = False
 
 
-# --- GLOBAL FLOATING ADMIN BUTTON (Bottom Right Corner) ---
-st.markdown('<div class="floating-admin-container">', unsafe_allow_html=True)
+# --- GLOBAL FLOATING ADMIN BUTTON ---
 if st.button("Admin", key="floating_admin_btn"):
     st.session_state.app_page = 4
     scroll_to_top()
     st.rerun()
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 # --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
