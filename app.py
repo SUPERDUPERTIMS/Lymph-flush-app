@@ -5,7 +5,6 @@ from PIL import Image
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
-import hashlib
 
 # Page configuration with mobile viewport optimization
 st.set_page_config(
@@ -165,21 +164,8 @@ def log_session_to_csv(name, protocol_name, rating, notes):
             notes
         ])
 
-def verify_password(stored_password, provided_password):
-    try:
-        salt, stored_hash = stored_password.split(':')
-        provided_hash = hashlib.pbkdf2_hmac(
-            'sha256', 
-            provided_password.encode('utf-8'), 
-            salt.encode('utf-8'), 
-            100000
-        ).hex()
-        return provided_hash == stored_hash
-    except Exception:
-        return False
-
-# ⚠️ IMPORTANT: Paste your generated hash string here!
-STORED_PASSWORD_HASH = "PASTE_YOUR_GENERATED_HASH_HERE"
+# ⚠️ PLAIN TEXT PASSWORD - Simplified for easy access
+ADMIN_PASSWORD = "Ralph1234"
 
 
 # --- INITIALIZE SESSION STATE ---
@@ -720,7 +706,7 @@ elif st.session_state.app_page == 4:
     st.markdown("""
 <div class="curved-header">
     <h1>Admin Login</h1>
-    <p>Secure Data Access</p>
+    <p>Data Access</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -733,7 +719,8 @@ elif st.session_state.app_page == 4:
     admin_password = st.text_input("Password:", type="password")
 
     if st.button("Login", type="primary"):
-        if verify_password(STORED_PASSWORD_HASH, admin_password):
+        # SIMPLIFIED LOGIN CHECK HERE
+        if admin_password == ADMIN_PASSWORD:
             st.session_state.admin_authenticated = True
             st.session_state.app_page = 5
             scroll_to_top()
