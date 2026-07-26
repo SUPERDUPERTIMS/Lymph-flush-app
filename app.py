@@ -54,21 +54,21 @@ header {visibility: hidden;}
     color: #333333;
 }
 
-/* Floating Small Admin Button in Bottom Right Corner */
+/* Absolute Bottom Right Corner Floating Admin Button */
 .floating-admin-container {
     position: fixed;
-    bottom: 12px;
-    right: 12px;
+    bottom: 5px;
+    right: 5px;
     z-index: 99999;
 }
 .floating-admin-container .stButton>button {
-    font-size: 0.75rem !important;
-    padding: 4px 10px !important;
-    border-radius: 20px !important;
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid #ddd !important;
-    color: #666 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 0.65rem !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid #ccc !important;
+    color: #555 !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
 /* Curved Orange Header Simulation */
@@ -202,7 +202,7 @@ if "admin_authenticated" not in st.session_state:
 
 # --- GLOBAL FLOATING ADMIN BUTTON (Bottom Right Corner) ---
 st.markdown('<div class="floating-admin-container">', unsafe_allow_html=True)
-if st.button("⚡ Admin", key="floating_admin_btn"):
+if st.button("Admin", key="floating_admin_btn"):
     st.session_state.app_page = 4
     scroll_to_top()
     st.rerun()
