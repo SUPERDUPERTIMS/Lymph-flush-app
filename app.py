@@ -54,6 +54,23 @@ header {visibility: hidden;}
     color: #333333;
 }
 
+/* Floating Small Admin Button in Bottom Right Corner */
+.floating-admin-container {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 99999;
+}
+.floating-admin-container .stButton>button {
+    font-size: 0.75rem !important;
+    padding: 4px 10px !important;
+    border-radius: 20px !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #ddd !important;
+    color: #666 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
 /* Curved Orange Header Simulation */
 .curved-header {
     background-color: #ff9800;
@@ -164,7 +181,7 @@ def log_session_to_csv(name, protocol_name, rating, notes):
             notes
         ])
 
-# ⚠️ PLAIN TEXT PASSWORD - Simplified for easy access
+# PLAIN TEXT PASSWORD
 ADMIN_PASSWORD = "Ralph1234"
 
 
@@ -181,6 +198,15 @@ if "current_step_index" not in st.session_state:
     st.session_state.current_step_index = 0
 if "admin_authenticated" not in st.session_state:
     st.session_state.admin_authenticated = False
+
+
+# --- GLOBAL FLOATING ADMIN BUTTON (Bottom Right Corner) ---
+st.markdown('<div class="floating-admin-container">', unsafe_allow_html=True)
+if st.button("⚡ Admin", key="floating_admin_btn"):
+    st.session_state.app_page = 4
+    scroll_to_top()
+    st.rerun()
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
@@ -212,14 +238,6 @@ if st.session_state.app_page == 1:
     agree_contraindications = st.checkbox("I confirm no active contraindications listed above.")
     agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a specialist.")
     agree_age = st.checkbox("I confirm I am 18 years of age or older.")
-
-    st.markdown("---")
-    
-    # NEW ADMIN ACCESS BUTTON
-    if st.button("⚡ Admin Data Access", type="secondary"):
-        st.session_state.app_page = 4
-        scroll_to_top()
-        st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("Continue", type="primary"):
@@ -289,7 +307,6 @@ elif st.session_state.app_page == 2:
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Conditionally show details based on selection
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         st.markdown("""
 <div class="metric-container">
@@ -376,15 +393,6 @@ First-time users should adhere to strict foundational mechanics to prevent tissu
 • <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br><br>
 • <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br><br>
 • <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.
-</p>
-
-<h4 style="color:#ff9800; margin-top:20px;">Massage Guns vs. Other Recovery Techniques: Why They Are Beneficial</h4>
-
-<p>Comparing percussive therapy devices to traditional methods highlights several distinct mechanical advantages:</p>
-<p style="margin-left: 15px;">
-• <b>Percussive Therapy vs. Traditional Manual Massage:</b> While hand massage relies on manual friction and compression, massage guns deliver rapid, targeted pulses (percussions) that reach deep tissue layers with minimal physical strain on the user. This high-frequency mechanical input rapidly desensitizes local nerve endings, allowing tight tissue to relax faster than conventional self-myofascial release tools.<br><br>
-• <b>Massage Gun vs. Foam Rollers:</b> Foam rollers provide broad, generalized pressure across large muscle groups, making it difficult to isolate specific trigger points or tight fascial boundaries (such as deep lateral rotators or adductor boundaries). Massage guns allow for pinpoint accuracy, enabling users to apply localized pressure precisely where restrictions occur.<br><br>
-• <b>Efficiency and Time-to-Effect:</b> Manual self-massage or stretching can require extensive time to elicit a neurological release in guarded tissue. Structured protocols using a percussive device utilize sustained pressure and specific speed parameters to achieve tissue lengthening and interstitial fluid drainage in targeted windows.
 </p>
 </div>
 """, unsafe_allow_html=True)
@@ -584,7 +592,6 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    # Map selected protocol to step configuration
     if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         protocol_steps = lymph_steps
     elif st.session_state.selected_protocol == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
@@ -719,7 +726,6 @@ elif st.session_state.app_page == 4:
     admin_password = st.text_input("Password:", type="password")
 
     if st.button("Login", type="primary"):
-        # SIMPLIFIED LOGIN CHECK HERE
         if admin_password == ADMIN_PASSWORD:
             st.session_state.admin_authenticated = True
             st.session_state.app_page = 5
