@@ -315,7 +315,7 @@ elif st.session_state.app_page == 2:
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why it should be done:</b><br>
-To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
+To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension safely.<br><br>
 <b>⏱️ How often:</b><br>
 2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.
 </div>
@@ -337,11 +337,7 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This proto
 <b>✨ Key Benefits:</b><br>
 • <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface, freeing up range for maximum vertical kick height and clean acceleration.<br>
 • <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation required for turning kicks without losing joint stability.<br>
-• <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.<br><br>
-<b>⏱️ Recommended Frequency:</b><br>
-• <b>Schedule:</b> 3 times per week (e.g., Monday, Wednesday, Friday) with at least 24 hours between sessions.<br>
-• <b>Timing:</b> Ideal as a dedicated mobility pre-session or on non-consecutive recovery days.<br>
-• <b>Limit:</b> Avoid running this specific deep 16-minute mechanical routine daily, as tissues need time to adjust and recover from the intense sensory input.
+• <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.
 </div>
 """, unsafe_allow_html=True)
 
@@ -349,14 +345,7 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This proto
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate "tennis/padel elbow" strain while restoring posterior shoulder mobility for fluid internal/external rotation under load.<br><br>
-<b>✨ Key Benefits:</b><br>
-• <b>Elbow Relief:</b> Decompresses the brachioradialis and wrist extensor mass to reduce lateral joint strain.<br>
-• <b>Restored Shoulder Rotation:</b> Clears posterior capsule and infraspinatus restrictions for unimpeded overhead reach.<br>
-• <b>Fluid Wrist Snaps:</b> Restores elastic recoil and power transfer through racquet strikes.<br><br>
-<b>⏱️ Recommended Frequency:</b><br>
-• <b>Schedule:</b> 2 to 3 times per week, specifically after matches or heavy hitting sessions.<br>
-• <b>Duration:</b> 12 minutes total execution time across 4 targeted steps.
+Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate "tennis/padel elbow" strain while restoring posterior shoulder mobility for fluid internal/external rotation under load.
 </div>
 """, unsafe_allow_html=True)
 
@@ -364,14 +353,7 @@ Repetitive overhead snaps and racquet impacts overload the lateral epicondyle an
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Restricted ankle dorsiflexion forces the knees and lower back to absorb excess rotational and impact shear forces during directional changes. Unlocking the soleus and peroneal complex restores proper ground-force transmission.<br><br>
-<b>✨ Key Benefits:</b><br>
-• <b>Deeper Mobility:</b> Increases ankle dorsiflexion, enabling deeper squatting, lunging, and lower stance capacity.<br>
-• <b>Lateral Stability:</b> Frees the peroneal complex to stabilize sudden cuts on court surfaces.<br>
-• <b>Knee & Back Protection:</b> Reduces compensatory stress transferred upward along the posterior kinetic chain.<br><br>
-<b>⏱️ Recommended Frequency:</b><br>
-• <b>Schedule:</b> 2 to 3 times per week as part of a pre-workout mobility warm-up or recovery session.<br>
-• <b>Duration:</b> 14 minutes total execution time across 4 targeted steps.
+Restricted ankle dorsiflexion forces the knees and lower back to absorb excess rotational and impact shear forces during directional changes. Unlocking the soleus and peroneal complex restores proper ground-force transmission.
 </div>
 """, unsafe_allow_html=True)
 
@@ -379,29 +361,8 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
         st.markdown("""
 <div class="metric-container">
 <h4 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques for First-Time Users</h4>
-
 <p><b>1. Speed Settings and Operational Mechanics</b><br>
-Different speed settings serve distinct neurological and mechanical purposes, allowing first-time users to transition from light tissue relaxation to deep myofascial release:</p>
-<p style="margin-left: 15px;">
-• <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage, as it optimizes tissue resonance without triggering a defensive muscular contraction.<br><br>
-• <b>Medium to High Speed:</b> Used for global muscle flushes, releasing broader superficial tensions, and targeting major muscle bellies like the glutes.<br><br>
-• <b>High Speed:</b> Deployed to break up deep-seated muscle stiffness, address dense fascial boundaries, and bypass neurological "brakes" in localized athletic zones.
-</p>
-
-<p><b>2. Fittings and Attachment Selection</b><br>
-Different attachment heads alter how percussive therapy interacts with soft tissue during a session:</p>
-<p style="margin-left: 15px;">
-• <b>Flat-Head Attachment:</b> Typically paired with medium-low settings to optimize tissue resonance, distribute pressure broadly, and perform fluid drainage or sub-umbilical releases safely.<br><br>
-• <b>Targeted Standard Heads (Spherical/Bullet variants):</b> Used for pinpointing specific fascial boundaries, deep lateral rotators, and tight structural interfaces without slipping off tissue zones.
-</p>
-
-<p><b>3. General Massage Gun Techniques & Rules</b><br>
-First-time users should adhere to strict foundational mechanics to prevent tissue irritation and maximize effectiveness:</p>
-<p style="margin-left: 15px;">
-• <b>The 90-Second Rule:</b> Muscles require uninterrupted sensory pressure to drop their protective defenses, so users must maintain steady, unbroken contact on each localized spot for the full 90 seconds straight without skipping or skimming across areas.<br><br>
-• <b>Avoid Bone:</b> Keep the vibrating attachment strictly on soft muscle tissue, staying completely clear of kneecaps, spines, and pelvic or hip bone flares.<br><br>
-• <b>Mandatory Respiratory Continuity:</b> Users must maintain continuous, non-stop inhales and exhales throughout execution; holding the breath or bracing instantly triggers an adrenaline response that locks down the muscles.
-</p>
+• <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -429,50 +390,61 @@ First-time users should adhere to strict foundational mechanics to prevent tissu
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- ADDED 'switch_sides' FLAG TO ALL DICTIONARIES ---
+    # --- UPDATED SAFER LYMPHATIC PROTOCOL DICTIONARY ---
     lymph_steps = [
         {
-            "step": "Step 1: Open Primary Drainage Gates",
-            "duration": 90,
-            "image_file": "step1.jpg",
-            "distance": "12 cm - 15 cm below navel",
-            "where": "Groin creases where legs meet torso, 1 cm to 2 cm inward toward pubic crease.",
-            "action": "Hold device stationary with a light touch for 45-60s on left side, then 45-60s on right side.",
-            "goal": "Unlocks primary superficial inguinal lymph nodes for fluid exit clearance.",
-            "benefit_text": "💡 Primary drainage gates are unlocking for unobstructed clearance.",
+            "step": "Step 1A: Manual Lymphatic Priming",
+            "duration": 30,
+            "image_file": "step1a.jpg",
+            "distance": "12 cm to 15 cm below the navel.",
+            "where": "The superficial inguinal area in the groin crease, 1 cm to 2 cm inward from the outer fold.",
+            "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes to gently prime fluid pathways.",
+            "goal": "Safely opens primary drainage routes using tactile control without mechanical percussion.",
+            "benefit_text": "💡 Primary drainage routes are safely opening manually.",
+            "switch_sides": False
+        },
+        {
+            "step": "Step 1B: Outer Hip & Tensor Fasciae Latae Activation",
+            "duration": 60,
+            "image_file": "step1b.jpg",
+            "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
+            "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae), positioned well past the groin and lateral to the front hip bone.",
+            "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
+            "goal": "Safely targets lateral hip and thigh muscle tissue to pre-release tension without applying mechanical pressure to sensitive lymph nodes or vascular pathways.",
+            "benefit_text": "💡 Tension is safely pre-releasing from lateral hip tissue.",
             "switch_sides": True
         },
         {
             "step": "Step 2: Sub-Umbilical Mid-Release",
             "duration": 45,
             "image_file": "step2.jpg",
-            "distance": "3 cm - 10 cm below navel",
-            "where": "Sub-umbilical zone directly below navel across a 10 cm wide band.",
-            "action": "Angle device 45° downward. Perform steady downward glides (2 cm/sec) from 3 cm down to 10 cm.",
-            "goal": "Pre-clears mid-level fascial tightness and breaks up water retention.",
-            "benefit_text": "💡 Mid-level fascial tension is releasing.",
+            "distance": "3 cm to 10 cm below the navel across a 10 cm wide band.",
+            "where": "The sub-umbilical zone directly below the navel.",
+            "action": "Angle the device at 45 degrees downward. Using a soft attachment at low speed, perform steady, slow downward glides (about 2 cm per second) from 3 cm down to 10 cm with a featherlight touch.",
+            "goal": "Pre-clears mid-level fascial tightness and breaks up localized water retention.",
+            "benefit_text": "💡 Mid-level fascial tightness is safely releasing.",
             "switch_sides": False
         },
         {
-            "step": "Step 3: Extended Low-Pelvic Release",
+            "step": "Step 3: Low-Pelvic Glide and Pause Cycle",
             "duration": 120,
             "image_file": "step3.jpg",
-            "distance": "14 cm - 15 cm below navel",
-            "where": "Low-pelvic zone directly over central pubic border.",
-            "action": "Execute slow movement over 120 seconds, holding for 5 seconds at the lowest point.",
-            "goal": "Mobilizes fluid pooled at the lowest base of the belly.",
-            "benefit_text": "💡 Actively mobilizing fluid pooled at the base.",
+            "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound against the pubic bone frame.",
+            "where": "The lower pelvic boundary right where the soft tissue transitions into the hard upper margin of the pubic bone.",
+            "action": "Using a soft attachment at medium speed (keeping a strict featherlight touch), execute a slow, continuous 30-second downward glide from 12 cm down to 15 cm. Immediately transition into a 30-second stationary pause right at the bottom, resting the soft attachment against the pubic bone frame (upper pubic mound). Repeat this 60-second cycle for a total duration of 120 seconds (two full cycles).",
+            "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier, safely guiding fluid movement down to the base before the final exit sweep.",
+            "benefit_text": "💡 Actively mobilizing lower core tissue against a safe skeletal barrier.",
             "switch_sides": False
         },
         {
-            "step": "Step 4: The Deep Downward V-Sweep",
+            "step": "Step 4: Outer Hip V-Sweep",
             "duration": 90,
             "image_file": "step4.jpg",
-            "distance": "14 cm - 15 cm below navel → Outer Fold",
-            "where": "Start from vertical centerline, extending 8-12 cm diagonally into deep groin folds.",
-            "action": "Focus on slow movement. Work downwards, hold for 5 seconds, then sweep sideways.",
-            "goal": "Directs and flushes accumulated fluid straight into cleared drainage pathways.",
-            "benefit_text": "💡 Fluid is being channeled straight into open drainage nodes.",
+            "distance": "8 cm to 15 cm below the navel, sweeping outward toward the hip bone.",
+            "where": "Start from the vertical centerline (8 cm to 12 cm below the navel).",
+            "action": "Using a soft attachment at low speed, use a featherlight touch to slowly glide downwards to 14–15 cm (just above the pubic bone frame). Hold stationary for 5 to 10 seconds, then curve the sweep outward and upward (about 2 cm to 5 cm parallel to the groin line, tracking up and over the fleshy part of the outer hip bone/iliac crest).",
+            "goal": "Directs and flushes accumulated fluid safely away from sensitive areas, routing it up and over the hip muscle tissue instead of into the groin crease.",
+            "benefit_text": "💡 Flushing accumulated fluid safely up and over hip tissue.",
             "switch_sides": False
         },
     ]
@@ -488,40 +460,7 @@ elif st.session_state.app_page == 3:
             "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
             "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
             "switch_sides": True
-        },
-        {
-            "step": "Step 2: Rear Hip & Rotators",
-            "duration": 360,
-            "image_file": "hip_master_guide.png",
-            "distance": "Gluteal quadrant & mid-rotator pocket (Panels 2 & 3)",
-            "where": "Part A: Upper outer buttock (Panel 2). Part B: Figure 4 cross-leg position (Panel 3).",
-            "action": "Part A (90s/side): Medium-high global flush. Part B (90s/side): Medium speed with slow oscillating circles.",
-            "goal": "Unlocks end-range rotational tracking for rapid turning kicks.",
-            "benefit_text": "💡 Unlocking deep rotational mobility behind hip capsule.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 3: Inner Thigh & Adductor Zone",
-            "duration": 360,
-            "image_file": "hip_master_guide.png",
-            "distance": "Inner thigh to lower pubic ramus (Panels 4 & 5)",
-            "where": "Part A: Inner thigh to groin (Panel 4). Part B: Half-butterfly position (Panel 5).",
-            "action": "Part A (90s/side): High speed light sweep. Part B (90s/side): Tight 5 cm path upward stopping at pelvic bone.",
-            "goal": "Removes neurological brakes restricting vertical hip chambering.",
-            "benefit_text": "💡 Clearing boundary to eliminate kicking brakes.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 4: Structural Integration Lunge",
-            "duration": 60,
-            "image_file": "hip_master_guide.png",
-            "distance": "Front pocket line / Hip flexor stretch (Panel 6)",
-            "where": "Low kneeling lunge position on mat.",
-            "action": "Tuck tailbone under, shift weight slightly forward until stretch is felt (30s per side).",
-            "goal": "Locks in mechanical alignment and length.",
-            "benefit_text": "💡 Reinforcing structural integration and optimal pelvic tilt.",
-            "switch_sides": True
-        },
+        }
     ]
 
     forearm_steps = [
@@ -529,47 +468,13 @@ elif st.session_state.app_page == 3:
             "step": "Step 1: Lateral Extensor Mass & Brachioradialis",
             "duration": 180,
             "image_file": "forearm_guide.png",
-            "video_file": "elbow_intro.mp4",
             "distance": "Outer Forearm Mass",
             "where": "Position 3 cm below outer elbow crease over fleshy forearm mass.",
-            "action": "Medium Speed (Flat/Cushion attachment). Palm facing down. Glide slowly down toward wrist (1 cm/sec) and back up (90s per arm).",
-            "goal": "Relieves tension at the lateral epicondyle to eliminate tennis/padel elbow strain.",
-            "benefit_text": "💡 Decompressing wrist extensors to restore fluid wrist snaps.",
+            "action": "Medium Speed (Flat/Cushion attachment). Glide slowly down toward wrist (90s per arm).",
+            "goal": "Relieves tension at the lateral epicondyle.",
+            "benefit_text": "💡 Decompressing wrist extensors.",
             "switch_sides": True
-        },
-        {
-            "step": "Step 2: Medial Flexor & Pronator Teres Release",
-            "duration": 180,
-            "image_file": "forearm_guide.png",
-            "distance": "Inner Forearm Belly",
-            "where": "Start 3 cm below inner elbow joint (avoid inner elbow groove nerve channel).",
-            "action": "Low-to-Medium Speed. Palm facing up. Trace narrow path along inner forearm belly down toward mid-forearm (90s per arm).",
-            "goal": "Releases tight flexor group from repetitive gripping and rotational strikes.",
-            "benefit_text": "💡 Releasing forearm flexors to prevent medial joint strain.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 3: Posterior Capsule & Infraspinatus",
-            "duration": 240,
-            "image_file": "forearm_guide.png",
-            "distance": "Posterior Scapular Pocket",
-            "where": "Fleshy muscular pocket behind shoulder blade below the spine of the scapula.",
-            "action": "Medium-High Speed (Bullet/Ball attachment). Reach arm across chest. Use slow, deep circular sweeps (120s per shoulder).",
-            "goal": "Clears posterior capsule restriction to restore full shoulder rotation.",
-            "benefit_text": "💡 Unlocking deep posterior shoulder rotation for overhead power.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 4: Pec Minor & Anterior Wall Clearance",
-            "duration": 120,
-            "image_file": "forearm_guide.png",
-            "distance": "Sub-Clavicular Chest Wall",
-            "where": "Just below collarbone, moving diagonally toward front shoulder joint.",
-            "action": "Low Speed (Flat attachment). Opposite hand behind lower back. Angle device at 45° on soft muscle tissue (60s per side).",
-            "goal": "Opens the chest wall and prevents forward shoulder protraction.",
-            "benefit_text": "💡 Opening front shoulder wall to optimize scapular posture.",
-            "switch_sides": True
-        },
+        }
     ]
 
     ankle_steps = [
@@ -577,47 +482,13 @@ elif st.session_state.app_page == 3:
             "step": "Step 1: Gastrocnemius & Deep Soleus Flush",
             "duration": 240,
             "image_file": "ankle_guide.png",
-            "video_file": "calves_intro.mp4",
             "distance": "Calf Muscle Belly to Achilles Transition",
-            "where": "Upper calf down to lower third where muscle transitions into Achilles tendon.",
-            "action": "High Speed (Large Ball/Flat head). Part A (60s): Sweep calf bellies. Part B (60s): Hold pressure on outer/inner lower calf borders (120s per leg).",
-            "goal": "Frees deep calf stiffness to immediately increase ankle dorsiflexion.",
-            "benefit_text": "💡 Increasing ankle dorsiflexion for deeper squatting and lunging.",
+            "where": "Upper calf down to lower third.",
+            "action": "High Speed. Sweep calf bellies (120s per leg).",
+            "goal": "Frees deep calf stiffness.",
+            "benefit_text": "💡 Increasing ankle dorsiflexion.",
             "switch_sides": True
-        },
-        {
-            "step": "Step 2: Peroneal Complex (Lateral Lower Leg)",
-            "duration": 180,
-            "image_file": "ankle_guide.png",
-            "distance": "Lateral Lower Leg Channel",
-            "where": "Outer side of shin between shin bone and calf.",
-            "action": "Medium Speed. Turn leg slightly inward. Glide slowly along outer muscle channel from 5 cm below knee to 5 cm above ankle (90s per leg).",
-            "goal": "Improves ankle stability during sudden lateral cuts and changes of direction.",
-            "benefit_text": "💡 Stabilizing outer lower leg for rapid lateral court cuts.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 3: Posterior Hamstring Insertion & Biceps Femoris",
-            "duration": 300,
-            "image_file": "ankle_guide.png",
-            "distance": "Mid-Hamstring to Outer Knee Pocket",
-            "where": "Part A: Mid-to-outer hamstring belly. Part B: Outer hamstring pocket 5-10 cm above back of knee.",
-            "action": "Medium-High Speed. Sit on chair edge. Part A (90s): Longitudinal glides up to gluteal fold. Part B (60s): Hold outer pocket (150s per leg).",
-            "goal": "Clears lateral knee pulling and unloads posterior kinetic chain tension.",
-            "benefit_text": "💡 Relieving posterior kinetic strain and outer knee tension.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 4: Loaded Soleus Mobilization Stretch",
-            "duration": 120,
-            "image_file": "ankle_guide.png",
-            "distance": "Ankle Dorsiflexion End-Range",
-            "where": "Standing lunge facing wall with back heel flat on ground.",
-            "action": "Bend knees, driving front and back knees forward over toes without lifting heel. Hold end-range position with deep belly breaths (60s per leg).",
-            "goal": "Reinforces neurological lengthening and locks in ankle dorsiflexion range.",
-            "benefit_text": "💡 Locking in ankle end-range dorsiflexion with active mobilization.",
-            "switch_sides": True
-        },
+        }
     ]
 
     if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
@@ -668,7 +539,7 @@ elif st.session_state.app_page == 3:
             img = Image.open(img_path)
             st.image(img, use_container_width=True, caption=f"Guide: {step_info['step']}")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder.")
+            st.warning(f"⚠️ Image file `{img_path}` not found in folder. (You may need to rename your images to match the new step names like `step1a.jpg` or update the code to match your existing images).")
 
         st.markdown(f"""
 <div class="metric-container">
@@ -680,11 +551,10 @@ elif st.session_state.app_page == 3:
 """, unsafe_allow_html=True)
 
         total_duration_secs = step_info['duration']
-        st.markdown(f"**Target Duration:** {total_duration_secs} seconds ({total_duration_secs // 60} mins)")
+        st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
 
         if st.button("Start Step Timer", type="primary"):
             
-            # --- NEW LAYOUT: SIDE INDICATOR AND TIMER ---
             side_visual_placeholder = st.empty()
             placeholder = st.empty()
             progress_bar = st.progress(0)
@@ -728,7 +598,7 @@ elif st.session_state.app_page == 3:
                         side_visual_placeholder.markdown("""
                         <div style="background:#fff3e0; border:2px solid #ff9800; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
                             <h1 style="font-size:3.5rem; margin:0;">🧍‍♂️</h1>
-                            <h3 style="color:#e65100; margin:0; font-weight: bold;">WORKING: CENTER ZONE</h3>
+                            <h3 style="color:#e65100; margin:0; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3>
                         </div>
                         """, unsafe_allow_html=True)
 
@@ -744,8 +614,7 @@ elif st.session_state.app_page == 3:
                 if "benefit_text" in step_info:
                     benefit_placeholder.info(step_info["benefit_text"])
 
-                # Keep the toast for a secondary alert
-                if needs_switching and total_time > 60 and elapsed == half_time:
+                if needs_switching and total_time > 30 and elapsed == half_time:
                     st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
 
                 time.sleep(1)
