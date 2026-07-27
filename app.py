@@ -428,6 +428,8 @@ First-time users should adhere to strict foundational mechanics to prevent tissu
 
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
+    
+    # --- ADDED 'switch_sides' FLAG TO ALL DICTIONARIES ---
     lymph_steps = [
         {
             "step": "Step 1: Open Primary Drainage Gates",
@@ -438,6 +440,7 @@ elif st.session_state.app_page == 3:
             "action": "Hold device stationary with a light touch for 45-60s on left side, then 45-60s on right side.",
             "goal": "Unlocks primary superficial inguinal lymph nodes for fluid exit clearance.",
             "benefit_text": "💡 Primary drainage gates are unlocking for unobstructed clearance.",
+            "switch_sides": True
         },
         {
             "step": "Step 2: Sub-Umbilical Mid-Release",
@@ -448,6 +451,7 @@ elif st.session_state.app_page == 3:
             "action": "Angle device 45° downward. Perform steady downward glides (2 cm/sec) from 3 cm down to 10 cm.",
             "goal": "Pre-clears mid-level fascial tightness and breaks up water retention.",
             "benefit_text": "💡 Mid-level fascial tension is releasing.",
+            "switch_sides": False
         },
         {
             "step": "Step 3: Extended Low-Pelvic Release",
@@ -458,6 +462,7 @@ elif st.session_state.app_page == 3:
             "action": "Execute slow movement over 120 seconds, holding for 5 seconds at the lowest point.",
             "goal": "Mobilizes fluid pooled at the lowest base of the belly.",
             "benefit_text": "💡 Actively mobilizing fluid pooled at the base.",
+            "switch_sides": False
         },
         {
             "step": "Step 4: The Deep Downward V-Sweep",
@@ -468,6 +473,7 @@ elif st.session_state.app_page == 3:
             "action": "Focus on slow movement. Work downwards, hold for 5 seconds, then sweep sideways.",
             "goal": "Directs and flushes accumulated fluid straight into cleared drainage pathways.",
             "benefit_text": "💡 Fluid is being channeled straight into open drainage nodes.",
+            "switch_sides": False
         },
     ]
 
@@ -481,6 +487,7 @@ elif st.session_state.app_page == 3:
             "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
             "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
             "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
+            "switch_sides": True
         },
         {
             "step": "Step 2: Rear Hip & Rotators",
@@ -491,6 +498,7 @@ elif st.session_state.app_page == 3:
             "action": "Part A (90s/side): Medium-high global flush. Part B (90s/side): Medium speed with slow oscillating circles.",
             "goal": "Unlocks end-range rotational tracking for rapid turning kicks.",
             "benefit_text": "💡 Unlocking deep rotational mobility behind hip capsule.",
+            "switch_sides": True
         },
         {
             "step": "Step 3: Inner Thigh & Adductor Zone",
@@ -501,6 +509,7 @@ elif st.session_state.app_page == 3:
             "action": "Part A (90s/side): High speed light sweep. Part B (90s/side): Tight 5 cm path upward stopping at pelvic bone.",
             "goal": "Removes neurological brakes restricting vertical hip chambering.",
             "benefit_text": "💡 Clearing boundary to eliminate kicking brakes.",
+            "switch_sides": True
         },
         {
             "step": "Step 4: Structural Integration Lunge",
@@ -511,6 +520,7 @@ elif st.session_state.app_page == 3:
             "action": "Tuck tailbone under, shift weight slightly forward until stretch is felt (30s per side).",
             "goal": "Locks in mechanical alignment and length.",
             "benefit_text": "💡 Reinforcing structural integration and optimal pelvic tilt.",
+            "switch_sides": True
         },
     ]
 
@@ -525,6 +535,7 @@ elif st.session_state.app_page == 3:
             "action": "Medium Speed (Flat/Cushion attachment). Palm facing down. Glide slowly down toward wrist (1 cm/sec) and back up (90s per arm).",
             "goal": "Relieves tension at the lateral epicondyle to eliminate tennis/padel elbow strain.",
             "benefit_text": "💡 Decompressing wrist extensors to restore fluid wrist snaps.",
+            "switch_sides": True
         },
         {
             "step": "Step 2: Medial Flexor & Pronator Teres Release",
@@ -535,6 +546,7 @@ elif st.session_state.app_page == 3:
             "action": "Low-to-Medium Speed. Palm facing up. Trace narrow path along inner forearm belly down toward mid-forearm (90s per arm).",
             "goal": "Releases tight flexor group from repetitive gripping and rotational strikes.",
             "benefit_text": "💡 Releasing forearm flexors to prevent medial joint strain.",
+            "switch_sides": True
         },
         {
             "step": "Step 3: Posterior Capsule & Infraspinatus",
@@ -545,6 +557,7 @@ elif st.session_state.app_page == 3:
             "action": "Medium-High Speed (Bullet/Ball attachment). Reach arm across chest. Use slow, deep circular sweeps (120s per shoulder).",
             "goal": "Clears posterior capsule restriction to restore full shoulder rotation.",
             "benefit_text": "💡 Unlocking deep posterior shoulder rotation for overhead power.",
+            "switch_sides": True
         },
         {
             "step": "Step 4: Pec Minor & Anterior Wall Clearance",
@@ -555,6 +568,7 @@ elif st.session_state.app_page == 3:
             "action": "Low Speed (Flat attachment). Opposite hand behind lower back. Angle device at 45° on soft muscle tissue (60s per side).",
             "goal": "Opens the chest wall and prevents forward shoulder protraction.",
             "benefit_text": "💡 Opening front shoulder wall to optimize scapular posture.",
+            "switch_sides": True
         },
     ]
 
@@ -569,6 +583,7 @@ elif st.session_state.app_page == 3:
             "action": "High Speed (Large Ball/Flat head). Part A (60s): Sweep calf bellies. Part B (60s): Hold pressure on outer/inner lower calf borders (120s per leg).",
             "goal": "Frees deep calf stiffness to immediately increase ankle dorsiflexion.",
             "benefit_text": "💡 Increasing ankle dorsiflexion for deeper squatting and lunging.",
+            "switch_sides": True
         },
         {
             "step": "Step 2: Peroneal Complex (Lateral Lower Leg)",
@@ -579,6 +594,7 @@ elif st.session_state.app_page == 3:
             "action": "Medium Speed. Turn leg slightly inward. Glide slowly along outer muscle channel from 5 cm below knee to 5 cm above ankle (90s per leg).",
             "goal": "Improves ankle stability during sudden lateral cuts and changes of direction.",
             "benefit_text": "💡 Stabilizing outer lower leg for rapid lateral court cuts.",
+            "switch_sides": True
         },
         {
             "step": "Step 3: Posterior Hamstring Insertion & Biceps Femoris",
@@ -589,6 +605,7 @@ elif st.session_state.app_page == 3:
             "action": "Medium-High Speed. Sit on chair edge. Part A (90s): Longitudinal glides up to gluteal fold. Part B (60s): Hold outer pocket (150s per leg).",
             "goal": "Clears lateral knee pulling and unloads posterior kinetic chain tension.",
             "benefit_text": "💡 Relieving posterior kinetic strain and outer knee tension.",
+            "switch_sides": True
         },
         {
             "step": "Step 4: Loaded Soleus Mobilization Stretch",
@@ -599,6 +616,7 @@ elif st.session_state.app_page == 3:
             "action": "Bend knees, driving front and back knees forward over toes without lifting heel. Hold end-range position with deep belly breaths (60s per leg).",
             "goal": "Reinforces neurological lengthening and locks in ankle dorsiflexion range.",
             "benefit_text": "💡 Locking in ankle end-range dorsiflexion with active mobilization.",
+            "switch_sides": True
         },
     ]
 
@@ -665,6 +683,9 @@ elif st.session_state.app_page == 3:
         st.markdown(f"**Target Duration:** {total_duration_secs} seconds ({total_duration_secs // 60} mins)")
 
         if st.button("Start Step Timer", type="primary"):
+            
+            # --- NEW LAYOUT: SIDE INDICATOR AND TIMER ---
+            side_visual_placeholder = st.empty()
             placeholder = st.empty()
             progress_bar = st.progress(0)
             breath_placeholder = st.empty()
@@ -672,13 +693,49 @@ elif st.session_state.app_page == 3:
 
             total_time = step_info["duration"]
             half_time = total_time // 2
+            needs_switching = step_info.get("switch_sides", False)
 
             for remaining in range(total_time, -1, -1):
                 mins, secs = divmod(remaining, 60)
+                elapsed = total_time - remaining
+                
+                # --- UPDATE THE SIDE VISUAL INDICATOR ---
+                if needs_switching:
+                    if elapsed < half_time:
+                        if os.path.exists("man_left.png"):
+                            side_visual_placeholder.image("man_left.png", use_container_width=True)
+                        else:
+                            side_visual_placeholder.markdown("""
+                            <div style="background:#e3f2fd; border:2px solid #2196f3; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
+                                <h1 style="font-size:3.5rem; margin:0;">🧍‍♂️ ⬅️</h1>
+                                <h3 style="color:#0d47a1; margin:0; font-weight: bold;">WORKING: LEFT SIDE</h3>
+                            </div>
+                            """, unsafe_allow_html=True)
+                    else:
+                        if os.path.exists("man_right.png"):
+                            side_visual_placeholder.image("man_right.png", use_container_width=True)
+                        else:
+                            side_visual_placeholder.markdown("""
+                            <div style="background:#e8f5e9; border:2px solid #4caf50; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
+                                <h1 style="font-size:3.5rem; margin:0;">➡️ 🧍‍♂️</h1>
+                                <h3 style="color:#1b5e20; margin:0; font-weight: bold;">WORKING: RIGHT SIDE</h3>
+                            </div>
+                            """, unsafe_allow_html=True)
+                else:
+                    if os.path.exists("man_center.png"):
+                        side_visual_placeholder.image("man_center.png", use_container_width=True)
+                    else:
+                        side_visual_placeholder.markdown("""
+                        <div style="background:#fff3e0; border:2px solid #ff9800; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
+                            <h1 style="font-size:3.5rem; margin:0;">🧍‍♂️</h1>
+                            <h3 style="color:#e65100; margin:0; font-weight: bold;">WORKING: CENTER ZONE</h3>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                # --- TIMER AND BREATHING UPDATES ---
                 placeholder.markdown(f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>", unsafe_allow_html=True)
                 progress_bar.progress(1.0 - (remaining / total_time))
 
-                elapsed = total_time - remaining
                 if (elapsed % 10) < 5:
                     breath_placeholder.markdown('<div class="breath-box">🌬️ Deep Belly Inhale...</div>', unsafe_allow_html=True)
                 else:
@@ -687,11 +744,13 @@ elif st.session_state.app_page == 3:
                 if "benefit_text" in step_info:
                     benefit_placeholder.info(step_info["benefit_text"])
 
-                if total_time > 60 and elapsed == half_time:
+                # Keep the toast for a secondary alert
+                if needs_switching and total_time > 60 and elapsed == half_time:
                     st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
 
                 time.sleep(1)
 
+            side_visual_placeholder.empty()
             placeholder.markdown("<h3 style='text-align: center; color: #0c38ff;'>✅ Step Complete!</h3>", unsafe_allow_html=True)
             breath_placeholder.empty()
             st.balloons()
