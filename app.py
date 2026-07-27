@@ -317,13 +317,17 @@ elif st.session_state.app_page == 2:
 <b>🎯 Why it should be done:</b><br>
 To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension.<br><br>
 <b>⏱️ How often:</b><br>
-2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.<br><br>
-<b>✨ Benefits you will notice:</b><br>
-• Flatter, more defined look<br>
-• Physically feeling better<br>
-• Complete fluid clearance
+2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.
 </div>
 """, unsafe_allow_html=True)
+        
+        # --- IMAGE RENDERING BLOCK FOR LYMPH BENEFITS ---
+        if os.path.exists("Lymph_benefits.png"):
+            st.image("Lymph_benefits.png", use_container_width=True, caption="Protocol Benefits")
+        elif os.path.exists("Lymp_benefits.jpg"):
+            st.image("Lymp_benefits.jpg", use_container_width=True, caption="Protocol Benefits")
+        else:
+            st.info("🖼️ **Image Placeholder:** Please place 'Lymph_benefits.png' in the app folder to display the benefits graphic here.")
         
     elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
         st.markdown("""
@@ -632,7 +636,7 @@ elif st.session_state.app_page == 3:
             unsafe_allow_html=True
         )
 
-        # --- NEW LOGIC: RENDER VIDEO IF IT EXISTS ---
+        # --- VIDEO RENDERING ---
         if "video_file" in step_info:
             vid_path = step_info["video_file"]
             if os.path.exists(vid_path):
