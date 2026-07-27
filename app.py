@@ -275,11 +275,11 @@ elif st.session_state.app_page == 2:
     ]
     
     preview_images = {
-        protocol_options[0]: "step1.png",
+        protocol_options[0]: "step1.jpg",
         protocol_options[1]: "hip_master_guide.png",
         protocol_options[2]: "forearm_guide.png",
         protocol_options[3]: "ankle_guide.png",
-        protocol_options[4]: "step1.png"
+        protocol_options[4]: "step1.jpg"
     }
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
@@ -428,7 +428,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 1: Open Primary Drainage Gates",
             "duration": 90,
-            "image_file": "step1.png",
+            "image_file": "step1.jpg",
             "distance": "12 cm - 15 cm below navel",
             "where": "Groin creases where legs meet torso, 1 cm to 2 cm inward toward pubic crease.",
             "action": "Hold device stationary with a light touch for 45-60s on left side, then 45-60s on right side.",
@@ -438,7 +438,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 2: Sub-Umbilical Mid-Release",
             "duration": 45,
-            "image_file": "step2.png",
+            "image_file": "step2.jpg",
             "distance": "3 cm - 10 cm below navel",
             "where": "Sub-umbilical zone directly below navel across a 10 cm wide band.",
             "action": "Angle device 45° downward. Perform steady downward glides (2 cm/sec) from 3 cm down to 10 cm.",
@@ -448,7 +448,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 3: Extended Low-Pelvic Release",
             "duration": 120,
-            "image_file": "step3.png",
+            "image_file": "step3.jpg",
             "distance": "14 cm - 15 cm below navel",
             "where": "Low-pelvic zone directly over central pubic border.",
             "action": "Execute slow movement over 120 seconds, holding for 5 seconds at the lowest point.",
@@ -458,7 +458,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 4: The Deep Downward V-Sweep",
             "duration": 90,
-            "image_file": "step4.png",
+            "image_file": "step4.jpg",
             "distance": "14 cm - 15 cm below navel → Outer Fold",
             "where": "Start from vertical centerline, extending 8-12 cm diagonally into deep groin folds.",
             "action": "Focus on slow movement. Work downwards, hold for 5 seconds, then sweep sideways.",
@@ -515,6 +515,7 @@ elif st.session_state.app_page == 3:
             "step": "Step 1: Lateral Extensor Mass & Brachioradialis",
             "duration": 180,
             "image_file": "forearm_guide.png",
+            "video_file": "elbow_intro.mp4",
             "distance": "Outer Forearm Mass",
             "where": "Position 3 cm below outer elbow crease over fleshy forearm mass.",
             "action": "Medium Speed (Flat/Cushion attachment). Palm facing down. Glide slowly down toward wrist (1 cm/sec) and back up (90s per arm).",
@@ -558,6 +559,7 @@ elif st.session_state.app_page == 3:
             "step": "Step 1: Gastrocnemius & Deep Soleus Flush",
             "duration": 240,
             "image_file": "ankle_guide.png",
+            "video_file": "calves_intro.mp4",
             "distance": "Calf Muscle Belly to Achilles Transition",
             "where": "Upper calf down to lower third where muscle transitions into Achilles tendon.",
             "action": "High Speed (Large Ball/Flat head). Part A (60s): Sweep calf bellies. Part B (60s): Hold pressure on outer/inner lower calf borders (120s per leg).",
@@ -630,6 +632,15 @@ elif st.session_state.app_page == 3:
             unsafe_allow_html=True
         )
 
+        # --- NEW LOGIC: RENDER VIDEO IF IT EXISTS ---
+        if "video_file" in step_info:
+            vid_path = step_info["video_file"]
+            if os.path.exists(vid_path):
+                st.video(vid_path)
+            else:
+                st.info(f"🎥 **Video Placeholder:** To view the intro video here, please add your video file named `{vid_path}` into the app's folder.")
+
+        # --- IMAGE RENDERING ---
         img_path = step_info["image_file"]
         if os.path.exists(img_path):
             img = Image.open(img_path)
