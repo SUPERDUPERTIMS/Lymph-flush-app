@@ -274,11 +274,12 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
+    # --- UPDATED PREVIEW IMAGES DICTIONARY USING step5.png ---
     preview_images = {
         protocol_options[0]: "step1.jpg",
         protocol_options[1]: "hip_master_guide.png",
-        protocol_options[2]: "forearm_guide.png",
-        protocol_options[3]: "ankle_guide.png",
+        protocol_options[2]: "step5.png",
+        protocol_options[3]: "step5.png",
         protocol_options[4]: "step1.jpg"
     }
 
@@ -390,7 +391,6 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- UPDATED SAFER LYMPHATIC PROTOCOL DICTIONARY ---
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -463,30 +463,98 @@ elif st.session_state.app_page == 3:
         }
     ]
 
+    # --- FOREARM PROTOCOL USING step5.png ---
     forearm_steps = [
         {
-            "step": "Step 1: Lateral Extensor Mass & Brachioradialis",
-            "duration": 180,
-            "image_file": "forearm_guide.png",
-            "distance": "Outer Forearm Mass",
-            "where": "Position 3 cm below outer elbow crease over fleshy forearm mass.",
-            "action": "Medium Speed (Flat/Cushion attachment). Glide slowly down toward wrist (90s per arm).",
-            "goal": "Relieves tension at the lateral epicondyle.",
-            "benefit_text": "💡 Decompressing wrist extensors.",
+            "step": "Step 1: Lateral Epicondyle & Extensor Mass (Tennis/Padel Elbow Zone)",
+            "duration": 180, 
+            "image_file": "step5.png",
+            "distance": "Outer Forearm",
+            "where": "Lateral Epicondyle & Extensor Mass",
+            "action": "Med-High Speed. Sweeping motion. (90s per side)",
+            "goal": "Relieve tension in the Tennis/Padel Elbow Zone.",
+            "benefit_text": "💡 Sweeping motions relax the extensor mass.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 2: Medial Epicondyle & Flexor Belly (Golfer Elbow Zone)",
+            "duration": 180, 
+            "image_file": "step5.png",
+            "distance": "Inner Forearm",
+            "where": "Medial Epicondyle & Flexor Belly",
+            "action": "Med Speed. Deep pulses. (90s per side)",
+            "goal": "Release the Golfer Elbow Zone.",
+            "benefit_text": "💡 Deep pulses release inner forearm flexors.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 3: Posterior Capsule & Infraspinatus (Posterior Shoulder Mobility)",
+            "duration": 240, 
+            "image_file": "step5.png",
+            "distance": "Back of Shoulder",
+            "where": "Posterior Capsule & Infraspinatus",
+            "action": "High Speed. Circular motions. (120s per side)",
+            "goal": "Improve posterior shoulder mobility.",
+            "benefit_text": "💡 Circular motions free up the shoulder capsule.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 4: Bicep Tendon & Pec Minor Sweep (Anterior Shoulder Release)",
+            "duration": 240, 
+            "image_file": "step5.png",
+            "distance": "Front of Shoulder/Chest",
+            "where": "Bicep Tendon & Pec Minor",
+            "action": "High Speed. Fast, light sweeps. (120s per side)",
+            "goal": "Provide anterior shoulder release.",
+            "benefit_text": "💡 Fast sweeps relieve anterior pulling.",
             "switch_sides": True
         }
     ]
 
+    # --- ANKLE/CALF PROTOCOL USING step5.png ---
     ankle_steps = [
         {
-            "step": "Step 1: Gastrocnemius & Deep Soleus Flush",
-            "duration": 240,
-            "image_file": "ankle_guide.png",
-            "distance": "Calf Muscle Belly to Achilles Transition",
-            "where": "Upper calf down to lower third.",
-            "action": "High Speed. Sweep calf bellies (120s per leg).",
-            "goal": "Frees deep calf stiffness.",
-            "benefit_text": "💡 Increasing ankle dorsiflexion.",
+            "step": "Step 1: Soleus & Gastrocnemius Flush (Calf & Achilles Decompression)",
+            "duration": 240, 
+            "image_file": "step5.png",
+            "distance": "Calves & Lower Leg",
+            "where": "Soleus & Gastrocnemius",
+            "action": "High Speed. Sweeping glides. (120s per side)",
+            "goal": "Calf & Achilles Decompression.",
+            "benefit_text": "💡 Sweeping glides flush the posterior chain.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 2: Peroneal & Anterior Tibialis Balance (Lateral Stability Zone)",
+            "duration": 180, 
+            "image_file": "step5.png",
+            "distance": "Outer and Front Lower Leg",
+            "where": "Peroneal & Anterior Tibialis",
+            "action": "Med-High Speed. Longitudinal sweeps. (90s per side)",
+            "goal": "Target the Lateral Stability Zone.",
+            "benefit_text": "💡 Longitudinal sweeps restore lower leg balance.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 3: Tibialis Posterior & Deep Ankle Pocket (Medial Support)",
+            "duration": 180, 
+            "image_file": "step5.png",
+            "distance": "Inner Ankle/Lower Leg",
+            "where": "Tibialis Posterior & Deep Ankle Pocket",
+            "action": "Med Speed. Targeted pulses. (90s per side)",
+            "goal": "Provide Medial Support.",
+            "benefit_text": "💡 Targeted pulses release deep ankle pockets.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 4: Plantar Fascia & Dynamic Calf Stretch (Ground Force Integration)",
+            "duration": 120, 
+            "image_file": "step5.png",
+            "distance": "Sole of foot and calf",
+            "where": "Plantar Fascia & Calf",
+            "action": "High Speed (sole). Roll 30s per foot, followed by Active dynamic stretch for 30s per leg.",
+            "goal": "Ground Force Integration.",
+            "benefit_text": "💡 Rolling and stretching completes the ground force integration.",
             "switch_sides": True
         }
     ]
@@ -539,7 +607,7 @@ elif st.session_state.app_page == 3:
             img = Image.open(img_path)
             st.image(img, use_container_width=True, caption=f"Guide: {step_info['step']}")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder. (You may need to rename your images to match the new step names like `step1.jpg` or update the code to match your existing images).")
+            st.warning(f"⚠️ Image file `{img_path}` not found in folder. Make sure your image files match exactly.")
 
         st.markdown(f"""
 <div class="metric-container">
