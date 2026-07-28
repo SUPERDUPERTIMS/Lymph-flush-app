@@ -274,9 +274,9 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # --- UPDATED PREVIEW IMAGES DICTIONARY USING step5.png ---
+    # Preview Images Dictionary
     preview_images = {
-        protocol_options[0]: "step1.jpg",
+        protocol_options[0]: "1000174663.png",
         protocol_options[1]: "hip_master_guide.png",
         protocol_options[2]: "step5.png",
         protocol_options[3]: "step5.png",
@@ -322,13 +322,15 @@ To target interstitial fluid drainage, break up stagnant water retention and low
 </div>
 """, unsafe_allow_html=True)
         
-        # --- IMAGE RENDERING BLOCK FOR LYMPH BENEFITS ---
-        if os.path.exists("Lymph_benefits.png"):
+        # --- UPDATED IMAGE RENDERING FOR PELVIC LYMPH FLUSH ---
+        if os.path.exists("1000174663.png"):
+            st.image("1000174663.png", use_container_width=True, caption="Protocol Benefits")
+        elif os.path.exists("Lymph_benefits.png"):
             st.image("Lymph_benefits.png", use_container_width=True, caption="Protocol Benefits")
         elif os.path.exists("Lymp_benefits.jpg"):
             st.image("Lymp_benefits.jpg", use_container_width=True, caption="Protocol Benefits")
         else:
-            st.info("🖼️ **Image Placeholder:** Please place 'Lymph_benefits.png' in the app folder to display the benefits graphic here.")
+            st.info("🖼️ **Image Placeholder:** Please place '1000174663.png' in the app folder to display the benefits graphic here.")
         
     elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
         st.markdown("""
@@ -359,11 +361,31 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 """, unsafe_allow_html=True)
 
     elif chosen_option == "Massage Gun General Information & Usage Tips":
+        # --- FULL RESTORED MASSAGE GUN INFORMATION ---
         st.markdown("""
 <div class="metric-container">
-<h4 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques for First-Time Users</h4>
+<h3 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques Guide</h3>
+
 <p><b>1. Speed Settings and Operational Mechanics</b><br>
-• <b>Low to Medium-Low Speed:</b> Ideal for sensitive areas, delicate fascia work, and lymphatic drainage.</p>
+• <b>Low Speed (1,200 – 1,800 RPM):</b> Best for sensitive zones, delicate abdominal/pelvic fascia, and manual drainage priming. Ideal for first-time users or post-workout recovery.<br>
+• <b>Medium Speed (1,900 – 2,400 RPM):</b> Perfect for medium muscle groups, forearm extensor work, calves, and relaxing general tension.<br>
+• <b>High Speed (2,500 – 3,200+ RPM):</b> Designed for dense muscular structures like glutes, quads, and deep TFL release where high frequency overrides guarding reflexes.</p>
+
+<p><b>2. Recommended Attachment Heads</b><br>
+• <b>Soft Air-Cushion Head:</b> Essential for abdominal and pelvic protocols. Absorbs mechanical force to ensure gentle, featherlight surface contact.<br>
+• <b>Large/Small Round Ball:</b> General full-body attachment for large muscle groups (calves, hamstrings, back).<br>
+• <b>Flat Head:</b> Great for broad, dense muscle zones (quadriceps, pecs).<br>
+• <b>Bullet / Cone Head:</b> Highly targeted pinpoint pressure for deep trigger points (avoid near major nerves or bones).</p>
+
+<p><b>3. Application Techniques</b><br>
+• <b>Featherlight Touch:</b> Never push into soft internal tissue or organs. Let the weight of the device work across the surface.<br>
+• <b>Slow Sweeps:</b> Glide at approximately 2 cm per second along muscular pathways.<br>
+• <b>Stationary Holds:</b> For dense muscular trigger points, hold continuously for 30 to 90 seconds while practicing deep belly breathing to disarm neural guarding.</p>
+
+<p><b>4. Critical Safety Rules</b><br>
+• Never use directly on bone, spine, throat, or major arterial pathways (groin pulse zone).<br>
+• Do not use over open wounds, acute muscle tears, hernias, or during pregnancy.<br>
+• Keep sessions under 10–15 minutes per body region to prevent tissue irritation.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -463,7 +485,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # --- FOREARM PROTOCOL USING step5.png ---
     forearm_steps = [
         {
             "step": "Step 1: Lateral Epicondyle & Extensor Mass (Tennis/Padel Elbow Zone)",
@@ -511,7 +532,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # --- ANKLE/CALF PROTOCOL USING step5.png ---
     ankle_steps = [
         {
             "step": "Step 1: Soleus & Gastrocnemius Flush (Calf & Achilles Decompression)",
