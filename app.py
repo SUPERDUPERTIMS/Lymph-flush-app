@@ -274,7 +274,7 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary (hip_master_guide.png restored for hip protocol)
+    # Preview Images Dictionary (hip_master_guide.png for hip protocol)
     preview_images = {
         protocol_options[0]: "1000174663.png",
         protocol_options[1]: "hip_master_guide.png",
@@ -322,7 +322,6 @@ To target interstitial fluid drainage, break up stagnant water retention and low
 </div>
 """, unsafe_allow_html=True)
         
-        # --- IMAGE RENDERING FOR PELVIC LYMPH FLUSH ---
         if os.path.exists("1000174663.png"):
             st.image("1000174663.png", use_container_width=True, caption="Protocol Overview")
         else:
@@ -332,11 +331,11 @@ To target interstitial fluid drainage, break up stagnant water retention and low
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-High-velocity, ballistic movements trigger defensive muscle guarding. This protocol uses 90-second unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors from locking up under mechanical strain.<br><br>
+High-velocity, ballistic movements trigger defensive muscle guarding. This 6-step protocol uses unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors and rotators from locking up under mechanical strain.<br><br>
 <b>✨ Key Benefits:</b><br>
 • <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface, freeing up range for maximum vertical kick height and clean acceleration.<br>
 • <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation required for turning kicks without losing joint stability.<br>
-• <b>Disrupted Guarding:</b> Lowers muscle guarding, improves local circulation, and overrides the body's natural tendency to brace during high-stress movements.
+• <b>Comprehensive Decompression:</b> Systematic progression from lateral stabilizers down to deep hip flexors to override the body's natural guarding reflex.
 </div>
 """, unsafe_allow_html=True)
 
@@ -344,7 +343,7 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This proto
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate "tennis/padel elbow" strain while restoring posterior shoulder mobility for fluid internal/external rotation under load.
+Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate strain while restoring posterior shoulder mobility.
 </div>
 """, unsafe_allow_html=True)
 
@@ -357,31 +356,25 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 """, unsafe_allow_html=True)
 
     elif chosen_option == "Massage Gun General Information & Usage Tips":
-        # --- MASSAGE GUN INFORMATION ---
         st.markdown("""
 <div class="metric-container">
 <h3 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques Guide</h3>
 
 <p><b>1. Speed Settings and Operational Mechanics</b><br>
-• <b>Low Speed (1,200 – 1,800 RPM):</b> Best for sensitive zones, delicate abdominal/pelvic fascia, and manual drainage priming. Ideal for first-time users or post-workout recovery.<br>
+• <b>Low Speed (1,200 – 1,800 RPM):</b> Best for sensitive zones, delicate abdominal/pelvic fascia, and manual drainage priming.<br>
 • <b>Medium Speed (1,900 – 2,400 RPM):</b> Perfect for medium muscle groups, forearm extensor work, calves, and relaxing general tension.<br>
-• <b>High Speed (2,500 – 3,200+ RPM):</b> Designed for dense muscular structures like glutes, quads, and deep TFL release where high frequency overrides guarding reflexes.</p>
+• <b>High Speed (2,500 – 3,200+ RPM):</b> Designed for dense muscular structures like glutes, quads, and deep TFL release.</p>
 
 <p><b>2. Recommended Attachment Heads</b><br>
-• <b>Soft Air-Cushion Head:</b> Essential for abdominal and pelvic protocols. Absorbs mechanical force to ensure gentle, featherlight surface contact.<br>
-• <b>Large/Small Round Ball:</b> General full-body attachment for large muscle groups (calves, hamstrings, back).<br>
-• <b>Flat Head:</b> Great for broad, dense muscle zones (quadriceps, pecs).<br>
-• <b>Bullet / Cone Head:</b> Highly targeted pinpoint pressure for deep trigger points (avoid near major nerves or bones).</p>
+• <b>Soft Air-Cushion Head:</b> Essential for abdominal and pelvic protocols.<br>
+• <b>Large/Small Round Ball:</b> General full-body attachment for large muscle groups.<br>
+• <b>Flat Head:</b> Great for broad, dense muscle zones.<br>
+• <b>Bullet / Cone Head:</b> Highly targeted pinpoint pressure for deep trigger points.</p>
 
 <p><b>3. Application Techniques</b><br>
-• <b>Featherlight Touch:</b> Never push into soft internal tissue or organs. Let the weight of the device work across the surface.<br>
+• <b>Featherlight Touch:</b> Let the weight of the device work across the surface.<br>
 • <b>Slow Sweeps:</b> Glide at approximately 2 cm per second along muscular pathways.<br>
-• <b>Stationary Holds:</b> For dense muscular trigger points, hold continuously for 30 to 90 seconds while practicing deep belly breathing to disarm neural guarding.</p>
-
-<p><b>4. Critical Safety Rules</b><br>
-• Never use directly on bone, spine, throat, or major arterial pathways (groin pulse zone).<br>
-• Do not use over open wounds, acute muscle tears, hernias, or during pregnancy.<br>
-• Keep sessions under 10–15 minutes per body region to prevent tissue irritation.</p>
+• <b>Stationary Holds:</b> For dense muscular trigger points, hold continuously for 30 to 90 seconds while practicing deep belly breathing.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -416,7 +409,7 @@ elif st.session_state.app_page == 3:
             "image_file": "step1.jpg",
             "distance": "12 cm to 15 cm below the navel.",
             "where": "The superficial inguinal area in the groin crease, 1 cm to 2 cm inward from the outer fold.",
-            "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes to gently prime fluid pathways.",
+            "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes.",
             "goal": "Safely opens primary drainage routes using tactile control without mechanical percussion.",
             "benefit_text": "💡 Primary drainage routes are safely opening manually.",
             "switch_sides": False
@@ -426,9 +419,9 @@ elif st.session_state.app_page == 3:
             "duration": 60,
             "image_file": "step1.jpg",
             "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
-            "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae), positioned well past the groin and lateral to the front hip bone.",
+            "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae).",
             "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
-            "goal": "Safely targets lateral hip and thigh muscle tissue to pre-release tension without applying mechanical pressure to sensitive lymph nodes or vascular pathways.",
+            "goal": "Safely targets lateral hip and thigh muscle tissue to pre-release tension.",
             "benefit_text": "💡 Tension is safely pre-releasing from lateral hip tissue.",
             "switch_sides": True
         },
@@ -438,7 +431,7 @@ elif st.session_state.app_page == 3:
             "image_file": "step2.jpg",
             "distance": "3 cm to 10 cm below the navel across a 10 cm wide band.",
             "where": "The sub-umbilical zone directly below the navel.",
-            "action": "Angle the device at 45 degrees downward. Using a soft attachment at low speed, perform steady, slow downward glides (about 2 cm per second) from 3 cm down to 10 cm with a featherlight touch.",
+            "action": "Angle the device at 45 degrees downward. Using a soft attachment at low speed, perform steady, slow downward glides.",
             "goal": "Pre-clears mid-level fascial tightness and breaks up localized water retention.",
             "benefit_text": "💡 Mid-level fascial tightness is safely releasing.",
             "switch_sides": False
@@ -447,10 +440,10 @@ elif st.session_state.app_page == 3:
             "step": "Step 3: Low-Pelvic Glide and Pause Cycle",
             "duration": 120,
             "image_file": "step3.jpg",
-            "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound against the pubic bone frame.",
-            "where": "The lower pelvic boundary right where the soft tissue transitions into the hard upper margin of the pubic bone.",
-            "action": "Using a soft attachment at medium speed (keeping a strict featherlight touch), execute a slow, continuous 30-second downward glide from 12 cm down to 15 cm. Immediately transition into a 30-second stationary pause right at the bottom, resting the soft attachment against the pubic bone frame (upper pubic mound). Repeat this 60-second cycle for a total duration of 120 seconds (two full cycles).",
-            "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier, safely guiding fluid movement down to the base before the final exit sweep.",
+            "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound.",
+            "where": "The lower pelvic boundary right where soft tissue transitions into the pubic bone.",
+            "action": "Using a soft attachment at medium speed, execute a slow downward glide followed by a 30-second stationary pause against the pubic bone frame. Repeat for 120 seconds.",
+            "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier.",
             "benefit_text": "💡 Actively mobilizing lower core tissue against a safe skeletal barrier.",
             "switch_sides": False
         },
@@ -459,65 +452,87 @@ elif st.session_state.app_page == 3:
             "duration": 90,
             "image_file": "step4.jpg",
             "distance": "8 cm to 15 cm below the navel, sweeping outward toward the hip bone.",
-            "where": "Start from the vertical centerline (8 cm to 12 cm below the navel).",
-            "action": "Using a soft attachment at low speed, use a featherlight touch to slowly glide downwards to 14–15 cm (just above the pubic bone frame). Hold stationary for 5 to 10 seconds, then curve the sweep outward and upward (about 2 cm to 5 cm parallel to the groin line, tracking up and over the fleshy part of the outer hip bone/iliac crest).",
-            "goal": "Directs and flushes accumulated fluid safely away from sensitive areas, routing it up and over the hip muscle tissue instead of into the groin crease.",
+            "where": "Start from the vertical centerline.",
+            "action": "Using a soft attachment at low speed, glide downwards to 15 cm, hold stationary for 5-10 seconds, then curve outward and upward over the iliac crest.",
+            "goal": "Directs and flushes accumulated fluid safely away from sensitive areas.",
             "benefit_text": "💡 Flushing accumulated fluid safely up and over hip tissue.",
             "switch_sides": False
         },
     ]
 
-    # --- RESTORED HIP PROTOCOL STEPS (Using hip_master_guide.png) ---
+    # --- ADJUSTED 6-STEP HIP & PELVIC PERFORMANCE PROTOCOL ---
     hip_steps = [
         {
-            "step": "Step 1: The Outer Hip (TFL & Glute Minimus)",
-            "duration": 180,
+            "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
+            "duration": 120,
             "image_file": "hip_master_guide.png",
-            "distance": "Outer hip flare",
-            "where": "Just below hard bony flare of outer hip.",
-            "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
-            "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
-            "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
+            "distance": "Outer hip flare (TFL insertion)",
+            "where": "Just below the hard bony iliac crest of the outer hip.",
+            "action": "High speed at a 45-degree angle. Maintain steady contact for 60 seconds per side.",
+            "goal": "Unloads TFL tension to clear lateral restrictions before high-velocity kicks.",
+            "benefit_text": "💡 Continuous pressure drops protective lateral muscle guarding.",
             "switch_sides": True
         },
         {
-            "step": "Step 2: Deep Hip Rotators (Piriformis & Glutes)",
-            "duration": 180,
+            "step": "Step 2: Gluteus Medius & Minimus Stabilizers",
+            "duration": 120,
             "image_file": "hip_master_guide.png",
-            "distance": "Mid-gluteal region",
-            "where": "Center of the glute, tracking towards the outer hip bone.",
-            "action": "Medium speed. Stationary holds on tender areas for 90 seconds per side.",
-            "goal": "Releases deep rotators to unlock fluid end-range rotation for turning kicks.",
-            "benefit_text": "💡 Releasing deep rotators restores full rotational mobility.",
+            "distance": "Upper-outer gluteal region",
+            "where": "Posterior to the TFL across the upper glute shelf.",
+            "action": "Medium speed. Smooth circular sweeps and stationary holds for 60 seconds per side.",
+            "goal": "Restores lateral pelvic stability and hip abduction range.",
+            "benefit_text": "💡 Stabilizing glute fibers enhances single-leg balance during chambering.",
             "switch_sides": True
         },
         {
-            "step": "Step 3: Anterior Hip Flexors (Rectus Femoris)",
-            "duration": 180,
+            "step": "Step 3: Deep External Rotators (Piriformis & Gemelli)",
+            "duration": 120,
+            "image_file": "hip_master_guide.png",
+            "distance": "Deep posterior hip pocket",
+            "where": "Center of the glute tracking toward the greater trochanter.",
+            "action": "Medium-high speed. Targeted stationary holds on tender trigger points for 60 seconds per side.",
+            "goal": "Releases deep rotators to unlock fluid end-range rotation for turning and spinning kicks.",
+            "benefit_text": "💡 Releasing deep rotators restores full internal/external rotational mobility.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 4: Anterior Hip Flexors (Rectus Femoris)",
+            "duration": 120,
             "image_file": "hip_master_guide.png",
             "distance": "Upper front thigh",
-            "where": "Just below the front hip bone (ASIS), tracking down the center quad.",
-            "action": "Medium speed. Slow longitudinal sweeps for 90 seconds per side.",
-            "goal": "Disarms neural brakes on the anterior chain to prevent hip locking.",
-            "benefit_text": "💡 Disrupted guarding allows for cleaner vertical acceleration.",
+            "where": "Just below the front hip bone (ASIS), tracking down the quad.",
+            "action": "Medium speed. Slow longitudinal sweeps for 60 seconds per side.",
+            "goal": "Disarms neural brakes on the anterior chain to prevent hip locking during extension.",
+            "benefit_text": "💡 Disrupted guarding allows for cleaner vertical leg chamber acceleration.",
             "switch_sides": True
         },
         {
-            "step": "Step 4: Adductor/Pubic Interface (Inner Thigh)",
-            "duration": 180,
+            "step": "Step 5: Iliopsoas Deep Pocket Release",
+            "duration": 120,
             "image_file": "hip_master_guide.png",
-            "distance": "Upper inner thigh",
-            "where": "High on the inner thigh, safely below the delicate groin crease.",
-            "action": "Low speed. Featherlight downward sweeps for 90 seconds per side.",
-            "goal": "Removes neurological restrictions at the adductor tie-in for free chambering.",
-            "benefit_text": "💡 Unlocking the adductor interface frees up vertical chambering.",
+            "distance": "Deep inner hip crease",
+            "where": "Internal to the ASIS bone in the soft pocket of the hip crease.",
+            "action": "Low speed, featherlight touch. Gentle stationary holds for 60 seconds per side.",
+            "goal": "Relieves deep psoas hypertonicity without excessive pressure on vascular structures.",
+            "benefit_text": "💡 Softening the deep psoas unlocks high knee-drive capabilities.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 6: Adductor/Pubic Interface (Inner Thigh Tie-In)",
+            "duration": 120,
+            "image_file": "hip_master_guide.png",
+            "distance": "Upper inner thigh / pubic bone boundary",
+            "where": "High on the inner thigh, safely below the groin crease against the pubic bone.",
+            "action": "Low speed. Featherlight downward sweeps and gentle static contact for 60 seconds per side.",
+            "goal": "Removes neurological restrictions at the adductor tie-in for unrestricted splits and high chambers.",
+            "benefit_text": "💡 Unlocking the adductor interface frees up vertical chambering and flexibility.",
             "switch_sides": True
         }
     ]
 
     forearm_steps = [
         {
-            "step": "Step 1: Lateral Epicondyle & Extensor Mass (Tennis/Padel Elbow Zone)",
+            "step": "Step 1: Lateral Epicondyle & Extensor Mass",
             "duration": 180, 
             "image_file": "step5.png",
             "distance": "Outer Forearm",
@@ -528,7 +543,7 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 2: Medial Epicondyle & Flexor Belly (Golfer Elbow Zone)",
+            "step": "Step 2: Medial Epicondyle & Flexor Belly",
             "duration": 180, 
             "image_file": "step5.png",
             "distance": "Inner Forearm",
@@ -539,7 +554,7 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 3: Posterior Capsule & Infraspinatus (Posterior Shoulder Mobility)",
+            "step": "Step 3: Posterior Capsule & Infraspinatus",
             "duration": 240, 
             "image_file": "step5.png",
             "distance": "Back of Shoulder",
@@ -550,7 +565,7 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 4: Bicep Tendon & Pec Minor Sweep (Anterior Shoulder Release)",
+            "step": "Step 4: Bicep Tendon & Pec Minor Sweep",
             "duration": 240, 
             "image_file": "step5.png",
             "distance": "Front of Shoulder/Chest",
@@ -564,7 +579,7 @@ elif st.session_state.app_page == 3:
 
     ankle_steps = [
         {
-            "step": "Step 1: Soleus & Gastrocnemius Flush (Calf & Achilles Decompression)",
+            "step": "Step 1: Soleus & Gastrocnemius Flush",
             "duration": 240, 
             "image_file": "step5.png",
             "distance": "Calves & Lower Leg",
@@ -575,7 +590,7 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 2: Peroneal & Anterior Tibialis Balance (Lateral Stability Zone)",
+            "step": "Step 2: Peroneal & Anterior Tibialis Balance",
             "duration": 180, 
             "image_file": "step5.png",
             "distance": "Outer and Front Lower Leg",
@@ -586,7 +601,7 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 3: Tibialis Posterior & Deep Ankle Pocket (Medial Support)",
+            "step": "Step 3: Tibialis Posterior & Deep Ankle Pocket",
             "duration": 180, 
             "image_file": "step5.png",
             "distance": "Inner Ankle/Lower Leg",
@@ -597,14 +612,14 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 4: Plantar Fascia & Dynamic Calf Stretch (Ground Force Integration)",
+            "step": "Step 4: Plantar Fascia & Dynamic Calf Stretch",
             "duration": 120, 
             "image_file": "step5.png",
             "distance": "Sole of foot and calf",
             "where": "Plantar Fascia & Calf",
-            "action": "High Speed (sole). Roll 30s per foot, followed by Active dynamic stretch for 30s per leg.",
+            "action": "High Speed (sole). Roll 30s per foot, followed by Active stretch for 30s per leg.",
             "goal": "Ground Force Integration.",
-            "benefit_text": "💡 Rolling and stretching completes the ground force integration.",
+            "benefit_text": "💡 Rolling and stretching completes ground force integration.",
             "switch_sides": True
         }
     ]
@@ -643,15 +658,6 @@ elif st.session_state.app_page == 3:
             unsafe_allow_html=True
         )
 
-        # --- VIDEO RENDERING ---
-        if "video_file" in step_info:
-            vid_path = step_info["video_file"]
-            if os.path.exists(vid_path):
-                st.video(vid_path)
-            else:
-                st.info(f"🎥 **Video Placeholder:** To view the intro video here, please add your video file named `{vid_path}` into the app's folder.")
-
-        # --- IMAGE RENDERING ---
         img_path = step_info["image_file"]
         if os.path.exists(img_path):
             img = Image.open(img_path)
@@ -687,7 +693,6 @@ elif st.session_state.app_page == 3:
                 mins, secs = divmod(remaining, 60)
                 elapsed = total_time - remaining
                 
-                # --- UPDATE THE SIDE VISUAL INDICATOR ---
                 if needs_switching:
                     if elapsed < half_time:
                         if os.path.exists("man_left.png"):
@@ -720,7 +725,6 @@ elif st.session_state.app_page == 3:
                         </div>
                         """, unsafe_allow_html=True)
 
-                # --- TIMER AND BREATHING UPDATES ---
                 placeholder.markdown(f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>", unsafe_allow_html=True)
                 progress_bar.progress(1.0 - (remaining / total_time))
 
