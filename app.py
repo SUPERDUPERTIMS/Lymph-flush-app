@@ -275,7 +275,7 @@ elif st.session_state.app_page == 2:
     ]
     
     preview_images = {
-        protocol_options[0]: "step1.png",
+        protocol_options[0]: "step1.jpg",
         protocol_options[1]: "hip_master_guide.png",
         protocol_options[2]: "forearm_guide.png",
         protocol_options[3]: "ankle_guide.png",
@@ -395,7 +395,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 1A: Manual Lymphatic Priming",
             "duration": 30,
-            "image_file": "step1.png",
+            "image_file": "step1.jpg",
             "distance": "12 cm to 15 cm below the navel.",
             "where": "The superficial inguinal area in the groin crease, 1 cm to 2 cm inward from the outer fold.",
             "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes to gently prime fluid pathways.",
@@ -406,7 +406,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 1B: Outer Hip & Tensor Fasciae Latae Activation",
             "duration": 60,
-            "image_file": "step1.png",
+            "image_file": "step1.jpg",
             "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
             "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae), positioned well past the groin and lateral to the front hip bone.",
             "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
@@ -539,7 +539,7 @@ elif st.session_state.app_page == 3:
             img = Image.open(img_path)
             st.image(img, use_container_width=True, caption=f"Guide: {step_info['step']}")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder. (You may need to rename your images to match the new step names like `step1.png` or update the code to match your existing images).")
+            st.warning(f"⚠️ Image file `{img_path}` not found in folder. (You may need to rename your images to match the new step names like `step1.jpg` or update the code to match your existing images).")
 
         st.markdown(f"""
 <div class="metric-container">
