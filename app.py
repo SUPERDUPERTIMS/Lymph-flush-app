@@ -322,7 +322,7 @@ To target interstitial fluid drainage, break up stagnant water retention and low
 </div>
 """, unsafe_allow_html=True)
         
-        # --- UPDATED IMAGE RENDERING FOR PELVIC LYMPH FLUSH ---
+        # --- IMAGE RENDERING FOR PELVIC LYMPH FLUSH ---
         if os.path.exists("1000174663.png"):
             st.image("1000174663.png", use_container_width=True, caption="Protocol Benefits")
         elif os.path.exists("Lymph_benefits.png"):
@@ -361,7 +361,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 """, unsafe_allow_html=True)
 
     elif chosen_option == "Massage Gun General Information & Usage Tips":
-        # --- FULL RESTORED MASSAGE GUN INFORMATION ---
+        # --- MASSAGE GUN INFORMATION ---
         st.markdown("""
 <div class="metric-container">
 <h3 style="color:#ff9800; margin-top:0;">Massage Gun Speeds and Techniques Guide</h3>
@@ -471,9 +471,10 @@ elif st.session_state.app_page == 3:
         },
     ]
 
+    # --- RESTORED HIP PROTOCOL STEPS ---
     hip_steps = [
         {
-            "step": "Step 1: The Outer Hip (TFL)",
+            "step": "Step 1: The Outer Hip (TFL & Glute Minimus)",
             "duration": 180,
             "image_file": "hip_master_guide.png",
             "distance": "Outer hip flare (Panel 1)",
@@ -481,6 +482,39 @@ elif st.session_state.app_page == 3:
             "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
             "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
             "benefit_text": "💡 Continuous pressure drops protective muscle guarding.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 2: Deep Hip Rotators (Piriformis & Glutes)",
+            "duration": 180,
+            "image_file": "hip_master_guide.png",
+            "distance": "Mid-gluteal region",
+            "where": "Center of the glute, tracking towards the outer hip bone.",
+            "action": "Medium speed. Stationary holds on tender areas for 90 seconds per side.",
+            "goal": "Releases deep rotators to unlock fluid end-range rotation for turning kicks.",
+            "benefit_text": "💡 Releasing deep rotators restores full rotational mobility.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 3: Anterior Hip Flexors (Rectus Femoris)",
+            "duration": 180,
+            "image_file": "hip_master_guide.png",
+            "distance": "Upper front thigh",
+            "where": "Just below the front hip bone (ASIS), tracking down the center quad.",
+            "action": "Medium speed. Slow longitudinal sweeps for 90 seconds per side.",
+            "goal": "Disarms neural brakes on the anterior chain to prevent hip locking.",
+            "benefit_text": "💡 Disrupted guarding allows for cleaner vertical acceleration.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 4: Adductor/Pubic Interface (Inner Thigh)",
+            "duration": 180,
+            "image_file": "hip_master_guide.png",
+            "distance": "Upper inner thigh",
+            "where": "High on the inner thigh, safely below the delicate groin crease.",
+            "action": "Low speed. Featherlight downward sweeps for 90 seconds per side.",
+            "goal": "Removes neurological restrictions at the adductor tie-in for free chambering.",
+            "benefit_text": "💡 Unlocking the adductor interface frees up vertical chambering.",
             "switch_sides": True
         }
     ]
