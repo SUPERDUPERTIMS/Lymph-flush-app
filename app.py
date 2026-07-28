@@ -274,7 +274,7 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary
+    # Preview Images Dictionary (hip_master_guide.png restored for hip protocol)
     preview_images = {
         protocol_options[0]: "1000174663.png",
         protocol_options[1]: "hip_master_guide.png",
@@ -324,13 +324,9 @@ To target interstitial fluid drainage, break up stagnant water retention and low
         
         # --- IMAGE RENDERING FOR PELVIC LYMPH FLUSH ---
         if os.path.exists("1000174663.png"):
-            st.image("1000174663.png", use_container_width=True, caption="Protocol Benefits")
-        elif os.path.exists("Lymph_benefits.png"):
-            st.image("Lymph_benefits.png", use_container_width=True, caption="Protocol Benefits")
-        elif os.path.exists("Lymp_benefits.jpg"):
-            st.image("Lymp_benefits.jpg", use_container_width=True, caption="Protocol Benefits")
+            st.image("1000174663.png", use_container_width=True, caption="Protocol Overview")
         else:
-            st.info("🖼️ **Image Placeholder:** Please place '1000174663.png' in the app folder to display the benefits graphic here.")
+            st.info("🖼️ **Image Placeholder:** Please ensure your screenshot '1000174663.png' is placed in the app folder to display it here.")
         
     elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
         st.markdown("""
@@ -471,13 +467,13 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    # --- RESTORED HIP PROTOCOL STEPS ---
+    # --- RESTORED HIP PROTOCOL STEPS (Using hip_master_guide.png) ---
     hip_steps = [
         {
             "step": "Step 1: The Outer Hip (TFL & Glute Minimus)",
             "duration": 180,
             "image_file": "hip_master_guide.png",
-            "distance": "Outer hip flare (Panel 1)",
+            "distance": "Outer hip flare",
             "where": "Just below hard bony flare of outer hip.",
             "action": "High speed at 45-degree angle. Maintain steady contact for 90 seconds per side.",
             "goal": "Unloads Tensor Fasciae Latae tension to clear lateral restrictions.",
