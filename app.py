@@ -274,7 +274,7 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary (hip_master_guide.png for hip protocol)
+    # Preview Images Dictionary
     preview_images = {
         protocol_options[0]: "1000174663.png",
         protocol_options[1]: "hip_master_guide.png",
@@ -402,11 +402,12 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
+    # --- UPDATED LYMPHATIC FLUSH PROTOCOL STEPS ---
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
             "duration": 30,
-            "image_file": "step1.jpg",
+            "image_file": "1000176422.png",
             "distance": "12 cm to 15 cm below the navel.",
             "where": "The superficial inguinal area in the groin crease, 1 cm to 2 cm inward from the outer fold.",
             "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes.",
@@ -417,7 +418,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 1B: Outer Hip & Tensor Fasciae Latae Activation",
             "duration": 60,
-            "image_file": "step1.jpg",
+            "image_file": "1000176423.jpg",
             "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
             "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae).",
             "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
@@ -439,7 +440,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 3: Low-Pelvic Glide and Pause Cycle",
             "duration": 120,
-            "image_file": "step3.jpg",
+            "image_file": "step3.png",
             "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound.",
             "where": "The lower pelvic boundary right where soft tissue transitions into the pubic bone.",
             "action": "Using a soft attachment at medium speed, execute a slow downward glide followed by a 30-second stationary pause against the pubic bone frame. Repeat for 120 seconds.",
@@ -450,7 +451,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 4: Outer Hip V-Sweep",
             "duration": 90,
-            "image_file": "step4.jpg",
+            "image_file": "step4.png",
             "distance": "8 cm to 15 cm below the navel, sweeping outward toward the hip bone.",
             "where": "Start from the vertical centerline.",
             "action": "Using a soft attachment at low speed, glide downwards to 15 cm, hold stationary for 5-10 seconds, then curve outward and upward over the iliac crest.",
@@ -460,7 +461,7 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    # --- ADJUSTED 6-STEP HIP & PELVIC PERFORMANCE PROTOCOL ---
+    # --- 6-STEP HIP & PELVIC PERFORMANCE PROTOCOL ---
     hip_steps = [
         {
             "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
