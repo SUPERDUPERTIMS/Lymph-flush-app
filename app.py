@@ -402,7 +402,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- UPDATED LYMPHATIC FLUSH PROTOCOL STEPS WITH STEP1A & STEP1B IMAGES ---
+    # --- UPDATED LYMPHATIC FLUSH PROTOCOL STEPS WITH STEP1B.JPG ---
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -418,7 +418,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 1B: Outer Hip & Tensor Fasciae Latae Activation",
             "duration": 60,
-            "image_file": "step1B.png",
+            "image_file": "step1B.jpg",
             "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
             "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae).",
             "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
