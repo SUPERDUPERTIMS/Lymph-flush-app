@@ -266,21 +266,22 @@ elif st.session_state.app_page == 2:
 
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
+    # Reordered so the new option sits directly below the original lymph flush option
     protocol_options = [
-        "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)",
         "Master Pelvic Decompression Protocol",
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
+        "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)",
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
         "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)",
         "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)",
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary (Larger image display mapped for the new recommended option)
+    # Preview Images Dictionary (No preview image mapped for the recommended option since images are removed)
     preview_images = {
-        protocol_options[0]: "step1A.png",
-        protocol_options[1]: "master_pelvic_preview.png",
-        protocol_options[2]: "1000174663.png",
+        protocol_options[0]: "master_pelvic_preview.png",
+        protocol_options[1]: "1000174663.png",
+        protocol_options[2]: "", 
         protocol_options[3]: "hip_master_guide.png",
         protocol_options[4]: "step5.png",
         protocol_options[5]: "step5.png",
@@ -307,16 +308,14 @@ elif st.session_state.app_page == 2:
     
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     
-    # If selected option is the new recommended one, use a larger image layout (full width or larger column ratio)
+    # If selected option is the new recommended one, do not display any images
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
         st.markdown("<h4 style='color:#0c38ff; margin-top:0;'>🌟 Recommended Safe Manual Option</h4>", unsafe_allow_html=True)
-        if os.path.exists(selected_img_path):
-            st.image(selected_img_path, use_container_width=True, caption="Lymph Flush Benefits & Guide Overview")
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     else:
         col1, col2 = st.columns([1, 2])
         with col1:
-            if chosen_option != "Massage Gun General Information & Usage Tips" and os.path.exists(selected_img_path):
+            if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path and os.path.exists(selected_img_path):
                 st.image(selected_img_path, width=110)
             else:
                 st.markdown("📘 **[Guide]**")
