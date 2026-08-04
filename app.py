@@ -199,7 +199,7 @@ if "user_name" not in st.session_state:
 if "session_notes" not in st.session_state:
     st.session_state.session_notes = ""
 if "selected_protocol" not in st.session_state:
-    st.session_state.selected_protocol = "Master Pelvic Decompression Protocol"
+    st.session_state.selected_protocol = "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)"
 if "current_step_index" not in st.session_state:
     st.session_state.current_step_index = 0
 if "admin_authenticated" not in st.session_state:
@@ -267,6 +267,7 @@ elif st.session_state.app_page == 2:
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
     protocol_options = [
+        "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)",
         "Master Pelvic Decompression Protocol",
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
@@ -275,14 +276,15 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary (Updated for the new protocol)
+    # Preview Images Dictionary (Larger image display mapped for the new recommended option)
     preview_images = {
-        protocol_options[0]: "master_pelvic_preview.png",
-        protocol_options[1]: "1000174663.png",
-        protocol_options[2]: "hip_master_guide.png",
-        protocol_options[3]: "step5.png",
+        protocol_options[0]: "step1A.png",
+        protocol_options[1]: "master_pelvic_preview.png",
+        protocol_options[2]: "1000174663.png",
+        protocol_options[3]: "hip_master_guide.png",
         protocol_options[4]: "step5.png",
-        protocol_options[5]: "step1.jpg"
+        protocol_options[5]: "step5.png",
+        protocol_options[6]: "step1.jpg"
     }
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
@@ -304,17 +306,36 @@ elif st.session_state.app_page == 2:
     selected_img_path = preview_images[chosen_option]
     
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
-    col1, col2 = st.columns([1, 2])
-    with col1:
-        if chosen_option != "Massage Gun General Information & Usage Tips" and os.path.exists(selected_img_path):
-            st.image(selected_img_path, width=110)
-        else:
-            st.markdown("📘 **[Guide]**")
-    with col2:
+    
+    # If selected option is the new recommended one, use a larger image layout (full width or larger column ratio)
+    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
+        st.markdown("<h4 style='color:#0c38ff; margin-top:0;'>🌟 Recommended Safe Manual Option</h4>", unsafe_allow_html=True)
+        if os.path.exists(selected_img_path):
+            st.image(selected_img_path, use_container_width=True, caption="Lymph Flush Benefits & Guide Overview")
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
+    else:
+        col1, col2 = st.columns([1, 2])
+        with col1:
+            if chosen_option != "Massage Gun General Information & Usage Tips" and os.path.exists(selected_img_path):
+                st.image(selected_img_path, width=110)
+            else:
+                st.markdown("📘 **[Guide]**")
+        with col2:
+            st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
+            
     st.markdown('</div>', unsafe_allow_html=True)
 
-    if chosen_option == "Master Pelvic Decompression Protocol":
+    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
+        st.markdown("""
+<div class="metric-container">
+<b>🎯 Why it should be done:</b><br>
+A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
+<b>⏱️ Frequency & Best Time:</b><br>
+2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
+</div>
+""", unsafe_allow_html=True)
+
+    elif chosen_option == "Master Pelvic Decompression Protocol":
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why it should be done:</b><br>
@@ -409,7 +430,66 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- MASTER PELVIC DECOMPRESSION PROTOCOL STEPS (UPDATED IMAGES) ---
+    # --- 100% MANUAL SAFE ALTERNATIVE PROTOCOL STEPS ---
+    manual_lymph_steps = [
+        {
+            "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
+            "duration": 30,
+            "image_file": "step1A.png",
+            "distance": "Superficial inguinal area in the groin crease (1 cm to 2 cm inward from the outer fold).",
+            "where": "Central lower abdomen just below the navel.",
+            "action": "Device completely out of the equation. Use warm hands and fingertips. Start at the central lower abdomen just below navel, and perform slow, gentle, featherlight outward sweeping strokes (effleurage) down toward hip creases and groin nodes.",
+            "goal": "Safely stimulate primary drainage routes using tactile control without mechanical percussion.",
+            "benefit_text": "💡 Primary drainage routes are safely stimulated manually.",
+            "switch_sides": False
+        },
+        {
+            "step": "Step 2: Outer Hip & Tensor Fasciae Latae (TFL) Release",
+            "duration": 60,
+            "image_file": "step1B.jpg",
+            "distance": "Thick muscle belly of the outer hip and upper thigh.",
+            "where": "Outer hip and upper thigh muscle belly.",
+            "action": "Use the heel of your hand, your knuckles, or a foam roller/lacrosse ball against a wall. Apply moderate, steady pressure into the TFL muscle. Hold or make slow, small circles (30 seconds per side).",
+            "goal": "Pre-release lateral hip and thigh tension safely without bruising the iliac crest.",
+            "benefit_text": "💡 Lateral hip tension is safely pre-released.",
+            "switch_sides": True
+        },
+        {
+            "step": "Step 3: Sub-Umbilical Gentle Glide",
+            "duration": 45,
+            "image_file": "step2.jpg",
+            "distance": "Sub-umbilical zone spanning 3 cm to 10 cm below the navel across a 10 cm band.",
+            "where": "Sub-umbilical abdominal zone.",
+            "action": "Using your fingertips or flat pads of fingers, angle hands slightly downward (about 45 degrees toward feet). Apply a very light, smooth downward glide toward lower pelvis. Never press hard or dig into visceral cavity.",
+            "goal": "Encourage mid-level fascial mobility and assist fluid movement downward.",
+            "benefit_text": "💡 Mid-level fascial mobility is safely encouraged.",
+            "switch_sides": False
+        },
+        {
+            "step": "Step 4: Low-Pelvic Glide & Hold",
+            "duration": 120,
+            "image_file": "step3.png",
+            "distance": "12 cm to 15 cm below the navel, positioned over the upper pubic mound.",
+            "where": "Lower pelvic region just above the pubic bone.",
+            "action": "Place fingertips or flat of your palm just above pubic bone. Execute a slow downward stroke, ending with a gentle, stationary 30-second flat-hand compression against skeletal boundary of pubic region. Maintain calm, deep breathing.",
+            "goal": "Rhythmically mobilize lower core tissue against a stable skeletal barrier using only body weight and hand pressure.",
+            "benefit_text": "💡 Lower core tissue is mobilized against a safe skeletal barrier.",
+            "switch_sides": False
+        },
+        {
+            "step": "Step 5: Outer Hip V-Sweep (The Flush)",
+            "duration": 90,
+            "image_file": "step4.png",
+            "distance": "Spanning from 8 cm to 15 cm below the navel, sweeping outward toward hips.",
+            "where": "Vertical centerline out toward hips.",
+            "action": "Start at vertical centerline with flat palms. Glide downward, then curve outward and upward over the iliac crest (following V-shape away from groin fold). Use ultra-slow pace and very light touch.",
+            "goal": "Direct and flush accumulated interstitial fluid safely away from sensitive areas toward lateral drainage pathways.",
+            "benefit_text": "💡 Interstitial fluid is safely flushed toward lateral pathways.",
+            "switch_sides": False
+        }
+    ]
+
+    # --- MASTER PELVIC DECOMPRESSION PROTOCOL STEPS ---
     master_pelvic_steps = [
         {
             "step": "Step 1: Vagal Parasympathetic Breathing",
@@ -468,7 +548,7 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # --- ADVANCED LOWER PELVIC & ABDOMINAL FLUSH (ORIGINAL IMAGES PRESERVED) ---
+    # --- ADVANCED LOWER PELVIC & ABDOMINAL FLUSH (PERCUSSION) ---
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -691,7 +771,9 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    if st.session_state.selected_protocol == "Master Pelvic Decompression Protocol":
+    if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
+        protocol_steps = manual_lymph_steps
+    elif st.session_state.selected_protocol == "Master Pelvic Decompression Protocol":
         protocol_steps = master_pelvic_steps
     elif st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         protocol_steps = lymph_steps
