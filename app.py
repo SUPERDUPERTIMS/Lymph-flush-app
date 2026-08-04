@@ -267,7 +267,6 @@ elif st.session_state.app_page == 2:
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
     protocol_options = [
-        "Master Pelvic Decompression Protocol",
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
         "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)",
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
@@ -277,13 +276,12 @@ elif st.session_state.app_page == 2:
     ]
     
     preview_images = {
-        protocol_options[0]: "master_pelvic_preview.png",
-        protocol_options[1]: "1000174663.png",
-        protocol_options[2]: "", 
-        protocol_options[3]: "hip_master_guide.png",
+        protocol_options[0]: "1000174663.png",
+        protocol_options[1]: "", 
+        protocol_options[2]: "hip_master_guide.png",
+        protocol_options[3]: "step5.png",
         protocol_options[4]: "step5.png",
-        protocol_options[5]: "step5.png",
-        protocol_options[6]: "step1.jpg"
+        protocol_options[5]: "step1.jpg"
     }
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
@@ -328,16 +326,6 @@ elif st.session_state.app_page == 2:
 A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
 <b>⏱️ Frequency & Best Time:</b><br>
 2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
-</div>
-""", unsafe_allow_html=True)
-
-    elif chosen_option == "Master Pelvic Decompression Protocol":
-        st.markdown("""
-<div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-Treats the pelvic region as a complete structural system rather than an isolated spot, systematically clearing the plumbing and wiring of the lower body. Removes structural tension from heavy lifting or sports, decompresses sacral nerve roots (S2-S4), expands vascular flow, and resets fascia.<br><br>
-<b>⚠️ Contraindications:</b><br>
-Do not use if pregnant, experiencing hernias (inguinal/umbilical), recent surgeries (within 3-6 months), active internal inflammation (UTIs, kidney stones, PID, IBS flare-ups, severe endometriosis), or recent IUD placement.
 </div>
 """, unsafe_allow_html=True)
 
@@ -481,65 +469,6 @@ elif st.session_state.app_page == 3:
             "action": "Start at vertical centerline with flat palms. Glide downward, then curve outward and upward over the iliac crest (following V-shape away from groin fold). Use ultra-slow pace and very light touch.",
             "goal": "Direct and flush accumulated interstitial fluid safely away from sensitive areas toward lateral drainage pathways.",
             "benefit_text": "💡 Interstitial fluid is safely flushed toward lateral pathways.",
-            "switch_sides": False
-        }
-    ]
-
-    # --- MASTER PELVIC DECOMPRESSION PROTOCOL STEPS ---
-    master_pelvic_steps = [
-        {
-            "step": "Step 1: Vagal Parasympathetic Breathing",
-            "duration": 60,
-            "image_file": "master_pelvic_step1.png",
-            "distance": "Entire abdominal complex and deep pelvic floor.",
-            "where": "Anterior torso view (lying flat with knees bent).",
-            "action": "Device OFF. Inhale through nose for 4 seconds, exhale slowly through pursed lips for 7 seconds. Relax abdominal wall.",
-            "goal": "Forces a parasympathetic shift, actively dilating deep pelvic arteries and preventing tissue guarding.",
-            "benefit_text": "💡 Nervous system shift relaxes the abdominal wall and prepares deep tissue.",
-            "switch_sides": False
-        },
-        {
-            "step": "Step 2: Posterior Chain Decompression (Gluteal Release)",
-            "duration": 45,
-            "image_file": "master_pelvic_step2.png",
-            "distance": "Thick muscle belly of the gluteus maximus.",
-            "where": "Posterior pelvis view, targeting the S2-S4 sacral nerve root zone.",
-            "action": "Using large soft attachment head on lowest speed, perform slow, linear glides across the muscle belly for 45 seconds per side.",
-            "goal": "Decompresses S2–S4 sacral nerve roots and removes structural drag from tight glutes.",
-            "benefit_text": "💡 Releasing gluteal tension unloads mechanical drag from the pelvic frame.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 3: Medial Chain Decompression (Upper Adductors)",
-            "duration": 45,
-            "image_file": "master_pelvic_step3.png",
-            "distance": "Proximal adductor muscle belly.",
-            "where": "Inner thigh, maintaining a strict 3-4 inch buffer from the groin fold.",
-            "action": "Assume relaxed 'butterfly' leg angle. Apply soft head on proximal adductor belly with light fanning glides sweeping outward toward the knee for 45 seconds per side.",
-            "goal": "Opens the pelvic arch by removing hypertonicity from muscles pulling on the pelvic floor.",
-            "benefit_text": "💡 Opening the adductor arch improves medial circulation and reduces pelvic drag.",
-            "switch_sides": True
-        },
-        {
-            "step": "Step 4: Central Lineage Glide & Low-Pelvic Hold",
-            "duration": 90,
-            "image_file": "master_pelvic_step4.png",
-            "distance": "Linea alba central line to suprapubic zone (0-15 cm below navel).",
-            "where": "Anterior midline of the lower abdomen.",
-            "action": "Glide featherlight straight down the midline from navel to low pelvic zone (10s pass), then rest stationary for 5-10 seconds in the suprapubic zone (12-15 cm). Stop strictly 2-3 cm above pubic bone.",
-            "goal": "Resets midline fascial tension and pyramidalis attachment points without bone impact.",
-            "benefit_text": "💡 Midline release prevents lower abdomen from pulling pelvic alignment off-center.",
-            "switch_sides": False
-        },
-        {
-            "step": "Step 5: Manual Sensory Integration",
-            "duration": 60,
-            "image_file": "master_pelvic_step5.png",
-            "distance": "Entire treated suprapubic and pelvic region.",
-            "where": "Anterior torso view (hands-on).",
-            "action": "Device OFF. Place warmed, still palms over the suprapubic area. Rest motionless for 1 minute while re-establishing 4s In / 7s Out breathwork.",
-            "goal": "Ensures deep localized tissue normalization and returns the nervous system to a calm state.",
-            "benefit_text": "💡 Sensory normalization maps the newly restored tissue slack as the new normal.",
             "switch_sides": False
         }
     ]
@@ -769,8 +698,6 @@ elif st.session_state.app_page == 3:
 
     if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
         protocol_steps = manual_lymph_steps
-    elif st.session_state.selected_protocol == "Master Pelvic Decompression Protocol":
-        protocol_steps = master_pelvic_steps
     elif st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
         protocol_steps = lymph_steps
     elif st.session_state.selected_protocol == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
