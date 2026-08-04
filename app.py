@@ -266,7 +266,6 @@ elif st.session_state.app_page == 2:
 
     st.markdown("<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>What's on your mind?</h3>", unsafe_allow_html=True)
 
-    # Reordered so the new option sits directly below the original lymph flush option
     protocol_options = [
         "Master Pelvic Decompression Protocol",
         "Advanced Lower Pelvic & Abdominal Flush Protocol",
@@ -277,7 +276,6 @@ elif st.session_state.app_page == 2:
         "Massage Gun General Information & Usage Tips"
     ]
     
-    # Preview Images Dictionary (No preview image mapped for the recommended option since images are removed)
     preview_images = {
         protocol_options[0]: "master_pelvic_preview.png",
         protocol_options[1]: "1000174663.png",
@@ -308,7 +306,6 @@ elif st.session_state.app_page == 2:
     
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     
-    # If selected option is the new recommended one, do not display any images
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
         st.markdown("<h4 style='color:#0c38ff; margin-top:0;'>🌟 Recommended Safe Manual Option</h4>", unsafe_allow_html=True)
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
@@ -429,12 +426,12 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- 100% MANUAL SAFE ALTERNATIVE PROTOCOL STEPS ---
+    # --- 100% MANUAL SAFE ALTERNATIVE PROTOCOL STEPS (NO IMAGES / NO HARDWARE) ---
     manual_lymph_steps = [
         {
             "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
             "duration": 30,
-            "image_file": "step1A.png",
+            "image_file": "",
             "distance": "Superficial inguinal area in the groin crease (1 cm to 2 cm inward from the outer fold).",
             "where": "Central lower abdomen just below the navel.",
             "action": "Device completely out of the equation. Use warm hands and fingertips. Start at the central lower abdomen just below navel, and perform slow, gentle, featherlight outward sweeping strokes (effleurage) down toward hip creases and groin nodes.",
@@ -445,7 +442,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 2: Outer Hip & Tensor Fasciae Latae (TFL) Release",
             "duration": 60,
-            "image_file": "step1B.jpg",
+            "image_file": "", 
             "distance": "Thick muscle belly of the outer hip and upper thigh.",
             "where": "Outer hip and upper thigh muscle belly.",
             "action": "Use the heel of your hand, your knuckles, or a foam roller/lacrosse ball against a wall. Apply moderate, steady pressure into the TFL muscle. Hold or make slow, small circles (30 seconds per side).",
@@ -456,7 +453,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 3: Sub-Umbilical Gentle Glide",
             "duration": 45,
-            "image_file": "step2.jpg",
+            "image_file": "", 
             "distance": "Sub-umbilical zone spanning 3 cm to 10 cm below the navel across a 10 cm band.",
             "where": "Sub-umbilical abdominal zone.",
             "action": "Using your fingertips or flat pads of fingers, angle hands slightly downward (about 45 degrees toward feet). Apply a very light, smooth downward glide toward lower pelvis. Never press hard or dig into visceral cavity.",
@@ -467,7 +464,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 4: Low-Pelvic Glide & Hold",
             "duration": 120,
-            "image_file": "step3.png",
+            "image_file": "", 
             "distance": "12 cm to 15 cm below the navel, positioned over the upper pubic mound.",
             "where": "Lower pelvic region just above the pubic bone.",
             "action": "Place fingertips or flat of your palm just above pubic bone. Execute a slow downward stroke, ending with a gentle, stationary 30-second flat-hand compression against skeletal boundary of pubic region. Maintain calm, deep breathing.",
@@ -478,7 +475,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 5: Outer Hip V-Sweep (The Flush)",
             "duration": 90,
-            "image_file": "step4.png",
+            "image_file": "", 
             "distance": "Spanning from 8 cm to 15 cm below the navel, sweeping outward toward hips.",
             "where": "Vertical centerline out toward hips.",
             "action": "Start at vertical centerline with flat palms. Glide downward, then curve outward and upward over the iliac crest (following V-shape away from groin fold). Use ultra-slow pace and very light touch.",
@@ -809,11 +806,13 @@ elif st.session_state.app_page == 3:
         )
 
         img_path = step_info["image_file"]
-        if os.path.exists(img_path):
+        if img_path and os.path.exists(img_path):
             img = Image.open(img_path)
             st.image(img, use_container_width=True, caption=f"Guide: {step_info['step']}")
+        elif not img_path and st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
+            st.info("ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as instructed below (no hardware required).")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder. Make sure your image files match exactly.")
+            st.warning(f"⚠️ Image file `{img_path}` not found in folder.")
 
         st.markdown(f"""
 <div class="metric-container">
