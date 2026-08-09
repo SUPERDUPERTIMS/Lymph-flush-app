@@ -6,6 +6,13 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 
+# ==========================================
+# CONFIGURATION & PAYMENT LINK SETUP
+# ==========================================
+# Replace the URL below with your actual Yoco, PayFast, or Buy Me a Coffee link when ready!
+PAYMENT_URL = "https://www.google.com" 
+ADMIN_PASSWORD = "Ralph1234"
+
 # Page configuration with mobile viewport optimization
 st.set_page_config(
     page_title="KineticPulse: Mobile Performance Suite",
@@ -187,9 +194,6 @@ def log_session_to_csv(name, protocol_name, rating, notes):
             notes
         ])
 
-# PLAIN TEXT PASSWORD
-ADMIN_PASSWORD = "Ralph1234"
-
 
 # --- INITIALIZE SESSION STATE ---
 if "app_page" not in st.session_state:
@@ -213,7 +217,7 @@ if st.button("Admin", key="floating_admin_btn"):
     st.rerun()
 
 
-# --- PAGE 1: NAME, NOTES & SAFETY CHECKS ---
+# --- PAGE 1: NAME, NOTES, SAFETY CHECKS & DONATION ---
 if st.session_state.app_page == 1:
     st.markdown("""
 <div class="curved-header">
@@ -243,6 +247,28 @@ if st.session_state.app_page == 1:
     agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a specialist.")
     agree_age = st.checkbox("I confirm I am 18 years of age or older.")
 
+    # --- DONATION / SUPPORT CARD ---
+    st.markdown(f"""
+    <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);">
+        <h4 style="margin-top: 0; color: #333;">Support KineticPulse 💳</h4>
+        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">If this application helps your training and recovery, consider contributing to support further development!</p>
+        <a href="{PAYMENT_URL}" target="_blank" style="
+            display: block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+            transition: all 0.2s ease;
+        ">
+            🤝 Make a Contribution
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("Continue", type="primary"):
         if entered_name.strip() and agree_contraindications and agree_medical_consult and agree_age:
@@ -255,7 +281,7 @@ if st.session_state.app_page == 1:
             st.error("Please fill in your name and check all safety confirmation boxes to proceed.")
 
 
-# --- PAGE 2: PROTOCOL SELECTOR WITH CARDS & PREVIEW LOGOS ---
+# --- PAGE 2: PROTOCOL SELECTOR ---
 elif st.session_state.app_page == 2:
     st.markdown(f"""
 <div class="curved-header">
@@ -414,7 +440,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: STEP-BY-STEP INTERACTIVE GUIDE ---
 elif st.session_state.app_page == 3:
     
-    # --- 100% MANUAL SAFE ALTERNATIVE PROTOCOL STEPS (NO IMAGES / NO HARDWARE) ---
+    # MANUAL STEPS
     manual_lymph_steps = [
         {
             "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
@@ -473,7 +499,7 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # --- ADVANCED LOWER PELVIC & ABDOMINAL FLUSH (PERCUSSION) ---
+    # FLUSH STEPS
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -532,7 +558,7 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    # --- 6-STEP HIP & PELVIC PERFORMANCE PROTOCOL ---
+    # HIP STEPS
     hip_steps = [
         {
             "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
@@ -853,6 +879,7 @@ elif st.session_state.app_page == 3:
             scroll_to_top()
             st.rerun()
 
+
 # --- PAGE 4: SECURE ADMIN LOGIN ---
 elif st.session_state.app_page == 4:
     st.markdown("""
@@ -884,6 +911,7 @@ elif st.session_state.app_page == 4:
         st.session_state.app_page = 1
         scroll_to_top()
         st.rerun()
+
 
 # --- PAGE 5: ADMIN DATA VIEWER ---
 elif st.session_state.app_page == 5:
