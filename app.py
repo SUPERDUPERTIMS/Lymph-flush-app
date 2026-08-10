@@ -269,7 +269,10 @@ if st.session_state.app_page == 1:
         "⚠️ **SAFETY & MEDICAL NOTICE:**\n\n"
         "1. Avoid if you have active hernias, recent surgery, or pregnancy.\n"
         "2. Consult your physician or physical therapist prior to starting.\n"
-        "3. You must be 18 years of age or older."
+        "3. You must be 18 years of age or older.\n\n"
+        "ℹ️ **APP DISCLAIMER:**\n"
+        "This application was not developed by a professional and was created with the assistance of AI. "
+        "Before using this application or implementing any techniques, please first seek advice from qualified professionals."
     )
 
     agree_contraindications = st.checkbox("I confirm no active contraindications listed above.")
@@ -528,7 +531,7 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # FLUSH STEPS (MASSAGE GUN PROTOCOL WITH UPDATED SAFETY NOTES)
+    # FLUSH STEPS (MASSAGE GUN PROTOCOL WITH SAFETY NOTES)
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -842,7 +845,7 @@ elif st.session_state.app_page == 3:
                             side_visual_placeholder.markdown("""
                             <div style="background:#e8f5e9; border:2px solid #4caf50; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
                                 <h1 style="font-size:3.5rem; margin:0;">➡️ 🧍‍♂️</h1>
-                                <h3 style="color:#1b5e20; margin:0; font-weight: bold;">WORKING: RIGHT SIDE</h3>
+                                <h3 style="color:#1b5e20; font-weight: bold;">WORKING: RIGHT SIDE</h3>
                             </div>
                             """, unsafe_allow_html=True)
                 else:
@@ -852,7 +855,7 @@ elif st.session_state.app_page == 3:
                         side_visual_placeholder.markdown("""
                         <div style="background:#fff3e0; border:2px solid #ff9800; border-radius:15px; padding:15px; text-align:center; margin-bottom: 15px;">
                             <h1 style="font-size:3.5rem; margin:0;">🧍‍♂️</h1>
-                            <h3 style="color:#e65100; margin:0; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3>
+                            <h3 style="color:#e65100; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3>
                         </div>
                         """, unsafe_allow_html=True)
 
