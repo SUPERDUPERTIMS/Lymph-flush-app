@@ -9,7 +9,6 @@ import pandas as pd
 # ==========================================
 # 1. PAGE CONFIGURATION
 # ==========================================
-# Must be the first Streamlit command called
 st.set_page_config(
     page_title="Kinetic Pulse: Mobile Performance Suite",
     page_icon="⚡",
@@ -71,12 +70,10 @@ def render_safety_gate():
     return False
 
 
-# Halts app execution if terms are not accepted
 if not render_safety_gate():
     st.stop()
 
 
-# Sidebar Legal Status Reference
 with st.sidebar:
     st.markdown("### ⚡ Kinetic Pulse")
     st.caption("Legal & Safety Status: **Verified**")
@@ -93,18 +90,15 @@ ADMIN_PASSWORD = "Ralph1234"
 
 st.markdown("""
 <style>
-/* Force light background across the main app container */
 .stApp, .main {
     background-color: #f7f7f8 !important;
     padding: 0px 4px;
 }
 
-/* Hide default Streamlit navigation elements */
 #MainMenu, footer, header {
     visibility: hidden;
 }
 
-/* Strict text contrast overrides for in-app browsers */
 p, span, label, div, h1, h2, h3, h4, h5, h6 {
     color: #1a1a1a;
 }
@@ -113,7 +107,6 @@ p, span, label, div, h1, h2, h3, h4, h5, h6 {
     color: #1a1a1a !important;
 }
 
-/* Form inputs & text area contrast locks */
 div[data-baseweb="input"], div[data-baseweb="textarea"] {
     background-color: #ffffff !important;
     border: 1px solid #cbd5e1 !important;
@@ -125,13 +118,11 @@ div[data-baseweb="input"] input, div[data-baseweb="textarea"] textarea {
     background-color: #ffffff !important;
 }
 
-/* Radio buttons & checkboxes label visibility */
 div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     color: #1a1a1a !important;
     font-weight: 600 !important;
 }
 
-/* Vibrant Blue Pill-Shaped Primary Buttons */
 .stButton>button {
     width: 100%;
     border-radius: 50px !important;
@@ -159,7 +150,6 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     color: #333333 !important;
 }
 
-/* Floating Admin Button */
 div[data-testid="stElementContainer"]:has(button[aria-label="Admin"]),
 div.element-container:has(button[aria-label="Admin"]) {
     position: fixed !important;
@@ -182,7 +172,6 @@ div.element-container:has(button[aria-label="Admin"]) button {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Curved Orange Header */
 .curved-header {
     background-color: #ff9800 !important;
     margin: -4rem -2rem 2rem -2rem;
@@ -206,7 +195,6 @@ div.element-container:has(button[aria-label="Admin"]) button {
     margin-top: 5px;
 }
 
-/* Clean White Container Cards */
 .protocol-card {
     background: #ffffff !important;
     padding: 24px;
@@ -292,7 +280,6 @@ def log_session_to_csv(name, protocol_name, rating, notes):
             notes
         ])
 
-# Initialize Session State
 if "app_page" not in st.session_state:
     st.session_state.app_page = 1
 if "user_name" not in st.session_state:
@@ -306,7 +293,6 @@ if "current_step_index" not in st.session_state:
 if "admin_authenticated" not in st.session_state:
     st.session_state.admin_authenticated = False
 
-# Floating Admin Navigation Button
 if st.button("Admin", key="floating_admin_btn"):
     st.session_state.app_page = 4
     scroll_to_top()
@@ -335,7 +321,6 @@ if st.session_state.app_page == 1:
     entered_name = st.text_input("Your Name:", value=st.session_state.user_name)
     entered_notes = st.text_area("Session Notes / Focus Areas:", value=st.session_state.session_notes)
 
-    # Support / Donation Card
     st.markdown(f"""
     <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);">
         <h4 style="margin-top: 0; color: #333;">Support KineticPulse ☕</h4>
@@ -428,7 +413,6 @@ elif st.session_state.app_page == 2:
             
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # Detailed Protocol Overview Cards
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
         st.markdown("""
 <div class="metric-container">
@@ -523,7 +507,6 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 # --- PAGE 3: INTERACTIVE GUIDED TIMER & ROUTINE ---
 elif st.session_state.app_page == 3:
     
-    # 1. Manual Lymphatic Protocol
     manual_lymph_steps = [
         {
             "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
@@ -582,7 +565,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # 2. Massage Gun Pelvic & Abdominal Flush
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -641,12 +623,12 @@ elif st.session_state.app_page == 3:
         },
     ]
 
-    # 3. 6-Step Hip & Pelvic Performance Protocol
+    # Updated Hip Protocol array with dynamic image check for Step 6
     hip_steps = [
         {
             "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step1.png" if os.path.exists("hip_step1.png") else "hip_master_guide.png",
             "distance": "Outer hip flare (TFL insertion)",
             "where": "Just below the hard bony iliac crest of the outer hip.",
             "action": "High speed at a 45-degree angle. Maintain steady contact for 60 seconds per side.",
@@ -657,7 +639,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 2: Gluteus Medius & Minimus Stabilizers",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step2.png" if os.path.exists("hip_step2.png") else "hip_master_guide.png",
             "distance": "Upper-outer gluteal region",
             "where": "Posterior to the TFL across the upper glute shelf.",
             "action": "Medium speed. Smooth circular sweeps and stationary holds for 60 seconds per side.",
@@ -668,7 +650,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 3: Deep External Rotators (Piriformis & Gemelli)",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step3.png" if os.path.exists("hip_step3.png") else "hip_master_guide.png",
             "distance": "Deep posterior hip pocket",
             "where": "Center of the glute tracking toward the greater trochanter.",
             "action": "Medium-high speed. Targeted stationary holds on tender trigger points for 60 seconds per side.",
@@ -679,7 +661,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 4: Anterior Hip Flexors (Rectus Femoris)",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step4.png" if os.path.exists("hip_step4.png") else "hip_master_guide.png",
             "distance": "Upper front thigh",
             "where": "Just below the front hip bone (ASIS), tracking down the quad.",
             "action": "Medium speed. Slow longitudinal sweeps for 60 seconds per side.",
@@ -690,7 +672,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 5: Iliopsoas Deep Pocket Release",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step5.png" if os.path.exists("hip_step5.png") else "hip_master_guide.png",
             "distance": "Deep inner hip crease",
             "where": "Internal to the ASIS bone in the soft pocket of the hip crease.",
             "action": "Low speed, featherlight touch. Gentle stationary holds for 60 seconds per side.",
@@ -701,7 +683,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 6: Adductor/Pubic Interface (Inner Thigh Tie-In)",
             "duration": 120,
-            "image_file": "hip_master_guide.png",
+            "image_file": "hip_step6.png" if os.path.exists("hip_step6.png") else "hip_master_guide.png",
             "distance": "Upper inner thigh / pubic bone boundary",
             "where": "High on the inner thigh, safely below the groin crease against the pubic bone.",
             "action": "Low speed. Featherlight downward sweeps and gentle static contact for 60 seconds per side.",
@@ -711,7 +693,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # 4. Forearm, Elbow & Shoulder Protocol
     forearm_steps = [
         {
             "step": "Step 1: Lateral Epicondyle & Extensor Mass",
@@ -759,7 +740,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # 5. Ankle & Posterior Chain Protocol
     ankle_steps = [
         {
             "step": "Step 1: Soleus & Gastrocnemius Flush",
@@ -807,7 +787,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # Match Active Routine
     if st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
         protocol_steps = manual_lymph_steps
     elif st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol":
@@ -850,7 +829,7 @@ elif st.session_state.app_page == 3:
         elif not img_path and st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
             st.info("ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as instructed below (no hardware required).")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder.")
+            st.warning(f"⚠️ Image file `{img_path}` not found in folder. Using default protocol instructions.")
 
         st.markdown(f"""
 <div class="metric-container">
@@ -956,7 +935,6 @@ elif st.session_state.app_page == 3:
         st.markdown("---")
         st.success("🏆 **Protocol Completed Successfully!** Great work.")
         
-        # Support Card on Completion
         st.markdown(f"""
         <div style="text-align: center; margin-top: 15px; margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);">
             <h4 style="margin-top: 0; color: #333;">Support KineticPulse ☕</h4>
