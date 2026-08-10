@@ -232,7 +232,7 @@ div.element-container:has(button[aria-label="Admin"]) button {
     padding: 18px;
     border-radius: 50px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #0c38ff !important;
     margin: 15px 0;
@@ -265,6 +265,24 @@ def scroll_to_top():
         height=0,
         width=0
     )
+
+def resolve_image_path(base_filename):
+    """
+    Flexible image resolver that checks common extensions (.png, .jpg, .jpeg)
+    to prevent missing image bugs due to file extension mismatches.
+    """
+    if not base_filename:
+        return None
+    if os.path.exists(base_filename):
+        return base_filename
+    
+    stem, ext = os.path.splitext(base_filename)
+    possible_extensions = ['.png', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG']
+    for alt_ext in possible_extensions:
+        candidate = stem + alt_ext
+        if os.path.exists(candidate):
+            return candidate
+    return None
 
 def log_session_to_csv(name, protocol_name, rating, notes):
     file_exists = os.path.isfile('kinetic_session_logs.csv')
@@ -395,7 +413,7 @@ elif st.session_state.app_page == 2:
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
-    selected_img_path = preview_images[chosen_option]
+    selected_img_path = resolve_image_path(preview_images[chosen_option])
     
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
@@ -404,7 +422,7 @@ elif st.session_state.app_page == 2:
     else:
         col1, col2 = st.columns([1, 2])
         with col1:
-            if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path and os.path.exists(selected_img_path):
+            if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
                 st.image(selected_img_path, width=110)
             else:
                 st.markdown("📘 **[Guide]**")
@@ -551,7 +569,7 @@ elif st.session_state.app_page == 3:
             "positioning": "Sustained pelvic tilt (exhale, draw navel down, flatten lower back flush against floor).",
             "distance": "Lower pelvic region positioned over upper pubic mound.",
             "where": "Lower pelvic boundary where soft tissue meets pubic bone.",
-            "action": "Place fingertips just above pubic bone. Execute a slow downward stroke with a stationary pause. Perform 2 pelvic floor contract-relax cycles during pause.",
+            "action": "Place fingertips just above pubic bone. Execute a slow downward stroke with a stationary pause. Perform 2 pelvic floor contract-relax cycles during pause, and repeat.",
             "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier using body weight and hand pressure.",
             "benefit_text": "💡 Lower core tissue is mobilized against a safe skeletal barrier.",
             "switch_sides": False
@@ -570,7 +588,6 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # Updated Lymphatic Protocol array with enhanced positioning and 2 extra images
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming & Adductor Opening",
@@ -619,7 +636,7 @@ elif st.session_state.app_page == 3:
             "positioning": "Execute a single sustained pelvic tilt. Exhale, draw the navel down, and flatten the lower back completely flush against the floor without lifting the glutes. Hold this flat-back posture throughout.",
             "distance": "Pubic bone frame & lower abdominal wall.",
             "where": "Lower pelvic boundary where soft tissue transitions into the pubic bone frame.",
-            "action": "Execute a slow downward glide to the pubic bone frame, followed by a stationary pause. Perform 2 pelvic floor contract-relax cycles during the pause phase (total duration: 120 seconds).",
+            "action": "Execute a slow downward glide to the pubic bone frame, followed by a stationary pause. Perform 2 pelvic floor contract-relax cycles during the pause phase, and repeat (total duration: 120 seconds).",
             "goal": "Targets dense pelvic fascia against a stable skeletal barrier, strengthens deep core activation for a flatter belly profile, and accelerates tissue drainage.",
             "benefit_text": "💡 Targets dense pelvic fascia against a skeletal barrier, strengthens deep core activation, and accelerates drainage.",
             "switch_sides": False
@@ -639,12 +656,11 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # Hip Protocol array with Step 6 Low-Lunge Integration
     hip_steps = [
         {
             "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
             "duration": 120,
-            "image_file": "hip_step1.png" if os.path.exists("hip_step1.png") else "hip_master_guide.png",
+            "image_file": "hip_step1.png",
             "distance": "Outer hip flare (TFL insertion)",
             "where": "Just below the hard bony iliac crest of the outer hip.",
             "action": "High speed at a 45-degree angle. Maintain steady contact for 60 seconds per side.",
@@ -655,7 +671,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 2: Gluteus Medius & Minimus Stabilizers",
             "duration": 120,
-            "image_file": "hip_step2.png" if os.path.exists("hip_step2.png") else "hip_master_guide.png",
+            "image_file": "hip_step2.png",
             "distance": "Upper-outer gluteal region",
             "where": "Posterior to the TFL across the upper glute shelf.",
             "action": "Medium speed. Smooth circular sweeps and stationary holds for 60 seconds per side.",
@@ -666,7 +682,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 3: Deep External Rotators (Piriformis & Gemelli)",
             "duration": 120,
-            "image_file": "hip_step3.png" if os.path.exists("hip_step3.png") else "hip_master_guide.png",
+            "image_file": "hip_step3.png",
             "distance": "Deep posterior hip pocket",
             "where": "Center of the glute tracking toward the greater trochanter.",
             "action": "Medium-high speed. Targeted stationary holds on tender trigger points for 60 seconds per side.",
@@ -677,7 +693,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 4: Anterior Hip Flexors (Rectus Femoris)",
             "duration": 120,
-            "image_file": "hip_step4.png" if os.path.exists("hip_step4.png") else "hip_master_guide.png",
+            "image_file": "hip_step4.png",
             "distance": "Upper front thigh",
             "where": "Just below the front hip bone (ASIS), tracking down the quad.",
             "action": "Medium speed. Slow longitudinal sweeps for 60 seconds per side.",
@@ -688,7 +704,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 5: Iliopsoas Deep Pocket Release",
             "duration": 120,
-            "image_file": "hip_step5.png" if os.path.exists("hip_step5.png") else "hip_master_guide.png",
+            "image_file": "hip_step5.png",
             "distance": "Deep inner hip crease",
             "where": "Internal to the ASIS bone in the soft pocket of the hip crease.",
             "action": "Low speed, featherlight touch. Gentle stationary holds for 60 seconds per side.",
@@ -699,7 +715,7 @@ elif st.session_state.app_page == 3:
         {
             "step": "Step 6: Dynamic Low-Lunge & Hip Flexor Integration",
             "duration": 120,
-            "image_file": "hip_step6.png" if os.path.exists("hip_step6.png") else "hip_master_guide.png",
+            "image_file": "hip_step6.png",
             "distance": "Anterior Hip Flexor & Adductor Chain",
             "where": "Half-kneeling low-lunge position (rear knee grounded, front knee over ankle).",
             "action": "Adopt a stable low lunge. Tuck your pelvis underneath (posterior tilt), engage the glute on the trailing leg, and gently shift hips forward. Hold or lightly pulse for 60 seconds per side.",
@@ -838,22 +854,19 @@ elif st.session_state.app_page == 3:
             unsafe_allow_html=True
         )
 
-        # Image display logic handling both primary and extra images
-        img_path = step_info.get("image_file", "")
-        extra_img_path = step_info.get("extra_image_file", "")
+        # Dynamic Image Path Resolution
+        img_path = resolve_image_path(step_info.get("image_file", ""))
+        extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
-        has_primary = img_path and os.path.exists(img_path)
-        has_extra = extra_img_path and os.path.exists(extra_img_path)
-
-        if has_primary and has_extra:
+        if img_path and extra_img_path:
             col_img1, col_img2 = st.columns(2)
             with col_img1:
                 st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
             with col_img2:
                 st.image(extra_img_path, use_container_width=True, caption="Positioning Reference")
-        elif has_primary:
+        elif img_path:
             st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
-        elif has_extra:
+        elif extra_img_path:
             st.image(extra_img_path, use_container_width=True, caption="Positioning Reference")
         elif not img_path and st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
             st.info("ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as instructed below (no hardware required).")
@@ -886,6 +899,7 @@ elif st.session_state.app_page == 3:
             total_time = step_info["duration"]
             half_time = total_time // 2
             needs_switching = step_info.get("switch_sides", False)
+            is_step3 = "Step 3:" in step_info["step"]
 
             for remaining in range(total_time, -1, -1):
                 mins, secs = divmod(remaining, 60)
@@ -926,10 +940,20 @@ elif st.session_state.app_page == 3:
                 placeholder.markdown(f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>", unsafe_allow_html=True)
                 progress_bar.progress(1.0 - (remaining / total_time))
 
-                if (elapsed % 10) < 5:
-                    breath_placeholder.markdown('<div class="breath-box">🌬️ Deep Belly Inhale...</div>', unsafe_allow_html=True)
+                # Step 3 specific timer cues vs general belly breathing
+                if is_step3:
+                    cycle = elapsed % 12
+                    if cycle < 4:
+                        breath_placeholder.markdown('<div class="breath-box">🌬️ Inhale & Prepare...</div>', unsafe_allow_html=True)
+                    elif cycle < 8:
+                        breath_placeholder.markdown('<div class="breath-box">⚡ Exhale & Squeeze Pelvic Floor (Hold 4s)...</div>', unsafe_allow_html=True)
+                    else:
+                        breath_placeholder.markdown('<div class="breath-box">😌 Pause, Fully Release Pelvic Floor... Repeat!</div>', unsafe_allow_html=True)
                 else:
-                    breath_placeholder.markdown('<div class="breath-box">😌 Slow Relaxed Exhale...</div>', unsafe_allow_html=True)
+                    if (elapsed % 10) < 5:
+                        breath_placeholder.markdown('<div class="breath-box">🌬️ Deep Belly Inhale...</div>', unsafe_allow_html=True)
+                    else:
+                        breath_placeholder.markdown('<div class="breath-box">😌 Slow Relaxed Exhale...</div>', unsafe_allow_html=True)
 
                 if "benefit_text" in step_info:
                     benefit_placeholder.info(step_info["benefit_text"])
