@@ -528,7 +528,7 @@ elif st.session_state.app_page == 3:
         }
     ]
 
-    # FLUSH STEPS
+    # FLUSH STEPS (MASSAGE GUN PROTOCOL WITH UPDATED SAFETY NOTES)
     lymph_steps = [
         {
             "step": "Step 1A: Manual Lymphatic Priming",
@@ -558,7 +558,7 @@ elif st.session_state.app_page == 3:
             "image_file": "step2.jpg",
             "distance": "3 cm to 10 cm below the navel across a 10 cm wide band.",
             "where": "The sub-umbilical zone directly below the navel.",
-            "action": "Angle the device at 45 degrees downward. Using a soft attachment at low speed, perform steady, slow downward glides.",
+            "action": "Angle the device at 45 degrees downward. Using a soft attachment, perform steady, slow downward glides (ensure low speed setting, featherlight touch).",
             "goal": "Pre-clears mid-level fascial tightness and breaks up localized water retention.",
             "benefit_text": "💡 Mid-level fascial tightness is safely releasing.",
             "switch_sides": False
@@ -569,7 +569,7 @@ elif st.session_state.app_page == 3:
             "image_file": "step3.png",
             "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound.",
             "where": "The lower pelvic boundary right where soft tissue transitions into the pubic bone.",
-            "action": "Using a soft attachment at medium speed, execute a slow downward glide followed by a 30-second stationary pause against the pubic bone frame. Repeat for 120 seconds.",
+            "action": "Using a soft attachment, execute a slow downward glide followed by a 30-second stationary pause against the pubic bone frame. Repeat for 120 seconds (ensure low speed setting, featherlight touch).",
             "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier.",
             "benefit_text": "💡 Actively mobilizing lower core tissue against a safe skeletal barrier.",
             "switch_sides": False
@@ -580,7 +580,7 @@ elif st.session_state.app_page == 3:
             "image_file": "step4.png",
             "distance": "8 cm to 15 cm below the navel, sweeping outward toward the hip bone.",
             "where": "Start from the vertical centerline.",
-            "action": "Using a soft attachment at low speed, glide downwards to 15 cm, hold stationary for 5-10 seconds, then curve outward and upward over the iliac crest.",
+            "action": "Using a soft attachment, glide downwards to 15 cm, hold stationary for 5-10 seconds, then curve outward and upward over the iliac crest (ensure low speed setting, featherlight touch).",
             "goal": "Directs and flushes accumulated fluid safely away from sensitive areas.",
             "benefit_text": "💡 Flushing accumulated fluid safely up and over hip tissue.",
             "switch_sides": False
