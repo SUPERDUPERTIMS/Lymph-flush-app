@@ -9,8 +9,8 @@ import pandas as pd
 # ==========================================
 # CONFIGURATION & PAYMENT LINK SETUP
 # ==========================================
-# Replace the URL below with your actual Yoco, PayFast, or Buy Me a Coffee link when ready!
-PAYMENT_URL = "https://www.google.com" 
+# Your Ko-fi donation link
+PAYMENT_URL = "https://ko-fi.com/kineticpulseapp" 
 ADMIN_PASSWORD = "Ralph1234"
 
 # Page configuration with mobile viewport optimization
@@ -247,24 +247,24 @@ if st.session_state.app_page == 1:
     agree_medical_consult = st.checkbox("I acknowledge the recommendation to consult a specialist.")
     agree_age = st.checkbox("I confirm I am 18 years of age or older.")
 
-    # --- DONATION / SUPPORT CARD ---
+    # --- DONATION / SUPPORT CARD (START) ---
     st.markdown(f"""
     <div style="text-align: center; margin-top: 25px; margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);">
-        <h4 style="margin-top: 0; color: #333;">Support KineticPulse 💳</h4>
-        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">If this application helps your training and recovery, consider contributing to support further development!</p>
+        <h4 style="margin-top: 0; color: #333;">Support KineticPulse ☕</h4>
+        <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">If you found this App useful, please support further development by making a tip or donation on Ko-fi!</p>
         <a href="{PAYMENT_URL}" target="_blank" style="
             display: block;
-            background-color: #28a745;
+            background-color: #29abe0;
             color: white;
             padding: 12px 20px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+            box-shadow: 0 4px 10px rgba(41, 171, 224, 0.2);
             transition: all 0.2s ease;
         ">
-            🤝 Make a Contribution
+            ☕ Support on Ko-fi
         </a>
     </div>
     """, unsafe_allow_html=True)
@@ -871,6 +871,28 @@ elif st.session_state.app_page == 3:
         st.markdown("---")
         st.success("🏆 **Protocol Completed Successfully!** Great work.")
         
+        # --- DONATION / SUPPORT CARD (END / COMPLETION) ---
+        st.markdown(f"""
+        <div style="text-align: center; margin-top: 15px; margin-bottom: 25px; padding: 20px; background: #ffffff; border-radius: 24px; border: 1px solid #f0f0f0; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);">
+            <h4 style="margin-top: 0; color: #333;">Support KineticPulse ☕</h4>
+            <p style="color: #666; font-size: 0.95rem; margin-bottom: 15px;">If you found this App useful, please support further development by making a tip or donation on Ko-fi!</p>
+            <a href="{PAYMENT_URL}" target="_blank" style="
+                display: inline-block;
+                background-color: #29abe0;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 700;
+                font-size: 1rem;
+                box-shadow: 0 4px 10px rgba(41, 171, 224, 0.2);
+                transition: all 0.2s ease;
+            ">
+                ☕ Support on Ko-fi
+            </a>
+        </div>
+        """, unsafe_allow_html=True)
+
         log_session_to_csv(st.session_state.user_name, st.session_state.selected_protocol, 10, st.session_state.session_notes)
         
         if st.button("Start New Session", type="primary"):
