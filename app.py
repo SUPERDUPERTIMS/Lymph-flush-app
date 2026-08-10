@@ -5,6 +5,7 @@ from PIL import Image
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
+import csv
 
 # ==========================================
 # 1. PAGE CONFIGURATION
@@ -266,7 +267,6 @@ def scroll_to_top():
     )
 
 def log_session_to_csv(name, protocol_name, rating, notes):
-    import csv
     file_exists = os.path.isfile('kinetic_session_logs.csv')
     with open('kinetic_session_logs.csv', mode='a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
@@ -287,7 +287,7 @@ if "user_name" not in st.session_state:
 if "session_notes" not in st.session_state:
     st.session_state.session_notes = ""
 if "selected_protocol" not in st.session_state:
-    st.session_state.selected_protocol = "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)"
+    st.session_state.selected_protocol = "Advanced Lower Pelvic & Abdominal Flush Protocol"
 if "current_step_index" not in st.session_state:
     st.session_state.current_step_index = 0
 if "admin_authenticated" not in st.session_state:
@@ -375,7 +375,7 @@ elif st.session_state.app_page == 2:
     ]
     
     preview_images = {
-        protocol_options[0]: "1000174663.png",
+        protocol_options[0]: "step1A.png",
         protocol_options[1]: "", 
         protocol_options[2]: "hip_master_guide.png",
         protocol_options[3]: "step5.png",
@@ -427,9 +427,9 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why it should be done:</b><br>
-To target interstitial fluid drainage, break up stagnant water retention and lower-belly puffiness, and release deep pelvic and abdominal fascial tension safely.<br><br>
+Optimizes posture, leg positioning, and core engagement during this routine to maximize lymphatic fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
 <b>⏱️ How often:</b><br>
-2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. After exercise is ideal, as increased blood flow and body temperature help mobilize fluids and enhance tissue responsiveness.
+2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. Best performed after exercise or a warm shower to optimize circulation and tissue elasticity.
 </div>
 """, unsafe_allow_html=True)
         
@@ -437,11 +437,11 @@ To target interstitial fluid drainage, break up stagnant water retention and low
         st.markdown("""
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-High-velocity, ballistic movements trigger defensive muscle guarding. This 6-step protocol uses unbroken sensory pressure and continuous breathing to disarm neural "brakes" and prevent the hip flexors and rotators from locking up under mechanical strain.<br><br>
+High-velocity, ballistic movements trigger defensive muscle guarding. This 6-step protocol disarms neural "brakes" and prevents the hip flexors and rotators from locking up under mechanical strain.<br><br>
 <b>✨ Key Benefits:</b><br>
 • <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface.<br>
 • <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation.<br>
-• <b>Comprehensive Decompression:</b> Systematic progression from lateral stabilizers down to deep hip flexors.
+• <b>Active Integration:</b> Concludes with dynamic low lunges to lock in athletic mobility gains.
 </div>
 """, unsafe_allow_html=True)
 
@@ -512,21 +512,23 @@ elif st.session_state.app_page == 3:
             "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
             "duration": 30,
             "image_file": "",
-            "distance": "Superficial inguinal area in the groin crease (1 cm to 2 cm inward from the outer fold).",
-            "where": "Central lower abdomen just below the navel.",
-            "action": "Device completely out of the equation. Use warm hands and fingertips. Start at the central lower abdomen just below navel, and perform slow, gentle, featherlight outward sweeping strokes (effleurage) down toward hip creases and groin nodes.",
-            "goal": "Safely stimulate primary drainage routes using tactile control without mechanical percussion.",
-            "benefit_text": "💡 Primary drainage routes are safely stimulated manually.",
+            "positioning": "Lie flat in a butterfly pose (soles of feet together, knees open).",
+            "distance": "Superficial inguinal area in the groin crease.",
+            "where": "Central lower abdomen and inner groin fold.",
+            "action": "Device OFF. Use warm hands. Perform 1 pelvic floor contract-relax cycle (squeeze 4s, release 6s). Follow with featherlight outward manual sweeps along the inner groin crease for 30 seconds.",
+            "goal": "Safely stimulates primary drainage routes using tactile control without mechanical percussion.",
+            "benefit_text": "💡 Primary drainage routes are safely opened manually.",
             "switch_sides": False
         },
         {
             "step": "Step 2: Outer Hip & Tensor Fasciae Latae (TFL) Release",
             "duration": 60,
             "image_file": "", 
-            "distance": "Thick muscle belly of the outer hip and upper thigh.",
+            "positioning": "Maintain butterfly posture to keep hip flexors elongated.",
+            "distance": "Thick muscle belly of outer hip and upper thigh.",
             "where": "Outer hip and upper thigh muscle belly.",
-            "action": "Use the heel of your hand, your knuckles, or a foam roller/lacrosse ball against a wall. Apply moderate, steady pressure into the TFL muscle. Hold or make slow, small circles (30 seconds per side).",
-            "goal": "Pre-release lateral hip and thigh tension safely without bruising the iliac crest.",
+            "action": "Use the heel of your hand or knuckles. Apply moderate, steady pressure into the TFL. Hold or make small circles (30 seconds per side).",
+            "goal": "Pre-releases lateral hip and thigh tension safely without percussion.",
             "benefit_text": "💡 Lateral hip tension is safely pre-released.",
             "switch_sides": True
         },
@@ -534,10 +536,11 @@ elif st.session_state.app_page == 3:
             "step": "Step 3: Sub-Umbilical Gentle Glide",
             "duration": 45,
             "image_file": "", 
-            "distance": "Sub-umbilical zone spanning 3 cm to 10 cm below the navel across a 10 cm band.",
+            "positioning": "Transition to hook-lying position (knees bent at 90 degrees, feet flat).",
+            "distance": "Sub-umbilical zone spanning 10 cm band directly below navel.",
             "where": "Sub-umbilical abdominal zone.",
-            "action": "Using your fingertips or flat pads of fingers, angle hands slightly downward (about 45 degrees toward feet). Apply a very light, smooth downward glide toward lower pelvis. Never press hard or dig into visceral cavity.",
-            "goal": "Encourage mid-level fascial mobility and assist fluid movement downward.",
+            "action": "Using flat pads of fingers, angle hands downward at 45 degrees. Apply a smooth downward glide toward the lower pelvis. Never press hard.",
+            "goal": "Encourages mid-level fascial mobility and flattens upper-to-lower stomach contour.",
             "benefit_text": "💡 Mid-level fascial mobility is safely encouraged.",
             "switch_sides": False
         },
@@ -545,10 +548,11 @@ elif st.session_state.app_page == 3:
             "step": "Step 4: Low-Pelvic Glide & Hold",
             "duration": 120,
             "image_file": "", 
-            "distance": "12 cm to 15 cm below the navel, positioned over the upper pubic mound.",
-            "where": "Lower pelvic region just above the pubic bone.",
-            "action": "Place fingertips or flat of your palm just above pubic bone. Execute a slow downward stroke, ending with a gentle, stationary 30-second flat-hand compression against skeletal boundary of pubic region. Maintain calm, deep breathing.",
-            "goal": "Rhythmically mobilize lower core tissue against a stable skeletal barrier using only body weight and hand pressure.",
+            "positioning": "Sustained pelvic tilt (exhale, draw navel down, flatten lower back flush against floor).",
+            "distance": "Lower pelvic region positioned over upper pubic mound.",
+            "where": "Lower pelvic boundary where soft tissue meets pubic bone.",
+            "action": "Place fingertips just above pubic bone. Execute a slow downward stroke with a stationary pause. Perform 2 pelvic floor contract-relax cycles during pause.",
+            "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier using body weight and hand pressure.",
             "benefit_text": "💡 Lower core tissue is mobilized against a safe skeletal barrier.",
             "switch_sides": False
         },
@@ -556,74 +560,86 @@ elif st.session_state.app_page == 3:
             "step": "Step 5: Outer Hip V-Sweep (The Flush)",
             "duration": 90,
             "image_file": "", 
-            "distance": "Spanning from 8 cm to 15 cm below the navel, sweeping outward toward hips.",
+            "positioning": "Return to butterfly leg positioning to fully open pelvic outlet.",
+            "distance": "Spanning from lower center base, sweeping outward toward hip bones.",
             "where": "Vertical centerline out toward hips.",
-            "action": "Start at vertical centerline with flat palms. Glide downward, then curve outward and upward over the iliac crest (following V-shape away from groin fold). Use ultra-slow pace and very light touch.",
-            "goal": "Direct and flush accumulated interstitial fluid safely away from sensitive areas toward lateral drainage pathways.",
+            "action": "Glide downward with flat palms, pause 5–10s with pelvic floor relaxation, then curve outward and upward over the iliac crest in a V-shape.",
+            "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes.",
             "benefit_text": "💡 Interstitial fluid is safely flushed toward lateral pathways.",
             "switch_sides": False
         }
     ]
 
+    # Updated Lymphatic Protocol array with enhanced positioning and 2 extra images
     lymph_steps = [
         {
-            "step": "Step 1A: Manual Lymphatic Priming",
+            "step": "Step 1A: Manual Lymphatic Priming & Adductor Opening",
             "duration": 30,
             "image_file": "step1A.png",
-            "distance": "12 cm to 15 cm below the navel.",
-            "where": "The superficial inguinal area in the groin crease, 1 cm to 2 cm inward from the outer fold.",
-            "action": "Device OFF. Use warm hands and a featherlight, manual sweeping motion (effleurage) toward the inner nodes.",
-            "goal": "Safely opens primary drainage routes using tactile control without mechanical percussion.",
-            "benefit_text": "💡 Primary drainage routes are safely opening manually.",
+            "extra_image_file": "step1A_extra.png",
+            "positioning": "Lie flat in a butterfly pose (soles of feet together, knees relaxed open to the sides) to open the groin crease and expose primary lymphatic nodes.",
+            "distance": "Superficial inguinal area in the groin crease.",
+            "where": "Inner groin crease & primary lymphatic nodes.",
+            "action": "Perform 1 pelvic floor contract-relax cycle (squeeze inward for 4 seconds, fully release for 6 seconds) to generate a localized fluid flush. Follow with featherlight, outward manual sweeps along the inner groin crease for 30 seconds.",
+            "goal": "Opens primary lymphatic hubs, reduces fluid accumulation in the lower pelvis, and increases inner thigh flexibility.",
+            "benefit_text": "💡 Opens primary lymphatic hubs, reduces pelvic fluid accumulation, and improves inner thigh flexibility.",
             "switch_sides": False
         },
         {
-            "step": "Step 1B: Outer Hip & Tensor Fasciae Latae Activation",
+            "step": "Step 1B: Outer Hip & TFL Decompression",
             "duration": 60,
             "image_file": "step1B.jpg",
-            "distance": "10 cm to 15 cm below the navel, shifted 10 cm to 12 cm outward from the centerline.",
-            "where": "The thick, meaty muscle belly of the outer hip and upper thigh (tensor fasciae latae).",
-            "action": "Using a soft attachment at low speed, hold the device stationary with a strict featherlight touch for 30 seconds on the left side, then repeat for 30 seconds on the right side.",
-            "goal": "Safely targets lateral hip and thigh muscle tissue to pre-release tension.",
-            "benefit_text": "💡 Tension is safely pre-releasing from lateral hip tissue.",
+            "extra_image_file": "",
+            "positioning": "Maintain the butterfly posture to keep hip flexors elongated.",
+            "distance": "Outer hip belly (Tensor Fasciae Latae).",
+            "where": "The thick muscle belly of the outer hip (TFL).",
+            "action": "Place the soft attachment at low speed over the TFL. Perform 1 contract-relax cycle, then hold stationary with a featherlight touch for 30 seconds per side.",
+            "goal": "Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
+            "benefit_text": "💡 Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
             "switch_sides": True
         },
         {
             "step": "Step 2: Sub-Umbilical Mid-Release",
             "duration": 45,
             "image_file": "step2.jpg",
-            "distance": "3 cm to 10 cm below the navel across a 10 cm wide band.",
-            "where": "The sub-umbilical zone directly below the navel.",
-            "action": "Angle the device at 45 degrees downward. Using a soft attachment, perform steady, slow downward glides (ensure low speed setting, featherlight touch).",
-            "goal": "Pre-clears mid-level fascial tightness and breaks up localized water retention.",
-            "benefit_text": "💡 Mid-level fascial tightness is safely releasing.",
+            "extra_image_file": "step2_extra.png",
+            "positioning": "Transition to a hook-lying position (knees bent at 90 degrees, feet flat on the floor). Avoid butterfly pose here to keep the lower belly soft rather than stretched taut.",
+            "distance": "Sub-umbilical band (10 cm band directly below the navel).",
+            "where": "Directly below the navel across a 10 cm band.",
+            "action": "Angle the device at 45 degrees downward. Perform slow, steady downward glides across the 10 cm band directly below the navel for 45 seconds.",
+            "goal": "Clears mid-level fascial tightness, breaks up localized water retention, and flattens the upper-to-lower stomach contour.",
+            "benefit_text": "💡 Clears mid-level fascial tightness, breaks up water retention, and flattens lower stomach contour.",
             "switch_sides": False
         },
         {
-            "step": "Step 3: Low-Pelvic Glide and Pause Cycle",
+            "step": "Step 3: Low-Pelvic Frame Release & Core Stabilization",
             "duration": 120,
             "image_file": "step3.png",
-            "distance": "12 cm to 15 cm below the navel, positioned directly over the upper pubic mound.",
-            "where": "The lower pelvic boundary right where soft tissue transitions into the pubic bone.",
-            "action": "Using a soft attachment, execute a slow downward glide followed by a 30-second stationary pause against the pubic bone frame. Repeat for 120 seconds (ensure low speed setting, featherlight touch).",
-            "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier.",
-            "benefit_text": "💡 Actively mobilizing lower core tissue against a safe skeletal barrier.",
+            "extra_image_file": "",
+            "positioning": "Execute a single sustained pelvic tilt. Exhale, draw the navel down, and flatten the lower back completely flush against the floor without lifting the glutes. Hold this flat-back posture throughout.",
+            "distance": "Pubic bone frame & lower abdominal wall.",
+            "where": "Lower pelvic boundary where soft tissue transitions into the pubic bone frame.",
+            "action": "Execute a slow downward glide to the pubic bone frame, followed by a stationary pause. Perform 2 pelvic floor contract-relax cycles during the pause phase (total duration: 120 seconds).",
+            "goal": "Targets dense pelvic fascia against a stable skeletal barrier, strengthens deep core activation for a flatter belly profile, and accelerates tissue drainage.",
+            "benefit_text": "💡 Targets dense pelvic fascia against a skeletal barrier, strengthens deep core activation, and accelerates drainage.",
             "switch_sides": False
         },
         {
-            "step": "Step 4: Outer Hip V-Sweep",
+            "step": "Step 4: Outer Hip V-Sweep & Final Drainage",
             "duration": 90,
             "image_file": "step4.png",
-            "distance": "8 cm to 15 cm below the navel, sweeping outward toward the hip bone.",
-            "where": "Start from the vertical centerline.",
-            "action": "Using a soft attachment, glide downwards to 15 cm, hold stationary for 5-10 seconds, then curve outward and upward over the iliac crest (ensure low speed setting, featherlight touch).",
-            "goal": "Directs and flushes accumulated fluid safely away from sensitive areas.",
-            "benefit_text": "💡 Flushing accumulated fluid safely up and over hip tissue.",
+            "extra_image_file": "",
+            "positioning": "Return to butterfly leg positioning to fully open the pelvic outlet.",
+            "distance": "Vertical centerline out to the iliac crest (hip bone).",
+            "where": "Lower center base sweeping outward and upward over the hip bone.",
+            "action": "Glide downward toward the lower center base, pause for 5–10 seconds while completing a final pelvic floor relaxation, then curve outward and upward over the iliac crest (hip bone) in a V-shaped path for 90 seconds.",
+            "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes, leaving the lower abdomen feeling uncompressed, light, and visibly toned.",
+            "benefit_text": "💡 Flushes all mobilized fluid toward peripheral routes, leaving lower abdomen light, uncompressed, and visibly toned.",
             "switch_sides": False
-        },
+        }
     ]
 
-    # Updated Hip Protocol array with dynamic image check for Step 6
+    # Hip Protocol array with Step 6 Low-Lunge Integration
     hip_steps = [
         {
             "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
@@ -681,14 +697,14 @@ elif st.session_state.app_page == 3:
             "switch_sides": True
         },
         {
-            "step": "Step 6: Adductor/Pubic Interface (Inner Thigh Tie-In)",
+            "step": "Step 6: Dynamic Low-Lunge & Hip Flexor Integration",
             "duration": 120,
             "image_file": "hip_step6.png" if os.path.exists("hip_step6.png") else "hip_master_guide.png",
-            "distance": "Upper inner thigh / pubic bone boundary",
-            "where": "High on the inner thigh, safely below the groin crease against the pubic bone.",
-            "action": "Low speed. Featherlight downward sweeps and gentle static contact for 60 seconds per side.",
-            "goal": "Removes neurological restrictions at the adductor tie-in for unrestricted splits and high chambers.",
-            "benefit_text": "💡 Unlocking the adductor interface frees up vertical chambering and flexibility.",
+            "distance": "Anterior Hip Flexor & Adductor Chain",
+            "where": "Half-kneeling low-lunge position (rear knee grounded, front knee over ankle).",
+            "action": "Adopt a stable low lunge. Tuck your pelvis underneath (posterior tilt), engage the glute on the trailing leg, and gently shift hips forward. Hold or lightly pulse for 60 seconds per side.",
+            "goal": "Integrates tissue release into active end-range hip extension to lock in kick chambering gains.",
+            "benefit_text": "💡 Active lunge stretching converts passive tissue release into usable athletic mobility.",
             "switch_sides": True
         }
     ]
@@ -818,21 +834,37 @@ elif st.session_state.app_page == 3:
         st.markdown(f"<h3 style='text-align: center; color: #333;'>{step_info['step']}</h3>", unsafe_allow_html=True)
 
         st.markdown(
-            '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact and calm, controlled breathing throughout.</div>',
+            '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact, strict pelvic positioning, and calm breathing.</div>',
             unsafe_allow_html=True
         )
 
-        img_path = step_info["image_file"]
-        if img_path and os.path.exists(img_path):
-            img = Image.open(img_path)
-            st.image(img, use_container_width=True, caption=f"Guide: {step_info['step']}")
+        # Image display logic handling both primary and extra images
+        img_path = step_info.get("image_file", "")
+        extra_img_path = step_info.get("extra_image_file", "")
+
+        has_primary = img_path and os.path.exists(img_path)
+        has_extra = extra_img_path and os.path.exists(extra_img_path)
+
+        if has_primary and has_extra:
+            col_img1, col_img2 = st.columns(2)
+            with col_img1:
+                st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+            with col_img2:
+                st.image(extra_img_path, use_container_width=True, caption="Positioning Reference")
+        elif has_primary:
+            st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+        elif has_extra:
+            st.image(extra_img_path, use_container_width=True, caption="Positioning Reference")
         elif not img_path and st.session_state.selected_protocol == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun) (Recommended)":
             st.info("ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as instructed below (no hardware required).")
         else:
-            st.warning(f"⚠️ Image file `{img_path}` not found in folder. Using default protocol instructions.")
+            st.warning("⚠️ Image guide file not found in folder. Using step instructions below.")
+
+        pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
 
         st.markdown(f"""
 <div class="metric-container">
+    {pos_info}
     <b>📍 Target Zone:</b> {step_info['distance']}<br>
     <b>🗺️ Location:</b> {step_info['where']}<br>
     <b>⚡ Action:</b> {step_info['action']}<br>
