@@ -854,7 +854,6 @@ elif st.session_state.app_page == 3:
             unsafe_allow_html=True
         )
 
-        # Dynamic Image Path Resolution
         img_path = resolve_image_path(step_info.get("image_file", ""))
         extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
@@ -940,7 +939,6 @@ elif st.session_state.app_page == 3:
                 placeholder.markdown(f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>", unsafe_allow_html=True)
                 progress_bar.progress(1.0 - (remaining / total_time))
 
-                # Step 3 specific timer cues vs general belly breathing
                 if is_step3:
                     cycle = elapsed % 12
                     if cycle < 4:
