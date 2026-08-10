@@ -9,7 +9,6 @@ import pandas as pd
 # ==========================================
 # CONFIGURATION & PAYMENT LINK SETUP
 # ==========================================
-# Your Ko-fi donation link
 PAYMENT_URL = "https://ko-fi.com/kineticpulseapp" 
 ADMIN_PASSWORD = "Ralph1234"
 
@@ -21,20 +20,48 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Professional Mobile-First Custom Styling
+# ==========================================
+# CUSTOM CSS WITH IN-APP CONTRAST PROTECTION
+# ==========================================
 st.markdown("""
 <style>
-/* Force full light gray background to make white cards pop */
-.stApp {
-    background-color: #f7f7f8 !important;
-}
-.main {
+/* Force light background across the entire main app container */
+.stApp, .main {
     background-color: #f7f7f8 !important;
     padding: 0px 4px;
 }
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+
+/* Hide default Streamlit navigation elements */
+#MainMenu, footer, header {
+    visibility: hidden;
+}
+
+/* Strict text contrast overrides for in-app browsers (Pinterest / Dark Mode) */
+p, span, label, div, h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a;
+}
+
+.stMarkdown, .stText, div[data-testid="stMarkdownContainer"] > p {
+    color: #1a1a1a !important;
+}
+
+/* Form inputs & text area contrast locks */
+div[data-baseweb="input"], div[data-baseweb="textarea"] {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+}
+
+div[data-baseweb="input"] input, div[data-baseweb="textarea"] textarea {
+    color: #1a1a1a !important;
+    background-color: #ffffff !important;
+}
+
+/* Radio buttons & checkboxes label visibility */
+div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
+    color: #1a1a1a !important;
+    font-weight: 600 !important;
+}
 
 /* Vibrant Blue Pill-Shaped Primary Buttons */
 .stButton>button {
@@ -46,22 +73,25 @@ header {visibility: hidden;}
     letter-spacing: 0.3px;
     transition: all 0.2s ease;
 }
+
 .stButton>button[kind="primary"] {
     background-color: #0c38ff !important;
     border: none;
-    color: white;
+    color: #ffffff !important;
     box-shadow: 0 8px 16px rgba(12, 56, 255, 0.2);
 }
+
 .stButton>button[kind="primary"]:active {
     transform: scale(0.97);
 }
+
 .stButton>button[kind="secondary"] {
     background-color: #ffffff !important;
     border: 2px solid #eaeaea;
-    color: #333333;
+    color: #333333 !important;
 }
 
-/* ABSOLUTE BOTTOM RIGHT CORNER FLOATING ADMIN BUTTON */
+/* Floating Admin Button */
 div[data-testid="stElementContainer"]:has(button[aria-label="Admin"]),
 div.element-container:has(button[aria-label="Admin"]) {
     position: fixed !important;
@@ -84,32 +114,33 @@ div.element-container:has(button[aria-label="Admin"]) button {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Curved Orange Header Simulation */
+/* Curved Orange Header */
 .curved-header {
-    background-color: #ff9800;
+    background-color: #ff9800 !important;
     margin: -4rem -2rem 2rem -2rem;
     padding: 4rem 2rem 3rem 2rem;
     border-bottom-left-radius: 50% 15%;
     border-bottom-right-radius: 50% 15%;
     text-align: center;
-    color: white;
     box-shadow: 0 4px 12px rgba(255, 152, 0, 0.15);
 }
+
 .curved-header h1 {
-    color: white !important;
+    color: #ffffff !important;
     margin-bottom: 0px;
     font-size: 2.2rem;
     font-weight: bold;
 }
+
 .curved-header p {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95) !important;
     font-size: 1.1rem;
     margin-top: 5px;
 }
 
-/* Clean White Cards */
+/* Clean White Container Cards */
 .protocol-card {
-    background: #ffffff;
+    background: #ffffff !important;
     padding: 24px;
     border-radius: 24px;
     border: 1px solid #f0f0f0;
@@ -117,9 +148,8 @@ div.element-container:has(button[aria-label="Admin"]) button {
     margin-bottom: 16px;
 }
 
-/* Selection Block Styling */
 .selection-box {
-    background: #ffffff;
+    background: #ffffff !important;
     padding: 20px;
     border-radius: 24px;
     border: 1px solid #f0f0f0;
@@ -127,9 +157,8 @@ div.element-container:has(button[aria-label="Admin"]) button {
     margin-bottom: 14px;
 }
 
-/* Info Containers */
 .metric-container {
-    background: #ffffff;
+    background: #ffffff !important;
     padding: 18px;
     border-radius: 20px;
     border-left: 5px solid #ff9800;
@@ -137,28 +166,28 @@ div.element-container:has(button[aria-label="Admin"]) button {
     margin: 14px 0;
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #4a4a4a;
+    color: #4a4a4a !important;
 }
 
 .breath-box {
-    background: #ffffff;
+    background: #ffffff !important;
     border: 2px solid #0c38ff;
     padding: 18px;
     border-radius: 50px;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #0c38ff;
+    color: #0c38ff !important;
     margin: 15px 0;
     box-shadow: inset 0 2px 4px rgba(12, 56, 255, 0.05);
 }
 
 .pressure-warning {
-    background: #fff8f0;
+    background: #fff8f0 !important;
     border: 1px solid #ffe0b2;
     padding: 14px;
     border-radius: 16px;
-    color: #d84315;
+    color: #d84315 !important;
     font-weight: 600;
     font-size: 0.95rem;
     margin: 12px 0;
@@ -228,8 +257,8 @@ if st.session_state.app_page == 1:
 
     st.markdown("""
 <div class="protocol-card">
-    <h3 style="margin-top:0;">Welcome</h3>
-    <p style="color: #666;">Please enter your profile details and complete safety verifications to begin.</p>
+    <h3 style="margin-top:0; color:#1a1a1a;">Welcome</h3>
+    <p style="color: #4a5568;">Please enter your profile details and complete safety verifications to begin.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -255,7 +284,7 @@ if st.session_state.app_page == 1:
         <a href="{PAYMENT_URL}" target="_blank" style="
             display: block;
             background-color: #29abe0;
-            color: white;
+            color: white !important;
             padding: 12px 20px;
             border-radius: 50px;
             text-decoration: none;
@@ -879,7 +908,7 @@ elif st.session_state.app_page == 3:
             <a href="{PAYMENT_URL}" target="_blank" style="
                 display: inline-block;
                 background-color: #29abe0;
-                color: white;
+                color: white !important;
                 padding: 12px 24px;
                 border-radius: 50px;
                 text-decoration: none;
@@ -913,7 +942,7 @@ elif st.session_state.app_page == 4:
 
     st.markdown("""
 <div class="protocol-card">
-    <p>Please enter the administrator password to view session logs.</p>
+    <p style="color:#1a1a1a;">Please enter the administrator password to view session logs.</p>
 </div>
 """, unsafe_allow_html=True)
 
