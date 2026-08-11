@@ -608,10 +608,12 @@ elif st.session_state.app_page == 2:
         st.markdown(
             """
 <div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
+<b>🎯 Why Squeeze & Release and Deep Breathing Are Added (The Amazing Benefits):</b><br>
+• <b>Internal Pump Action:</b> The rhythmic pelvic floor squeeze and release acts as a natural vascular and lymphatic pump, actively driving trapped interstitial fluids out of deep tissue pockets.<br>
+• <b>Enhanced Fascial Release:</b> Combining mechanical gliding with active muscle contraction creates internal tension against which soft tissue can release much more effectively.<br>
+• <b>Nervous System Regulation:</b> Continuous deep breathing switches off protective muscle guarding, ensuring maximum tissue relaxation and faster recovery.<br><br>
 <b>⏱️ Frequency & Best Time:</b><br>
-2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
+2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise.
 </div>
 """,
             unsafe_allow_html=True,
@@ -621,10 +623,12 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         st.markdown(
             """
 <div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-Optimizes posture, leg positioning, and core engagement during this routine to maximize lymphatic fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
+<b>🎯 Why Squeeze & Release and Deep Breathing Are Added (The Amazing Benefits):</b><br>
+• <b>Internal Pump Action:</b> The rhythmic pelvic floor squeeze and release acts as a natural vascular and lymphatic pump, actively driving trapped interstitial fluids out of deep tissue pockets.<br>
+• <b>Enhanced Fascial Release:</b> Combining mechanical gliding with active muscle contraction creates internal tension against which soft tissue can release much more effectively.<br>
+• <b>Nervous System Regulation:</b> Continuous deep breathing switches off protective muscle guarding, ensuring maximum tissue relaxation and faster recovery.<br><br>
 <b>⏱️ How often:</b><br>
-2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. Best performed after exercise or a warm shower to optimize circulation and tissue elasticity.
+2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session.
 </div>
 """,
             unsafe_allow_html=True,
@@ -952,8 +956,7 @@ elif st.session_state.app_page == 3:
                 " pubic bone frame."
             ),
             "action": (
-                "Execute a 5s glide, 4s pelvic squeeze, and 6s relax loop"
-                " continuously while moving over the pubic bone frame."
+                "Execute a 5s glide and 10s stationary hold over the pubic bone frame."
             ),
             "goal": (
                 "Targets dense pelvic fascia against a stable skeletal barrier,"
@@ -1286,9 +1289,10 @@ elif st.session_state.app_page == 3:
             st.markdown(
                 """
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
-                💡 <b>How to perform Contract & Release / Squeeze:</b><br>
-                • <b>Contract / Squeeze:</b> Engage your pelvic floor / deep hip muscles firmly for the designated hold.<br>
-                • <b>Release (Relax):</b> Fully let go and relax completely to allow natural interstitial fluid drainage.
+                💡 <b>Why Squeeze & Release and Deep Breathing Are Added:</b><br>
+                • <b>Internal Vascular & Lymphatic Pump:</b> Rhythmic contractions act as a biological pump to forcefully move trapped interstitial fluids out of deep tissue pockets.<br>
+                • <b>Enhanced Fascial Release:</b> Active contraction provides an internal counter-resistance against which the massage tool or hands can release stubborn fascial restrictions.<br>
+                • <b>Nervous System Regulation:</b> Continuous deep breathing disarms defensive muscle guarding, allowing for deeper tissue access and faster recovery.
             </div>
             """,
                 unsafe_allow_html=True,
@@ -1454,27 +1458,8 @@ elif st.session_state.app_page == 3:
                             unsafe_allow_html=True,
                         )
 
-                # --- STEP 3 ABDOMINAL FLUSH (15s cycle: 5s glide, 4s squeeze, 6s relax) ---
-                if is_step3:
-                    cycle = elapsed % 15
-                    if cycle < 5:
-                        contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">⚡ Action: Glide Downward (5s)...</div>',
-                            unsafe_allow_html=True,
-                        )
-                    elif cycle < 9:
-                        contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward & Upward (Hold 4s)...</div>',
-                            unsafe_allow_html=True,
-                        )
-                    else:
-                        contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">😌 Action: Fully Release & Relax Pelvic Floor (6s)...</div>',
-                            unsafe_allow_html=True,
-                        )
-
                 # --- HIP PROTOCOL ACTIVE SQUEEZE (10s cycle: 4s squeeze, 6s relax) ---
-                elif is_hip_squeeze:
+                if is_hip_squeeze:
                     cycle = elapsed % 10
                     if cycle < 4:
                         contract_reminder_placeholder.markdown(
