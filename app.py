@@ -1436,17 +1436,23 @@ elif st.session_state.app_page == 3:
                 )
                 progress_bar.progress(1.0 - (remaining / total_time))
 
-                # --- INDEPENDENT BREATHING LOGIC (10s cycle) ---
-                if (elapsed % 10) < 5:
+                # --- BREATHING LOGIC (Step 3 static continuous note, others 10s cycle) ---
+                if is_step3:
                     breath_placeholder.markdown(
-                        '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
+                        '<div class="breath-box" style="font-size: 0.95rem; border-color: #2196f3; color: #0d47a1 !important;">💡 Note: Remember to inhale and exhale deeply and continuously while the timer is running.</div>',
                         unsafe_allow_html=True,
                     )
                 else:
-                    breath_placeholder.markdown(
-                        '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
-                        unsafe_allow_html=True,
-                    )
+                    if (elapsed % 10) < 5:
+                        breath_placeholder.markdown(
+                            '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
+                            unsafe_allow_html=True,
+                        )
+                    else:
+                        breath_placeholder.markdown(
+                            '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
+                            unsafe_allow_html=True,
+                        )
 
                 # --- STEP 3 ABDOMINAL FLUSH (15s cycle: 5s glide, 4s squeeze, 6s relax) ---
                 if is_step3:
