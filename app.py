@@ -95,15 +95,29 @@ ADMIN_PASSWORD = "Ralph1234"
 st.markdown(
     """
 <style>
-/* Hide Streamlit Header, Main Menu, Footer, and Top Overlay Bars */
-header {visibility: hidden !important; height: 0px !important;}
-[data-testid="stHeader"] {display: none !important;}
-[data-testid="stAppHeader"] {display: none !important;}
-[data-testid="stDecoration"] {display: none !important;}
-#MainMenu {visibility: hidden !important; display: none !important;}
-footer {visibility: hidden !important; display: none !important;}
+/* Hide Streamlit Header, Main Menu, Action Icons, and Top Toolbars */
+header, 
+[data-testid="stHeader"], 
+[data-testid="stAppHeader"], 
+[data-testid="stHeaderToolbar"],
+.stAppToolbar,
+[data-testid="stToolbar"],
+[data-testid="stDecoration"], 
+#MainMenu, 
+footer, 
+[data-testid="stStatusWidget"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0px !important;
+}
 
-.stApp, .main {
+/* Eliminate top layout gaps caused by hidden header */
+.stAppViewContainer, [data-testid="stAppViewContainer"], .main {
+    padding-top: 0rem !important;
+    margin-top: 0rem !important;
+}
+
+.stApp {
     background-color: #f7f7f8 !important;
     padding: 0px 4px;
 }
@@ -289,11 +303,19 @@ div.element-container:has(button[aria-label="Admin"]) button {
 # 4. HELPER FUNCTIONS & SESSION STATE
 # ==========================================
 def scroll_to_top():
-    """Executes JavaScript to scroll the parent browser window smoothly to the top."""
+    """Targets Streamlit's internal scroll container and forces a smooth scroll to top."""
     components.html(
         """
         <script>
-            window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(function() {
+                // Target Streamlit main scroll container directly
+                var container = window.parent.document.querySelector('.main') || 
+                                window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
+                if (container) {
+                    container.scrollTop = 0;
+                }
+                window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
         </script>
         """,
         height=0,
@@ -660,6 +682,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 
 # --- PAGE 3: INTERACTIVE GUIDED TIMER & ROUTINE ---
 elif st.session_state.app_page == 3:
+    scroll_to_top() # Forces screen to the top immediately upon entering the routine page
 
     manual_lymph_steps = [
         {
