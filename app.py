@@ -728,7 +728,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 
 # --- PAGE 3: INTERACTIVE GUIDED TIMER & ROUTINE ---
 elif st.session_state.app_page == 3:
-    scroll_to_top()  # Forces top position above Routine Selection immediately
+    scroll_to_top()
 
     manual_lymph_steps = [
         {
@@ -952,10 +952,8 @@ elif st.session_state.app_page == 3:
                 " pubic bone frame."
             ),
             "action": (
-                "Execute a slow downward glide to the pubic bone frame, followed"
-                " by a stationary pause. Perform 2 pelvic floor contract-relax"
-                " cycles during the pause phase, and repeat (total duration: 120"
-                " seconds)."
+                "Execute a 5s glide, 4s pelvic squeeze, and 6s relax loop"
+                " continuously while moving over the pubic bone frame."
             ),
             "goal": (
                 "Targets dense pelvic fascia against a stable skeletal barrier,"
@@ -1089,12 +1087,10 @@ elif st.session_state.app_page == 3:
                 "Internal to the ASIS bone in the soft pocket of the hip crease."
             ),
             "action": (
-                "Low speed, featherlight touch. Gentle stationary holds for 60"
-                " seconds per side."
+                "Low speed, featherlight touch. Integrate an active 4s deep hip/pelvic squeeze followed by a 6s full relax."
             ),
             "goal": (
-                "Relieves deep psoas hypertonicity without excessive pressure on"
-                " vascular structures."
+                "Relieves deep psoas hypertonicity using active contract-relax mechanics."
             ),
             "benefit_text": (
                 "💡 Softening the deep psoas unlocks high knee-drive"
@@ -1285,13 +1281,14 @@ elif st.session_state.app_page == 3:
         if (
             "pelvic" in step_info["step"].lower()
             or "lymphatic" in step_info["step"].lower()
+            or "iliopsoas" in step_info["step"].lower()
         ):
             st.markdown(
                 """
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
-                💡 <b>How to perform Pelvic Floor Contract & Release:</b><br>
-                • <b>Contract (Squeeze):</b> Engage your pelvic floor muscles as if trying to stop the flow of urine or drawing your lower belly inward and upward. Hold firmly for 4 seconds.<br>
-                • <b>Release (Relax):</b> Fully let go and relax the muscles completely for 6 seconds, allowing interstitial fluids to drain naturally.
+                💡 <b>How to perform Contract & Release / Squeeze:</b><br>
+                • <b>Contract / Squeeze:</b> Engage your pelvic floor / deep hip muscles firmly for the designated hold.<br>
+                • <b>Release (Relax):</b> Fully let go and relax completely to allow natural interstitial fluid drainage.
             </div>
             """,
                 unsafe_allow_html=True,
@@ -1378,7 +1375,9 @@ elif st.session_state.app_page == 3:
             total_time = step_info["duration"]
             half_time = total_time // 2
             needs_switching = step_info.get("switch_sides", False)
-            is_step3 = "Step 3:" in step_info["step"]
+            
+            is_step3 = "Step 3:" in step_info["step"] and "Low-Pelvic" in step_info["step"]
+            is_hip_squeeze = "Iliopsoas Deep Pocket Release" in step_info["step"]
 
             for remaining in range(total_time, -1, -1):
                 mins, secs = divmod(remaining, 60)
@@ -1437,6 +1436,7 @@ elif st.session_state.app_page == 3:
                 )
                 progress_bar.progress(1.0 - (remaining / total_time))
 
+                # --- INDEPENDENT BREATHING LOGIC (10s cycle) ---
                 if (elapsed % 10) < 5:
                     breath_placeholder.markdown(
                         '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
@@ -1448,26 +1448,40 @@ elif st.session_state.app_page == 3:
                         unsafe_allow_html=True,
                     )
 
+                # --- STEP 3 ABDOMINAL FLUSH (15s cycle: 5s glide, 4s squeeze, 6s relax) ---
                 if is_step3:
-                    cycle = elapsed % 12
-                    if cycle < 4:
+                    cycle = elapsed % 15
+                    if cycle < 5:
                         contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward'
-                            " & Upward (Hold 4s)...</div>",
+                            '<div class="contract-box">⚡ Action: Glide Downward (5s)...</div>',
                             unsafe_allow_html=True,
                         )
-                    elif cycle < 8:
+                    elif cycle < 9:
                         contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">⚡ Action: Maintain Squeeze or'
-                            " Glide Downward...</div>",
+                            '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward & Upward (Hold 4s)...</div>',
                             unsafe_allow_html=True,
                         )
                     else:
                         contract_reminder_placeholder.markdown(
-                            '<div class="contract-box">😌 Action: Fully Release & Relax'
-                            " Pelvic Floor...</div>",
+                            '<div class="contract-box">😌 Action: Fully Release & Relax Pelvic Floor (6s)...</div>',
                             unsafe_allow_html=True,
                         )
+
+                # --- HIP PROTOCOL ACTIVE SQUEEZE (10s cycle: 4s squeeze, 6s relax) ---
+                elif is_hip_squeeze:
+                    cycle = elapsed % 10
+                    if cycle < 4:
+                        contract_reminder_placeholder.markdown(
+                            '<div class="contract-box">⚡ Action: Squeeze Deep Hip / Pelvic Floor (Hold 4s)...</div>',
+                            unsafe_allow_html=True,
+                        )
+                    else:
+                        contract_reminder_placeholder.markdown(
+                            '<div class="contract-box">😌 Action: Fully Release & Relax (6s)...</div>',
+                            unsafe_allow_html=True,
+                        )
+                else:
+                    contract_reminder_placeholder.empty()
 
                 if "benefit_text" in step_info:
                     benefit_placeholder.info(step_info["benefit_text"])
