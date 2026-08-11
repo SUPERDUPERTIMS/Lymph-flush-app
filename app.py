@@ -95,7 +95,7 @@ ADMIN_PASSWORD = "Ralph1234"
 st.markdown(
     """
 <style>
-/* Hide Streamlit Header, Main Menu, Action Icons, and Top Toolbars */
+/* Aggressively hide Streamlit Cloud headers, toolbars, and share buttons */
 header, 
 [data-testid="stHeader"], 
 [data-testid="stAppHeader"], 
@@ -109,9 +109,11 @@ footer,
     display: none !important;
     visibility: hidden !important;
     height: 0px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Eliminate top layout gaps caused by hidden header */
+/* Eliminate top layout gaps */
 .stAppViewContainer, [data-testid="stAppViewContainer"], .main {
     padding-top: 0rem !important;
     margin-top: 0rem !important;
@@ -173,7 +175,6 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     color: #333333 !important;
 }
 
-/* Styling for locked / disabled protocol buttons */
 .stButton>button[disabled] {
     opacity: 0.45 !important;
     cursor: not-allowed !important;
@@ -303,19 +304,28 @@ div.element-container:has(button[aria-label="Admin"]) button {
 # 4. HELPER FUNCTIONS & SESSION STATE
 # ==========================================
 def scroll_to_top():
-    """Targets Streamlit's internal scroll container and forces a smooth scroll to top."""
+    """Forces both JS window scroll and container scroll to the absolute top, plus removes Streamlit header bars."""
     components.html(
         """
         <script>
             setTimeout(function() {
-                // Target Streamlit main scroll container directly
-                var container = window.parent.document.querySelector('.main') || 
-                                window.parent.document.querySelector('[data-testid="stAppViewContainer"]');
+                var doc = window.parent.document;
+                
+                // 1. Force remove the Streamlit top header / share bar elements
+                var headers = doc.querySelectorAll('header, [data-testid="stHeader"], [data-testid="stAppHeader"], .stAppToolbar');
+                headers.forEach(function(el) {
+                    el.style.display = 'none';
+                    el.style.visibility = 'hidden';
+                    el.style.height = '0px';
+                });
+
+                // 2. Force scroll to top on containers
+                var container = doc.querySelector('.main') || doc.querySelector('[data-testid="stAppViewContainer"]');
                 if (container) {
                     container.scrollTop = 0;
                 }
-                window.parent.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 100);
+                window.parent.scrollTo({ top: 0, behavior: 'instant' });
+            }, 50);
         </script>
         """,
         height=0,
@@ -324,7 +334,6 @@ def scroll_to_top():
 
 
 def resolve_image_path(base_filename):
-    """Checks file existence across multiple common image extensions."""
     if not base_filename:
         return None
     if os.path.exists(base_filename):
@@ -384,6 +393,7 @@ if st.button("Admin", key="floating_admin_btn"):
 
 # --- PAGE 1: USER PROFILE ---
 if st.session_state.app_page == 1:
+    scroll_to_top()
     st.markdown(
         """
 <div class="curved-header">
@@ -449,6 +459,7 @@ if st.session_state.app_page == 1:
 
 # --- PAGE 2: PROTOCOL SELECTOR ---
 elif st.session_state.app_page == 2:
+    scroll_to_top()
     st.markdown(
         f"""
 <div class="curved-header">
@@ -465,44 +476,54 @@ elif st.session_state.app_page == 2:
         unsafe_allow_html=True,
     )
 
-    # Dictionary defining protocol state (enabled vs locked)
     available_protocols = [
         {
             "name": "Advanced Lower Pelvic & Abdominal Flush Protocol",
             "enabled": True,
             "badge": "Active",
-            "preview_img": "step1A.png"
+            "preview_img": "step1A.png",
         },
         {
-            "name": "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)",
+            "name": (
+                "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage"
+                " Gun)"
+            ),
             "enabled": True,
             "badge": "Active (Manual)",
-            "preview_img": ""
+            "preview_img": "",
         },
         {
-            "name": "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)",
+            "name": (
+                "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
+            ),
             "enabled": True,
             "badge": "Active",
-            "preview_img": "hip_master_guide.png"
+            "preview_img": "hip_master_guide.png",
         },
         {
-            "name": "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)",
+            "name": (
+                "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet &"
+                " Overhead)"
+            ),
             "enabled": False,
             "badge": "Locked",
-            "preview_img": "step5.png"
+            "preview_img": "step5.png",
         },
         {
-            "name": "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)",
+            "name": (
+                "Advanced Posterior Chain & Ankle Mobility Protocol"
+                " (Ground-Force)"
+            ),
             "enabled": False,
             "badge": "Locked",
-            "preview_img": "step5.png"
+            "preview_img": "step5.png",
         },
         {
             "name": "Massage Gun General Information & Usage Tips",
             "enabled": False,
             "badge": "Locked",
-            "preview_img": "step1.jpg"
-        }
+            "preview_img": "step1.jpg",
+        },
     ]
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
@@ -512,7 +533,7 @@ elif st.session_state.app_page == 2:
         p_name = item["name"]
         p_enabled = item["enabled"]
         p_badge = item["badge"]
-        is_selected = (st.session_state.selected_protocol == p_name)
+        is_selected = st.session_state.selected_protocol == p_name
 
         if p_enabled:
             label = f"▶ {p_name} ({p_badge})" if is_selected else f"⚡ {p_name}"
@@ -520,7 +541,7 @@ elif st.session_state.app_page == 2:
                 label,
                 key=f"proto_btn_{p_name}",
                 type="primary" if is_selected else "secondary",
-                use_container_width=True
+                use_container_width=True,
             ):
                 st.session_state.selected_protocol = p_name
                 scroll_to_top()
@@ -530,7 +551,7 @@ elif st.session_state.app_page == 2:
                 f"🔒 {p_name} ({p_badge})",
                 key=f"proto_btn_{p_name}",
                 disabled=True,
-                use_container_width=True
+                use_container_width=True,
             )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -540,16 +561,25 @@ elif st.session_state.app_page == 2:
     preview_images = {
         "Advanced Lower Pelvic & Abdominal Flush Protocol": "step1A.png",
         "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)": "",
-        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
-        "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "step5.png",
-        "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
+        "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": (
+            "hip_master_guide.png"
+        ),
+        "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": (
+            "step5.png"
+        ),
+        "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": (
+            "step5.png"
+        ),
         "Massage Gun General Information & Usage Tips": "step1.jpg",
     }
 
     selected_img_path = resolve_image_path(preview_images.get(chosen_option, ""))
 
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
-    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)":
+    if (
+        chosen_option
+        == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
+    ):
         st.markdown(
             "<h4 style='color:#0c38ff; margin-top:0;'>🌟 Safe Manual Option</h4>",
             unsafe_allow_html=True,
@@ -558,7 +588,11 @@ elif st.session_state.app_page == 2:
     else:
         col1, col2 = st.columns([1, 2])
         with col1:
-            if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
+            if (
+                chosen_option
+                != "Massage Gun General Information & Usage Tips"
+                and selected_img_path
+            ):
                 st.image(selected_img_path, width=110)
             else:
                 st.markdown("📘 **[Guide]**")
@@ -567,7 +601,10 @@ elif st.session_state.app_page == 2:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)":
+    if (
+        chosen_option
+        == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
+    ):
         st.markdown(
             """
 <div class="metric-container">
@@ -593,7 +630,10 @@ Optimizes posture, leg positioning, and core engagement during this routine to m
             unsafe_allow_html=True,
         )
 
-    elif chosen_option == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)":
+    elif (
+        chosen_option
+        == "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)"
+    ):
         st.markdown(
             """
 <div class="metric-container">
@@ -608,7 +648,10 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
             unsafe_allow_html=True,
         )
 
-    elif chosen_option == "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)":
+    elif (
+        chosen_option
+        == "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)"
+    ):
         st.markdown(
             """
 <div class="metric-container">
@@ -619,7 +662,10 @@ Repetitive overhead snaps and racquet impacts overload the lateral epicondyle an
             unsafe_allow_html=True,
         )
 
-    elif chosen_option == "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)":
+    elif (
+        chosen_option
+        == "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)"
+    ):
         st.markdown(
             """
 <div class="metric-container">
@@ -682,7 +728,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 
 # --- PAGE 3: INTERACTIVE GUIDED TIMER & ROUTINE ---
 elif st.session_state.app_page == 3:
-    scroll_to_top() # Forces screen to the top immediately upon entering the routine page
+    scroll_to_top()  # Forces top position above Routine Selection immediately
 
     manual_lymph_steps = [
         {
@@ -1251,11 +1297,9 @@ elif st.session_state.app_page == 3:
                 unsafe_allow_html=True,
             )
 
-        # Automated Step Image Resolution with Master Fallback
         primary_img_file = step_info.get("image_file", "")
         img_path = resolve_image_path(primary_img_file)
 
-        # Fallback logic for missing step images
         if (
             not img_path
             and st.session_state.selected_protocol
@@ -1506,6 +1550,7 @@ elif st.session_state.app_page == 3:
 
 # --- PAGE 4: SECURE ADMIN LOGIN ---
 elif st.session_state.app_page == 4:
+    scroll_to_top()
     st.markdown(
         """
 <div class="curved-header">
@@ -1545,6 +1590,7 @@ elif st.session_state.app_page == 4:
 
 # --- PAGE 5: ADMIN DATA VIEWER ---
 elif st.session_state.app_page == 5:
+    scroll_to_top()
     if not st.session_state.admin_authenticated:
         st.warning("🔒 You must be logged in to access this page.")
         st.session_state.app_page = 4
