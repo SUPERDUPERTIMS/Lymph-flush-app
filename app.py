@@ -304,22 +304,17 @@ div.element-container:has(button[aria-label="Admin"]) button {
 # 4. HELPER FUNCTIONS & SESSION STATE
 # ==========================================
 def scroll_to_top():
-    """Forces both JS window scroll and container scroll to the absolute top, plus removes Streamlit header bars."""
     components.html(
         """
         <script>
             setTimeout(function() {
                 var doc = window.parent.document;
-                
-                // 1. Force remove the Streamlit top header / share bar elements
                 var headers = doc.querySelectorAll('header, [data-testid="stHeader"], [data-testid="stAppHeader"], .stAppToolbar');
                 headers.forEach(function(el) {
                     el.style.display = 'none';
                     el.style.visibility = 'hidden';
                     el.style.height = '0px';
                 });
-
-                // 2. Force scroll to top on containers
                 var container = doc.querySelector('.main') || doc.querySelector('[data-testid="stAppViewContainer"]');
                 if (container) {
                     container.scrollTop = 0;
@@ -502,6 +497,14 @@ elif st.session_state.app_page == 2:
         },
         {
             "name": (
+                "Lower Pelvic & Hip Flexor Power Flow (Combined 10-Min Option)"
+            ),
+            "enabled": True,
+            "badge": "Active (New Power Option)",
+            "preview_img": "step1A.png",
+        },
+        {
+            "name": (
                 "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet &"
                 " Overhead)"
             ),
@@ -564,6 +567,9 @@ elif st.session_state.app_page == 2:
         "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": (
             "hip_master_guide.png"
         ),
+        "Lower Pelvic & Hip Flexor Power Flow (Combined 10-Min Option)": (
+            "step1A.png"
+        ),
         "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": (
             "step5.png"
         ),
@@ -602,6 +608,24 @@ elif st.session_state.app_page == 2:
     st.markdown("</div>", unsafe_allow_html=True)
 
     if (
+        chosen_option
+        == "Lower Pelvic & Hip Flexor Power Flow (Combined 10-Min Option)"
+    ):
+        st.markdown(
+            """
+<div class="metric-container">
+<b>🚀 Why This Power Flow Was Created (The Mixed & Motivated Benefits):</b><br>
+• <b>The Ultimate Fusion:</b> Combines lower abdominal lymphatic clearance with deep hip flexor/psoas release into a streamlined 10-minute session.<br>
+• <b>Butterfly & Pelvic Integration:</b> Uses open-butterfly postures and rhythmic 4s-squeeze / 6s-relax intervals to maximize blood flow, heighten core sensitivity, and unlock profound pelvic release.<br>
+• <b>Internal Pump & Fascial Counter-Resistance:</b> Rhythmic contractions act as an internal vascular/lymphatic pump, driving trapped interstitial fluids out while neutralizing guarding.<br><br>
+<b>⏱️ Frequency & Best Time:</b><br>
+2 to 3 times per week, 10 minutes total. Ideal post-warmup or pre-performance.
+</div>
+""",
+            unsafe_allow_html=True,
+        )
+
+    elif (
         chosen_option
         == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
     ):
@@ -1090,13 +1114,13 @@ elif st.session_state.app_page == 3:
                 "Internal to the ASIS bone in the soft pocket of the hip crease."
             ),
             "action": (
-                "Low speed, featherlight touch. Integrate an active 4s deep hip/pelvic squeeze followed by a 6s full relax."
+                "Low speed, featherlight touch. Integrate active contract-relax cycles (squeeze 4s, relax 6s)."
             ),
             "goal": (
                 "Relieves deep psoas hypertonicity using active contract-relax mechanics."
             ),
             "benefit_text": (
-                "💡 Softening the deep psoas unlocks high knee-drive"
+                "💡 Softening the deep psoas unlocks high hip-drive"
                 " capabilities."
             ),
             "switch_sides": True,
@@ -1118,12 +1142,63 @@ elif st.session_state.app_page == 3:
             ),
             "goal": (
                 "Integrates tissue release into active end-range hip extension to"
-                " lock in kick chambering gains."
+                " lock in mobility gains."
             ),
             "benefit_text": (
                 "💡 Active lunge stretching converts passive tissue release into"
                 " usable athletic mobility."
             ),
+            "switch_sides": True,
+        },
+    ]
+
+    power_flow_steps = [
+        {
+            "step": "Step 1: Butterfly Priming & Lymphatic Opening",
+            "duration": 90,
+            "image_file": "step1A.png",
+            "positioning": "Lie flat in a butterfly pose (soles of feet together, knees open wide).",
+            "distance": "Superficial inguinal area in the groin crease.",
+            "where": "Inner groin fold & primary lymph hubs.",
+            "action": "Use low speed or warm hands. Perform continuous 4s squeeze / 6s relax cycles while gently sweeping outward.",
+            "goal": "Instantly open primary drainage pathways and prime pelvic blood flow.",
+            "benefit_text": "💡 Opens primary drainage routes and floods the pelvic basin with fresh blood.",
+            "switch_sides": False,
+        },
+        {
+            "step": "Step 2: Sub-Umbilical Abdominal Flush",
+            "duration": 90,
+            "image_file": "step2.jpg",
+            "positioning": "Transition to hook-lying position (knees bent, feet flat).",
+            "distance": "Sub-umbilical band (10 cm band below navel).",
+            "where": "Directly below the navel.",
+            "action": "Low-to-medium speed downward glides. Maintain deep diaphragmatic breathing.",
+            "goal": "Clear localized interstitial fluid and release lower core tension.",
+            "benefit_text": "💡 Flushes trapped interstitial fluid from the lower abdominal wall.",
+            "switch_sides": False,
+        },
+        {
+            "step": "Step 3: Deep Iliopsoas & Hip Flexor Pocket Release",
+            "duration": 240,
+            "image_file": "hip_step5.png",
+            "positioning": "Return to butterfly pose or semi-reclined posture to expose hip creases.",
+            "distance": "Deep inner hip crease (Psoas insertion).",
+            "where": "Internal to the ASIS bone in the hip pocket.",
+            "action": "Low speed. Strictly follow the 4s active squeeze and 6s full relax rhythm (120s per side).",
+            "goal": "Unload deep psoas hypertonicity and unlock pelvic performance.",
+            "benefit_text": "💡 Active contract-relax cycles disarm deep hip guarding and maximize core tissue release.",
+            "switch_sides": True,
+        },
+        {
+            "step": "Step 4: Outer Hip V-Sweep & Integration",
+            "duration": 180,
+            "image_file": "step4.png",
+            "positioning": "Revert to butterfly leg positioning to open the pelvic outlet.",
+            "distance": "Centerline sweeping outward toward iliac crests.",
+            "where": "Lower center base sweeping up over the hip bones.",
+            "action": "Smooth V-shaped sweeping motion combined with slow rhythmic breathing (90s per side).",
+            "goal": "Flush all mobilized fluids toward peripheral pathways and lock in full mobility.",
+            "benefit_text": "💡 Final drainage sweep leaves the lower core and hips feeling light, uncompressed, and fully unlocked.",
             "switch_sides": True,
         },
     ]
@@ -1244,6 +1319,11 @@ elif st.session_state.app_page == 3:
         protocol_steps = hip_steps
     elif (
         st.session_state.selected_protocol
+        == "Lower Pelvic & Hip Flexor Power Flow (Combined 10-Min Option)"
+    ):
+        protocol_steps = power_flow_steps
+    elif (
+        st.session_state.selected_protocol
         == "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)"
     ):
         protocol_steps = forearm_steps
@@ -1311,6 +1391,7 @@ elif st.session_state.app_page == 3:
                     "hip_master_guide.png"
                 ),
                 "Advanced Lower Pelvic & Abdominal Flush Protocol": "step1A.png",
+                "Lower Pelvic & Hip Flexor Power Flow (Combined 10-Min Option)": "step1A.png",
                 (
                     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)"
                 ): "step5.png",
@@ -1381,7 +1462,12 @@ elif st.session_state.app_page == 3:
             needs_switching = step_info.get("switch_sides", False)
             
             is_step3 = "Step 3:" in step_info["step"] and "Low-Pelvic" in step_info["step"]
-            is_hip_squeeze = "Iliopsoas Deep Pocket Release" in step_info["step"]
+            
+            # Check if step requires active squeeze/relax guidance (Hip Step 5 or Power Flow Step 3)
+            is_hip_squeeze = (
+                "Iliopsoas Deep Pocket Release" in step_info["step"]
+                or "Deep Iliopsoas & Hip Flexor Pocket Release" in step_info["step"]
+            )
 
             for remaining in range(total_time, -1, -1):
                 mins, secs = divmod(remaining, 60)
@@ -1440,7 +1526,6 @@ elif st.session_state.app_page == 3:
                 )
                 progress_bar.progress(1.0 - (remaining / total_time))
 
-                # --- BREATHING LOGIC (Step 3 static continuous note, others 10s cycle) ---
                 if is_step3:
                     breath_placeholder.markdown(
                         '<div class="breath-box" style="font-size: 0.95rem; border-color: #2196f3; color: #0d47a1 !important;">💡 Note: Remember to inhale and exhale deeply and continuously while the timer is running.</div>',
@@ -1458,8 +1543,8 @@ elif st.session_state.app_page == 3:
                             unsafe_allow_html=True,
                         )
 
-                # --- HIP PROTOCOL ACTIVE SQUEEZE (10s cycle: 4s squeeze, 6s relax) ---
                 if is_hip_squeeze:
+                    # Corrected 10-second cycle: 4s squeeze (0-3), 6s relax (4-9) matching the exact cadence.
                     cycle = elapsed % 10
                     if cycle < 4:
                         contract_reminder_placeholder.markdown(
