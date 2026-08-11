@@ -304,17 +304,22 @@ div.element-container:has(button[aria-label="Admin"]) button {
 # 4. HELPER FUNCTIONS & SESSION STATE
 # ==========================================
 def scroll_to_top():
+    """Forces both JS window scroll and container scroll to the absolute top, plus removes Streamlit header bars."""
     components.html(
         """
         <script>
             setTimeout(function() {
                 var doc = window.parent.document;
+                
+                // 1. Force remove the Streamlit top header / share bar elements
                 var headers = doc.querySelectorAll('header, [data-testid="stHeader"], [data-testid="stAppHeader"], .stAppToolbar');
                 headers.forEach(function(el) {
                     el.style.display = 'none';
                     el.style.visibility = 'hidden';
                     el.style.height = '0px';
                 });
+
+                // 2. Force scroll to top on containers
                 var container = doc.querySelector('.main') || doc.querySelector('[data-testid="stAppViewContainer"]');
                 if (container) {
                     container.scrollTop = 0;
@@ -603,12 +608,10 @@ elif st.session_state.app_page == 2:
         st.markdown(
             """
 <div class="metric-container">
-<b>🎯 Why Squeeze & Release and Deep Breathing Are Added (The Amazing Benefits):</b><br>
-• <b>Internal Pump Action:</b> The rhythmic pelvic floor squeeze and release acts as a natural vascular and lymphatic pump, actively driving trapped interstitial fluids out of deep tissue pockets.<br>
-• <b>Enhanced Fascial Release:</b> Combining mechanical gliding with active muscle contraction creates internal tension against which soft tissue can release much more effectively.<br>
-• <b>Nervous System Regulation:</b> Continuous deep breathing switches off protective muscle guarding, ensuring maximum tissue relaxation and faster recovery.<br><br>
+<b>🎯 Why it should be done:</b><br>
+A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
 <b>⏱️ Frequency & Best Time:</b><br>
-2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise.
+2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
 </div>
 """,
             unsafe_allow_html=True,
@@ -618,12 +621,10 @@ elif st.session_state.app_page == 2:
         st.markdown(
             """
 <div class="metric-container">
-<b>🎯 Why Squeeze & Release and Deep Breathing Are Added (The Amazing Benefits):</b><br>
-• <b>Internal Pump Action:</b> The rhythmic pelvic floor squeeze and release acts as a natural vascular and lymphatic pump, actively driving trapped interstitial fluids out of deep tissue pockets.<br>
-• <b>Enhanced Fascial Release:</b> Combining mechanical gliding with active muscle contraction creates internal tension against which soft tissue can release much more effectively.<br>
-• <b>Nervous System Regulation:</b> Continuous deep breathing switches off protective muscle guarding, ensuring maximum tissue relaxation and faster recovery.<br><br>
+<b>🎯 Why it should be done:</b><br>
+Optimizes posture, leg positioning, and core engagement during this routine to maximize lymphatic fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
 <b>⏱️ How often:</b><br>
-2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session.
+2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. Best performed after exercise or a warm shower to optimize circulation and tissue elasticity.
 </div>
 """,
             unsafe_allow_html=True,
@@ -951,7 +952,8 @@ elif st.session_state.app_page == 3:
                 " pubic bone frame."
             ),
             "action": (
-                "Execute a 5s glide and 10s stationary hold over the pubic bone frame."
+                "Execute a 5s glide, 4s pelvic squeeze, and 6s relax loop"
+                " continuously while moving over the pubic bone frame."
             ),
             "goal": (
                 "Targets dense pelvic fascia against a stable skeletal barrier,"
@@ -1085,13 +1087,13 @@ elif st.session_state.app_page == 3:
                 "Internal to the ASIS bone in the soft pocket of the hip crease."
             ),
             "action": (
-                "Low speed, featherlight touch. Integrate active contract-relax cycles (squeeze 4s, relax 6s)."
+                "Low speed, featherlight touch. Integrate an active 4s deep hip/pelvic squeeze followed by a 6s full relax."
             ),
             "goal": (
                 "Relieves deep psoas hypertonicity using active contract-relax mechanics."
             ),
             "benefit_text": (
-                "💡 Softening the deep psoas unlocks high hip-drive"
+                "💡 Softening the deep psoas unlocks high knee-drive"
                 " capabilities."
             ),
             "switch_sides": True,
@@ -1113,7 +1115,7 @@ elif st.session_state.app_page == 3:
             ),
             "goal": (
                 "Integrates tissue release into active end-range hip extension to"
-                " lock in mobility gains."
+                " lock in kick chambering gains."
             ),
             "benefit_text": (
                 "💡 Active lunge stretching converts passive tissue release into"
@@ -1284,10 +1286,9 @@ elif st.session_state.app_page == 3:
             st.markdown(
                 """
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
-                💡 <b>Why Squeeze & Release and Deep Breathing Are Added:</b><br>
-                • <b>Internal Vascular & Lymphatic Pump:</b> Rhythmic contractions act as a biological pump to forcefully move trapped interstitial fluids out of deep tissue pockets.<br>
-                • <b>Enhanced Fascial Release:</b> Active contraction provides an internal counter-resistance against which the massage tool or hands can release stubborn fascial restrictions.<br>
-                • <b>Nervous System Regulation:</b> Continuous deep breathing disarms defensive muscle guarding, allowing for deeper tissue access and faster recovery.
+                💡 <b>How to perform Contract & Release / Squeeze:</b><br>
+                • <b>Contract / Squeeze:</b> Engage your pelvic floor / deep hip muscles firmly for the designated hold.<br>
+                • <b>Release (Relax):</b> Fully let go and relax completely to allow natural interstitial fluid drainage.
             </div>
             """,
                 unsafe_allow_html=True,
@@ -1376,8 +1377,6 @@ elif st.session_state.app_page == 3:
             needs_switching = step_info.get("switch_sides", False)
             
             is_step3 = "Step 3:" in step_info["step"] and "Low-Pelvic" in step_info["step"]
-            
-            # Check if step requires active squeeze/relax guidance (Hip Step 5)
             is_hip_squeeze = "Iliopsoas Deep Pocket Release" in step_info["step"]
 
             for remaining in range(total_time, -1, -1):
@@ -1437,6 +1436,7 @@ elif st.session_state.app_page == 3:
                 )
                 progress_bar.progress(1.0 - (remaining / total_time))
 
+                # --- BREATHING LOGIC (Step 3 static continuous note, others 10s cycle) ---
                 if is_step3:
                     breath_placeholder.markdown(
                         '<div class="breath-box" style="font-size: 0.95rem; border-color: #2196f3; color: #0d47a1 !important;">💡 Note: Remember to inhale and exhale deeply and continuously while the timer is running.</div>',
@@ -1454,7 +1454,27 @@ elif st.session_state.app_page == 3:
                             unsafe_allow_html=True,
                         )
 
-                if is_hip_squeeze:
+                # --- STEP 3 ABDOMINAL FLUSH (15s cycle: 5s glide, 4s squeeze, 6s relax) ---
+                if is_step3:
+                    cycle = elapsed % 15
+                    if cycle < 5:
+                        contract_reminder_placeholder.markdown(
+                            '<div class="contract-box">⚡ Action: Glide Downward (5s)...</div>',
+                            unsafe_allow_html=True,
+                        )
+                    elif cycle < 9:
+                        contract_reminder_placeholder.markdown(
+                            '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward & Upward (Hold 4s)...</div>',
+                            unsafe_allow_html=True,
+                        )
+                    else:
+                        contract_reminder_placeholder.markdown(
+                            '<div class="contract-box">😌 Action: Fully Release & Relax Pelvic Floor (6s)...</div>',
+                            unsafe_allow_html=True,
+                        )
+
+                # --- HIP PROTOCOL ACTIVE SQUEEZE (10s cycle: 4s squeeze, 6s relax) ---
+                elif is_hip_squeeze:
                     cycle = elapsed % 10
                     if cycle < 4:
                         contract_reminder_placeholder.markdown(
