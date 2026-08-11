@@ -1182,7 +1182,10 @@ elif st.session_state.app_page == 3:
     )
 
     # Educational Card Explaining Pelvic Contract-Release Technique
-    if "pelvic" in step_info["step"].lower() or "lymphatic" in step_info["step"].lower():
+    if (
+        "pelvic" in step_info["step"].lower()
+        or "lymphatic" in step_info["step"].lower()
+    ):
       st.markdown(
           """
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
@@ -1227,16 +1230,14 @@ elif st.session_state.app_page == 3:
         else ""
     )
 
+    # Fixed: Unindented metric container HTML string to prevent Markdown code block escaping
     st.markdown(
-        f"""
-<div class="metric-container">
-    {pos_info}
-    <b>📍 Target Zone:</b> {step_info['distance']}<br>
-    <b>🗺️ Location:</b> {step_info['where']}<br>
-    <b>⚡ Action:</b> {step_info['action']}<br>
-    <b>🎯 Goal:</b> {step_info['goal']}
-</div>
-""",
+        f"""<div class="metric-container">
+{pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
+<b>🗺️ Location:</b> {step_info['where']}<br>
+<b>⚡ Action:</b> {step_info['action']}<br>
+<b>🎯 Goal:</b> {step_info['goal']}
+</div>""",
         unsafe_allow_html=True,
     )
 
