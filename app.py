@@ -22,10 +22,6 @@ st.set_page_config(
 # 2. HARD SAFETY & MEDICAL GATE
 # ==========================================
 def render_safety_gate():
-  """Renders a fortified safety gate.
-
-  Halts application execution completely until all waivers are checked.
-  """
   if st.session_state.get("disclaimer_accepted", False):
     return True
 
@@ -291,16 +287,13 @@ def scroll_to_top():
 
 
 def resolve_image_path(base_filename):
-  """Flexible image resolver that checks common extensions (.png, .jpg, .jpeg)
-
-  to prevent missing image bugs due to file extension mismatches.
-  """
+  """Checks file existence across multiple common image extensions."""
   if not base_filename:
     return None
   if os.path.exists(base_filename):
     return base_filename
 
-  stem, ext = os.path.splitext(base_filename)
+  stem, _ = os.path.splitext(base_filename)
   possible_extensions = [".png", ".jpg", ".jpeg", ".PNG", ".JPG", ".JPEG"]
   for alt_ext in possible_extensions:
     candidate = stem + alt_ext
@@ -1181,7 +1174,6 @@ elif st.session_state.app_page == 3:
         unsafe_allow_html=True,
     )
 
-    # Educational Card Explaining Pelvic Contract-Release Technique
     if (
         "pelvic" in step_info["step"].lower()
         or "lymphatic" in step_info["step"].lower()
@@ -1197,10 +1189,36 @@ elif st.session_state.app_page == 3:
           unsafe_allow_html=True,
       )
 
-    img_path = resolve_image_path(step_info.get("image_file", ""))
+    # Automated Step Image Resolution with Master Fallback
+    primary_img_file = step_info.get("image_file", "")
+    img_path = resolve_image_path(primary_img_file)
+
+    # If the step-specific image is missing, fall back to the protocol master image
+    if (
+        not img_path
+        and st.session_state.selected_protocol
+        != "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
+    ):
+      protocol_fallbacks = {
+          "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": (
+              "hip_master_guide.png"
+          ),
+          "Advanced Lower Pelvic & Abdominal Flush Protocol": "step1A.png",
+          (
+              "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet &"
+              " Overhead)"
+          ): "step5.png",
+          "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": (
+              "step5.png"
+          ),
+      }
+      fallback_file = protocol_fallbacks.get(
+          st.session_state.selected_protocol, "step1.jpg"
+      )
+      img_path = resolve_image_path(fallback_file)
+
     extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
-    # Vertical image stacking as requested
     if img_path:
       st.image(
           img_path,
@@ -1230,7 +1248,6 @@ elif st.session_state.app_page == 3:
         else ""
     )
 
-    # Fixed: Unindented metric container HTML string to prevent Markdown code block escaping
     st.markdown(
         f"""<div class="metric-container">
 {pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
@@ -1315,7 +1332,6 @@ elif st.session_state.app_page == 3:
         )
         progress_bar.progress(1.0 - (remaining / total_time))
 
-        # Standard independent breathing cycle
         if (elapsed % 10) < 5:
           breath_placeholder.markdown(
               '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
@@ -1327,7 +1343,6 @@ elif st.session_state.app_page == 3:
               unsafe_allow_html=True,
           )
 
-        # Separate distinct reminder box for pelvic contract/release in Step 3
         if is_step3:
           cycle = elapsed % 12
           if cycle < 4:
