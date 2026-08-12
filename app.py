@@ -291,18 +291,6 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     color: #4a4a4a !important;
 }
 
-.contract-box {
-    background: #e8f4fd !important;
-    border: 2px solid #2196f3;
-    padding: 14px;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #0d47a1 !important;
-    margin: 12px 0;
-}
-
 .pressure-warning {
     background: #fff8f0 !important;
     border: 1px solid #ffe0b2;
@@ -410,8 +398,8 @@ def play_switch_audio_cue():
                 var osc = ctx.createOscillator();
                 var gain = ctx.createGain();
                 osc.type = 'sine';
-                osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5 tone
-                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5 tone
+                osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
                 gain.gain.setValueAtTime(0.1, ctx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
                 osc.connect(gain);
@@ -517,57 +505,55 @@ with st.container(key="admin_btn_container"):
 # ==========================================
 # 7. ROUTINE & PROTOCOL DATA
 # ==========================================
+
+# Recalibrated to ~13.5 minutes total (210s + 300s + 300s = 810s), no images, clean tone
 somatic_breath_steps = [
     {
-        "step": "Phase 1: Parasympathetic Priming & Vasocongestion",
-        "duration": 300,
-        "image_file": "step1A.png",
-        "positioning": "Lie on back in hook-lying pose (knees bent, feet flat) or supported butterfly pose (pillow under sacrum).",
-        "distance": "Deep pelvic bowl & lower abdominal diaphragm.",
-        "where": "Pelvic floor & lower abdominal wall.",
+        "step": "Phase 1: Parasympathetic Priming & Relaxation",
+        "duration": 210,  # 3.5 minutes
+        "image_file": "",
+        "positioning": "Lie comfortably on back with knees bent and feet flat (hook-lying position).",
+        "distance": "Lower abdomen and pelvic diaphragm.",
+        "where": "Deep pelvic floor & abdominal wall.",
         "action": (
-            "Diaphragmatic Breathing: Inhale through nose for 4s (belly expands), exhale slowly through mouth for 6s (2–3 mins).\n\n"
-            "Rhythmic Muscle Pumping:\n"
-            "• Inhale (4s): Completely release and drop pelvic floor outward.\n"
-            "• Hold (2s): Maintain drop, letting blood pool in pelvis.\n"
-            "• Exhale (4s): Gentle upward squeeze of pelvic floor muscles."
+            "• Rhythmic Nasal Breath: Inhale deeply for 4 seconds, expand belly.\n"
+            "• Controlled Release: Exhale slowly through mouth for 6 seconds.\n"
+            "• Gentle Pelvic Synchronization: Softly lift/squeeze on the exhalation, completely release and drop tension on inhalation."
         ),
-        "goal": "Shifts body into deep parasympathetic dominance while establishing baseline pelvic blood circulation.",
-        "benefit_text": "💡 Extended exhalations stimulate the vagus nerve and increase baseline blood volume in pelvic structures.",
+        "goal": "Down-regulates central nervous system, calms stress response, and establishes core baseline relaxation.",
+        "benefit_text": "💡 4s/6s extended exhalations trigger parasympathetic dominance and clear mental fog.",
         "switch_sides": False,
     },
     {
-        "step": "Phase 2: Rhythmic Activation & Neural Amplification",
-        "duration": 600,
-        "image_file": "step3.png",
-        "positioning": "Maintain hook-lying or supported butterfly position.",
-        "distance": "Internal pelvic bowl & pubic bone frame.",
-        "where": "Deep pelvic floor, clitoral structures, and pubic region.",
+        "step": "Phase 2: Somatic Engagement & Pulsing Control",
+        "duration": 300,  # 5 minutes
+        "image_file": "",
+        "positioning": "Maintain hook-lying posture or rest knees together with feet wide.",
+        "distance": "Deep internal pelvic floor muscles.",
+        "where": "Pelvic bowl & lower core boundary.",
         "action": (
-            "Pulsing Cycles:\n"
-            "• Long Release (8s): Deep inhale into lower bowl while dropping pelvic floor.\n"
-            "• Quick Squeeze (2s): Firm intentional contraction on exhale.\n"
-            "• Flutter Finisher: Immediately perform 5–10 rapid, light 'flutters'.\n\n"
-            "Focus: Direct total mental focus to internal warmth, tingling, and heaviness."
+            "• Deep Release (8s): Inhale into lower abdominal space, allowing full muscle expansion.\n"
+            "• Intentional Engagement (2s): Firm, controlled squeeze upward on exhalation.\n"
+            "• Fast Flutter Finisher: Follow with 5 seconds of light, rapid micro-engagements."
         ),
-        "goal": "Amplifies blood volume and trains the neural mind-body connection to heighten localized sensitivity.",
-        "benefit_text": "💡 Alternating fast flutters and deep releases turns pelvic muscles into a biological vascular pump.",
+        "goal": "Builds neural mind-body connection, enhances local circulation, and strengthens pelvic floor responsiveness.",
+        "benefit_text": "💡 Rhythmic engagement-and-release cycles improve vascular flow and muscle tone.",
         "switch_sides": False,
     },
     {
-        "step": "Phase 3: Building Systemic Energy & Peak Arousal",
-        "duration": 600,
-        "image_file": "step4.png",
-        "positioning": "Fully relaxed supine posture with pelvic outlet open.",
-        "distance": "Full body autonomic nervous system.",
-        "where": "Full pelvic region and nervous system.",
+        "step": "Phase 3: Deep Autonomic Flow & Tension Release",
+        "duration": 300,  # 5 minutes
+        "image_file": "",
+        "positioning": "Fully relaxed supine posture with open hips or supported legs.",
+        "distance": "Full body autonomic system.",
+        "where": "Pelvic region, lower spine, and abdominal core.",
         "action": (
-            "Conscious Connected Breathwork: Transition to continuous circular breathing (in and out through mouth without pauses).\n\n"
-            "Spontaneous Contractions: Stop counting rigid times. Allow pelvic floor to pulse naturally with the breathing wave.\n\n"
-            "Full-Body Release: Allow any physical tremors, vocalizations, or sensations to flow freely without holding back."
+            "• Continuous Rhythm: Transition to effortless, connected breathing without pauses.\n"
+            "• Autonomic Release: Let go of structured muscle counting; let pelvic floor follow natural breath wave.\n"
+            "• Full Relaxation: Allow physical warmth and deep muscular decompression to settle into the lower body."
         ),
-        "goal": "Surrenders conscious control to the autonomic nervous system to carry the build-up to a full climax.",
-        "benefit_text": "💡 Circular breathwork elevates sympathetic arousal to intersect with parasympathetic vasocongestion for peak somatic release.",
+        "goal": "Discharges stored physical tension, restores somatic energy, and locks in deep mental clarity.",
+        "benefit_text": "💡 Uninterrupted breathing restores natural energy balance and reduces systemic stress.",
         "switch_sides": False,
     },
 ]
@@ -966,7 +952,7 @@ PROTOCOLS = {
     "Somatic Breath & Pelvic Protocol": {
         "enabled": True,
         "badge": "Active Breathwork",
-        "preview_img": "step1A.png",
+        "preview_img": "",
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
@@ -974,7 +960,7 @@ PROTOCOLS = {
 • <b>💪 Somatic Control & Grounded Strength:</b> Builds deep pelvic stability and releases stored emotional and physical tension from the lower body without any tools or gear.<br><br>
 • <b>✨ Intimate Warmth & Sensitivity:</b> Rhythmic muscle pumping and quick flutters act as a natural vascular pump, heightening blood flow, warmth, and neural sensitivity.<br><br>
 • <b>🌿 Total Autonomy:</b> A 100% equipment-free practice designed to remove performance anxiety and reconnect you with your body's natural energy.<br><br>
-<b>⏱️ Environment:</b> Warm, quiet room. Lie flat in hook-lying pose or supported butterfly pose with a pillow under the lower back.
+<b>⏱️ Total Duration:</b> ~13.5 Minutes (3 Structured Steps). Lie flat in a quiet space in hook-lying pose.
 </div>
 """,
         "steps": somatic_breath_steps,
@@ -1057,7 +1043,6 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 }
 
 PROTOCOL_FALLBACK_IMG = {
-    "Somatic Breath & Pelvic Protocol": "step1A.png",
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
     "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": "step1A.png",
@@ -1157,7 +1142,9 @@ elif st.session_state.app_page == PAGE_SELECT:
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
-        if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
+        if chosen_option == "Somatic Breath & Pelvic Protocol":
+            st.markdown("🧘‍♀️ **[Breathwork]**")
+        elif chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
             st.image(selected_img_path, width=110)
         else:
             st.markdown("📘 **[Guide]**")
@@ -1217,21 +1204,23 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        # Asset fallback with neutral placeholder SVG fallback
-        img_path = resolve_image_path(step_info.get("image_file", ""))
-        if not img_path:
-            fallback_file = PROTOCOL_FALLBACK_IMG.get(st.session_state.selected_protocol, "")
-            img_path = resolve_image_path(fallback_file)
+        # Asset fallback logic — omit images entirely for Somatic Breath Protocol
+        is_somatic = st.session_state.selected_protocol == "Somatic Breath & Pelvic Protocol"
+        if not is_somatic:
+            img_path = resolve_image_path(step_info.get("image_file", ""))
+            if not img_path:
+                fallback_file = PROTOCOL_FALLBACK_IMG.get(st.session_state.selected_protocol, "")
+                img_path = resolve_image_path(fallback_file)
 
-        extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
+            extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
-        if img_path:
-            st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
-        else:
-            st.markdown(DEFAULT_PLACEHOLDER_SVG, unsafe_allow_html=True)
+            if img_path:
+                st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+            else:
+                st.markdown(DEFAULT_PLACEHOLDER_SVG, unsafe_allow_html=True)
 
-        if extra_img_path:
-            st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
+            if extra_img_path:
+                st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
 
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
         st.markdown(
@@ -1292,8 +1281,8 @@ elif st.session_state.app_page == PAGE_SESSION:
                             st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
                 else:
                     st.markdown(
-                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧍‍♂️</h1>'
-                        '<h3 style="color:#e65100; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3></div>',
+                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧘‍♀️</h1>'
+                        '<h3 style="color:#e65100; font-weight: bold;">CENTER ZONE / SOMATIC BREATH</h3></div>',
                         unsafe_allow_html=True,
                     )
 
