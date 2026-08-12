@@ -1207,53 +1207,30 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
                 if is_step3:
-                    cycle = elapsed % 30
-                    if cycle < 10:
-                        if cycle < 5:
+                    # Execute two 14-second contraction cycles (4s Squeeze, 4s Hold, 6s Release)
+                    # total time for 2 cycles = 28 seconds
+                    if elapsed < 28:
+                        cycle_num = (elapsed // 14) + 1
+                        cycle_elapsed = elapsed % 14
+                        
+                        if cycle_elapsed < 4:
                             st.markdown(
-                                '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
+                                f'<div class="contract-box">⚡ [Cycle {cycle_num}/2] Squeeze Pelvic Floor Inward & Upward (4s)</div>',
+                                unsafe_allow_html=True,
+                            )
+                        elif cycle_elapsed < 8:
+                            st.markdown(
+                                f'<div class="contract-box">🛑 [Cycle {cycle_num}/2] Hold Position (4s)</div>',
                                 unsafe_allow_html=True,
                             )
                         else:
                             st.markdown(
-                                '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
+                                f'<div class="contract-box">😌 [Cycle {cycle_num}/2] Fully Release & Relax Pelvic Floor (6s)</div>',
                                 unsafe_allow_html=True,
                             )
-                        st.markdown(
-                            '<div class="contract-box">⚡ Action: Glide Downward to Hold Point (10s)...</div>',
-                            unsafe_allow_html=True,
-                        )
-                    else:
-                        sub_cycle = (cycle - 10) % 10
-                        if sub_cycle < 4:
-                            st.markdown(
-                                '<div class="breath-box">😮\u200d💨 Exhale as you squeeze...</div>',
-                                unsafe_allow_html=True,
-                            )
-                            st.markdown(
-                                '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward'
-                                " & Upward (Hold 4s)...</div>",
-                                unsafe_allow_html=True,
-                            )
-                        else:
-                            st.markdown(
-                                '<div class="breath-box">🌬️ Inhale slowly as you release...</div>',
-                                unsafe_allow_html=True,
-                            )
-                            st.markdown(
-                                '<div class="contract-box">😌 Action: Fully Release & Relax'
-                                " Pelvic Floor (6s)...</div>",
-                                unsafe_allow_html=True,
-                            )
-                else:
-                    if (elapsed % 10) < 5:
-                        st.markdown(
-                            '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
-                            unsafe_allow_html=True,
-                        )
                     else:
                         st.markdown(
-                            '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
+                            '<div class="contract-box">✅ Squeeze & Release cycles complete. Resume gliding again.</div>',
                             unsafe_allow_html=True,
                         )
 
