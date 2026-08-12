@@ -1,4 +1,4 @@
-Import csv
+import csv
 import html
 import os
 import time
@@ -18,7 +18,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Named page constants instead of magic integers
 PAGE_PROFILE = 1
 PAGE_SELECT = 2
 PAGE_SESSION = 3
@@ -29,23 +28,15 @@ PAYMENT_URL = "https://ko-fi.com/kineticpulseapp"
 LOG_FILE_PATH = "kinetic_session_logs.csv"
 
 # ==========================================
-# 2. SECRETS / ADMIN AUTH
+# 2. SECRETS & SECURITY HELPERS
 # ==========================================
-# Password now comes from st.secrets, never hardcoded in source.
-# Locally: create .streamlit/secrets.toml with:
-#   admin_password = "your-password-here"
-# On Streamlit Community Cloud: set it in the app's Secrets settings.
 ADMIN_PASSWORD = st.secrets.get("admin_password")
-
-# Basic brute-force throttling for the admin login page.
 ADMIN_MAX_ATTEMPTS = 5
 ADMIN_LOCKOUT_SECONDS = 60
 
 
 def sanitize_text(value: str, max_len: int = 200) -> str:
-    """Escape HTML and cap length before any user-supplied text is
-    interpolated into unsafe_allow_html markdown or written to CSV.
-    Prevents self-XSS via the name/notes fields."""
+    """Escape HTML and cap length before text is processed or saved."""
     if value is None:
         return ""
     value = str(value)[:max_len]
@@ -53,8 +44,7 @@ def sanitize_text(value: str, max_len: int = 200) -> str:
 
 
 def csv_safe(value: str) -> str:
-    """Neutralize CSV/formula injection (e.g. values starting with
-    =, +, -, @) for anyone who opens the log in Excel/Sheets."""
+    """Neutralize formula injection for CSV export."""
     value = str(value)
     if value and value[0] in ("=", "+", "-", "@"):
         return "'" + value
@@ -62,7 +52,7 @@ def csv_safe(value: str) -> str:
 
 
 # ==========================================
-# 3. HARD SAFETY & MEDICAL GATE
+# 3. SAFETY & MEDICAL NOTICE GATE
 # ==========================================
 def render_safety_gate() -> bool:
     if st.session_state.get("disclaimer_accepted", False):
@@ -131,12 +121,11 @@ with st.sidebar:
     st.markdown("---")
 
 # ==========================================
-# 4. GLOBAL CSS
+# 4. GLOBAL STYLING (CSS)
 # ==========================================
 st.markdown(
     """
 <style>
-/* Aggressively hide Streamlit Cloud headers, toolbars, and share buttons */
 header,
 [data-testid="stHeader"],
 [data-testid="stAppHeader"],
@@ -381,14 +370,10 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
 
 
 # ==========================================
-# 5. SHARED UI HELPERS (dedupe repeated markup)
+# 5. UI COMPONENTS & LOGGING UTILITIES
 # ==========================================
 def scroll_to_top():
-    """Forces both JS window scroll and container scroll to the absolute top,
-    plus removes Streamlit header/toolbar bars. Retries a handful of times
-    because the DOM for the new page/step is still being painted when this
-    first fires on rerun — a single fire-and-forget attempt can land before
-    the new content (and its height) exists, leaving the scroll a no-op."""
+    """Forces page viewport back to the top on transition."""
     components.html(
         """
         <script>
@@ -420,8 +405,6 @@ def scroll_to_top():
 
 
 def render_header(title: str, subtitle: str = ""):
-    """Single source of truth for the curved page header (was duplicated
-    ~8 times with copy-pasted HTML)."""
     subtitle_html = f"<p>{html.escape(subtitle)}</p>" if subtitle else ""
     st.markdown(
         f"""<div class="curved-header"><h1>{html.escape(title)}</h1>{subtitle_html}</div>""",
@@ -430,8 +413,6 @@ def render_header(title: str, subtitle: str = ""):
 
 
 def render_support_box():
-    """Single source of truth for the Ko-fi support box (was duplicated
-    verbatim in two places)."""
     st.markdown(
         f"""
     <div class="support-box">
@@ -461,10 +442,6 @@ def resolve_image_path(base_filename: str):
 
 
 def log_session_to_csv(name: str, protocol_name: str, rating, notes: str):
-    """Append-only CSV log. Values are CSV-injection-escaped. Note: on
-    ephemeral hosting (e.g. Streamlit Community Cloud) this file will not
-    survive a redeploy/restart — swap in a real datastore (SQLite hosted
-    volume, Google Sheets, Supabase, etc.) if long-term logs matter."""
     try:
         file_exists = os.path.isfile(LOG_FILE_PATH)
         with open(LOG_FILE_PATH, mode="a", newline="", encoding="utf-8") as f:
@@ -487,7 +464,7 @@ def log_session_to_csv(name: str, protocol_name: str, rating, notes: str):
 
 
 # ==========================================
-# 6. SESSION STATE INIT
+# 6. SESSION STATE INITIALIZATION
 # ==========================================
 DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Flush Protocol"
 
@@ -514,7 +491,7 @@ with st.container(key="admin_btn_container"):
         st.rerun()
 
 # ==========================================
-# 7. PROTOCOL DATA — single source of truth
+# 7. ROUTINE & PROTOCOL DATA
 # ==========================================
 manual_lymph_steps = [
     {
@@ -892,9 +869,6 @@ MASSAGE_GUN_INFO_HTML = """
 </div>
 """
 
-# Single source of truth: every protocol's metadata + description + steps
-# live together, keyed by name, instead of being scattered across four
-# separate parallel structures that had to be kept in sync by hand.
 PROTOCOLS = {
     "Advanced Lower Pelvic & Abdominal Flush Protocol": {
         "enabled": True,
@@ -981,7 +955,7 @@ PROTOCOL_FALLBACK_IMG = {
 }
 
 # ==========================================
-# 8. APPLICATION PAGES
+# 8. VIEW & ROUTING ENGINE
 # ==========================================
 
 # --- PAGE 1: USER PROFILE ---
@@ -1009,8 +983,6 @@ if st.session_state.app_page == PAGE_PROFILE:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("Continue to Protocols", type="primary"):
         if entered_name.strip():
-            # Sanitize before storing — this value later gets interpolated
-            # into unsafe_allow_html markdown and into the CSV log.
             st.session_state.user_name = sanitize_text(entered_name.strip(), max_len=80)
             st.session_state.session_notes = sanitize_text(entered_notes.strip(), max_len=500)
             st.session_state.app_page = PAGE_SELECT
@@ -1181,7 +1153,6 @@ elif st.session_state.app_page == PAGE_SESSION:
         total_duration_secs = step_info["duration"]
         st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
 
-        # --- Non-blocking timer -------------------------------------------------
         if not st.session_state.timer_running:
             if st.button("Start Step Timer", type="primary"):
                 st.session_state.timer_running = True
@@ -1203,7 +1174,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
                 
-                # Check for "Low-Pelvic" to apply to both the manual and massage gun versions
                 is_step3 = "Low-Pelvic" in step_info["step"]
 
                 mins, secs = divmod(remaining, 60)
@@ -1237,9 +1207,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
                 if is_step3:
-                    # New timing requirements:
-                    # 10s glide (5s inhale, 5s exhale) -> 20s of squeezes (2x [4s squeeze, 6s relax])
-                    # Total cycle = 30 seconds
                     cycle = elapsed % 30
                     if cycle < 10:
                         if cycle < 5:
@@ -1257,7 +1224,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                             unsafe_allow_html=True,
                         )
                     else:
-                        # Map both the 10-19s and 20-29s chunks into identical 10s blocks
                         sub_cycle = (cycle - 10) % 10
                         if sub_cycle < 4:
                             st.markdown(
