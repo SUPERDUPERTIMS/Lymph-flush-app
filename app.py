@@ -363,6 +363,16 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     background:#fff3e0; border:2px solid #ff9800; border-radius:15px;
     padding:15px; text-align:center; margin-bottom: 15px;
 }
+
+/* Audio alert visual effect for side switches */
+.side-switch-flash {
+    animation: flashAlert 0.8s ease-in-out;
+}
+@keyframes flashAlert {
+    0% { opacity: 0.2; transform: scale(0.98); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -397,6 +407,32 @@ def scroll_to_top():
                 tries += 1;
                 if (tries > 6) { clearInterval(iv); }
             }, 80);
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+
+
+def play_switch_audio_cue():
+    """Plays an audio cue and visual alert upon side transition."""
+    components.html(
+        """
+        <script>
+            try {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                var osc = ctx.createOscillator();
+                var gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5 tone
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5 tone
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.25);
+            } catch(e) {}
         </script>
         """,
         height=0,
@@ -441,7 +477,7 @@ def resolve_image_path(base_filename: str):
     return None
 
 
-def log_session_to_csv(name: str, protocol_name: str, rating, notes: str):
+def log_session_to_csv(name: str, protocol_name: str, rating: int, notes: str):
     try:
         file_exists = os.path.isfile(LOG_FILE_PATH)
         with open(LOG_FILE_PATH, mode="a", newline="", encoding="utf-8") as f:
@@ -479,6 +515,8 @@ _defaults = {
     "admin_locked_until": 0.0,
     "timer_running": False,
     "timer_start": None,
+    "side_switched_toast": False,
+    "session_logged": False,
 }
 for key, default_val in _defaults.items():
     if key not in st.session_state:
@@ -688,6 +726,7 @@ hip_steps = [
         "step": "Step 1: Tensor Fasciae Latae (TFL) & Upper Outer Hip",
         "duration": 120,
         "image_file": "hip_step1.png",
+        "positioning": "Side-lying or seated with hip relaxed at 45 degrees.",
         "distance": "Outer hip flare (TFL insertion)",
         "where": "Just below the hard bony iliac crest of the outer hip.",
         "action": "High speed at a 45-degree angle. Maintain steady contact for 60 seconds per side.",
@@ -699,6 +738,7 @@ hip_steps = [
         "step": "Step 2: Gluteus Medius & Minimus Stabilizers",
         "duration": 120,
         "image_file": "hip_step2.png",
+        "positioning": "Prone or side-lying with target leg slightly bent.",
         "distance": "Upper-outer gluteal region",
         "where": "Posterior to the TFL across the upper glute shelf.",
         "action": "Medium speed. Smooth circular sweeps and stationary holds for 60 seconds per side.",
@@ -710,6 +750,7 @@ hip_steps = [
         "step": "Step 3: Deep External Rotators (Piriformis & Gemelli)",
         "duration": 120,
         "image_file": "hip_step3.png",
+        "positioning": "Prone position with hips flat on mat.",
         "distance": "Deep posterior hip pocket",
         "where": "Center of the glute tracking toward the greater trochanter.",
         "action": "Medium-high speed. Targeted stationary holds on tender trigger points for 60 seconds per side.",
@@ -721,6 +762,7 @@ hip_steps = [
         "step": "Step 4: Anterior Hip Flexors (Rectus Femoris)",
         "duration": 120,
         "image_file": "hip_step4.png",
+        "positioning": "Supine or half-kneeling position.",
         "distance": "Upper front thigh",
         "where": "Just below the front hip bone (ASIS), tracking down the quad.",
         "action": "Medium speed. Slow longitudinal sweeps for 60 seconds per side.",
@@ -732,6 +774,7 @@ hip_steps = [
         "step": "Step 5: Iliopsoas Deep Pocket Release",
         "duration": 120,
         "image_file": "hip_step5.png",
+        "positioning": "Supine hook-lying position (knees bent, feet flat).",
         "distance": "Deep inner hip crease",
         "where": "Internal to the ASIS bone in the soft pocket of the hip crease.",
         "action": "Low speed, featherlight touch. Gentle stationary holds for 60 seconds per side.",
@@ -743,6 +786,7 @@ hip_steps = [
         "step": "Step 6: Dynamic Low-Lunge & Hip Flexor Integration",
         "duration": 120,
         "image_file": "hip_step6.png",
+        "positioning": "Half-kneeling low-lunge position (rear knee grounded, front knee over ankle).",
         "distance": "Anterior Hip Flexor & Adductor Chain",
         "where": "Half-kneeling low-lunge position (rear knee grounded, front knee over ankle).",
         "action": (
@@ -761,9 +805,10 @@ forearm_steps = [
         "step": "Step 1: Lateral Epicondyle & Extensor Mass",
         "duration": 180,
         "image_file": "step5.png",
+        "positioning": "Seated with forearm resting flat on a table or thigh, palm down.",
         "distance": "Outer Forearm",
         "where": "Lateral Epicondyle & Extensor Mass",
-        "action": "Med-High Speed. Sweeping motion. (90s per side)",
+        "action": "Med-High Speed. Sweeping motion for 90s per side.",
         "goal": "Relieve tension in the Tennis/Padel Elbow Zone.",
         "benefit_text": "💡 Sweeping motions relax the extensor mass.",
         "switch_sides": True,
@@ -772,9 +817,10 @@ forearm_steps = [
         "step": "Step 2: Medial Epicondyle & Flexor Belly",
         "duration": 180,
         "image_file": "step5.png",
+        "positioning": "Seated with forearm supported, palm facing upward.",
         "distance": "Inner Forearm",
         "where": "Medial Epicondyle & Flexor Belly",
-        "action": "Med Speed. Deep pulses. (90s per side)",
+        "action": "Med Speed. Deep pulses for 90s per side.",
         "goal": "Release the Golfer Elbow Zone.",
         "benefit_text": "💡 Deep pulses release inner forearm flexors.",
         "switch_sides": True,
@@ -783,9 +829,10 @@ forearm_steps = [
         "step": "Step 3: Posterior Capsule & Infraspinatus",
         "duration": 240,
         "image_file": "step5.png",
+        "positioning": "Seated or standing, crossing arm gently across chest.",
         "distance": "Back of Shoulder",
         "where": "Posterior Capsule & Infraspinatus",
-        "action": "High Speed. Circular motions. (120s per side)",
+        "action": "High Speed. Circular motions for 120s per side.",
         "goal": "Improve posterior shoulder mobility.",
         "benefit_text": "💡 Circular motions free up the shoulder capsule.",
         "switch_sides": True,
@@ -794,9 +841,10 @@ forearm_steps = [
         "step": "Step 4: Bicep Tendon & Pec Minor Sweep",
         "duration": 240,
         "image_file": "step5.png",
+        "positioning": "Standing tall with chest open and shoulders retracted.",
         "distance": "Front of Shoulder/Chest",
         "where": "Bicep Tendon & Pec Minor",
-        "action": "High Speed. Fast, light sweeps. (120s per side)",
+        "action": "High Speed. Fast, light sweeps for 120s per side.",
         "goal": "Provide anterior shoulder release.",
         "benefit_text": "💡 Fast sweeps relieve anterior pulling.",
         "switch_sides": True,
@@ -808,9 +856,10 @@ ankle_steps = [
         "step": "Step 1: Soleus & Gastrocnemius Cleanse",
         "duration": 240,
         "image_file": "step5.png",
+        "positioning": "Seated on floor or chair with knee bent at 90 degrees.",
         "distance": "Calves & Lower Leg",
         "where": "Soleus & Gastrocnemius",
-        "action": "High Speed. Sweeping glides. (120s per side)",
+        "action": "High Speed. Sweeping glides for 120s per side.",
         "goal": "Calf & Achilles Decompression.",
         "benefit_text": "💡 Sweeping glides restore movement across the posterior chain.",
         "switch_sides": True,
@@ -819,9 +868,10 @@ ankle_steps = [
         "step": "Step 2: Peroneal & Anterior Tibialis Balance",
         "duration": 180,
         "image_file": "step5.png",
+        "positioning": "Seated cross-legged or with lower leg supported.",
         "distance": "Outer and Front Lower Leg",
         "where": "Peroneal & Anterior Tibialis",
-        "action": "Med-High Speed. Longitudinal sweeps. (90s per side)",
+        "action": "Med-High Speed. Longitudinal sweeps for 90s per side.",
         "goal": "Target the Lateral Stability Zone.",
         "benefit_text": "💡 Longitudinal sweeps restore lower leg balance.",
         "switch_sides": True,
@@ -830,9 +880,10 @@ ankle_steps = [
         "step": "Step 3: Tibialis Posterior & Deep Ankle Pocket",
         "duration": 180,
         "image_file": "step5.png",
+        "positioning": "Seated with ankle resting over opposite knee.",
         "distance": "Inner Ankle/Lower Leg",
         "where": "Tibialis Posterior & Deep Ankle Pocket",
-        "action": "Med Speed. Targeted pulses. (90s per side)",
+        "action": "Med Speed. Targeted pulses for 90s per side.",
         "goal": "Provide Medial Support.",
         "benefit_text": "💡 Targeted pulses release deep ankle pockets.",
         "switch_sides": True,
@@ -841,6 +892,7 @@ ankle_steps = [
         "step": "Step 4: Plantar Fascia & Dynamic Calf Stretch",
         "duration": 120,
         "image_file": "step5.png",
+        "positioning": "Seated or standing against wall for stretch.",
         "distance": "Sole of foot and calf",
         "where": "Plantar Fascia & Calf",
         "action": "High Speed (sole). Roll 30s per foot, followed by Active stretch for 30s per leg.",
@@ -884,6 +936,20 @@ Optimizes posture, leg positioning, and core engagement during this routine to m
 """,
         "steps": lymph_steps,
     },
+    "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": {
+        "enabled": True,
+        "badge": "Active Manual",
+        "preview_img": "step1A.png",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why it should be done:</b><br>
+A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
+<b>⏱️ Frequency & Best Time:</b><br>
+2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
+</div>
+""",
+        "steps": manual_lymph_steps,
+    },
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": {
         "enabled": True,
         "badge": "Active",
@@ -899,20 +965,6 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
 </div>
 """,
         "steps": hip_steps,
-    },
-    "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": {
-        "enabled": False,
-        "badge": "Locked",
-        "preview_img": "",
-        "description_html": """
-<div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
-<b>⏱️ Frequency & Best Time:</b><br>
-2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
-</div>
-""",
-        "steps": manual_lymph_steps,
     },
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": {
         "enabled": False,
@@ -950,9 +1002,20 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 PROTOCOL_FALLBACK_IMG = {
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
+    "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": "step1A.png",
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "step5.png",
     "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
 }
+
+# Neutral SVG placeholder for fallback missing assets
+DEFAULT_PLACEHOLDER_SVG = """
+<svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#e2e8f0" rx="16"/>
+  <circle cx="200" cy="90" r="40" fill="#cbd5e1"/>
+  <path d="M185 90 L215 90 M200 75 L200 105" stroke="#475569" stroke-width="6" stroke-linecap="round"/>
+  <text x="50%" y="150" dominant-baseline="middle" text-anchor="middle" fill="#64748b" font-family="sans-serif" font-size="14" font-weight="bold">Kinetic Pulse Performance Guide</text>
+</svg>
+"""
 
 # ==========================================
 # 8. VIEW & ROUTING ENGINE
@@ -1017,6 +1080,7 @@ elif st.session_state.app_page == PAGE_SELECT:
                 use_container_width=True,
             ):
                 st.session_state.selected_protocol = p_name
+                st.session_state.current_step_index = 0  # Clear step index on protocol switch
                 scroll_to_top()
                 st.rerun()
         else:
@@ -1058,7 +1122,8 @@ elif st.session_state.app_page == PAGE_SELECT:
         button_label = "Review Complete" if is_info_only else "Continue to Protocol"
         if st.button(button_label, type="primary"):
             st.session_state.selected_protocol = chosen_option
-            st.session_state.current_step_index = 0
+            st.session_state.current_step_index = 0  # Explicitly reset index
+            st.session_state.session_logged = False
             st.session_state.app_page = PAGE_SELECT if is_info_only else PAGE_SESSION
             scroll_to_top()
             st.rerun()
@@ -1074,6 +1139,7 @@ elif st.session_state.app_page == PAGE_SESSION:
 
     if st.button("Change Protocol / View Info", type="secondary"):
         st.session_state.app_page = PAGE_SELECT
+        st.session_state.current_step_index = 0
         scroll_to_top()
         st.rerun()
 
@@ -1106,17 +1172,19 @@ elif st.session_state.app_page == PAGE_SESSION:
                 unsafe_allow_html=True,
             )
 
+        # Asset fallback with neutral placeholder SVG fallback
         img_path = resolve_image_path(step_info.get("image_file", ""))
         if not img_path:
-            fallback_file = PROTOCOL_FALLBACK_IMG.get(
-                st.session_state.selected_protocol, "step1.jpg"
-            )
+            fallback_file = PROTOCOL_FALLBACK_IMG.get(st.session_state.selected_protocol, "")
             img_path = resolve_image_path(fallback_file)
 
         extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
         if img_path:
             st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+        else:
+            st.markdown(DEFAULT_PLACEHOLDER_SVG, unsafe_allow_html=True)
+
         if extra_img_path:
             st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
 
@@ -1131,18 +1199,20 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        total_duration_secs = step_info["duration"]
+        total_duration_secs = int(step_info["duration"])
         st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
 
         if not st.session_state.timer_running:
             if st.button("Start Step Timer", type="primary"):
                 st.session_state.timer_running = True
                 st.session_state.timer_start = time.time()
+                st.session_state.side_switched_toast = False
                 st.rerun()
         else:
             if st.button("Stop / Reset Timer", type="secondary"):
                 st.session_state.timer_running = False
                 st.session_state.timer_start = None
+                st.session_state.side_switched_toast = False
                 st.rerun()
 
             @st.fragment(run_every=1)
@@ -1155,8 +1225,9 @@ elif st.session_state.app_page == PAGE_SESSION:
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
 
-                # Strictly target Low-Pelvic step for 24s loop
-                is_low_pelvic_step = "Low-Pelvic" in step_info.get("step", "")
+                # Target both low-pelvic and manual abdominal/lymph step variations for 24s cycle timer
+                step_title_lower = step_info.get("step", "").lower()
+                is_rhythm_step = "low-pelvic" in step_title_lower or "sub-umbilical" in step_title_lower or "lymphatic priming" in step_title_lower
 
                 mins, secs = divmod(remaining, 60)
 
@@ -1170,11 +1241,13 @@ elif st.session_state.app_page == PAGE_SESSION:
                         )
                     else:
                         st.markdown(
-                            '<div class="side-visual-right"><h1 style="font-size:3.5rem; margin:0;">➡️ 🧍‍♂️</h1>'
+                            '<div class="side-visual-right side-switch-flash"><h1 style="font-size:3.5rem; margin:0;">➡️ 🧍‍♂️</h1>'
                             '<h3 style="color:#1b5e20; font-weight: bold;">WORKING: RIGHT SIDE</h3></div>',
                             unsafe_allow_html=True,
                         )
-                        if elapsed == half_time:
+                        if elapsed >= half_time and not st.session_state.get("side_switched_toast", False):
+                            st.session_state.side_switched_toast = True
+                            play_switch_audio_cue()
                             st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
                 else:
                     st.markdown(
@@ -1191,7 +1264,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
                 # 24-Second Lower Abdominal / Low-Pelvic Protocol Timing Loop
-                if is_low_pelvic_step:
+                if is_rhythm_step:
                     cycle_time = elapsed % 24
 
                     if cycle_time < 10:
@@ -1242,6 +1315,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                     st.session_state.current_step_index -= 1
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
+                    st.session_state.side_switched_toast = False
                     scroll_to_top()
                     st.rerun()
         with col2:
@@ -1250,23 +1324,44 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.session_state.current_step_index += 1
                 st.session_state.timer_running = False
                 st.session_state.timer_start = None
+                st.session_state.side_switched_toast = False
                 scroll_to_top()
                 st.rerun()
     else:
         st.markdown("---")
         st.success("🏆 **Protocol Completed Successfully!** Great work.")
-        render_support_box()
 
-        log_session_to_csv(
-            st.session_state.user_name,
-            st.session_state.selected_protocol,
-            10,
-            st.session_state.session_notes,
+        st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
+        st.markdown("### Rate Your Post-Session Tension Level")
+        rating_val = st.slider(
+            "Tension / Freedom of Movement Rating (1 = Tense/Restricted, 10 = Fully Released):",
+            min_value=1,
+            max_value=10,
+            value=8,
         )
+
+        if not st.session_state.get("session_logged", False):
+            if st.button("Save & Log Session Rating", type="primary"):
+                log_session_to_csv(
+                    st.session_state.user_name,
+                    st.session_state.selected_protocol,
+                    rating_val,
+                    st.session_state.session_notes,
+                )
+                st.session_state.session_logged = True
+                st.success("Session rating logged successfully!")
+                st.rerun()
+        else:
+            st.info("✅ Your session feedback has been saved to the log.")
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        render_support_box()
 
         if st.button("Start New Session", type="primary"):
             st.session_state.app_page = PAGE_PROFILE
             st.session_state.current_step_index = 0
+            st.session_state.session_logged = False
             scroll_to_top()
             st.rerun()
 
