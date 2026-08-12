@@ -217,7 +217,7 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     box-shadow: none !important;
 }
 
-.st-key-admin_btn_container {
+.st-key-floating_admin_btn {
     position: fixed !important;
     bottom: 2px !important;
     right: 2px !important;
@@ -227,7 +227,7 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     padding: 0 !important;
 }
 
-.st-key-admin_btn_container button {
+.st-key-floating_admin_btn button {
     font-size: 0.65rem !important;
     padding: 3px 8px !important;
     border-radius: 8px !important;
@@ -354,7 +354,7 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
 
 
 # ==========================================
-# 5. UI COMPONENTS & LOGGING UTILITIES
+# 5. UI COMPONENTS, ANIMATION & AUDIO HELPERS
 # ==========================================
 def scroll_to_top():
     """Forces page viewport back to the top on transition."""
@@ -388,29 +388,88 @@ def scroll_to_top():
     )
 
 
-def play_switch_audio_cue():
-    """Plays an audio cue and visual alert upon side transition."""
+def play_switch_audio_cue(freq: float = 587.33, freq_end: float = 880.0):
+    """Plays a Web Audio API synth sweep or soft chime across transitions."""
     components.html(
-        """
+        f"""
         <script>
-            try {
-                var ctx = new (window.AudioContext || window.webkitAudioContext)();
-                var osc = ctx.createOscillator();
-                var gain = ctx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(587.33, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
-                gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.25);
-            } catch(e) {}
+            try {{
+                var AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {{
+                    var ctx = new AudioContext();
+                    if (ctx.state === 'suspended') {{
+                        ctx.resume();
+                    }}
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime({freq}, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime({freq_end}, ctx.currentTime + 0.2);
+                    gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                }}
+            }} catch(e) {{}}
         </script>
         """,
         height=0,
         width=0,
+    )
+
+
+def render_animated_breathing_visualizer(cycle_seconds: int = 10, inhale_ratio: float = 0.4):
+    """Renders a CSS pulsing breathing circle synced to a full inhale/exhale cycle."""
+    inhale_duration = round(cycle_seconds * inhale_ratio, 1)
+    exhale_duration = round(cycle_seconds * (1 - inhale_ratio), 1)
+
+    components.html(
+        f"""
+        <style>
+            .breath-container {{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 180px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            }}
+            .breath-circle {{
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                background: radial-gradient(circle, #29abe0 0%, #0c38ff 100%);
+                box-shadow: 0 0 20px rgba(12, 56, 255, 0.4);
+                animation: breathe {cycle_seconds}s infinite ease-in-out;
+            }}
+            .breath-label {{
+                margin-top: 15px;
+                font-size: 0.95rem;
+                font-weight: bold;
+                color: #0c38ff;
+                letter-spacing: 0.5px;
+            }}
+            @keyframes breathe {{
+                0%, 100% {{
+                    transform: scale(1.0);
+                    opacity: 0.6;
+                    box-shadow: 0 0 10px rgba(12, 56, 255, 0.2);
+                }}
+                {int(inhale_ratio * 100)}% {{
+                    transform: scale(2.1);
+                    opacity: 1.0;
+                    box-shadow: 0 0 30px rgba(41, 171, 224, 0.7);
+                }}
+            }}
+        </style>
+        <div class="breath-container">
+            <div class="breath-circle"></div>
+            <div class="breath-label">Inhale ({inhale_duration}s) ➔ Exhale ({exhale_duration}s)</div>
+        </div>
+        """,
+        height=190,
     )
 
 
@@ -490,27 +549,27 @@ _defaults = {
     "timer_running": False,
     "timer_start": None,
     "side_switched_toast": False,
+    "phase_chime_played": False,
     "session_logged": False,
 }
 for key, default_val in _defaults.items():
     if key not in st.session_state:
         st.session_state[key] = default_val
 
-with st.container(key="admin_btn_container"):
-    if st.button("Admin", key="floating_admin_btn"):
-        st.session_state.app_page = PAGE_ADMIN_LOGIN
-        scroll_to_top()
-        st.rerun()
+# Floating Admin Access Button
+if st.button("Admin", key="floating_admin_btn"):
+    st.session_state.app_page = PAGE_ADMIN_LOGIN
+    scroll_to_top()
+    st.rerun()
 
 # ==========================================
 # 7. ROUTINE & PROTOCOL DATA
 # ==========================================
 
-# Clear, precise somatic protocol (~13.5 min) with full technical breakdown & encouraging prompts
 somatic_breath_steps = [
     {
         "step": "Phase 1: Parasympathetic Priming & Gentle Squeezes",
-        "duration": 210,  # 3.5 minutes
+        "duration": 210,
         "image_file": "",
         "positioning": "Lie on back in hook-lying pose (knees bent at 90°, feet flat on floor, lower back flat).",
         "distance": "Lower abdomen and pelvic diaphragm.",
@@ -527,7 +586,7 @@ somatic_breath_steps = [
     },
     {
         "step": "Phase 2: Somatic Engagement, Controlled Holds & Flutters",
-        "duration": 300,  # 5 minutes
+        "duration": 300,
         "image_file": "",
         "positioning": "Hook-lying pose or knees gently rested together with feet wider than hip-width.",
         "distance": "Deep internal pelvic floor muscles.",
@@ -545,7 +604,7 @@ somatic_breath_steps = [
     },
     {
         "step": "Phase 3: Deep Autonomic Flow & Complete Tension Release",
-        "duration": 300,  # 5 minutes
+        "duration": 300,
         "image_file": "",
         "positioning": "Supine position with legs fully extended or supported in butterfly pose.",
         "distance": "Whole-body autonomic system.",
@@ -952,7 +1011,6 @@ MASSAGE_GUN_INFO_HTML = """
 </div>
 """
 
-# Reordered Dictionary: Somatic Breath & Pelvic Protocol placed 3rd in list
 PROTOCOLS = {
     "Advanced Lower Pelvic & Abdominal Protocol": {
         "enabled": True,
@@ -1205,13 +1263,14 @@ elif st.session_state.app_page == PAGE_SESSION:
 
         is_somatic = st.session_state.selected_protocol == "Somatic Breath & Pelvic Protocol"
 
-        # Corrected warning message depending on protocol type
         if is_somatic:
             st.markdown(
                 '<div class="pressure-warning">🧘 SOMATIC GUIDANCE: Focus on controlled breathing,'
                 " steady muscle activation, and complete physical relaxation. No tools needed.</div>",
                 unsafe_allow_html=True,
             )
+            # Dynamic Animated Breathing Visualizer
+            render_animated_breathing_visualizer(cycle_seconds=10, inhale_ratio=0.4)
         else:
             st.markdown(
                 '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact,'
@@ -1219,7 +1278,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                 unsafe_allow_html=True,
             )
 
-        # Asset fallback logic — omit images entirely for Somatic Breath Protocol
         if not is_somatic:
             img_path = resolve_image_path(step_info.get("image_file", ""))
             if not img_path:
@@ -1239,11 +1297,12 @@ elif st.session_state.app_page == PAGE_SESSION:
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
         encouragement_info = f"<br><b>💬 Motivation:</b> {step_info['encouragement']}" if "encouragement" in step_info else ""
 
+        formatted_action = step_info['action'].replace('\n', '<br>')
         st.markdown(
             f"""<div class="metric-container">
 {pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
 <b>🗺️ Location:</b> {step_info['where']}<br><br>
-<b>⚡ Action & Execution Steps:</b><br>{step_info['action'].replace('\n', '<br>')}<br><br>
+<b>⚡ Action & Execution Steps:</b><br>{formatted_action}<br><br>
 <b>🎯 Goal:</b> {step_info['goal']}{encouragement_info}
 </div>""",
             unsafe_allow_html=True,
@@ -1257,12 +1316,14 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.session_state.timer_running = True
                 st.session_state.timer_start = time.time()
                 st.session_state.side_switched_toast = False
+                st.session_state.phase_chime_played = False
                 st.rerun()
         else:
             if st.button("Stop / Reset Timer", type="secondary"):
                 st.session_state.timer_running = False
                 st.session_state.timer_start = None
                 st.session_state.side_switched_toast = False
+                st.session_state.phase_chime_played = False
                 st.rerun()
 
             @st.fragment(run_every=1)
@@ -1276,6 +1337,11 @@ elif st.session_state.app_page == PAGE_SESSION:
                 half_time = total_time // 2
 
                 mins, secs = divmod(remaining, 60)
+
+                # Play gentle phase-start audio chime when timer fires
+                if elapsed == 1 and not st.session_state.get("phase_chime_played", False):
+                    st.session_state.phase_chime_played = True
+                    play_switch_audio_cue(freq=440.0, freq_end=660.0)
 
                 # Lateral / Side Indicator Setup
                 if needs_switching:
@@ -1293,7 +1359,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                         )
                         if elapsed >= half_time and not st.session_state.get("side_switched_toast", False):
                             st.session_state.side_switched_toast = True
-                            play_switch_audio_cue()
+                            play_switch_audio_cue(freq=587.33, freq_end=880.0)
                             st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
                 else:
                     st.markdown(
@@ -1312,7 +1378,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 if "benefit_text" in step_info:
                     st.info(step_info["benefit_text"])
 
-                # Completion Handler
+                # Completion Handler inside Fragment
                 if remaining <= 0:
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
@@ -1333,6 +1399,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
                     st.session_state.side_switched_toast = False
+                    st.session_state.phase_chime_played = False
                     scroll_to_top()
                     st.rerun()
         with col2:
@@ -1342,6 +1409,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.session_state.timer_running = False
                 st.session_state.timer_start = None
                 st.session_state.side_switched_toast = False
+                st.session_state.phase_chime_played = False
                 scroll_to_top()
                 st.rerun()
     else:
