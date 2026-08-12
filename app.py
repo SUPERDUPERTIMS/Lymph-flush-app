@@ -1166,28 +1166,29 @@ elif st.session_state.app_page == PAGE_SESSION:
 
             @st.fragment(run_every=1)
             def render_timer(step_info=step_info, total_time=total_duration_secs):
-                if not st.session_state.timer_running or st.session_state.timer_start is None:
+                if not st.session_state.get("timer_running", False) or st.session_state.get("timer_start") is None:
                     return
 
                 elapsed = int(time.time() - st.session_state.timer_start)
                 remaining = max(total_time - elapsed, 0)
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
-                
-                is_step3 = "Low-Pelvic" in step_info["step"]
+
+                is_step3 = "Low-Pelvic" in step_info.get("step", "") or "Step 3" in step_info.get("step", "")
 
                 mins, secs = divmod(remaining, 60)
 
+                # Lateral / Side Indicator Setup
                 if needs_switching:
                     if elapsed < half_time:
                         st.markdown(
-                            '<div class="side-visual-left"><h1 style="font-size:3.5rem; margin:0;">🧍\u200d♂️ ⬅️</h1>'
+                            '<div class="side-visual-left"><h1 style="font-size:3.5rem; margin:0;">🧍‍♂️ ⬅️</h1>'
                             '<h3 style="color:#0d47a1; margin:0; font-weight: bold;">WORKING: LEFT SIDE</h3></div>',
                             unsafe_allow_html=True,
                         )
                     else:
                         st.markdown(
-                            '<div class="side-visual-right"><h1 style="font-size:3.5rem; margin:0;">➡️ 🧍\u200d♂️</h1>'
+                            '<div class="side-visual-right"><h1 style="font-size:3.5rem; margin:0;">➡️ 🧍‍♂️</h1>'
                             '<h3 style="color:#1b5e20; font-weight: bold;">WORKING: RIGHT SIDE</h3></div>',
                             unsafe_allow_html=True,
                         )
@@ -1195,48 +1196,51 @@ elif st.session_state.app_page == PAGE_SESSION:
                             st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
                 else:
                     st.markdown(
-                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧍\u200d♂️</h1>'
+                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧍‍♂️</h1>'
                         '<h3 style="color:#e65100; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3></div>',
                         unsafe_allow_html=True,
                     )
 
+                # Main Countdown Timer & Progress
                 st.markdown(
                     f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>",
                     unsafe_allow_html=True,
                 )
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
+                # 24-Second Lower Abdominal / Low-Pelvic Protocol Timing Loop
                 if is_step3:
-                    # Execute two 14-second contraction cycles (4s Squeeze, 4s Hold, 6s Release)
-                    # total time for 2 cycles = 28 seconds
-                    if elapsed < 28:
-                        cycle_num = (elapsed // 14) + 1
-                        cycle_elapsed = elapsed % 14
-                        
-                        if cycle_elapsed < 4:
-                            st.markdown(
-                                f'<div class="contract-box">⚡ [Cycle {cycle_num}/2] Squeeze Pelvic Floor Inward & Upward (4s)</div>',
-                                unsafe_allow_html=True,
-                            )
-                        elif cycle_elapsed < 8:
-                            st.markdown(
-                                f'<div class="contract-box">🛑 [Cycle {cycle_num}/2] Hold Position (4s)</div>',
-                                unsafe_allow_html=True,
-                            )
-                        else:
-                            st.markdown(
-                                f'<div class="contract-box">😌 [Cycle {cycle_num}/2] Fully Release & Relax Pelvic Floor (6s)</div>',
-                                unsafe_allow_html=True,
-                            )
+                    cycle_time = elapsed % 24
+
+                    if cycle_time < 10:
+                        st.markdown(
+                            '<div class="contract-box" style="background:#e8f5e9 !important; border-color:#4caf50; color:#1b5e20 !important;">'
+                            '🖐️ Perform Downward Low-Pelvic Glide (10s)</div>',
+                            unsafe_allow_html=True,
+                        )
+                    elif cycle_time < 14:
+                        st.markdown(
+                            '<div class="contract-box" style="background:#ffebee !important; border-color:#f44336; color:#b71c1c !important;">'
+                            '⚡ Squeeze Pelvic Floor Inward & Upward (4s)</div>',
+                            unsafe_allow_html=True,
+                        )
+                    elif cycle_time < 18:
+                        st.markdown(
+                            '<div class="contract-box" style="background:#e3f2fd !important; border-color:#2196f3; color:#0d47a1 !important;">'
+                            '🛑 Hold Position (4s)</div>',
+                            unsafe_allow_html=True,
+                        )
                     else:
                         st.markdown(
-                            '<div class="contract-box">✅ Squeeze & Release cycles complete. Resume gliding again.</div>',
+                            '<div class="contract-box" style="background:#fff3e0 !important; border-color:#ff9800; color:#e65100 !important;">'
+                            '💨 Slow Exhale & Fully Release Pelvic Floor (6s)</div>',
                             unsafe_allow_html=True,
                         )
 
                 if "benefit_text" in step_info:
                     st.info(step_info["benefit_text"])
 
+                # Completion Handler
                 if remaining <= 0:
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
