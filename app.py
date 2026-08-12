@@ -403,7 +403,7 @@ def scroll_to_top():
                     el.style.height = '0px';
                 });
                 var container = doc.querySelector('.main') || doc.querySelector('[data-testid="stAppViewContainer"]');
-                if (container) { container.scrollTop = 0; }
+                if (containers) { container.scrollTop = 0; }
                 window.parent.scrollTo({ top: 0, behavior: 'instant' });
             }
             var tries = 0;
@@ -489,7 +489,7 @@ def log_session_to_csv(name: str, protocol_name: str, rating, notes: str):
 # ==========================================
 # 6. SESSION STATE INIT
 # ==========================================
-DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Flush Protocol"
+DEFAULT_PROTOCOL = "Kinetic Synergy: The Core, Hip & Pelvic Release Protocol"
 
 _defaults = {
     "app_page": PAGE_PROFILE,
@@ -529,7 +529,7 @@ manual_lymph_steps = [
             " cycle (squeeze 4s, release 6s). Follow with featherlight outward"
             " manual sweeps along the inner groin crease for 30 seconds."
         ),
-        "goal": "Safely stimulates primary drainage routes using tactile control without mechanical percussion.",
+        "goal": "Activates primary lower body lymphatic hubs using targeted manual stimulation and breathwork.",
         "benefit_text": "💡 Primary drainage routes are safely opened manually.",
         "switch_sides": False,
     },
@@ -545,7 +545,7 @@ manual_lymph_steps = [
             " Apply steady pressure into the TFL. Hold or make small circles"
             " (30 seconds per side)."
         ),
-        "goal": "Pre-releases lateral hip and thigh tension safely without percussion.",
+        "goal": "Releases restrictions in the lateral hip chain to restore fluid gait and neutral pelvic alignment.",
         "benefit_text": "💡 Lateral hip tension is safely pre-released.",
         "switch_sides": True,
     },
@@ -561,7 +561,7 @@ manual_lymph_steps = [
             " Apply a smooth downward glide toward the lower pelvis. Never"
             " press hard."
         ),
-        "goal": "Encourages mid-level fascial mobility and flattens upper-to-lower stomach contour.",
+        "goal": "Mobilizes mid-level abdominal fascia to release lower core rigidity and improve circulatory flow.",
         "benefit_text": "💡 Mid-level fascial mobility is safely encouraged.",
         "switch_sides": False,
     },
@@ -580,7 +580,7 @@ manual_lymph_steps = [
             " stroke with a stationary pause. Perform 2 pelvic floor"
             " contract-relax cycles during pause, and repeat."
         ),
-        "goal": "Rhythmically mobilizes lower core tissue against a stable skeletal barrier using body weight and hand pressure.",
+        "goal": "Integrates deep pelvic floor activation against a stable skeletal base to reset core stability patterns.",
         "benefit_text": "💡 Lower core tissue is mobilized against a safe skeletal barrier.",
         "switch_sides": False,
     },
@@ -596,7 +596,7 @@ manual_lymph_steps = [
             " relaxation, then curve outward and upward over the iliac crest"
             " in a V-shape."
         ),
-        "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes.",
+        "goal": "Encourages complete fluid drainage from the pelvic core toward primary lateral elimination pathways.",
         "benefit_text": "💡 Interstitial fluid is safely flushed toward lateral pathways.",
         "switch_sides": False,
     },
@@ -621,7 +621,7 @@ lymph_steps = [
             " fluid flush. Follow with featherlight, outward manual sweeps"
             " along the inner groin crease for 30 seconds."
         ),
-        "goal": "Opens primary lymphatic hubs, reduces fluid accumulation in the lower pelvis, and increases inner thigh flexibility.",
+        "goal": "Clears proximal lymphatic blockages and restores inner thigh flexibility by combining manual priming and active muscular pumping.",
         "benefit_text": "💡 Opens primary lymphatic hubs, reduces pelvic fluid accumulation, and improves inner thigh flexibility.",
         "switch_sides": False,
     },
@@ -638,7 +638,7 @@ lymph_steps = [
             " contract-relax cycle, then hold stationary with a featherlight"
             " touch for 30 seconds per side."
         ),
-        "goal": "Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
+        "goal": "Decompresses deep lateral hip tissue to unblock primary circulation routes and restore neutral pelvic rotational balance.",
         "benefit_text": "💡 Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
         "switch_sides": True,
     },
@@ -659,7 +659,7 @@ lymph_steps = [
             " downward. Perform slow, steady downward glides across the 10"
             " cm band directly below the navel for 45 seconds."
         ),
-        "goal": "Clears mid-level fascial tightness, breaks up localized water retention, and flattens the upper-to-lower stomach contour.",
+        "goal": "Softens sub-umbilical rigidity and breaks localized water retention to promote better circulatory flow in the lower core.",
         "benefit_text": "💡 Clears mid-level fascial tightness, breaks up water retention, and flattens lower stomach contour.",
         "switch_sides": False,
     },
@@ -682,7 +682,7 @@ lymph_steps = [
             " cycles during the pause phase, and repeat (total duration: 120"
             " seconds)."
         ),
-        "goal": "Targets dense pelvic fascia against a stable skeletal barrier, strengthens deep core activation for a flatter belly profile, and accelerates tissue drainage.",
+        "goal": "Targets deep fascial restrictions against a stable bone frame to strengthen core integration and dramatically improve deep circulatory pumping.",
         "benefit_text": "💡 Targets dense pelvic fascia against a skeletal barrier, strengthens deep core activation, and accelerates drainage.",
         "switch_sides": False,
     },
@@ -700,7 +700,7 @@ lymph_steps = [
             " curve outward and upward over the iliac crest (hip bone) in a"
             " V-shaped path for 90 seconds."
         ),
-        "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes, leaving the lower abdomen feeling uncompressed, light, and visibly toned.",
+        "goal": "Seals the session by ensuring complete circulatory and fluid drainage from the pelvic base toward primary lateral elimination pathways.",
         "benefit_text": "💡 Flushes all mobilized fluid toward peripheral routes, leaving lower abdomen light, uncompressed, and visibly toned.",
         "switch_sides": False,
     },
@@ -714,7 +714,7 @@ hip_steps = [
         "distance": "Outer hip flare (TFL insertion)",
         "where": "Just below the hard bony iliac crest of the outer hip.",
         "action": "High speed at a 45-degree angle. Maintain steady contact for 60 seconds per side.",
-        "goal": "Unloads TFL tension to clear lateral restrictions before high-velocity kicks.",
+        "goal": "Disarms lateral muscular guarding at the TFL insertion to restore unrestricted hip rotational velocity.",
         "benefit_text": "💡 Continuous pressure drops protective lateral muscle guarding.",
         "switch_sides": True,
     },
@@ -725,7 +725,7 @@ hip_steps = [
         "distance": "Upper-outer gluteal region",
         "where": "Posterior to the TFL across the upper glute shelf.",
         "action": "Medium speed. Smooth circular sweeps and stationary holds for 60 seconds per side.",
-        "goal": "Restores lateral pelvic stability and hip abduction range.",
+        "goal": "Optimizes lateral pelvic stabilization patterns to maximize peak ground force production during single-leg drive.",
         "benefit_text": "💡 Stabilizing glute fibers enhances single-leg balance during chambering.",
         "switch_sides": True,
     },
@@ -736,7 +736,7 @@ hip_steps = [
         "distance": "Deep posterior hip pocket",
         "where": "Center of the glute tracking toward the greater trochanter.",
         "action": "Medium-high speed. Targeted stationary holds on tender trigger points for 60 seconds per side.",
-        "goal": "Releases deep rotators to unlock fluid end-range rotation for turning and spinning kicks.",
+        "goal": "Unlocks fluid end-range hip rotation by releasing deep rotational restrictions, improving turning kick fluidity.",
         "benefit_text": "💡 Releasing deep rotators restores full internal/external rotational mobility.",
         "switch_sides": True,
     },
@@ -747,7 +747,7 @@ hip_steps = [
         "distance": "Upper front thigh",
         "where": "Just below the front hip bone (ASIS), tracking down the quad.",
         "action": "Medium speed. Slow longitudinal sweeps for 60 seconds per side.",
-        "goal": "Disarms neural brakes on the anterior chain to prevent hip locking during extension.",
+        "goal": "Disrupts neural flexor guarding on the anterior chain to allow for cleaner, faster, vertical chamber acceleration.",
         "benefit_text": "💡 Disrupted guarding allows for cleaner vertical leg chamber acceleration.",
         "switch_sides": True,
     },
@@ -758,7 +758,7 @@ hip_steps = [
         "distance": "Deep inner hip crease",
         "where": "Internal to the ASIS bone in the soft pocket of the hip crease.",
         "action": "Low speed, featherlight touch. Gentle stationary holds for 60 seconds per side.",
-        "goal": "Relieves deep psoas hypertonicity without excessive pressure on vascular structures.",
+        "goal": "Decompresses deep psoas hypertonicity using safe mechanical resonance to achieve deep, high knee-drive capabilities.",
         "benefit_text": "💡 Softening the deep psoas unlocks high knee-drive capabilities.",
         "switch_sides": True,
     },
@@ -773,7 +773,7 @@ hip_steps = [
             " tilt), engage the glute on the trailing leg, and gently shift"
             " hips forward. Hold or lightly pulse for 60 seconds per side."
         ),
-        "goal": "Integrates tissue release into active end-range hip extension to lock in kick chambering gains.",
+        "goal": "Converts passive tissue mobility gains into stable, dynamic end-range performance required for kicking and jumping.",
         "benefit_text": "💡 Active lunge stretching converts passive tissue release into usable athletic mobility.",
         "switch_sides": True,
     },
@@ -787,7 +787,7 @@ forearm_steps = [
         "distance": "Outer Forearm",
         "where": "Lateral Epicondyle & Extensor Mass",
         "action": "Med-High Speed. Sweeping motion. (90s per side)",
-        "goal": "Relieve tension in the Tennis/Padel Elbow Zone.",
+        "goal": "Decompresses the Tennis/Padel Elbow Zone and extensor mass tension.",
         "benefit_text": "💡 Sweeping motions relax the extensor mass.",
         "switch_sides": True,
     },
@@ -798,7 +798,7 @@ forearm_steps = [
         "distance": "Inner Forearm",
         "where": "Medial Epicondyle & Flexor Belly",
         "action": "Med Speed. Deep pulses. (90s per side)",
-        "goal": "Release the Golfer Elbow Zone.",
+        "goal": "Targets the Golfer Elbow Zone to release flexor chain hypertonicity.",
         "benefit_text": "💡 Deep pulses release inner forearm flexors.",
         "switch_sides": True,
     },
@@ -809,7 +809,7 @@ forearm_steps = [
         "distance": "Back of Shoulder",
         "where": "Posterior Capsule & Infraspinatus",
         "action": "High Speed. Circular motions. (120s per side)",
-        "goal": "Improve posterior shoulder mobility.",
+        "goal": "Unlocks fluid posterior shoulder rotational mobility.",
         "benefit_text": "💡 Circular motions free up the shoulder capsule.",
         "switch_sides": True,
     },
@@ -820,7 +820,7 @@ forearm_steps = [
         "distance": "Front of Shoulder/Chest",
         "where": "Bicep Tendon & Pec Minor",
         "action": "High Speed. Fast, light sweeps. (120s per side)",
-        "goal": "Provide anterior shoulder release.",
+        "goal": "Relieves anterior shoulder pulling and pec minor guarding.",
         "benefit_text": "💡 Fast sweeps relieve anterior pulling.",
         "switch_sides": True,
     },
@@ -834,7 +834,7 @@ ankle_steps = [
         "distance": "Calves & Lower Leg",
         "where": "Soleus & Gastrocnemius",
         "action": "High Speed. Sweeping glides. (120s per side)",
-        "goal": "Calf & Achilles Decompression.",
+        "goal": "Optimizes ankle dorsiflexion and calf decompression.",
         "benefit_text": "💡 Sweeping glides flush the posterior chain.",
         "switch_sides": True,
     },
@@ -845,7 +845,7 @@ ankle_steps = [
         "distance": "Outer and Front Lower Leg",
         "where": "Peroneal & Anterior Tibialis",
         "action": "Med-High Speed. Longitudinal sweeps. (90s per side)",
-        "goal": "Target the Lateral Stability Zone.",
+        "goal": "Targets the Lateral Stability Zone to optimize ankle stability.",
         "benefit_text": "💡 Longitudinal sweeps restore lower leg balance.",
         "switch_sides": True,
     },
@@ -856,7 +856,7 @@ ankle_steps = [
         "distance": "Inner Ankle/Lower Leg",
         "where": "Tibialis Posterior & Deep Ankle Pocket",
         "action": "Med Speed. Targeted pulses. (90s per side)",
-        "goal": "Provide Medial Support.",
+        "goal": "Releases deep rotators to restore medial support structure integrity.",
         "benefit_text": "💡 Targeted pulses release deep ankle pockets.",
         "switch_sides": True,
     },
@@ -867,9 +867,96 @@ ankle_steps = [
         "distance": "Sole of foot and calf",
         "where": "Plantar Fascia & Calf",
         "action": "High Speed (sole). Roll 30s per foot, followed by Active stretch for 30s per leg.",
-        "goal": "Ground Force Integration.",
+        "goal": "Integrates ground-force transmission mechanics through the entire chain.",
         "benefit_text": "💡 Rolling and stretching completes ground force integration.",
         "switch_sides": True,
+    },
+]
+
+synergy_steps = [
+    {
+        "step": "Step 1: Sub-Umbilical Abdominal & Pelvic Framing",
+        "duration": 45,
+        "image_file": "step1_priming.png", # Fallback image used
+        "positioning": "Hook-lying position (knees bent, feet flat) with lower back pressed gently flat.",
+        "distance": "Sub-umbilical band (below navel) down to the pubic bone.",
+        "where": "Soft sub-umbilical abdominal area.",
+        "action": "Use low-speed vibration or flat-fingered downward glides (45 degrees) across the lower stomach. Slow belly inhales and exhales.",
+        "goal": "Mobilizes mid-level fascial mobility to soften abdominal rigidity, flatten core contour, and initiate circulation.",
+        "benefit_text": "💡 Softens core rigidity, flattens contours, and initiates local circulation.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Step 2: Tensor Fasciae Latae (TFL) & Lateral Hip Release",
+        "duration": 60,
+        "image_file": "step2_tfl_corrected.png", # NEW CORRECTED IMAGE (Side-lying, Outer Hip)
+        "positioning": "Side-lying pose (lie on left side to work right hip).",
+        "distance": "Thick muscle belly on outer hip flare (just below iliac crest).",
+        "where": "Tensor Fasciae Latae (TFL).",
+        "action": "Steady, stationary compression or small circular pulses at low speed (30s per side).",
+        "goal": "Disarms protective lateral guarding in the TFL insertion to instantly unblock pelvic rotational mobility.",
+        "benefit_text": "💡 Disarms lateral muscle guarding, instantly unlocking pelvic rotational mobility.",
+        "switch_sides": True,
+    },
+    {
+        "step": "Step 3: Deep External Rotators & Gluteal Release",
+        "duration": 60,
+        "image_file": "step3_glute_corrected.png", # NEW CORRECTED IMAGE (Supine, Upper/Outer Glute)
+        "positioning": "Supine (on back) in 'figure-four' stretch (crossed ankle over knee).",
+        "distance": "Upper-outer quadrant of the gluteal muscle belly.",
+        "where": "Posterior hip pocket (targeting Piriformis/deep rotators).",
+        "action": "Medium speed pulses or stationary compression (30s per side).",
+        "goal": "Targets deep gluteal restrictions to unblock sacral nerve signaling (S2-S4) and unleashed circulatory flow to the pelvic floor.",
+        "benefit_text": "💡 Releases deep rotators to unblock sacral nerve pathways and pelvic blood flow.",
+        "switch_sides": True,
+    },
+    {
+        "step": "Step 4: The Vascular Sponge (Pelvic Floor Pumping & Breath-Hold)",
+        "duration": 90,
+        "image_file": "step4_pumping.png", # No-device image used
+        "positioning": "Reclined hook-lying position (feet flat) or relaxed butterfly posture.",
+        "distance": "Deep pelvic floor musculature (Pubococcygeus).",
+        "where": "Internal core floor structures.",
+        "action": "Device OFF. Inhale deeply, contract pelvic floor and lower abs inward/upward; HOLD breath and tension (4s); Exhale, RELEASE completely and heavily (6s). Repeat rhythmically.",
+        "goal": "Trains neuromuscular response and acts as a dynamic vascular pump—squeezing old fluid out and flooding tissues with fresh, warm arterial blood.",
+        "benefit_text": "💡 Trains reflex arcs, boosts local blood engorgement, and spikes local sensory responsiveness.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Step 5: Pubic Arch Resonance & Stationary Vibration Hold",
+        "duration": 120,
+        "image_file": "step5_pubic_corrected.png", # NEW CORRECTED IMAGE (Stationary, Against Arch)
+        "positioning": "Stable hook-lying position with a sustained posterior pelvic tilt (lower back flat against floor).",
+        "distance": "Soft tissue immediately overlying the bony pubic arch (symphysis).",
+        "where": "Lower center base where soft tissue meets the pubic frame.",
+        "action": "Place soft head or air-cushion attachment directly against the upper pubic bone frame. Low-to-medium speed; COMPLETELY STATIONARY hold (no movement) (30s blocks). Breathe slowly.",
+        "goal": "Uses skeletal resonance to transmit mechanical energy deep into the sacral plexus and suspensory ligaments, causing intense localized warming and engorgement.",
+        "benefit_text": "💡 Uses skeletal resonance to target deep nerve endings, driving intense localized warmth and blood pooling.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Step 6: The Plateau Reset (Sensory Integration Pause)",
+        "duration": 45,
+        "image_file": "step6_reset.png", # No-device, passive pose image used
+        "positioning": "Open knees into fully relaxed butterfly position (soles of feet together).",
+        "distance": "Entire pelvic core basin.",
+        "where": "Passive reclined posture.",
+        "action": "HANDS-OFF: Turn device off and remove all mechanical contact. Lie in total stillness, focusing on internal warmth and throbbing.",
+        "goal": "Mandatory stillness phase to prevent sensory adaptation fatigue, allowing the nervous system to process the intense buildup.",
+        "benefit_text": "💡 Prevents sensory fatigue, letting neural receptors process the buildup to maximize impact.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Step 7: Inward Crescent V-Sweep (The Engorgement Seal)",
+        "duration": 60,
+        "image_file": "step7_inward_corrected.png", # NEW CORRECTED IMAGE (Butterfly, INWARD arc)
+        "positioning": "Maintained relaxed butterfly leg positioning.",
+        "distance": "From outer hip creases inward and downward along the inguinal ligament.",
+        "where": "Lower center base sweeping outward towards the hip bones.",
+        "action": "Execute slow downward toward center base, pause 5s with final pelvic relaxation, then light outward curve over hip bone, then sweep inward and downward towards pubic arch in a crescent path.",
+        "goal": "Traps and seals the warm blood within the deep pelvic core, leaving the region fully engorged, highly sensitive, and fully revitalized.",
+        "benefit_text": "💡 Seals the circulation increase and locks in deep tissue warmth and responsiveness.",
+        "switch_sides": False,
     },
 ]
 
@@ -896,14 +983,32 @@ MASSAGE_GUN_INFO_HTML = """
 # live together, keyed by name, instead of being scattered across four
 # separate parallel structures that had to be kept in sync by hand.
 PROTOCOLS = {
+    "Kinetic Synergy: The Core, Hip & Pelvic Release Protocol": {
+        "enabled": True,
+        "badge": "Active (Synergy)",
+        "preview_img": "step1A_synergy.png",  # Fallback image used
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why it must be done:</b><br>
+This routine integrates lower abdominal shaping, hip flexor release, and deep pelvic vasocongestion (blood pooling). It is specifically engineered to target increased tissue engorgement, pudendal nerve pathway responsiveness, and peak physiological conditioning through structured breath-tension cycles and targeted vibration.<br><br>
+<b>⏱️ How often:</b><br>
+2 to 3 times per week. Use a quiet, relaxed environment to fully process the sensory feedback.<br><br>
+<b>✨ Key Benefits:</b><br>
+• <b>Unlock Deep core mobility:</b> Breaks up localized fascial rigidity in the lower stomach.<br>
+• <b>Maximize localized circulation:</b> Uses rhythmic muscle pumping to boost deep arterial inflow.<br>
+• <b>Targeted Nerve Activation:</b> Stimulates deep nerve ending resonance near the pubic frame.
+</div>
+""",
+        "steps": synergy_steps,
+    },
     "Advanced Lower Pelvic & Abdominal Flush Protocol": {
         "enabled": True,
         "badge": "Active",
         "preview_img": "step1A.png",
         "description_html": """
 <div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-Optimizes posture, leg positioning, and core engagement during this routine to maximize lymphatic fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
+<b>🎯 Why it must be done:</b><br>
+Decompresses deep pelvic and fascial tension to reset proper core-to-extremity performance patterns and restore unrestricted circulatory flow to the pelvic base.<br><br>
 <b>⏱️ How often:</b><br>
 2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. Best performed after exercise or a warm shower to optimize circulation and tissue elasticity.
 </div>
@@ -916,8 +1021,8 @@ Optimizes posture, leg positioning, and core engagement during this routine to m
         "preview_img": "",
         "description_html": """
 <div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
+<b>🎯 Why it must be done:</b><br>
+A safe, manual alternative using targeted compression and effleurage techniques to reset pelvic tissue integrity and encourage deep circulatory drainage.<br><br>
 <b>⏱️ Frequency & Best Time:</b><br>
 2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
 </div>
@@ -931,11 +1036,11 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-High-velocity, ballistic movements trigger defensive muscle guarding. This 6-step protocol disarms neural "brakes" and prevents the hip flexors and rotators from locking up under mechanical strain.<br><br>
+ ballistic movements trigger defensive guarding. This protocol targets rapid decompression of the deep hip rotators and adductor chain to unleash unrestricted rotational velocity.<br><br>
 <b>✨ Key Benefits:</b><br>
-• <b>Free Vertical Chambering:</b> Removes neurological restrictions at the adductor/pubic interface.<br>
-• <b>Full Rotational Mobility:</b> Releases deep hip rotators to unlock fluid end-range rotation.<br>
-• <b>Active Integration:</b> Concludes with dynamic low lunges to lock in athletic mobility gains.
+• <b>Free Vertical Chambering:</b> Disrupts neural guarding at the anterior/adductor interface.<
+• <b>Max Peak Rotational Power:</b> Unlocks deep external rotators for explosive turning and spinning kicks.<
+• <b>Active Integration:</b> concludes with dynamic mobility to convert passive tissue gains into active performance.
 </div>
 """,
         "steps": hip_steps,
@@ -947,7 +1052,7 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate strain while restoring posterior shoulder mobility.
+overhead snaps and racquet impacts overload the lateral epicondyle and posterior capsule. Relieves elbow tension while restoring posterior shoulder rotational mobility.
 </div>
 """,
         "steps": forearm_steps,
@@ -959,7 +1064,7 @@ Repetitive overhead snaps and racquet impacts overload the lateral epicondyle an
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Restricted ankle dorsiflexion forces the knees and lower back to absorb excess rotational and impact shear forces during directional changes. Unlocking the soleus and peroneal complex restores proper ground-force transmission.
+ ankle dorsiflexion forces the knees and lower back to absorb excess rotational forces. Unlocking the soleus and peroneal complex restores proper ground-force transmission.
 </div>
 """,
         "steps": ankle_steps,
@@ -974,6 +1079,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 }
 
 PROTOCOL_FALLBACK_IMG = {
+    "Kinetic Synergy: The Core, Hip & Pelvic Release Protocol": "step1A_synergy.png",
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Flush Protocol": "step1A.png",
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "step5.png",
@@ -987,27 +1093,27 @@ PROTOCOL_FALLBACK_IMG = {
 # --- PAGE 1: USER PROFILE ---
 if st.session_state.app_page == PAGE_PROFILE:
     scroll_to_top()
-    render_header("KineticPulse", "Start your session")
+    render_header("KineticPulse", "Configure your guided routine")
 
     st.markdown(
         """
 <div class="protocol-card">
     <h3 style="margin-top:0; color:#1a1a1a;">Welcome</h3>
-    <p style="color: #4a5568;">Please enter your profile details to configure your guided routine.</p>
+    <p style="color: #4a5568;">Enter your profile details to configure your specialized kinetic wellness session.</p>
 </div>
 """,
         unsafe_allow_html=True,
     )
 
-    entered_name = st.text_input("Your Name:", value=st.session_state.user_name, max_chars=80)
+    entered_name = st.text_input("Practitioner Name:", value=st.session_state.user_name, max_chars=80)
     entered_notes = st.text_area(
-        "Session Notes / Focus Areas:", value=st.session_state.session_notes, max_chars=500
+        "Current Session Focus / Tension Areas:", value=st.session_state.session_notes, max_chars=500
     )
 
     render_support_box()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Continue to Protocols", type="primary"):
+    if st.button("Configure Protocols", type="primary"):
         if entered_name.strip():
             # Sanitize before storing — this value later gets interpolated
             # into unsafe_allow_html markdown and into the CSV log.
@@ -1023,16 +1129,16 @@ if st.session_state.app_page == PAGE_PROFILE:
 # --- PAGE 2: PROTOCOL SELECTOR ---
 elif st.session_state.app_page == PAGE_SELECT:
     scroll_to_top()
-    render_header("Choose Focus / Info", f"Welcome back, {st.session_state.user_name}")
+    render_header("Protocol Selector", f"Configure routine, {st.session_state.user_name}")
 
     st.markdown(
         "<h3 style='text-align: center; color: #333; margin-bottom: 20px;'>Select"
-        " training focus:</h3>",
+        " session focus:</h3>",
         unsafe_allow_html=True,
     )
 
     st.markdown('<div class="selection-box">', unsafe_allow_html=True)
-    st.caption("Tap an active protocol to select:")
+    st.caption("Select an active performance protocol:")
 
     for p_name, p_info in PROTOCOLS.items():
         is_selected = st.session_state.selected_protocol == p_name
@@ -1064,7 +1170,7 @@ elif st.session_state.app_page == PAGE_SELECT:
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)":
         st.markdown(
-            "<h4 style='color:#0c38ff; margin-top:0;'>🌟 Safe Manual Option</h4>",
+            "<h4 style='color:#0c38ff; margin-top:0;'>🌟 Specialized Manual Protocol</h4>",
             unsafe_allow_html=True,
         )
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
@@ -1084,13 +1190,13 @@ elif st.session_state.app_page == PAGE_SELECT:
     st.markdown("<br>", unsafe_allow_html=True)
     col_back, col_next = st.columns(2)
     with col_back:
-        if st.button("Back", type="secondary"):
+        if st.button("Profile Back", type="secondary"):
             st.session_state.app_page = PAGE_PROFILE
             scroll_to_top()
             st.rerun()
     with col_next:
         is_info_only = chosen_option == "Massage Gun General Information & Usage Tips"
-        button_label = "Review Complete" if is_info_only else "Continue to Protocol"
+        button_label = "Info Complete" if is_info_only else "Begin Session"
         if st.button(button_label, type="primary"):
             st.session_state.selected_protocol = chosen_option
             st.session_state.current_step_index = 0
@@ -1105,9 +1211,9 @@ elif st.session_state.app_page == PAGE_SESSION:
 
     protocol_steps = PROTOCOLS[st.session_state.selected_protocol]["steps"]
 
-    render_header("Routine Session")
+    render_header("Interactive Guide")
 
-    if st.button("Change Protocol / View Info", type="secondary"):
+    if st.button("Configure Protocol Back", type="secondary"):
         st.session_state.app_page = PAGE_SELECT
         scroll_to_top()
         st.rerun()
@@ -1124,8 +1230,7 @@ elif st.session_state.app_page == PAGE_SESSION:
         )
 
         st.markdown(
-            '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact,'
-            " strict pelvic positioning, and calm breathing.</div>",
+            '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain strict postural symmetry, calmbell breathing, and avoid excessive mechanical pressure.</div>',
             unsafe_allow_html=True,
         )
 
@@ -1133,29 +1238,44 @@ elif st.session_state.app_page == PAGE_SESSION:
             st.markdown(
                 """
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
-                💡 <b>How to perform Pelvic Floor Contract & Release:</b><br>
-                • <b>Contract (Squeeze):</b> Engage your pelvic floor muscles as if trying to stop the flow of urine or drawing your lower belly inward and upward. Hold firmly for 4 seconds.<br>
-                • <b>Release (Relax):</b> Fully let go and relax the muscles completely for 6 seconds, allowing interstitial fluids to drain naturally.
+                💡 <b>Performing Pelvic Floor Contract & Release:</b><br>
+                • <b>Contract (Squeeze):</b> engage your pelvic floor muscles as if stopping flow or drawing lower belly inward and upward. Hold firmly for 4 seconds.<br>
+                • <b>Release (Relax):</b> let go and relax the muscles completely for 6 seconds to optimize fluid drainage and neural reset.
             </div>
             """,
                 unsafe_allow_html=True,
             )
 
+        # Non-device steps and specific manual protocols use other fallbacks
+        is_pumping_step = step_info.get("image_file", "") == "step4_pumping.png"
+        is_synergy_first = step_info.get("image_file", "") == "step1_priming.png"
+        
         img_path = resolve_image_path(step_info.get("image_file", ""))
-        if not img_path and st.session_state.selected_protocol != (
-            "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
-        ):
-            fallback_file = PROTOCOL_FALLBACK_IMG.get(
-                st.session_state.selected_protocol, "step1.jpg"
-            )
-            img_path = resolve_image_path(fallback_file)
+        
+        # Determine fallback if not found
+        if not img_path:
+            if not is_pumping_step and st.session_state.selected_protocol != (
+                "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
+            ):
+                fallback_file = PROTOCOL_FALLBACK_IMG.get(
+                    st.session_state.selected_protocol, "step1.jpg"
+                )
+                img_path = resolve_image_path(fallback_file)
 
         extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
         if img_path:
-            st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+            st.image(img_path, use_container_width=True, caption=f"Placement Guide: {step_info['step']}")
         if extra_img_path:
             st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
+        elif (
+            not img_path
+            and not extra_img_path
+            and is_pumping_step
+        ):
+             st.info(
+                "ℹ️ Active Muscular Pumping: Device OFF. Use hands gently on lower belly as a breath reminder."
+            )
         elif (
             not img_path
             and not extra_img_path
@@ -1163,23 +1283,22 @@ elif st.session_state.app_page == PAGE_SESSION:
             == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
         ):
             st.info(
-                "ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as"
-                " instructed below (no hardware required)."
+                "ℹ️ Manual Protocol: Uses hands, palms, and body positioning as instructed (no hardware required)."
             )
 
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
         st.markdown(
             f"""<div class="metric-container">
-{pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
+{pos_info}<b>📍 Targeted Chain:</b> {step_info['distance']}<br>
 <b>🗺️ Location:</b> {step_info['where']}<br>
 <b>⚡ Action:</b> {step_info['action']}<br>
-<b>🎯 Goal:</b> {step_info['goal']}
+<b>🎯 Performance Goal:</b> {step_info['goal']}
 </div>""",
             unsafe_allow_html=True,
         )
 
         total_duration_secs = step_info["duration"]
-        st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
+        st.markdown(f"**Step Duration:** {total_duration_secs} seconds")
 
         # --- Non-blocking timer -------------------------------------------------
         if not st.session_state.timer_running:
@@ -1188,7 +1307,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.session_state.timer_start = time.time()
                 st.rerun()
         else:
-            if st.button("Stop / Reset Timer", type="secondary"):
+            if st.button("Pause / Reset Timer", type="secondary"):
                 st.session_state.timer_running = False
                 st.session_state.timer_start = None
                 st.rerun()
@@ -1203,102 +1322,30 @@ elif st.session_state.app_page == PAGE_SESSION:
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
                 
-                # Check for "Low-Pelvic" to apply to both the manual and massage gun versions
-                is_step3 = "Low-Pelvic" in step_info["step"]
-
+                # Check for "Low-Pelvic" or "Synergy Step 5" or "Synergy Step 3"
+                is_manual_squeezer = "Low-Pelvic Glide" in step_info["step"]
+                is_pumping_active = "The Vascular Sponge" in step_info["step"] or is_manual_squeezer
+                
                 mins, secs = divmod(remaining, 60)
 
                 if needs_switching:
                     if elapsed < half_time:
                         st.markdown(
                             '<div class="side-visual-left"><h1 style="font-size:3.5rem; margin:0;">🧍\u200d♂️ ⬅️</h1>'
-                            '<h3 style="color:#0d47a1; margin:0; font-weight: bold;">WORKING: LEFT SIDE</h3></div>',
+                            '<h3 style="color:#0d47a1; margin:0; font-weight: bold;">WORKING: LEFT CHAIN</h3></div>',
                             unsafe_allow_html=True,
                         )
                     else:
                         st.markdown(
                             '<div class="side-visual-right"><h1 style="font-size:3.5rem; margin:0;">➡️ 🧍\u200d♂️</h1>'
-                            '<h3 style="color:#1b5e20; font-weight: bold;">WORKING: RIGHT SIDE</h3></div>',
+                            '<h3 style="color:#1b5e20; font-weight: bold;">WORKING: RIGHT CHAIN</h3></div>',
                             unsafe_allow_html=True,
                         )
                         if elapsed == half_time:
-                            st.toast("🔄 Switch sides! Move to opposite limb.", icon="👉")
+                            st.toast("🔄 Switch sides to opposite limb.", icon="👉")
                 else:
                     st.markdown(
-                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧍\u200d♂️</h1>'
-                        '<h3 style="color:#e65100; font-weight: bold;">WORKING: CENTER ZONE / BILATERAL</h3></div>',
-                        unsafe_allow_html=True,
-                    )
-
-                st.markdown(
-                    f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>",
-                    unsafe_allow_html=True,
-                )
-                st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
-
-                if is_step3:
-                    # New timing requirements:
-                    # 10s glide (5s inhale, 5s exhale) -> 20s of squeezes (2x [4s squeeze, 6s relax])
-                    # Total cycle = 30 seconds
-                    cycle = elapsed % 30
-                    if cycle < 10:
-                        if cycle < 5:
-                            st.markdown(
-                                '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
-                                unsafe_allow_html=True,
-                            )
-                        else:
-                            st.markdown(
-                                '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
-                                unsafe_allow_html=True,
-                            )
-                        st.markdown(
-                            '<div class="contract-box">⚡ Action: Glide Downward to Hold Point (10s)...</div>',
-                            unsafe_allow_html=True,
-                        )
-                    else:
-                        # Map both the 10-19s and 20-29s chunks into identical 10s blocks
-                        sub_cycle = (cycle - 10) % 10
-                        if sub_cycle < 4:
-                            st.markdown(
-                                '<div class="breath-box">😮\u200d💨 Exhale as you squeeze...</div>',
-                                unsafe_allow_html=True,
-                            )
-                            st.markdown(
-                                '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward'
-                                " & Upward (Hold 4s)...</div>",
-                                unsafe_allow_html=True,
-                            )
-                        else:
-                            st.markdown(
-                                '<div class="breath-box">🌬️ Inhale slowly as you release...</div>',
-                                unsafe_allow_html=True,
-                            )
-                            st.markdown(
-                                '<div class="contract-box">😌 Action: Fully Release & Relax'
-                                " Pelvic Floor (6s)...</div>",
-                                unsafe_allow_html=True,
-                            )
-                else:
-                    if (elapsed % 10) < 5:
-                        st.markdown(
-                            '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
-                            unsafe_allow_html=True,
-                        )
-                    else:
-                        st.markdown(
-                            '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
-                            unsafe_allow_html=True,
-                        )
-
-                if "benefit_text" in step_info:
-                    st.info(step_info["benefit_text"])
-
-                if remaining <= 0:
-                    st.session_state.timer_running = False
-                    st.session_state.timer_start = None
-                    st.markdown(
-                        "<h3 style='text-align: center; color: #0c38ff;'>✅ Step Complete!</h3>",
+                        '<div class="side-visual-center"><h1 style="font-size:3.5rem; margin:0;">🧍\u200d♂️🏆 **Step Complete!🏆** Prepare for the next phase.</h3>",
                         unsafe_allow_html=True,
                     )
                     st.balloons()
@@ -1309,14 +1356,14 @@ elif st.session_state.app_page == PAGE_SESSION:
         col1, col2 = st.columns(2)
         with col1:
             if current_idx > 0:
-                if st.button("Back", type="secondary"):
+                if st.button("Previous Step", type="secondary"):
                     st.session_state.current_step_index -= 1
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
                     scroll_to_top()
                     st.rerun()
         with col2:
-            next_label = "Next" if current_idx < len(protocol_steps) - 1 else "Finish"
+            next_label = "Next Step" if current_idx < len(protocol_steps) - 1 else "Complete Routine"
             if st.button(next_label, type="primary"):
                 st.session_state.current_step_index += 1
                 st.session_state.timer_running = False
@@ -1325,7 +1372,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.rerun()
     else:
         st.markdown("---")
-        st.success("🏆 **Protocol Completed Successfully!** Great work.")
+        st.success("🥇 **Performance Routine Completed!🏆** Great work on optimizing your chain.")
         render_support_box()
 
         log_session_to_csv(
@@ -1335,7 +1382,7 @@ elif st.session_state.app_page == PAGE_SESSION:
             st.session_state.session_notes,
         )
 
-        if st.button("Start New Session", type="primary"):
+        if st.button("Begin New Session", type="primary"):
             st.session_state.app_page = PAGE_PROFILE
             st.session_state.current_step_index = 0
             scroll_to_top()
@@ -1345,12 +1392,12 @@ elif st.session_state.app_page == PAGE_SESSION:
 # --- PAGE 4: SECURE ADMIN LOGIN ---
 elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
     scroll_to_top()
-    render_header("Admin Login", "Data Access")
+    render_header("Admin Portal", "System Data Access")
 
     st.markdown(
         """
 <div class="protocol-card">
-    <p style="color:#1a1a1a;">Please enter the administrator password to view session logs.</p>
+    <p style="color:#1a1a1a;">enter the administrator credential to access practitioner logs.</p>
 </div>
 """,
         unsafe_allow_html=True,
@@ -1358,9 +1405,8 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
 
     if ADMIN_PASSWORD is None:
         st.error(
-            "⚠️ Admin password is not configured. Add `admin_password` to"
-            " `.streamlit/secrets.toml` (locally) or the app's Secrets"
-            " settings (Streamlit Community Cloud)."
+            "⚠️ Admin authentication is not configured. Configure `admin_password` inside"
+            " `.streamlit/secrets.toml` locally or in the app's Community Cloud Secrets settings."
         )
     else:
         now = time.time()
@@ -1368,10 +1414,10 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
 
         if locked_out:
             wait_secs = int(st.session_state.admin_locked_until - now)
-            st.error(f"🔒 Too many failed attempts. Try again in {wait_secs}s.")
+            st.error(f"🔒 System locked due to access failures. Retry available in {wait_secs}s.")
         else:
-            admin_password = st.text_input("Password:", type="password")
-            if st.button("Login", type="primary"):
+            admin_password = st.text_input("Administrator Credential:", type="password")
+            if st.button("Authenticate", type="primary"):
                 if admin_password == ADMIN_PASSWORD:
                     st.session_state.admin_authenticated = True
                     st.session_state.admin_attempts = 0
@@ -1383,13 +1429,13 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
                     if st.session_state.admin_attempts >= ADMIN_MAX_ATTEMPTS:
                         st.session_state.admin_locked_until = now + ADMIN_LOCKOUT_SECONDS
                         st.session_state.admin_attempts = 0
-                        st.error("🔒 Too many failed attempts. Locked out for 60 seconds.")
+                        st.error("🔒 Maximum authentication failures. System locked for 60 seconds.")
                     else:
                         remaining_tries = ADMIN_MAX_ATTEMPTS - st.session_state.admin_attempts
-                        st.error(f"❌ Incorrect password. {remaining_tries} attempt(s) remaining.")
+                        st.error(f"❌ Incorrect credential. {remaining_tries} authentication attempt(s) remaining.")
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Back to App", type="secondary"):
+    if st.button("Profile Back", type="secondary"):
         st.session_state.app_page = PAGE_PROFILE
         scroll_to_top()
         st.rerun()
@@ -1399,17 +1445,17 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
 elif st.session_state.app_page == PAGE_ADMIN_VIEW:
     scroll_to_top()
     if not st.session_state.admin_authenticated:
-        st.warning("🔒 You must be logged in to access this page.")
+        st.warning("🔒 This portal requires authentication.")
         st.session_state.app_page = PAGE_ADMIN_LOGIN
         scroll_to_top()
         st.rerun()
     else:
-        render_header("Session Logs", "All User Activity Data")
+        render_header("Practitioner Logs", "Session Activity Data")
 
         if not os.path.exists(LOG_FILE_PATH):
             st.warning(
                 f"⚠️ The log file `{LOG_FILE_PATH}` does not exist yet. No sessions"
-                " have been recorded."
+                " have been recorded by the system."
             )
         else:
             df = pd.read_csv(LOG_FILE_PATH)
@@ -1420,7 +1466,7 @@ elif st.session_state.app_page == PAGE_ADMIN_VIEW:
                 st.dataframe(df, use_container_width=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Logout / Back to App", type="secondary"):
+        if st.button("Logout / Profile Back", type="secondary"):
             st.session_state.admin_authenticated = False
             st.session_state.app_page = PAGE_PROFILE
             scroll_to_top()
