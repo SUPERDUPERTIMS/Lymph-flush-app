@@ -466,7 +466,7 @@ def log_session_to_csv(name: str, protocol_name: str, rating, notes: str):
 # ==========================================
 # 6. SESSION STATE INITIALIZATION
 # ==========================================
-DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Flush Protocol"
+DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Protocol"
 
 _defaults = {
     "app_page": PAGE_PROFILE,
@@ -562,7 +562,7 @@ manual_lymph_steps = [
         "switch_sides": False,
     },
     {
-        "step": "Step 5: Outer Hip V-Sweep (The Flush)",
+        "step": "Step 5: Outer Hip V-Sweep",
         "duration": 90,
         "image_file": "",
         "positioning": "Return to butterfly leg positioning to fully open pelvic outlet.",
@@ -574,7 +574,7 @@ manual_lymph_steps = [
             " in a V-shape."
         ),
         "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes.",
-        "benefit_text": "💡 Interstitial fluid is safely flushed toward lateral pathways.",
+        "benefit_text": "💡 Interstitial fluid is safely directed toward lateral pathways.",
         "switch_sides": False,
     },
 ]
@@ -595,7 +595,7 @@ lymph_steps = [
         "action": (
             "Perform 1 pelvic floor contract-relax cycle (squeeze inward for 4"
             " seconds, fully release for 6 seconds) to generate a localized"
-            " fluid flush. Follow with featherlight, outward manual sweeps"
+            " fluid movement. Follow with featherlight, outward manual sweeps"
             " along the inner groin crease for 30 seconds."
         ),
         "goal": "Opens primary lymphatic hubs, reduces fluid accumulation in the lower pelvis, and increases inner thigh flexibility.",
@@ -677,8 +677,8 @@ lymph_steps = [
             " curve outward and upward over the iliac crest (hip bone) in a"
             " V-shaped path for 90 seconds."
         ),
-        "goal": "Flushes all mobilized fluid out toward major peripheral drainage routes, leaving the lower abdomen feeling uncompressed, light, and visibly toned.",
-        "benefit_text": "💡 Flushes all mobilized fluid toward peripheral routes, leaving lower abdomen light, uncompressed, and visibly toned.",
+        "goal": "Directs all mobilized fluid out toward major peripheral drainage routes, leaving the lower abdomen feeling uncompressed, light, and visibly toned.",
+        "benefit_text": "💡 Directs all mobilized fluid toward peripheral routes, leaving lower abdomen light, uncompressed, and visibly toned.",
         "switch_sides": False,
     },
 ]
@@ -805,14 +805,14 @@ forearm_steps = [
 
 ankle_steps = [
     {
-        "step": "Step 1: Soleus & Gastrocnemius Flush",
+        "step": "Step 1: Soleus & Gastrocnemius Cleanse",
         "duration": 240,
         "image_file": "step5.png",
         "distance": "Calves & Lower Leg",
         "where": "Soleus & Gastrocnemius",
         "action": "High Speed. Sweeping glides. (120s per side)",
         "goal": "Calf & Achilles Decompression.",
-        "benefit_text": "💡 Sweeping glides flush the posterior chain.",
+        "benefit_text": "💡 Sweeping glides restore movement across the posterior chain.",
         "switch_sides": True,
     },
     {
@@ -870,33 +870,19 @@ MASSAGE_GUN_INFO_HTML = """
 """
 
 PROTOCOLS = {
-    "Advanced Lower Pelvic & Abdominal Flush Protocol": {
+    "Advanced Lower Pelvic & Abdominal Protocol": {
         "enabled": True,
         "badge": "Active",
         "preview_img": "step1A.png",
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why it should be done:</b><br>
-Optimizes posture, leg positioning, and core engagement during this routine to maximize lymphatic fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
+Optimizes posture, leg positioning, and core engagement during this routine to maximize fluid clearance, release deep fascial tension, and help flatten the lower abdominal wall.<br><br>
 <b>⏱️ How often:</b><br>
 2 to 3 times per week, keeping total execution time between 5 and 7 minutes per session. Best performed after exercise or a warm shower to optimize circulation and tissue elasticity.
 </div>
 """,
         "steps": lymph_steps,
-    },
-    "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)": {
-        "enabled": True,
-        "badge": "Active (Manual)",
-        "preview_img": "",
-        "description_html": """
-<div class="metric-container">
-<b>🎯 Why it should be done:</b><br>
-A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
-<b>⏱️ Frequency & Best Time:</b><br>
-2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
-</div>
-""",
-        "steps": manual_lymph_steps,
     },
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": {
         "enabled": True,
@@ -913,6 +899,20 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
 </div>
 """,
         "steps": hip_steps,
+    },
+    "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": {
+        "enabled": False,
+        "badge": "Locked",
+        "preview_img": "",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why it should be done:</b><br>
+A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
+<b>⏱️ Frequency & Best Time:</b><br>
+2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
+</div>
+""",
+        "steps": manual_lymph_steps,
     },
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": {
         "enabled": False,
@@ -949,7 +949,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 
 PROTOCOL_FALLBACK_IMG = {
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
-    "Advanced Lower Pelvic & Abdominal Flush Protocol": "step1A.png",
+    "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "step5.png",
     "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
 }
@@ -1034,21 +1034,14 @@ elif st.session_state.app_page == PAGE_SELECT:
     selected_img_path = resolve_image_path(chosen_info["preview_img"])
 
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
-    if chosen_option == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)":
-        st.markdown(
-            "<h4 style='color:#0c38ff; margin-top:0;'>🌟 Safe Manual Option</h4>",
-            unsafe_allow_html=True,
-        )
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
+            st.image(selected_img_path, width=110)
+        else:
+            st.markdown("📘 **[Guide]**")
+    with col2:
         st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
-    else:
-        col1, col2 = st.columns([1, 2])
-        with col1:
-            if chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
-                st.image(selected_img_path, width=110)
-            else:
-                st.markdown("📘 **[Guide]**")
-        with col2:
-            st.markdown(f"**Selected Selection:**\n\n{chosen_option}")
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown(chosen_info["description_html"], unsafe_allow_html=True)
@@ -1107,16 +1100,14 @@ elif st.session_state.app_page == PAGE_SESSION:
             <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
                 💡 <b>How to perform Pelvic Floor Contract & Release:</b><br>
                 • <b>Contract (Squeeze):</b> Engage your pelvic floor muscles as if trying to stop the flow of urine or drawing your lower belly inward and upward. Hold firmly for 4 seconds.<br>
-                • <b>Release (Relax):</b> Fully let go and relax the muscles completely for 6 seconds, allowing interstitial fluids to drain naturally.
+                • <b>Release (Relax):</b> Fully let go and relax the muscles completely for 6 seconds, allowing interstitial fluids to move naturally.
             </div>
             """,
                 unsafe_allow_html=True,
             )
 
         img_path = resolve_image_path(step_info.get("image_file", ""))
-        if not img_path and st.session_state.selected_protocol != (
-            "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
-        ):
+        if not img_path:
             fallback_file = PROTOCOL_FALLBACK_IMG.get(
                 st.session_state.selected_protocol, "step1.jpg"
             )
@@ -1128,16 +1119,6 @@ elif st.session_state.app_page == PAGE_SESSION:
             st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
         if extra_img_path:
             st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
-        elif (
-            not img_path
-            and not extra_img_path
-            and st.session_state.selected_protocol
-            == "Advanced Lower Pelvic & Abdominal Flush Protocol (No Massage Gun)"
-        ):
-            st.info(
-                "ℹ️ 100% Manual Protocol: Use hands, palms, and body positioning as"
-                " instructed below (no hardware required)."
-            )
 
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
         st.markdown(
@@ -1174,7 +1155,8 @@ elif st.session_state.app_page == PAGE_SESSION:
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
 
-                is_step3 = "Low-Pelvic" in step_info.get("step", "") or "Step 3" in step_info.get("step", "")
+                # Strictly target Low-Pelvic step for 24s loop
+                is_low_pelvic_step = "Low-Pelvic" in step_info.get("step", "")
 
                 mins, secs = divmod(remaining, 60)
 
@@ -1209,7 +1191,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
                 # 24-Second Lower Abdominal / Low-Pelvic Protocol Timing Loop
-                if is_step3:
+                if is_low_pelvic_step:
                     cycle_time = elapsed % 24
 
                     if cycle_time < 10:
