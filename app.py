@@ -476,7 +476,7 @@ def log_session_to_csv(name: str, protocol_name: str, rating: int, notes: str):
 # ==========================================
 # 6. SESSION STATE INITIALIZATION
 # ==========================================
-DEFAULT_PROTOCOL = "Somatic Breath & Pelvic Protocol"
+DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Protocol"
 
 _defaults = {
     "app_page": PAGE_PROFILE,
@@ -506,54 +506,58 @@ with st.container(key="admin_btn_container"):
 # 7. ROUTINE & PROTOCOL DATA
 # ==========================================
 
-# Recalibrated to ~13.5 minutes total (210s + 300s + 300s = 810s), no images, clean tone
+# Clear, precise somatic protocol (~13.5 min) with full technical breakdown & encouraging prompts
 somatic_breath_steps = [
     {
-        "step": "Phase 1: Parasympathetic Priming & Relaxation",
+        "step": "Phase 1: Parasympathetic Priming & Gentle Squeezes",
         "duration": 210,  # 3.5 minutes
         "image_file": "",
-        "positioning": "Lie comfortably on back with knees bent and feet flat (hook-lying position).",
+        "positioning": "Lie on back in hook-lying pose (knees bent at 90°, feet flat on floor, lower back flat).",
         "distance": "Lower abdomen and pelvic diaphragm.",
-        "where": "Deep pelvic floor & abdominal wall.",
+        "where": "Deep pelvic floor & abdominal region.",
         "action": (
-            "• Rhythmic Nasal Breath: Inhale deeply for 4 seconds, expand belly.\n"
-            "• Controlled Release: Exhale slowly through mouth for 6 seconds.\n"
-            "• Gentle Pelvic Synchronization: Softly lift/squeeze on the exhalation, completely release and drop tension on inhalation."
+            "• <b>Breathing Cadence:</b> Inhale through nose for 4 seconds (belly rises); exhale slowly through mouth for 6 seconds (belly lowers).\n"
+            "• <b>Gentle Squeeze Mechanics:</b> On each exhalation, gently draw the pelvic floor upward and inward (a 30% soft lift). Hold for 2 seconds.\n"
+            "• <b>Complete Release:</b> On inhalation, release all engagement entirely for 8 seconds, letting the belly expand fully."
         ),
-        "goal": "Down-regulates central nervous system, calms stress response, and establishes core baseline relaxation.",
-        "benefit_text": "💡 4s/6s extended exhalations trigger parasympathetic dominance and clear mental fog.",
+        "goal": "Triggers nervous system down-regulation, relaxes rigid core guarding, and establishes neuromuscular awareness.",
+        "encouragement": "🔥 <b>You're doing great!</b> Focus on steady, effortless breathing. Notice how each exhalation washes away stored physical tension.",
+        "benefit_text": "💡 Extended exhalations signal your central nervous system to shift into deep parasympathetic recovery.",
         "switch_sides": False,
     },
     {
-        "step": "Phase 2: Somatic Engagement & Pulsing Control",
+        "step": "Phase 2: Somatic Engagement, Controlled Holds & Flutters",
         "duration": 300,  # 5 minutes
         "image_file": "",
-        "positioning": "Maintain hook-lying posture or rest knees together with feet wide.",
+        "positioning": "Hook-lying pose or knees gently rested together with feet wider than hip-width.",
         "distance": "Deep internal pelvic floor muscles.",
-        "where": "Pelvic bowl & lower core boundary.",
+        "where": "Pelvic bowl & deep core structure.",
         "action": (
-            "• Deep Release (8s): Inhale into lower abdominal space, allowing full muscle expansion.\n"
-            "• Intentional Engagement (2s): Firm, controlled squeeze upward on exhalation.\n"
-            "• Fast Flutter Finisher: Follow with 5 seconds of light, rapid micro-engagements."
+            "<b>Perform the following 15-second repeating sequence:</b>\n\n"
+            "1. <b>Deep Hold (8 seconds):</b> Inhale deeply into lower belly, completely expanding and relaxing the pelvic floor for 8 full seconds.\n"
+            "2. <b>Intentional Squeeze (2 seconds):</b> Exhale with a moderate (60%) upward pull/lift of the pelvic muscles. Hold firm for 2 seconds.\n"
+            "3. <b>Rapid Flutters (5 seconds):</b> Immediately perform light, rapid, rhythmic micro-engagements (pulsing quickly on/off 4–5 times across 5 seconds)."
         ),
-        "goal": "Builds neural mind-body connection, enhances local circulation, and strengthens pelvic floor responsiveness.",
-        "benefit_text": "💡 Rhythmic engagement-and-release cycles improve vascular flow and muscle tone.",
+        "goal": "Sharpens mind-body connection, enhances tissue vascularity, and builds dynamic neuromuscular elasticity.",
+        "encouragement": "⚡ <b>Keep up the momentum!</b> Rhythm and control are key. Feel the precise activation during every squeeze and flutter.",
+        "benefit_text": "💡 Alternating between deep holds and quick flutters trains both postural and dynamic muscle fibers.",
         "switch_sides": False,
     },
     {
-        "step": "Phase 3: Deep Autonomic Flow & Tension Release",
+        "step": "Phase 3: Deep Autonomic Flow & Complete Tension Release",
         "duration": 300,  # 5 minutes
         "image_file": "",
-        "positioning": "Fully relaxed supine posture with open hips or supported legs.",
-        "distance": "Full body autonomic system.",
-        "where": "Pelvic region, lower spine, and abdominal core.",
+        "positioning": "Supine position with legs fully extended or supported in butterfly pose.",
+        "distance": "Whole-body autonomic system.",
+        "where": "Pelvis, lower spine, and abdominal core.",
         "action": (
-            "• Continuous Rhythm: Transition to effortless, connected breathing without pauses.\n"
-            "• Autonomic Release: Let go of structured muscle counting; let pelvic floor follow natural breath wave.\n"
-            "• Full Relaxation: Allow physical warmth and deep muscular decompression to settle into the lower body."
+            "• <b>Effortless Flow:</b> Transition away from counting seconds. Inhale slowly and let your breath flow freely without pauses.\n"
+            "• <b>Passive Synchronization:</b> Allow the pelvic floor to softly expand on inhale and gently settle on exhale naturally.\n"
+            "• <b>Full Decompression:</b> Scan your lower body for residual tightness and release all effort into the floor."
         ),
-        "goal": "Discharges stored physical tension, restores somatic energy, and locks in deep mental clarity.",
-        "benefit_text": "💡 Uninterrupted breathing restores natural energy balance and reduces systemic stress.",
+        "goal": "Discharges residual stress, restores full natural circulation, and locks in deep physical clarity.",
+        "encouragement": "🌟 <b>Outstanding job!</b> You've completed the active work. Let your body absorb the benefits and enjoy total decompression.",
+        "benefit_text": "💡 Passive recovery allows the autonomic nervous system to consolidate new movement patterns and restore balance.",
         "switch_sides": False,
     },
 ]
@@ -948,23 +952,8 @@ MASSAGE_GUN_INFO_HTML = """
 </div>
 """
 
+# Reordered Dictionary: Somatic Breath & Pelvic Protocol placed 3rd in list
 PROTOCOLS = {
-    "Somatic Breath & Pelvic Protocol": {
-        "enabled": True,
-        "badge": "Active Breathwork",
-        "preview_img": "",
-        "description_html": """
-<div class="metric-container">
-<b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
-• <b>🧠 Mental Clarity & Focus:</b> Extended $4\\text{s}/6\\text{s}$ parasympathetic breathing calms an overactive nervous system, lowers stress hormones, and clears brain fog.<br><br>
-• <b>💪 Somatic Control & Grounded Strength:</b> Builds deep pelvic stability and releases stored emotional and physical tension from the lower body without any tools or gear.<br><br>
-• <b>✨ Intimate Warmth & Sensitivity:</b> Rhythmic muscle pumping and quick flutters act as a natural vascular pump, heightening blood flow, warmth, and neural sensitivity.<br><br>
-• <b>🌿 Total Autonomy:</b> A 100% equipment-free practice designed to remove performance anxiety and reconnect you with your body's natural energy.<br><br>
-<b>⏱️ Total Duration:</b> ~13.5 Minutes (3 Structured Steps). Lie flat in a quiet space in hook-lying pose.
-</div>
-""",
-        "steps": somatic_breath_steps,
-    },
     "Advanced Lower Pelvic & Abdominal Protocol": {
         "enabled": True,
         "badge": "Active",
@@ -992,6 +981,22 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
 </div>
 """,
         "steps": manual_lymph_steps,
+    },
+    "Somatic Breath & Pelvic Protocol": {
+        "enabled": True,
+        "badge": "Active Breathwork",
+        "preview_img": "",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
+• <b>🧠 Mental Clarity & Focus:</b> Extended parasympathetic breathing calms an overactive nervous system, lowers stress hormones, and clears brain fog.<br><br>
+• <b>💪 Somatic Control & Grounded Strength:</b> Builds deep pelvic stability and releases stored physical tension from the lower body without any tools or gear.<br><br>
+• <b>✨ Deep Neuromuscular Activation:</b> Structured cycles of holds, squeezes, and flutters heighten local vascular flow and muscle responsiveness.<br><br>
+• <b>🌿 Total Autonomy:</b> A 100% equipment-free practice designed to re-establish mind-body connection and restore natural somatic balance.<br><br>
+<b>⏱️ Total Duration:</b> ~13.5 Minutes (3 Structured Phases). Lie flat in a quiet space in hook-lying pose.
+</div>
+""",
+        "steps": somatic_breath_steps,
     },
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": {
         "enabled": True,
@@ -1198,14 +1203,23 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        st.markdown(
-            '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact,'
-            " strict pelvic positioning, and calm breathing.</div>",
-            unsafe_allow_html=True,
-        )
+        is_somatic = st.session_state.selected_protocol == "Somatic Breath & Pelvic Protocol"
+
+        # Corrected warning message depending on protocol type
+        if is_somatic:
+            st.markdown(
+                '<div class="pressure-warning">🧘 SOMATIC GUIDANCE: Focus on controlled breathing,'
+                " steady muscle activation, and complete physical relaxation. No tools needed.</div>",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact,'
+                " strict pelvic positioning, and calm breathing.</div>",
+                unsafe_allow_html=True,
+            )
 
         # Asset fallback logic — omit images entirely for Somatic Breath Protocol
-        is_somatic = st.session_state.selected_protocol == "Somatic Breath & Pelvic Protocol"
         if not is_somatic:
             img_path = resolve_image_path(step_info.get("image_file", ""))
             if not img_path:
@@ -1223,12 +1237,14 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
 
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
+        encouragement_info = f"<br><b>💬 Motivation:</b> {step_info['encouragement']}" if "encouragement" in step_info else ""
+
         st.markdown(
             f"""<div class="metric-container">
 {pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
-<b>🗺️ Location:</b> {step_info['where']}<br>
-<b>⚡ Action Instructions:</b><br>{step_info['action'].replace('\n', '<br>')}<br><br>
-<b>🎯 Goal:</b> {step_info['goal']}
+<b>🗺️ Location:</b> {step_info['where']}<br><br>
+<b>⚡ Action & Execution Steps:</b><br>{step_info['action'].replace('\n', '<br>')}<br><br>
+<b>🎯 Goal:</b> {step_info['goal']}{encouragement_info}
 </div>""",
             unsafe_allow_html=True,
         )
