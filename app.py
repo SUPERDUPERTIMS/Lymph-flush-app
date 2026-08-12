@@ -291,19 +291,6 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     color: #4a4a4a !important;
 }
 
-.breath-box {
-    background: #ffffff !important;
-    border: 2px solid #0c38ff;
-    padding: 18px;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #0c38ff !important;
-    margin: 15px 0;
-    box-shadow: inset 0 2px 4px rgba(12, 56, 255, 0.05);
-}
-
 .contract-box {
     background: #e8f4fd !important;
     border: 2px solid #2196f3;
@@ -364,7 +351,6 @@ div[role="radiogroup"] label p, div[data-baseweb="checkbox"] label p {
     padding:15px; text-align:center; margin-bottom: 15px;
 }
 
-/* Audio alert visual effect for side switches */
 .side-switch-flash {
     animation: flashAlert 0.8s ease-in-out;
 }
@@ -502,7 +488,7 @@ def log_session_to_csv(name: str, protocol_name: str, rating: int, notes: str):
 # ==========================================
 # 6. SESSION STATE INITIALIZATION
 # ==========================================
-DEFAULT_PROTOCOL = "Advanced Lower Pelvic & Abdominal Protocol"
+DEFAULT_PROTOCOL = "Somatic Breath & Pelvic Protocol"
 
 _defaults = {
     "app_page": PAGE_PROFILE,
@@ -531,6 +517,61 @@ with st.container(key="admin_btn_container"):
 # ==========================================
 # 7. ROUTINE & PROTOCOL DATA
 # ==========================================
+somatic_breath_steps = [
+    {
+        "step": "Phase 1: Parasympathetic Priming & Vasocongestion",
+        "duration": 300,
+        "image_file": "step1A.png",
+        "positioning": "Lie on back in hook-lying pose (knees bent, feet flat) or supported butterfly pose (pillow under sacrum).",
+        "distance": "Deep pelvic bowl & lower abdominal diaphragm.",
+        "where": "Pelvic floor & lower abdominal wall.",
+        "action": (
+            "Diaphragmatic Breathing: Inhale through nose for 4s (belly expands), exhale slowly through mouth for 6s (2–3 mins).\n\n"
+            "Rhythmic Muscle Pumping:\n"
+            "• Inhale (4s): Completely release and drop pelvic floor outward.\n"
+            "• Hold (2s): Maintain drop, letting blood pool in pelvis.\n"
+            "• Exhale (4s): Gentle upward squeeze of pelvic floor muscles."
+        ),
+        "goal": "Shifts body into deep parasympathetic dominance while establishing baseline pelvic blood circulation.",
+        "benefit_text": "💡 Extended exhalations stimulate the vagus nerve and increase baseline blood volume in pelvic structures.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 2: Rhythmic Activation & Neural Amplification",
+        "duration": 600,
+        "image_file": "step3.png",
+        "positioning": "Maintain hook-lying or supported butterfly position.",
+        "distance": "Internal pelvic bowl & pubic bone frame.",
+        "where": "Deep pelvic floor, clitoral structures, and pubic region.",
+        "action": (
+            "Pulsing Cycles:\n"
+            "• Long Release (8s): Deep inhale into lower bowl while dropping pelvic floor.\n"
+            "• Quick Squeeze (2s): Firm intentional contraction on exhale.\n"
+            "• Flutter Finisher: Immediately perform 5–10 rapid, light 'flutters'.\n\n"
+            "Focus: Direct total mental focus to internal warmth, tingling, and heaviness."
+        ),
+        "goal": "Amplifies blood volume and trains the neural mind-body connection to heighten localized sensitivity.",
+        "benefit_text": "💡 Alternating fast flutters and deep releases turns pelvic muscles into a biological vascular pump.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 3: Building Systemic Energy & Peak Arousal",
+        "duration": 600,
+        "image_file": "step4.png",
+        "positioning": "Fully relaxed supine posture with pelvic outlet open.",
+        "distance": "Full body autonomic nervous system.",
+        "where": "Full pelvic region and nervous system.",
+        "action": (
+            "Conscious Connected Breathwork: Transition to continuous circular breathing (in and out through mouth without pauses).\n\n"
+            "Spontaneous Contractions: Stop counting rigid times. Allow pelvic floor to pulse naturally with the breathing wave.\n\n"
+            "Full-Body Release: Allow any physical tremors, vocalizations, or sensations to flow freely without holding back."
+        ),
+        "goal": "Surrenders conscious control to the autonomic nervous system to carry the build-up to a full climax.",
+        "benefit_text": "💡 Circular breathwork elevates sympathetic arousal to intersect with parasympathetic vasocongestion for peak somatic release.",
+        "switch_sides": False,
+    },
+]
+
 manual_lymph_steps = [
     {
         "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
@@ -922,6 +963,22 @@ MASSAGE_GUN_INFO_HTML = """
 """
 
 PROTOCOLS = {
+    "Somatic Breath & Pelvic Protocol": {
+        "enabled": True,
+        "badge": "Active Breathwork",
+        "preview_img": "step1A.png",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
+• <b>🧠 Mental Clarity & Focus:</b> Extended $4\\text{s}/6\\text{s}$ parasympathetic breathing calms an overactive nervous system, lowers stress hormones, and clears brain fog.<br><br>
+• <b>💪 Somatic Control & Grounded Strength:</b> Builds deep pelvic stability and releases stored emotional and physical tension from the lower body without any tools or gear.<br><br>
+• <b>✨ Intimate Warmth & Sensitivity:</b> Rhythmic muscle pumping and quick flutters act as a natural vascular pump, heightening blood flow, warmth, and neural sensitivity.<br><br>
+• <b>🌿 Total Autonomy:</b> A 100% equipment-free practice designed to remove performance anxiety and reconnect you with your body's natural energy.<br><br>
+<b>⏱️ Environment:</b> Warm, quiet room. Lie flat in hook-lying pose or supported butterfly pose with a pillow under the lower back.
+</div>
+""",
+        "steps": somatic_breath_steps,
+    },
     "Advanced Lower Pelvic & Abdominal Protocol": {
         "enabled": True,
         "badge": "Active",
@@ -1000,6 +1057,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 }
 
 PROTOCOL_FALLBACK_IMG = {
+    "Somatic Breath & Pelvic Protocol": "step1A.png",
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
     "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": "step1A.png",
@@ -1007,7 +1065,6 @@ PROTOCOL_FALLBACK_IMG = {
     "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
 }
 
-# Neutral SVG placeholder for fallback missing assets
 DEFAULT_PLACEHOLDER_SVG = """
 <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#e2e8f0" rx="16"/>
@@ -1080,7 +1137,7 @@ elif st.session_state.app_page == PAGE_SELECT:
                 use_container_width=True,
             ):
                 st.session_state.selected_protocol = p_name
-                st.session_state.current_step_index = 0  # Clear step index on protocol switch
+                st.session_state.current_step_index = 0
                 scroll_to_top()
                 st.rerun()
         else:
@@ -1122,7 +1179,7 @@ elif st.session_state.app_page == PAGE_SELECT:
         button_label = "Review Complete" if is_info_only else "Continue to Protocol"
         if st.button(button_label, type="primary"):
             st.session_state.selected_protocol = chosen_option
-            st.session_state.current_step_index = 0  # Explicitly reset index
+            st.session_state.current_step_index = 0
             st.session_state.session_logged = False
             st.session_state.app_page = PAGE_SELECT if is_info_only else PAGE_SESSION
             scroll_to_top()
@@ -1160,18 +1217,6 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        if "pelvic" in step_info["step"].lower() or "lymphatic" in step_info["step"].lower():
-            st.markdown(
-                """
-            <div class="contract-box" style="text-align: left; padding: 14px 18px; margin-bottom: 15px;">
-                💡 <b>How to perform Pelvic Floor Contract & Release:</b><br>
-                • <b>Contract (Squeeze):</b> Engage your pelvic floor muscles as if trying to stop the flow of urine or drawing your lower belly inward and upward. Hold firmly for 4 seconds.<br>
-                • <b>Release (Relax):</b> Fully let go and relax the muscles completely for 6 seconds, allowing interstitial fluids to move naturally.
-            </div>
-            """,
-                unsafe_allow_html=True,
-            )
-
         # Asset fallback with neutral placeholder SVG fallback
         img_path = resolve_image_path(step_info.get("image_file", ""))
         if not img_path:
@@ -1193,14 +1238,14 @@ elif st.session_state.app_page == PAGE_SESSION:
             f"""<div class="metric-container">
 {pos_info}<b>📍 Target Zone:</b> {step_info['distance']}<br>
 <b>🗺️ Location:</b> {step_info['where']}<br>
-<b>⚡ Action:</b> {step_info['action']}<br>
+<b>⚡ Action Instructions:</b><br>{step_info['action'].replace('\n', '<br>')}<br><br>
 <b>🎯 Goal:</b> {step_info['goal']}
 </div>""",
             unsafe_allow_html=True,
         )
 
         total_duration_secs = int(step_info["duration"])
-        st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
+        st.markdown(f"**Target Duration:** {total_duration_secs // 60}m {total_duration_secs % 60}s ({total_duration_secs} seconds)")
 
         if not st.session_state.timer_running:
             if st.button("Start Step Timer", type="primary"):
@@ -1224,10 +1269,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                 remaining = max(total_time - elapsed, 0)
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
-
-                # Target both low-pelvic and manual abdominal/lymph step variations for 24s cycle timer
-                step_title_lower = step_info.get("step", "").lower()
-                is_rhythm_step = "low-pelvic" in step_title_lower or "sub-umbilical" in step_title_lower or "lymphatic priming" in step_title_lower
 
                 mins, secs = divmod(remaining, 60)
 
@@ -1262,35 +1303,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                     unsafe_allow_html=True,
                 )
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
-
-                # 24-Second Lower Abdominal / Low-Pelvic Protocol Timing Loop
-                if is_rhythm_step:
-                    cycle_time = elapsed % 24
-
-                    if cycle_time < 10:
-                        st.markdown(
-                            '<div class="contract-box" style="background:#e8f5e9 !important; border-color:#4caf50; color:#1b5e20 !important;">'
-                            '🖐️ Perform Downward Low-Pelvic Glide (10s)</div>',
-                            unsafe_allow_html=True,
-                        )
-                    elif cycle_time < 14:
-                        st.markdown(
-                            '<div class="contract-box" style="background:#ffebee !important; border-color:#f44336; color:#b71c1c !important;">'
-                            '⚡ Squeeze Pelvic Floor Inward & Upward (4s)</div>',
-                            unsafe_allow_html=True,
-                        )
-                    elif cycle_time < 18:
-                        st.markdown(
-                            '<div class="contract-box" style="background:#e3f2fd !important; border-color:#2196f3; color:#0d47a1 !important;">'
-                            '🛑 Hold Position (4s)</div>',
-                            unsafe_allow_html=True,
-                        )
-                    else:
-                        st.markdown(
-                            '<div class="contract-box" style="background:#fff3e0 !important; border-color:#ff9800; color:#e65100 !important;">'
-                            '💨 Slow Exhale & Fully Release Pelvic Floor (6s)</div>',
-                            unsafe_allow_html=True,
-                        )
 
                 if "benefit_text" in step_info:
                     st.info(step_info["benefit_text"])
