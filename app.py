@@ -1182,13 +1182,6 @@ elif st.session_state.app_page == PAGE_SESSION:
         st.markdown(f"**Target Duration:** {total_duration_secs} seconds")
 
         # --- Non-blocking timer -------------------------------------------------
-        # The original implementation used `for ... time.sleep(1)`, which
-        # blocks this session's script thread for the full step duration:
-        # no other widget (Back/Next/Change Protocol/Admin) can respond,
-        # and if the user navigates away the loop keeps running server-side
-        # until it completes. Using an auto-refreshing fragment keyed off a
-        # wall-clock start time keeps the UI responsive and lets the timer
-        # be cancelled at any point.
         if not st.session_state.timer_running:
             if st.button("Start Step Timer", type="primary"):
                 st.session_state.timer_running = True
@@ -1209,7 +1202,9 @@ elif st.session_state.app_page == PAGE_SESSION:
                 remaining = max(total_time - elapsed, 0)
                 needs_switching = step_info.get("switch_sides", False)
                 half_time = total_time // 2
-                is_step3 = "Step 3:" in step_info["step"]
+                
+                # Check for "Low-Pelvic" to apply to both the manual and massage gun versions
+                is_step3 = "Low-Pelvic" in step_info["step"]
 
                 mins, secs = divmod(remaining, 60)
 
@@ -1242,41 +1237,48 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
                 if is_step3:
-                    # Breathing is driven off the same 12s squeeze/hold/release
-                    # cycle as the pelvic-floor cue below, so inhale/exhale
-                    # always line up with the contract/release instruction
-                    # instead of running on an unrelated 10s clock.
-                    cycle = elapsed % 12
-                    if cycle < 4:
+                    # New timing requirements:
+                    # 10s glide (5s inhale, 5s exhale) -> 20s of squeezes (2x [4s squeeze, 6s relax])
+                    # Total cycle = 30 seconds
+                    cycle = elapsed % 30
+                    if cycle < 10:
+                        if cycle < 5:
+                            st.markdown(
+                                '<div class="breath-box">🌬️ Deep Belly Inhale...</div>',
+                                unsafe_allow_html=True,
+                            )
+                        else:
+                            st.markdown(
+                                '<div class="breath-box">😌 Slow Relaxed Exhale...</div>',
+                                unsafe_allow_html=True,
+                            )
                         st.markdown(
-                            '<div class="breath-box">😮\u200d💨 Exhale as you squeeze...</div>',
-                            unsafe_allow_html=True,
-                        )
-                        st.markdown(
-                            '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward'
-                            " & Upward (Hold 4s)...</div>",
-                            unsafe_allow_html=True,
-                        )
-                    elif cycle < 8:
-                        st.markdown(
-                            '<div class="breath-box">🫁 Hold gently, keep squeezing...</div>',
-                            unsafe_allow_html=True,
-                        )
-                        st.markdown(
-                            '<div class="contract-box">⚡ Action: Maintain Squeeze or'
-                            " Glide Downward...</div>",
+                            '<div class="contract-box">⚡ Action: Glide Downward to Hold Point (10s)...</div>',
                             unsafe_allow_html=True,
                         )
                     else:
-                        st.markdown(
-                            '<div class="breath-box">🌬️ Inhale slowly as you release...</div>',
-                            unsafe_allow_html=True,
-                        )
-                        st.markdown(
-                            '<div class="contract-box">😌 Action: Fully Release & Relax'
-                            " Pelvic Floor...</div>",
-                            unsafe_allow_html=True,
-                        )
+                        # Map both the 10-19s and 20-29s chunks into identical 10s blocks
+                        sub_cycle = (cycle - 10) % 10
+                        if sub_cycle < 4:
+                            st.markdown(
+                                '<div class="breath-box">😮\u200d💨 Exhale as you squeeze...</div>',
+                                unsafe_allow_html=True,
+                            )
+                            st.markdown(
+                                '<div class="contract-box">⚡ Action: Squeeze Pelvic Floor Inward'
+                                " & Upward (Hold 4s)...</div>",
+                                unsafe_allow_html=True,
+                            )
+                        else:
+                            st.markdown(
+                                '<div class="breath-box">🌬️ Inhale slowly as you release...</div>',
+                                unsafe_allow_html=True,
+                            )
+                            st.markdown(
+                                '<div class="contract-box">😌 Action: Fully Release & Relax'
+                                " Pelvic Floor (6s)...</div>",
+                                unsafe_allow_html=True,
+                            )
                 else:
                     if (elapsed % 10) < 5:
                         st.markdown(
