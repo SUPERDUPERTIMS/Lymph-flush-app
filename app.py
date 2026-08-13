@@ -639,22 +639,24 @@ female_somatic_steps = [
         "switch_sides": False,
     },
     {
-        "step": "Phase 2: Neuromuscular Stacking & Variable Timing",
+        "step": "Phase 2: Targeted Female Vascularization & Pelvic Control",
         "duration": 300,
         "image_file": "",
-        "positioning": "Hook-lying position (knees bent, feet flat) with knees pressed together or squeezing a soft block for adductor co-activation.",
-        "distance": "Deep pelvic bowl, adductor chain, and motor cortex pathways.",
-        "where": "Urogenital triangle, adductor origins, and pelvic diaphragm.",
+        "positioning": "Hook-lying position (knees bent, feet flat) with knees gently touching or squeezing a soft cushion to engage inner adductors.",
+        "distance": "Deep pelvic bowl, transversus abdominis, and lower core fascia.",
+        "where": "Urogenital basin, deep pelvic floor, and lower abdominal wall.",
         "action": (
-            "<b>Perform the repeating 16-second neuromuscular stacking sequence:</b><br><br>"
-            "1. <b>3s Staircase Ramp:</b> On exhale, progressively increase pelvic contraction from 30% → 60% → 100% force over 3 full seconds to recruit high-threshold motor units.<br>"
-            "2. <b>3s Peak Hold & Neural Anchor:</b> At 100% maximum tension, hold firm for 3 seconds while pressing the tip of your tongue to the roof of your mouth and casting eyes upward.<br>"
-            "3. <b>5s Micro-Flutter Cascade:</b> Immediately perform 4 to 5 rapid micro-pulses in quick succession over 5 seconds.<br>"
-            "4. <b>5s Complete Eccentric Release:</b> Deep inhale for 5 seconds, completely dropping all pelvic floor and adductor engagement."
+            "<b>Perform the following balanced 18-second breathing sequence:</b><br><br>"
+            "1. <b>Deep Inhale & Expansion (5 seconds):</b> Inhale deeply into the lower belly, allowing the abdomen to expand and the pelvic floor to fully open and decompress.<br>"
+            "2. <b>Exhale & Active Engagement (8 seconds total):</b><br>"
+            "   • <i>Staircase Lift (3s):</i> Begin exhaling while progressively lifting the pelvic floor (30% → 60% → 100%).<br>"
+            "   • <i>Peak Hold & Anchor (3s):</i> Hold 100% peak lift, draw navel to spine, and press tongue to roof of mouth.<br>"
+            "   • <i>Micro-Flutters (2s):</i> Perform 3 to 4 rapid pulsing contractions as you finish emptying the breath.<br>"
+            "3. <b>Full Decompression & Transition (5 seconds):</b> Completely release all pelvic and abdominal tension as you begin your next slow, deep inhalation."
         ),
-        "goal": "Bypasses neural habituation, forces maximum arterial vasodilation, and optimizes dynamic tissue responsiveness.",
-        "encouragement": "⚡ <b>Focus on the neural anchor!</b> Pressing the tongue and casting eyes upward disrupts mental spectatoring.",
-        "benefit_text": "💡 Staircase Ramp + Neural Anchor + Flutter Cascade forces acute arterial inflow and prevents mechanical plateaus.",
+        "goal": "Engages deep pelvic stabilizers, optimizes localized micro-circulation, and flattens the lower abdominal wall.",
+        "encouragement": "⚡ <b>Focus on deep control!</b> Feel the lower abs flatten inward as you lift the pelvic floor on exhalation.",
+        "benefit_text": "💡 Combining deep breath expansion with structured exhalation lifts trains deep transverse abs for core stability and a flatter belly.",
         "switch_sides": False,
     },
     {
@@ -1114,15 +1116,13 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         "preview_img": "",
         "description_html": """
 <div class="metric-container">
-<b>🎯 Why This Protocol Belongs in Your Routine:</b><br>
-Functions as a targeted neuro-vascular driver. Instead of training the body into a single static state, it dynamically alternates between deep vasodilation and high-frequency neuromuscular activation.<br><br>
-<b>✨ Key Targeted Neuromuscular Techniques (Phase 2):</b><br>
-• <b>Staircase Ramp (3s):</b> Progressive force increase (30% → 60% → 100%) to recruit higher-threshold motor units.<br>
-• <b>Peak Hold & Neural Anchor (3s):</b> Hold 100% tension while pressing tongue to palate and looking upward to disrupt cognitive spectatoring.<br>
-• <b>Micro-Flutter Cascade (5s):</b> 4 to 5 rapid micro-pulses before full release to force an acute surge in arterial circulation.<br>
-• <b>Adductor Co-Activation:</b> Pressing knees together to stabilize the pelvic girdle during activation.<br><br>
-<b>🔄 How & Frequency:</b><br>
-Alternate between the Standard Tension Release Protocol (pure down-regulation) and this Female Vascularization Protocol (neuromuscular tone & vascular flow) 3 to 5 times weekly for optimal results without mechanical plateaus.
+<b>🎯 Why You Should Set Aside Time for This Specialized Routine:</b><br><br>
+• <b>🌺 Specifically Developed for Female Physiology:</b> Tailored to target female pelvic bowl alignment, deep fascial layers, and core stabilization for optimal female health.<br><br>
+• <b>✨ Enhanced Micro-Circulation & Tissue Health:</b> Rhythmic expansion and controlled activation flush oxygenated blood through pelvic tissues, promoting lower body vitality and cellular repair.<br><br>
+• <b>🎯 Deep Pelvic Control & Core Tonal Integrity:</b> Strengthens deep pelvic floor muscles and inner core pathways to improve pelvic stability, posture, and movement confidence.<br><br>
+• <b>💃 Flatter Stomach & Toned Lower Abs:</b> Targets the transversus abdominis fascia to pull in lower abdominal bloating, relieve fluid congestion, and sculpt a flatter midsection.<br><br>
+• <b>🌿 Equipment-Free Somatic Reset:</b> A 100% gentle, tool-free practice designed to reduce stress, balance your nervous system, and restore natural somatic energy.<br><br>
+<b>⏱️ Total Duration:</b> ~13 Minutes (3 Structured Phases). Lie flat in a quiet space in hook-lying or butterfly posture.
 </div>
 """,
         "steps": female_somatic_steps,
