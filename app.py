@@ -889,51 +889,51 @@ hip_steps = [
 
 forearm_steps = [
     {
-        "step": "Step 1: Lateral Epicondyle & Extensor Mass",
+        "step": "Step 1: Lateral Epicondyle & Wrist Extensor Release (Padel/Tennis Elbow)",
         "duration": 180,
-        "image_file": "step5.png",
-        "positioning": "Seated with forearm resting flat on a table or thigh, palm down.",
-        "distance": "Outer Forearm",
-        "where": "Lateral Epicondyle & Extensor Mass",
-        "action": "Med-High Speed. Sweeping motion for 90s per side.",
-        "goal": "Relieve tension in the Tennis/Padel Elbow Zone.",
-        "benefit_text": "💡 Sweeping motions relax the extensor mass.",
+        "image_file": "forearm_step1.png",
+        "positioning": "Seated with forearm resting flat on table or thigh, palm facing down.",
+        "distance": "Outer Forearm & Lateral Elbow",
+        "where": "Extensor Carpi Radialis & Extensor Digitorum near lateral epicondyle.",
+        "action": "Medium speed. Slow longitudinal glides from lateral elbow toward wrist for 90s per arm.",
+        "goal": "Unloads extensor mass tension to relieve lateral epicondylitis and restore wrist extensor compliance.",
+        "benefit_text": "💡 Decompressing wrist extensors reduces impact shock on lateral elbow tendon insertions.",
         "switch_sides": True,
     },
     {
-        "step": "Step 2: Medial Epicondyle & Flexor Belly",
+        "step": "Step 2: Medial Epicondyle & Wrist Flexor Decompression (Golfer Elbow Zone)",
         "duration": 180,
-        "image_file": "step5.png",
-        "positioning": "Seated with forearm supported, palm facing upward.",
-        "distance": "Inner Forearm",
-        "where": "Medial Epicondyle & Flexor Belly",
-        "action": "Med Speed. Deep pulses for 90s per side.",
-        "goal": "Release the Golfer Elbow Zone.",
-        "benefit_text": "💡 Deep pulses release inner forearm flexors.",
+        "image_file": "forearm_step2.png",
+        "positioning": "Seated with forearm fully supported on thigh or table, palm facing upward.",
+        "distance": "Inner Forearm & Medial Elbow",
+        "where": "Flexor Carpi Radialis, Pronator Teres & Flexor Digitorum Superficialis.",
+        "action": "Medium speed. Focused longitudinal glides and gentle stationary holds over dense belly for 90s per arm.",
+        "goal": "Relieves high tension from repetitive racquet/paddle gripping and overhead pronation snaps.",
+        "benefit_text": "💡 Targeted flexor release restores grip elasticity and reduces strain at the medial epicondyle.",
         "switch_sides": True,
     },
     {
-        "step": "Step 3: Posterior Capsule & Infraspinatus",
+        "step": "Step 3: Posterior Shoulder Capsule & Infraspinatus Decompression",
         "duration": 240,
-        "image_file": "step5.png",
-        "positioning": "Seated or standing, crossing arm gently across chest.",
-        "distance": "Back of Shoulder",
-        "where": "Posterior Capsule & Infraspinatus",
-        "action": "High Speed. Circular motions for 120s per side.",
-        "goal": "Improve posterior shoulder mobility.",
-        "benefit_text": "💡 Circular motions free up the shoulder capsule.",
+        "image_file": "forearm_step3.png",
+        "positioning": "Seated or standing, crossing target arm gently across chest to stretch posterior capsule.",
+        "distance": "Posterior Shoulder & Scapular Infra-spinous Fossa",
+        "where": "Infraspinatus, Teres Minor, and Posterior Deltoid belly.",
+        "action": "Medium-High speed. Slow circular sweeps over posterior shoulder blade pocket for 120s per shoulder.",
+        "goal": "Restores internal rotation and deceleration clearance necessary for overhead racquet swings.",
+        "benefit_text": "💡 Releasing posterior capsule tightness prevents anterior shoulder impingement during follow-through.",
         "switch_sides": True,
     },
     {
-        "step": "Step 4: Bicep Tendon & Pec Minor Sweep",
+        "step": "Step 4: Anterior Shoulder & Pectoralis Minor Kinetic Sweep",
         "duration": 240,
-        "image_file": "step5.png",
-        "positioning": "Standing tall with chest open and shoulders retracted.",
-        "distance": "Front of Shoulder/Chest",
-        "where": "Bicep Tendon & Pec Minor",
-        "action": "High Speed. Fast, light sweeps for 120s per side.",
-        "goal": "Provide anterior shoulder release.",
-        "benefit_text": "💡 Fast sweeps relieve anterior pulling.",
+        "image_file": "forearm_step4.png",
+        "positioning": "Standing tall with chest open, target shoulder externally rotated.",
+        "distance": "Anterior Shoulder & Sub-Clavicular Chest Region",
+        "where": "Pectoralis Minor, Biceps Long-Head Tendon groove, and Anterior Deltoid.",
+        "action": "Low-Medium speed with soft attachment. Featherlight sweeps along chest-to-shoulder transition for 120s per side.",
+        "goal": "Disarms forward shoulder rounding and anterior kinetic strain from overhead serving and smashing.",
+        "benefit_text": "💡 Opening anterior chest tissue improves overhead reach and shoulder kinetic chain efficiency.",
         "switch_sides": True,
     },
 ]
@@ -1069,13 +1069,17 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
         "steps": hip_steps,
     },
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": {
-        "enabled": False,
-        "badge": "Locked",
-        "preview_img": "step5.png",
+        "enabled": True,
+        "badge": "Active",
+        "preview_img": "forearm_master_guide.png",
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why It Must Be Done:</b><br>
-Repetitive overhead snaps and racquet impacts overload the lateral epicondyle and posterior shoulder capsule. Relieves muscle tension at the elbow to eliminate strain while restoring posterior shoulder mobility.
+High-velocity racquet impacts, padel smashes, and overhead serves place severe mechanical strain on the forearm tendon insertions and posterior shoulder capsule. This 4-step kinetic protocol unloads tennis and golfer elbow zones while restoring full overhead mobility.<br><br>
+<b>✨ Key Benefits:</b><br>
+• <b>Elbow Tendon Protection:</b> Decompresses wrist flexors and extensors to mitigate epicondylitis.<br>
+• <b>Posterior Capsule Clearance:</b> Frees shoulder internal rotation for overhead follow-through.<br>
+• <b>Anterior Chest Opening:</b> Releases pec minor tightness to optimize rotational mechanics.
 </div>
 """,
         "steps": forearm_steps,
@@ -1103,9 +1107,9 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 
 PROTOCOL_FALLBACK_IMG = {
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
+    "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "forearm_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
     "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": "step1A.png",
-    "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "step5.png",
     "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
 }
 
