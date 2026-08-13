@@ -620,6 +620,60 @@ somatic_breath_steps = [
     },
 ]
 
+female_somatic_steps = [
+    {
+        "step": "Phase 1: Diaphragmatic Unloading & Pelvic Basin Priming",
+        "duration": 240,
+        "image_file": "",
+        "positioning": "Lie flat in butterfly pose (soles of feet together, knees open) with a pillow under knees if needed.",
+        "distance": "Lower pelvic bowl and deep lower abdomen.",
+        "where": "Deep pelvic floor, perineal body, and sub-umbilical fascia.",
+        "action": (
+            "• <b>Diaphragmatic Inhale (4s):</b> Inhale deeply into lower ribs and pelvic basin. Feel the pelvic floor expand downward.\n"
+            "• <b>Soft Exhale (6s):</b> Exhale through slightly parted lips, letting the belly melt flat without forcing engagement.\n"
+            "• <b>Tactile Anchor:</b> Place one hand on the low belly and one on the chest to ensure lower hand rises first."
+        ),
+        "goal": "Releases chronic abdominal bracing, optimizes thoracic diaphragm excursion, and improves pelvic floor perfusion.",
+        "encouragement": "🌸 <b>Soften into the mat.</b> Let every exhalation drop tension in your jaw and hip flexors.",
+        "benefit_text": "💡 Synchronizing diaphragmatic descent with pelvic floor relaxation boosts venous return and reduces pelvic congestion.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 2: Targeted Pelvic Floor Activation & Elastic Lift",
+        "duration": 300,
+        "image_file": "",
+        "positioning": "Transition to hook-lying position (knees bent, feet flat, hip-width apart).",
+        "distance": "Urogenital triangle & pelvic diaphragm.",
+        "where": "Base of pelvis between pubic bone and tailbone.",
+        "action": (
+            "• <b>Controlled Lift (4s):</b> On exhale, softly pull the pelvic floor upward and inward (approx. 40-50% effort).\n"
+            "• <b>Sustained Hold (3s):</b> Maintain gentle tension without breath holding or glute squeezing.\n"
+            "• <b>Full Eccentric Release (5s):</b> Inhale fully and consciously expand the pelvic floor back to baseline."
+        ),
+        "goal": "Enhances neuromuscular responsiveness, builds elastic recoil, and restores balanced pelvic tone.",
+        "encouragement": "✨ <b>Focus on quality over intensity.</b> Ensure the release is just as intentional as the lift.",
+        "benefit_text": "💡 Controlled eccentric lengthening of the pelvic floor prevents hypertonicity while maintaining functional strength.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 3: Restorative Integration & Autonomic Reset",
+        "duration": 240,
+        "image_file": "",
+        "positioning": "Supine with legs extended or resting over a bolster, arms relaxed by sides.",
+        "distance": "Whole pelvic girdle and lower lumbar spine.",
+        "where": "Autonomic nervous system & lower abdominal core.",
+        "action": (
+            "• <b>Unpaced Autonomic Flow:</b> Breathe naturally through the nose without counting.\n"
+            "• <b>Somatic Scanning:</b> Direct awareness to the space below the navel, softening lower lumbar tension.\n"
+            "• <b>Complete Stillness:</b> Allow full systemic decompression."
+        ),
+        "goal": "Consolidates parasympathetic adaptation, relieves deep muscle guarding, and restores soft-tissue compliance.",
+        "encouragement": "🌿 <b>Rest and reset.</b> Allow your body to fully process and absorb the movement session.",
+        "benefit_text": "💡 Passive integration stabilizes heart rate variability and reinforces long-term autonomic recovery.",
+        "switch_sides": False,
+    },
+]
+
 manual_lymph_steps = [
     {
         "step": "Step 1: Manual Lymphatic Priming (Opening Nodes)",
@@ -1052,6 +1106,22 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
 """,
         "steps": somatic_breath_steps,
     },
+    "Female Pelvic Vascularization & Somatic Breathing Protocol": {
+        "enabled": True,
+        "badge": "Active Breathwork",
+        "preview_img": "",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
+• <b>🌸 Deep Pelvic Vascularization:</b> Enhances local blood flow, supports soft-tissue circulation, and reduces lower pelvic heaviness.<br><br>
+• <b>🧘 Autonomic Balance & Relief:</b> Softens chronic core guarding, calms pelvic nerve irritation, and down-regulates stress response pathways.<br><br>
+• <b>✨ Controlled Elastic Activation:</b> Focuses on full diaphragmatic expansion coupled with smooth, non-straining pelvic floor lift and release.<br><br>
+• <b>🌿 Equipment-Free Practice:</b> Completely non-invasive, gentle somatic routine optimized for restoration and daily pelvic health.<br><br>
+<b>⏱️ Total Duration:</b> ~13 Minutes (3 Structured Phases). Lie flat in butterfly or hook-lying posture.
+</div>
+""",
+        "steps": female_somatic_steps,
+    },
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": {
         "enabled": True,
         "badge": "Active",
@@ -1069,17 +1139,14 @@ High-velocity, ballistic movements trigger defensive muscle guarding. This 6-ste
         "steps": hip_steps,
     },
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": {
-        "enabled": True,
-        "badge": "Active",
+        "enabled": False,
+        "badge": "Locked",
         "preview_img": "forearm_master_guide.png",
         "description_html": """
 <div class="metric-container">
+<b>🎯 Status:</b> Temporarily locked for maintenance.<br><br>
 <b>🎯 Why It Must Be Done:</b><br>
-High-velocity racquet impacts, padel smashes, and overhead serves place severe mechanical strain on the forearm tendon insertions and posterior shoulder capsule. This 4-step kinetic protocol unloads tennis and golfer elbow zones while restoring full overhead mobility.<br><br>
-<b>✨ Key Benefits:</b><br>
-• <b>Elbow Tendon Protection:</b> Decompresses wrist flexors and extensors to mitigate epicondylitis.<br>
-• <b>Posterior Capsule Clearance:</b> Frees shoulder internal rotation for overhead follow-through.<br>
-• <b>Anterior Chest Opening:</b> Releases pec minor tightness to optimize rotational mechanics.
+High-velocity racquet impacts, padel smashes, and overhead serves place severe mechanical strain on the forearm tendon insertions and posterior shoulder capsule. This 4-step kinetic protocol unloads tennis and golfer elbow zones while restoring full overhead mobility.
 </div>
 """,
         "steps": forearm_steps,
@@ -1205,7 +1272,7 @@ elif st.session_state.app_page == PAGE_SELECT:
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
-        if chosen_option == "Somatic Breath & Pelvic Protocol":
+        if "Breath" in chosen_option:
             st.markdown("🧘‍♀️ **[Breathwork]**")
         elif chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
             st.image(selected_img_path, width=110)
@@ -1261,7 +1328,7 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        is_somatic = st.session_state.selected_protocol == "Somatic Breath & Pelvic Protocol"
+        is_somatic = "Breath" in st.session_state.selected_protocol
 
         if is_somatic:
             st.markdown(
