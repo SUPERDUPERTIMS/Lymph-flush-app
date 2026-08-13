@@ -625,51 +625,53 @@ female_somatic_steps = [
         "step": "Phase 1: Diaphragmatic Unloading & Pelvic Basin Priming",
         "duration": 240,
         "image_file": "",
-        "positioning": "Lie flat in butterfly pose (soles of feet together, knees open) with a pillow under knees if needed.",
-        "distance": "Lower pelvic bowl and deep lower abdomen.",
-        "where": "Deep pelvic floor, perineal body, and sub-umbilical fascia.",
+        "positioning": "Lie flat in butterfly pose (soles of feet together, knees open) or relaxed hook-lying posture.",
+        "distance": "Lower pelvic bowl & sub-umbilical fascia.",
+        "where": "Deep pelvic floor, perineal body, and pelvic diaphragm.",
         "action": (
-            "• <b>Diaphragmatic Inhale (4s):</b> Inhale deeply into lower ribs and pelvic basin. Feel the pelvic floor expand downward.\n"
-            "• <b>Soft Exhale (6s):</b> Exhale through slightly parted lips, letting the belly melt flat without forcing engagement.\n"
-            "• <b>Tactile Anchor:</b> Place one hand on the low belly and one on the chest to ensure lower hand rises first."
+            "• <b>Diaphragmatic Inhale (4s):</b> Inhale deeply into lower belly and pelvic basin. Feel the pelvic floor expand downward.\n"
+            "• <b>Soft Exhale (6s):</b> Exhale slowly through slightly parted lips, letting the belly melt flat without forcing engagement.\n"
+            "• <b>Tactile Anchor:</b> Place one hand on low belly and one on upper chest to ensure lower hand rises first."
         ),
-        "goal": "Releases chronic abdominal bracing, optimizes thoracic diaphragm excursion, and improves pelvic floor perfusion.",
-        "encouragement": "🌸 <b>Soften into the mat.</b> Let every exhalation drop tension in your jaw and hip flexors.",
-        "benefit_text": "💡 Synchronizing diaphragmatic descent with pelvic floor relaxation boosts venous return and reduces pelvic congestion.",
+        "goal": "Releases chronic abdominal bracing, optimizes thoracic diaphragm excursion, and warms tissue for vascular inflow.",
+        "encouragement": "🌸 <b>Soften into the mat.</b> Let every exhalation drop stored tension in your jaw, neck, and hip flexors.",
+        "benefit_text": "💡 Continuous 4s/6s diaphragmatic breathing down-regulates the central nervous system and prepares pelvic micro-vasculature.",
         "switch_sides": False,
     },
     {
-        "step": "Phase 2: Targeted Pelvic Floor Activation & Elastic Lift",
+        "step": "Phase 2: Neuromuscular Stacking & Variable 'Brain-Trick' Timing",
         "duration": 300,
         "image_file": "",
-        "positioning": "Transition to hook-lying position (knees bent, feet flat, hip-width apart).",
-        "distance": "Urogenital triangle & pelvic diaphragm.",
-        "where": "Base of pelvis between pubic bone and tailbone.",
+        "positioning": "Hook-lying position (knees bent, feet flat) with knees pressed together or squeezing a soft block for adductor co-activation.",
+        "distance": "Deep pelvic bowl, adductor chain, and motor cortex pathways.",
+        "where": "Urogenital triangle, adductor origins, and pelvic diaphragm.",
         "action": (
-            "• <b>Controlled Lift (4s):</b> On exhale, softly pull the pelvic floor upward and inward (approx. 40-50% effort).\n"
-            "• <b>Sustained Hold (3s):</b> Maintain gentle tension without breath holding or glute squeezing.\n"
-            "• <b>Full Eccentric Release (5s):</b> Inhale fully and consciously expand the pelvic floor back to baseline."
+            "<b>Perform the repeating 16-second neuromuscular stacking sequence:</b><br><br>"
+            "1. <b>3s Staircase Ramp:</b> On exhale, progressively increase pelvic contraction from 30% → 60% → 100% force over 3 full seconds to recruit high-threshold motor units.<br>"
+            "2. <b>3s Peak Hold & Neural Anchor:</b> At 100% maximum tension, hold firm for 3 seconds while pressing the tip of your tongue to the roof of your mouth and casting eyes upward.<br>"
+            "3. <b>5s Micro-Flutter Cascade:</b> Immediately perform 4 to 5 rapid micro-pulses in quick succession over 5 seconds.<br>"
+            "4. <b>5s Complete Eccentric Release:</b> Deep inhale for 5 seconds, completely dropping all pelvic floor and adductor engagement."
         ),
-        "goal": "Enhances neuromuscular responsiveness, builds elastic recoil, and restores balanced pelvic tone.",
-        "encouragement": "✨ <b>Focus on quality over intensity.</b> Ensure the release is just as intentional as the lift.",
-        "benefit_text": "💡 Controlled eccentric lengthening of the pelvic floor prevents hypertonicity while maintaining functional strength.",
+        "goal": "Bypasses neural habituation, forces maximum arterial vasodilation, and optimizes dynamic tissue responsiveness.",
+        "encouragement": "⚡ <b>Focus on the neural anchor!</b> Pressing the tongue and casting eyes upward disrupts mental spectatoring.",
+        "benefit_text": "💡 Staircase Ramp + Neural Anchor + Flutter Cascade forces acute arterial inflow and prevents mechanical plateaus.",
         "switch_sides": False,
     },
     {
         "step": "Phase 3: Restorative Integration & Autonomic Reset",
         "duration": 240,
         "image_file": "",
-        "positioning": "Supine with legs extended or resting over a bolster, arms relaxed by sides.",
-        "distance": "Whole pelvic girdle and lower lumbar spine.",
+        "positioning": "Supine with legs extended flat or resting over a bolster, arms relaxed by sides.",
+        "distance": "Whole pelvic girdle, lower lumbar spine, and central nervous system.",
         "where": "Autonomic nervous system & lower abdominal core.",
         "action": (
-            "• <b>Unpaced Autonomic Flow:</b> Breathe naturally through the nose without counting.\n"
-            "• <b>Somatic Scanning:</b> Direct awareness to the space below the navel, softening lower lumbar tension.\n"
-            "• <b>Complete Stillness:</b> Allow full systemic decompression."
+            "• <b>Unpaced Autonomic Flow:</b> Discontinue all counting and active holds. Allow breath to move naturally through the nose.\n"
+            "• <b>Somatic Scanning:</b> Direct awareness to the space below the navel, releasing any micro-tension in the hips or jaw.\n"
+            "• <b>Full Decompression:</b> Rest quietly to allow hyper-oxygenated blood to fully bathe the pelvic tissues."
         ),
-        "goal": "Consolidates parasympathetic adaptation, relieves deep muscle guarding, and restores soft-tissue compliance.",
-        "encouragement": "🌿 <b>Rest and reset.</b> Allow your body to fully process and absorb the movement session.",
-        "benefit_text": "💡 Passive integration stabilizes heart rate variability and reinforces long-term autonomic recovery.",
+        "goal": "Consolidates parasympathetic adaptation, relieves deep muscle guarding, and locks in vascular integration.",
+        "encouragement": "🌿 <b>Rest and absorb.</b> Let your body integrate the dynamic activation and settle into deep physical recovery.",
+        "benefit_text": "💡 Passive integration stabilizes heart rate variability and reinforces long-term soft-tissue compliance.",
         "switch_sides": False,
     },
 ]
@@ -1112,12 +1114,15 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         "preview_img": "",
         "description_html": """
 <div class="metric-container">
-<b>🎯 Why You Should Set Aside Time for This Routine:</b><br><br>
-• <b>🌸 Deep Pelvic Vascularization:</b> Enhances local blood flow, supports soft-tissue circulation, and reduces lower pelvic heaviness.<br><br>
-• <b>🧘 Autonomic Balance & Relief:</b> Softens chronic core guarding, calms pelvic nerve irritation, and down-regulates stress response pathways.<br><br>
-• <b>✨ Controlled Elastic Activation:</b> Focuses on full diaphragmatic expansion coupled with smooth, non-straining pelvic floor lift and release.<br><br>
-• <b>🌿 Equipment-Free Practice:</b> Completely non-invasive, gentle somatic routine optimized for restoration and daily pelvic health.<br><br>
-<b>⏱️ Total Duration:</b> ~13 Minutes (3 Structured Phases). Lie flat in butterfly or hook-lying posture.
+<b>🎯 Why This Protocol Belongs in Your Routine:</b><br>
+Functions as a targeted neuro-vascular driver. Instead of training the body into a single static state, it dynamically alternates between deep vasodilation and high-frequency neuromuscular activation.<br><br>
+<b>✨ Key 'Brain-Trick' Timings (Phase 2):</b><br>
+• <b>Staircase Ramp (3s):</b> Progressive force increase (30% → 60% → 100%) to recruit higher-threshold motor units.<br>
+• <b>Peak Hold & Neural Anchor (3s):</b> Hold 100% tension while pressing tongue to palate and looking upward to disrupt cognitive spectatoring.<br>
+• <b>Micro-Flutter Cascade (5s):</b> 4 to 5 rapid micro-pulses before full release to force an acute surge in arterial circulation.<br>
+• <b>Adductor Co-Activation:</b> Pressing knees together to stabilize the pelvic girdle during activation.<br><br>
+<b>🔄 How & Frequency:</b><br>
+Alternate between the Standard Tension Release Protocol (pure down-regulation) and this Female Vascularization Protocol (neuromuscular tone & vascular flow) 3 to 5 times weekly for optimal results without mechanical plateaus.
 </div>
 """,
         "steps": female_somatic_steps,
