@@ -639,7 +639,7 @@ female_somatic_steps = [
         "switch_sides": False,
     },
     {
-        "step": "Phase 2: Neuromuscular Stacking & Variable 'Brain-Trick' Timing",
+        "step": "Phase 2: Neuromuscular Stacking & Variable Timing",
         "duration": 300,
         "image_file": "",
         "positioning": "Hook-lying position (knees bent, feet flat) with knees pressed together or squeezing a soft block for adductor co-activation.",
@@ -1116,7 +1116,7 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
 <div class="metric-container">
 <b>🎯 Why This Protocol Belongs in Your Routine:</b><br>
 Functions as a targeted neuro-vascular driver. Instead of training the body into a single static state, it dynamically alternates between deep vasodilation and high-frequency neuromuscular activation.<br><br>
-<b>✨ Key 'Brain-Trick' Timings (Phase 2):</b><br>
+<b>✨ Key Targeted Neuromuscular Techniques (Phase 2):</b><br>
 • <b>Staircase Ramp (3s):</b> Progressive force increase (30% → 60% → 100%) to recruit higher-threshold motor units.<br>
 • <b>Peak Hold & Neural Anchor (3s):</b> Hold 100% tension while pressing tongue to palate and looking upward to disrupt cognitive spectatoring.<br>
 • <b>Micro-Flutter Cascade (5s):</b> 4 to 5 rapid micro-pulses before full release to force an acute surge in arterial circulation.<br>
