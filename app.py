@@ -37,18 +37,17 @@ ADMIN_LOCKOUT_SECONDS = 60
 
 def sanitize_text(value: str, max_len: int = 200) -> str:
     """Escape HTML and cap length before text is processed or saved."""
-    if value is None:
+    if not value:
         return ""
-    value = str(value)[:max_len]
-    return html.escape(value, quote=True)
+    return html.escape(str(value)[:max_len], quote=True)
 
 
 def csv_safe(value: str) -> str:
     """Neutralize formula injection for CSV export."""
-    value = str(value)
-    if value and value[0] in ("=", "+", "-", "@"):
-        return "'" + value
-    return value
+    val_str = str(value)
+    if val_str and val_str[0] in ("=", "+", "-", "@"):
+        return "'" + val_str
+    return val_str
 
 
 # ==========================================
@@ -1269,7 +1268,6 @@ elif st.session_state.app_page == PAGE_SESSION:
                 " steady muscle activation, and complete physical relaxation. No tools needed.</div>",
                 unsafe_allow_html=True,
             )
-            # Dynamic Animated Breathing Visualizer
             render_animated_breathing_visualizer(cycle_seconds=10, inhale_ratio=0.4)
         else:
             st.markdown(
@@ -1327,23 +1325,21 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.rerun()
 
             @st.fragment(run_every=1)
-            def render_timer(step_info=step_info, total_time=total_duration_secs):
+            def render_timer(s_info=step_info, total_time=total_duration_secs):
                 if not st.session_state.get("timer_running", False) or st.session_state.get("timer_start") is None:
                     return
 
                 elapsed = int(time.time() - st.session_state.timer_start)
                 remaining = max(total_time - elapsed, 0)
-                needs_switching = step_info.get("switch_sides", False)
+                needs_switching = s_info.get("switch_sides", False)
                 half_time = total_time // 2
 
                 mins, secs = divmod(remaining, 60)
 
-                # Play gentle phase-start audio chime when timer fires
                 if elapsed == 1 and not st.session_state.get("phase_chime_played", False):
                     st.session_state.phase_chime_played = True
                     play_switch_audio_cue(freq=440.0, freq_end=660.0)
 
-                # Lateral / Side Indicator Setup
                 if needs_switching:
                     if elapsed < half_time:
                         st.markdown(
@@ -1368,17 +1364,15 @@ elif st.session_state.app_page == PAGE_SESSION:
                         unsafe_allow_html=True,
                     )
 
-                # Main Countdown Timer & Progress
                 st.markdown(
                     f"<h3 style='text-align: center;'>⏱️ {mins:02d}:{secs:02d}</h3>",
                     unsafe_allow_html=True,
                 )
                 st.progress(1.0 - (remaining / total_time) if total_time else 1.0)
 
-                if "benefit_text" in step_info:
-                    st.info(step_info["benefit_text"])
+                if "benefit_text" in s_info:
+                    st.info(s_info["benefit_text"])
 
-                # Completion Handler inside Fragment
                 if remaining <= 0:
                     st.session_state.timer_running = False
                     st.session_state.timer_start = None
@@ -1388,7 +1382,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                     )
                     st.balloons()
 
-            render_timer()
+            render_timer(s_info=step_info, total_time=total_duration_secs)
 
         st.markdown("---")
         col1, col2 = st.columns(2)
