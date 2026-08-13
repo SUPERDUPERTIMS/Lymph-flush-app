@@ -720,10 +720,9 @@ lymph_steps = [
         "distance": "Superficial inguinal area in the groin crease.",
         "where": "Inner groin crease & primary lymphatic nodes.",
         "action": (
-            "Perform 1 pelvic floor contract-relax cycle (squeeze inward for 4"
-            " seconds, fully release for 6 seconds) to generate a localized"
-            " fluid movement. Follow with featherlight, outward manual sweeps"
-            " along the inner groin crease for 30 seconds."
+            "• <b>Squeeze-Hold Technique:</b> Exhale fully while gently squeezing and drawing the pelvic floor muscles upward (4 seconds hold).\n"
+            "• <b>Full Release:</b> Inhale deeply and completely release all engagement (6 seconds full relaxation).\n"
+            "• <b>Manual Sweep:</b> Use warm hands (device OFF) to apply featherlight outward sweeps along the inner groin crease for 30 seconds."
         ),
         "goal": "Opens primary lymphatic hubs, reduces fluid accumulation in the lower pelvis, and increases inner thigh flexibility.",
         "benefit_text": "💡 Opens primary lymphatic hubs, reduces pelvic fluid accumulation, and improves inner thigh flexibility.",
@@ -738,9 +737,9 @@ lymph_steps = [
         "distance": "Outer hip belly (Tensor Fasciae Latae).",
         "where": "The thick muscle belly of the outer hip (TFL).",
         "action": (
-            "Place the soft attachment at low speed over the TFL. Perform 1"
-            " contract-relax cycle, then hold stationary with a featherlight"
-            " touch for 30 seconds per side."
+            "• <b>Device Placement:</b> Place soft attachment at low speed over outer hip/TFL.\n"
+            "• <b>Squeeze-Hold-Release:</b> Perform 1 deliberate Squeeze-Hold (exhale, pull pelvic floor upward for 4s) followed by a 6s Complete Release.\n"
+            "• <b>Percussion Glides:</b> Maintain featherlight device contact with slow glides for 30 seconds per side."
         ),
         "goal": "Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
         "benefit_text": "💡 Releases outer hip tightness, reduces lateral pelvic pulling, and improves hip rotation.",
@@ -759,9 +758,9 @@ lymph_steps = [
         "distance": "Sub-umbilical band (10 cm band directly below the navel).",
         "where": "Directly below the navel across a 10 cm band.",
         "action": (
-            "Using a featherlight touch, angle the device at 45 degrees"
-            " downward. Perform slow, steady downward glides across the 10"
-            " cm band directly below the navel for 45 seconds."
+            "• <b>Device Angle:</b> Hold device at a 45-degree downward angle with featherlight contact.\n"
+            "• <b>Breathing Sync:</b> Inhale to soften the belly; exhale as you perform slow downward glides across the 10 cm band below the navel for 45 seconds.\n"
+            "• <b>Relaxation Control:</b> Keep the pelvic floor completely unengaged and open throughout this step."
         ),
         "goal": "Clears mid-level fascial tightness, breaks up localized water retention, and flattens the upper-to-lower stomach contour.",
         "benefit_text": "💡 Clears mid-level fascial tightness, breaks up water retention, and flattens lower stomach contour.",
@@ -781,10 +780,10 @@ lymph_steps = [
         "distance": "Pubic bone frame & lower abdominal wall.",
         "where": "Lower pelvic boundary where soft tissue transitions into the pubic bone frame.",
         "action": (
-            "Execute a slow downward glide to the pubic bone frame, followed"
-            " by a stationary pause. Perform 2 pelvic floor contract-relax"
-            " cycles during the pause phase, and repeat (total duration: 120"
-            " seconds)."
+            "• <b>Step A (Glide):</b> Execute a slow downward percussion glide to the pubic bone frame and pause the device stationary over the soft tissue just above the bone.\n"
+            "• <b>Step B (Squeeze-Hold):</b> While holding stationary, exhale deeply and pull the pelvic floor upward and inward. Hold this active squeeze for 4 full seconds.\n"
+            "• <b>Step C (Full Release):</b> Inhale slowly, letting the lower belly expand and fully relaxing the pelvic floor for 6 full seconds.\n"
+            "• <b>Repeat Cycle:</b> Perform 2 full Squeeze-Hold-Release cycles per pause, then reposition slightly along the pubic frame across the 120 seconds."
         ),
         "goal": "Targets dense pelvic fascia against a stable skeletal barrier, strengthens deep core activation for a flatter belly profile, and accelerates tissue drainage.",
         "benefit_text": "💡 Targets dense pelvic fascia against a skeletal barrier, strengthens deep core activation, and accelerates drainage.",
@@ -799,10 +798,9 @@ lymph_steps = [
         "distance": "Vertical centerline out to the iliac crest (hip bone).",
         "where": "Lower center base sweeping outward and upward over the hip bone.",
         "action": (
-            "Glide downward toward the lower center base, pause for 5–10"
-            " seconds while completing a final pelvic floor relaxation, then"
-            " curve outward and upward over the iliac crest (hip bone) in a"
-            " V-shaped path for 90 seconds."
+            "• <b>Downward Glide:</b> Glide downward toward the lower center base and pause for 5–10 seconds.\n"
+            "• <b>Squeeze-Release Sync:</b> Perform 1 Squeeze-Hold (4s) followed by a complete 6s Release, letting all lower abdominal tension drop.\n"
+            "• <b>V-Sweep Finish:</b> Curve the device outward and upward over the iliac crest (hip bone) in a V-shaped path for 90 seconds to drain fluid outward."
         ),
         "goal": "Directs all mobilized fluid out toward major peripheral drainage routes, leaving the lower abdomen feeling uncompressed, light, and visibly toned.",
         "benefit_text": "💡 Directs all mobilized fluid toward peripheral routes, leaving lower abdomen light, uncompressed, and visibly toned.",
@@ -1026,15 +1024,14 @@ Optimizes posture, leg positioning, and core engagement during this routine to m
         "steps": lymph_steps,
     },
     "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": {
-        "enabled": True,
-        "badge": "Active Manual",
+        "enabled": False,
+        "badge": "Locked",
         "preview_img": "step1A.png",
         "description_html": """
 <div class="metric-container">
+<b>🎯 Status:</b> Temporarily locked for image updates.<br><br>
 <b>🎯 Why it should be done:</b><br>
-A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.<br><br>
-<b>⏱️ Frequency & Best Time:</b><br>
-2 to 3 times per week, 5 to 7 minutes total. Best done after a warm shower or light exercise when circulation is naturally elevated. Use a small amount of massage oil or lotion to reduce friction.
+A safe, 100% manual alternative that eliminates percussion risks entirely. Uses gentle manual effleurage (sweeping strokes), flat-palm pressure, and self-myofascial release to protect soft tissues while safely encouraging fluid mobilization.
 </div>
 """,
         "steps": manual_lymph_steps,
