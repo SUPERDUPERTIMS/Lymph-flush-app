@@ -565,6 +565,95 @@ if st.button("Admin", key="floating_admin_btn"):
 # 7. ROUTINE & PROTOCOL DATA
 # ==========================================
 
+pelvic_decompression_steps = [
+    {
+        "step": "Step 0: Thermal Prime (Pre-Protocol Setup)",
+        "duration": 300,
+        "image_file": "",
+        "positioning": "Lie comfortably flat on back with heating pad across lower core and inner thighs.",
+        "distance": "Lower core and inner thighs.",
+        "where": "Abdominal wall, groin crease, and inner thighs.",
+        "action": (
+            "• <b>Preparation:</b> Apply a warm heating pad or hot towel across your lower core and inner thighs for 5 minutes prior to protocol start.\n"
+            "• <b>Fascial Priming:</b> Allow thermal absorption to soften deep connective tissue layers, enabling optimal penetration of micro-vibrations."
+        ),
+        "goal": "Pre-warms deep abdominal and groin fascia to maximize subsequent mechanical vibration efficiency.",
+        "encouragement": "🔥 <b>Settle in and relax.</b> Warm fascia absorbs micro-vibrations far deeper into connective tissue layers.",
+        "benefit_text": "💡 Pre-warming tissue significantly enhances fascial elasticity and vascular responsiveness.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 1: Vascular Priming & Wave Breathing",
+        "duration": 120,
+        "image_file": "wave_breathing_phase1.png",
+        "positioning": "Supported Butterfly Pose (soles of feet together, knees open, firm cushion/pillow supporting each knee).",
+        "distance": "Pelvic diaphragm and deep abdominal basin.",
+        "where": "Pelvic floor, inner thigh adductors, and lower abdomen.",
+        "action": (
+            "• <b>Supported Butterfly Pose:</b> Lie on your back, bring soles of feet together, knees open to sides supported by cushions so inner thighs completely relax.\n"
+            "• <b>Inhale (4s):</b> Breathe in slowly through nose, expanding lower belly and widening waist.\n"
+            "• <b>Exhale (8s):</b> Exhale slowly through slightly parted lips, allowing belly to drop naturally.\n"
+            "• <b>Pelvic Drop Hold (5s):</b> Hold breath OUT for 5 seconds while performing a 'Pelvic Drop'—consciously relax the base of your hips and imagine dropping your tailbone floorward."
+        ),
+        "goal": "Initiates systemic blood vessel dilation through controlled breath retention while placing the pelvic floor in a fully lengthened state.",
+        "encouragement": "🌊 <b>Drop all holding tension.</b> Imagine your pelvic floor softening down toward the floor with each breath-hold.",
+        "benefit_text": "💡 Extended 8s exhalations combined with 5s holds trigger parasympathetic down-regulation and lengthen deep pelvic fascia.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 2: Structural Unlocking & Fascial Decompression",
+        "duration": 180,
+        "image_file": "structural_unlocking_phase2.png",
+        "positioning": "Supported butterfly pose or hook-lying posture with relaxed legs.",
+        "distance": "Sit-bone pocket and inner groin fold.",
+        "where": "Ischial tuberosity pocket (sit-bone) and adductor insertion crease.",
+        "action": (
+            "• <b>Setup:</b> Set massage device to a low, broad, cushioned setting.\n"
+            "• <b>Step A - Sit-Bone Pocket (90s):</b> Rest head of massage device gently in soft tissue between sit-bone and tailbone. Maintain steady 4s inhale / 8s exhale breathing.\n"
+            "• <b>Step B - Inner Leg Line (90s total / 45s per side):</b> Move device to soft tissue crease where inner thigh meets groin fold. Allow vibrational waves to loosen restrictive fascia."
+        ),
+        "goal": "Uses low-frequency micro-percussion to release tight connective tissue around primary nerve pathways and inner leg insertions.",
+        "encouragement": "⚡ <b>Keep a featherlight touch.</b> Let the device rest lightly against the tissue without pressing hard.",
+        "benefit_text": "💡 Targeted low-frequency vibrations decompress sacral nerve pathways and unbind restrictive inner thigh fascia.",
+        "switch_sides": True,
+    },
+    {
+        "step": "Phase 3: Central Nervous System Decoupling",
+        "duration": 180,
+        "image_file": "cns_decoupling_phase3.png",
+        "positioning": "Supine position with legs fully supported and eyes closed.",
+        "distance": "Base of tailbone / sacrum.",
+        "where": "Sacral base and lower lumbar junction.",
+        "action": (
+            "• <b>Pulse Placement:</b> Set massage device to a slow, gentle pulse setting and rest it lightly directly at the base of your tailbone/sacrum.\n"
+            "• <b>Backward Calculation Task:</b> Close your eyes. Maintain slow 4s inhale / 8s exhale breathing rhythm.\n"
+            "• <b>Rhythmic Mental Count:</b> On every exhalation, count backward in your head starting from <b>300, subtracting 7</b> (300 → 293 → 286 → 279...). Recite silently on the exhale."
+        ),
+        "goal": "Occupies working memory with a rhythmic mental task to suppress conscious monitoring and allow the autonomic nervous system to execute deep tissue release.",
+        "encouragement": "🧠 <b>Let your mind focus purely on the math.</b> Rhythmic counting distracts conscious guarding to enable true autonomic release.",
+        "benefit_text": "💡 Working memory saturation interrupts chronic brain-body stress feedback loops, suppressing subconscious muscular guarding.",
+        "switch_sides": False,
+    },
+    {
+        "step": "Phase 4: Sacral Reflex Trip & Deep Somatic Release",
+        "duration": 120,
+        "image_file": "reflex_release_phase4.png",
+        "positioning": "Supine with legs relaxed, massage device anchored at sacral base.",
+        "distance": "Sacrum, pelvic bowl, and deep pelvic venous beds.",
+        "where": "Deep pelvic core and sacral spinal base.",
+        "action": (
+            "• <b>Anchor Device:</b> Keep pulsing massage device anchored softly at base of tailbone.\n"
+            "• <b>Deep Exhale Sequence:</b> Inhale deeply into lower belly (4s) → Exhale every drop of air completely (8s).\n"
+            "• <b>Visceral Expansion Hold (8-10s):</b> Hold breath OUT completely for 8–10 seconds. Consciously execute a Full Pelvic Drop, releasing every muscle in lower body.\n"
+            "• <b>Somatic Release:</b> Allow any automatic tissue fluttering or involuntary micro-contractions to occur naturally. Repeat sequence twice."
+        ),
+        "goal": "Combines maximum tissue lengthening, vascular openness, and autonomic decoupling to trigger spontaneous muscular release and deep venous clearing.",
+        "encouragement": "🌟 <b>Surrender all effort.</b> Any involuntary micro-fluttering is your nervous system discharging stored baseline tension.",
+        "benefit_text": "💡 Post-exhalatory breath holds combined with sacral vibration induce reflex relaxation, flushing stagnant venous blood from the pelvic bowl.",
+        "switch_sides": False,
+    },
+]
+
 somatic_breath_steps = [
     {
         "step": "Phase 1: Parasympathetic Priming & Gentle Squeezes",
@@ -1067,6 +1156,20 @@ MASSAGE_GUN_INFO_HTML = """
 """
 
 PROTOCOLS = {
+    "Pelvic Somatic Decompression Protocol": {
+        "enabled": True,
+        "badge": "Active High Performance",
+        "preview_img": "wave_breathing_phase1.png",
+        "description_html": """
+<div class="metric-container">
+<b>🎯 Rationale & Long-Term Benefits:</b><br>
+Modern living—prolonged sitting, heavy training, and high-stress environments—places continuous downward compression on the pelvic floor and lower spine. Over time, this leads to <b>Pelvic Venous Stagnation</b> (nutrient-depleted blood pooling in pelvic veins) and <b>Sacral Hypertonicity</b> (chronic micro-contraction compressing local nerve pathways).<br><br>
+By combining thermal preparation, low-frequency micro-vibrations, 4-8 wave breathing, and backward mental calculation tasks, this protocol flushes deep vascular beds, decompresses sacral fascia, and triggers a complete autonomic nervous system reset.<br><br>
+<b>⏱️ Recommended Frequency:</b> 2 to 3 times per week (ideally evening), or immediately following intense workouts and prolonged sitting.
+</div>
+""",
+        "steps": pelvic_decompression_steps,
+    },
     "Advanced Lower Pelvic & Abdominal Protocol": {
         "enabled": True,
         "badge": "Active",
@@ -1178,6 +1281,7 @@ Restricted ankle dorsiflexion forces the knees and lower back to absorb excess r
 }
 
 PROTOCOL_FALLBACK_IMG = {
+    "Pelvic Somatic Decompression Protocol": "wave_breathing_phase1.png",
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": "hip_master_guide.png",
     "Advanced Forearm, Elbow & Shoulder Kinetic Protocol (Racquet & Overhead)": "forearm_master_guide.png",
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
@@ -1333,15 +1437,15 @@ elif st.session_state.app_page == PAGE_SESSION:
             unsafe_allow_html=True,
         )
 
-        is_somatic = "Breath" in st.session_state.selected_protocol
+        is_somatic = "Breath" in st.session_state.selected_protocol or "Somatic" in st.session_state.selected_protocol
 
         if is_somatic:
             st.markdown(
                 '<div class="pressure-warning">🧘 SOMATIC GUIDANCE: Focus on controlled breathing,'
-                " steady muscle activation, and complete physical relaxation. No tools needed.</div>",
+                " steady muscle activation, and complete physical relaxation. Follow protocol steps below.</div>",
                 unsafe_allow_html=True,
             )
-            render_animated_breathing_visualizer(cycle_seconds=10, inhale_ratio=0.4)
+            render_animated_breathing_visualizer(cycle_seconds=12, inhale_ratio=0.33)
         else:
             st.markdown(
                 '<div class="pressure-warning">⚠️ TECHNIQUE: Maintain steady contact,'
@@ -1349,21 +1453,20 @@ elif st.session_state.app_page == PAGE_SESSION:
                 unsafe_allow_html=True,
             )
 
-        if not is_somatic:
-            img_path = resolve_image_path(step_info.get("image_file", ""))
-            if not img_path:
-                fallback_file = PROTOCOL_FALLBACK_IMG.get(st.session_state.selected_protocol, "")
-                img_path = resolve_image_path(fallback_file)
+        img_path = resolve_image_path(step_info.get("image_file", ""))
+        if not img_path:
+            fallback_file = PROTOCOL_FALLBACK_IMG.get(st.session_state.selected_protocol, "")
+            img_path = resolve_image_path(fallback_file)
 
-            extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
+        extra_img_path = resolve_image_path(step_info.get("extra_image_file", ""))
 
-            if img_path:
-                st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
-            else:
-                st.markdown(DEFAULT_PLACEHOLDER_SVG, unsafe_allow_html=True)
+        if img_path:
+            st.image(img_path, use_container_width=True, caption=f"Guide: {step_info['step']}")
+        elif not is_somatic:
+            st.markdown(DEFAULT_PLACEHOLDER_SVG, unsafe_allow_html=True)
 
-            if extra_img_path:
-                st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
+        if extra_img_path:
+            st.image(extra_img_path, use_container_width=True, caption="Positioning Reference (Extra Guide)")
 
         pos_info = f"<b>🧘 Positioning:</b> {step_info['positioning']}<br>" if "positioning" in step_info else ""
         encouragement_info = f"<br><b>💬 Motivation:</b> {step_info['encouragement']}" if "encouragement" in step_info else ""
