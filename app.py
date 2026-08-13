@@ -1231,8 +1231,8 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
         "steps": female_somatic_steps,
     },
     "Advanced Hip & Pelvic Performance Protocol (Karate & Kicking)": {
-        "enabled": True,
-        "badge": "Active",
+        "enabled": False,
+        "badge": "Locked",
         "preview_img": "hip_master_guide.png",
         "description_html": """
 <div class="metric-container">
