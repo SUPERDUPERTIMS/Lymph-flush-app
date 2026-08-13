@@ -713,7 +713,7 @@ female_somatic_steps = [
     {
         "step": "Phase 1: Diaphragmatic Unloading & Pelvic Basin Priming",
         "duration": 240,
-        "image_file": "",
+        "image_file": "female_phase1.png",
         "positioning": "Lie flat in butterfly pose (soles of feet together, knees open) or relaxed hook-lying posture.",
         "distance": "Lower pelvic bowl & sub-umbilical fascia.",
         "where": "Deep pelvic floor, perineal body, and pelvic diaphragm.",
@@ -730,7 +730,7 @@ female_somatic_steps = [
     {
         "step": "Phase 2: Targeted Female Vascularization & Pelvic Control",
         "duration": 300,
-        "image_file": "",
+        "image_file": "female_phase2.png",
         "positioning": "Hook-lying position (knees bent, feet flat) with knees gently touching or squeezing a soft cushion to engage inner adductors.",
         "distance": "Deep pelvic bowl, transversus abdominis, and lower core fascia.",
         "where": "Urogenital basin, deep pelvic floor, and lower abdominal wall.",
@@ -751,7 +751,7 @@ female_somatic_steps = [
     {
         "step": "Phase 3: Restorative Integration & Autonomic Reset",
         "duration": 240,
-        "image_file": "",
+        "image_file": "female_phase3.png",
         "positioning": "Supine with legs extended flat or resting over a bolster, arms relaxed by sides.",
         "distance": "Whole pelvic girdle, lower lumbar spine, and central nervous system.",
         "where": "Autonomic nervous system & lower abdominal core.",
@@ -1213,10 +1213,10 @@ A safe, 100% manual alternative that eliminates percussion risks entirely. Uses 
 """,
         "steps": somatic_breath_steps,
     },
-    "Female Pelvic Vascularization & Somatic Breathing Protocol": {
+    "Somatic Breath & Pelvic Protocol Alternative days version (Active Breathwork)": {
         "enabled": True,
         "badge": "Active Breathwork",
-        "preview_img": "",
+        "preview_img": "female_phase1.png",
         "description_html": """
 <div class="metric-container">
 <b>🎯 Why You Should Set Aside Time for This Specialized Routine:</b><br><br>
@@ -1287,6 +1287,7 @@ PROTOCOL_FALLBACK_IMG = {
     "Advanced Lower Pelvic & Abdominal Protocol": "step1A.png",
     "Advanced Lower Pelvic & Abdominal Protocol (No Massage Gun)": "step1A.png",
     "Advanced Posterior Chain & Ankle Mobility Protocol (Ground-Force)": "step5.png",
+    "Somatic Breath & Pelvic Protocol Alternative days version (Active Breathwork)": "female_phase1.png",
 }
 
 DEFAULT_PLACEHOLDER_SVG = """
@@ -1381,7 +1382,7 @@ elif st.session_state.app_page == PAGE_SELECT:
     st.markdown('<div class="protocol-card">', unsafe_allow_html=True)
     col1, col2 = st.columns([1, 2])
     with col1:
-        if "Breath" in chosen_option:
+        if "Breath" in chosen_option and not selected_img_path:
             st.markdown("🧘‍♀️ **[Breathwork]**")
         elif chosen_option != "Massage Gun General Information & Usage Tips" and selected_img_path:
             st.image(selected_img_path, width=110)
