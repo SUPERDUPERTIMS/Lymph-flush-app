@@ -31,7 +31,7 @@ PAYMENT_URL = "https://ko-fi.com/kineticpulseapp"
 LOG_FILE_PATH = "kinetic_session_logs.csv"
 
 # ==========================================
-# 1B. SUBLIMINAL FLASH CONFIGURATION & HELPER
+# 1B. SUBLIMINAL FLASH CONFIGURATION & HELPER (FIXED)
 # ==========================================
 FLASH_IMAGES = [
     "flash1.png",
@@ -43,7 +43,7 @@ FLASH_IMAGES = [
 
 
 def render_13ms_random_flash():
-    """Picks a random image from FLASH_IMAGES and flashes it full-screen for 13ms."""
+    """Picks a random image from FLASH_IMAGES and flashes it full-screen for ~13ms without black screens."""
     selected_file = random.choice(FLASH_IMAGES)
     image_src = selected_file
 
@@ -53,12 +53,17 @@ def render_13ms_random_flash():
         with open(selected_file, "rb") as f:
             encoded = base64.b64encode(f.read()).decode("utf-8")
             image_src = f"data:image/{mime};base64,{encoded}"
+    else:
+        # If image is missing, do not render a black or broken screen
+        return
 
     components.html(
         f"""
         <script>
             (function() {{
                 var parentDoc = window.parent.document;
+                
+                // Immediately remove any existing overlay
                 var oldOverlay = parentDoc.getElementById("kp-flash-overlay");
                 if (oldOverlay) {{ oldOverlay.remove(); }}
 
@@ -70,7 +75,7 @@ def render_13ms_random_flash():
                 overlay.style.width = "100vw";
                 overlay.style.height = "100vh";
                 overlay.style.zIndex = "9999999";
-                overlay.style.backgroundColor = "#000000";
+                overlay.style.backgroundColor = "transparent"; // Prevent black background
                 overlay.style.backgroundImage = "url('{image_src}')";
                 overlay.style.backgroundSize = "contain";
                 overlay.style.backgroundPosition = "center";
@@ -79,11 +84,14 @@ def render_13ms_random_flash():
 
                 parentDoc.body.appendChild(overlay);
 
-                setTimeout(function() {{
-                    if (overlay && overlay.parentNode) {{
-                        overlay.parentNode.removeChild(overlay);
-                    }}
-                }}, 2000);
+                // Flash for ~13ms (aligned with high-refresh display frames)
+                requestAnimationFrame(function() {{
+                    setTimeout(function() {{
+                        if (overlay && overlay.parentNode) {{
+                            overlay.parentNode.removeChild(overlay);
+                        }}
+                    }}, 16); // 16ms is ~1 display frame at 60Hz
+                }});
             }})();
         </script>
         """,
@@ -1746,166 +1754,50 @@ elif st.session_state.app_page == PAGE_SESSION:
             remaining = max(0, total_duration_secs - int(elapsed))
 
             st.progress(min(1.0, elapsed / total_duration_secs))
-            st.markdown(
-                f"<h2 style='text-align: center; color: #0c38ff;'>⏳ {remaining // 60:02d}:{remaining % 60:02d} Remaining</h2>",
-                unsafe_allow_html=True,
-            )
+            st.markdown(f"### ⏱️ Time Remaining: `{remaining // 60:02d}:{remaining % 60:02d}`")
 
             if step_info.get("switch_sides", False) and elapsed >= (total_duration_secs / 2):
                 if not st.session_state.side_switched_toast:
-                    st.toast("⚡ Halfway point! Switch sides / legs now.")
-                    play_switch_audio_cue()
+                    st.info("🔄 HALF WAY: Switch Sides Now!")
+                    play_switch_audio_cue(600.0, 900.0)
                     st.session_state.side_switched_toast = True
 
-            if remaining == 0:
-                st.success("🎉 Step Duration Complete!")
-                st.session_state.timer_running = False
-                st.session_state.timer_start = None
-
-            if st.button("Stop / Reset Timer", type="secondary"):
-                st.session_state.timer_running = False
-                st.session_state.timer_start = None
-                st.rerun()
-
-            time.sleep(1)
-            st.rerun()
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        col_prev, col_next_step = st.columns(2)
-        with col_prev:
-            if current_idx > 0:
-                if st.button("⬅️ Previous Step", type="secondary"):
-                    st.session_state.current_step_index -= 1
-                    st.session_state.timer_running = False
-                    st.session_state.timer_start = None
-                    st.rerun()
-        with col_next_step:
-            if current_idx < len(protocol_steps) - 1:
-                if st.button("Next Step ➡️", type="primary"):
-                    st.session_state.current_step_index += 1
-                    st.session_state.timer_running = False
-                    st.session_state.timer_start = None
-                    st.session_state.trigger_flash = True
-                    scroll_to_top()
-                    st.rerun()
-            else:
-                if st.button("Complete Session 🏆", type="primary"):
-                    st.session_state.current_step_index += 1
-                    st.session_state.timer_running = False
-                    st.session_state.timer_start = None
-                    st.session_state.trigger_flash = True
-                    scroll_to_top()
-                    st.rerun()
-
-    else:
-        st.balloons()
-        st.markdown(
-            f"""
-            <div class="protocol-card" style="text-align: center;">
-                <h2>🎉 Protocol Completed!</h2>
-                <p>Great job finishing the <b>{st.session_state.selected_protocol}</b>!</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-        st.subheader("📝 Log Session Performance")
-
-        tension_rating = st.slider("Post-Session Tension Rating (1 = Relaxed, 10 = Tense):", 1, 10, 3)
-        log_notes = st.text_area("Session Notes / Feedback:", value=st.session_state.session_notes)
-
-        if not st.session_state.session_logged:
-            if st.button("Save & Log Session Data", type="primary"):
-                log_session_to_csv(
-                    st.session_state.user_name,
-                    st.session_state.selected_protocol,
-                    tension_rating,
-                    log_notes,
-                )
-                st.session_state.session_logged = True
-                st.success("Session successfully logged to database CSV!")
-        else:
-            st.info("✓ Session logging confirmed.")
-
-        render_support_box()
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Return to Program Dashboard", type="secondary"):
-            st.session_state.app_page = PAGE_PROGRAM_CHOICE
-            st.session_state.current_step_index = 0
-            st.session_state.trigger_flash = True
-            scroll_to_top()
-            st.rerun()
-
-
-# --- PAGE 4: ADMIN LOGIN ---
-elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
-    scroll_to_top()
-    render_header("Admin Portal", "System Logs & Dashboard")
-
-    if st.session_state.admin_authenticated:
-        st.session_state.app_page = PAGE_ADMIN_VIEW
-        st.rerun()
-
-    now = time.time()
-    if now < st.session_state.admin_locked_until:
-        remaining_lock = int(st.session_state.admin_locked_until - now)
-        st.error(f"🔒 Security lockout active. Please wait {remaining_lock} seconds.")
-    else:
-        admin_pass_input = st.text_input("Enter Admin Password:", type="password")
-
-        if st.button("Authenticate", type="primary"):
-            if ADMIN_PASSWORD and admin_pass_input == ADMIN_PASSWORD:
-                st.session_state.admin_authenticated = True
-                st.session_state.admin_attempts = 0
-                st.session_state.app_page = PAGE_ADMIN_VIEW
-                st.success("Access Granted.")
-                scroll_to_top()
+            if remaining > 0:
+                time.sleep(1)
                 st.rerun()
             else:
-                st.session_state.admin_attempts += 1
-                if st.session_state.admin_attempts >= ADMIN_MAX_ATTEMPTS:
-                    st.session_state.admin_locked_until = time.time() + ADMIN_LOCKOUT_SECONDS
-                    st.error("Too many failed attempts. Lockout triggered.")
+                st.success("✅ Step Completed!")
+                play_switch_audio_cue(880.0, 1200.0)
+                st.session_state.timer_running = False
+
+                if current_idx < len(protocol_steps) - 1:
+                    if st.button("Proceed to Next Step ➔", type="primary"):
+                        st.session_state.current_step_index += 1
+                        st.session_state.trigger_flash = True
+                        scroll_to_top()
+                        st.rerun()
                 else:
-                    st.error("Incorrect password.")
-
-    if st.button("Cancel & Return", type="secondary"):
-        st.session_state.app_page = PAGE_PROFILE
-        scroll_to_top()
-        st.rerun()
-
-
-# --- PAGE 5: ADMIN VIEW ---
-elif st.session_state.app_page == PAGE_ADMIN_VIEW:
-    scroll_to_top()
-    render_header("Session Logs", "Admin Management Dashboard")
-
-    if not st.session_state.admin_authenticated:
-        st.session_state.app_page = PAGE_ADMIN_LOGIN
-        st.rerun()
-
-    if os.path.exists(LOG_FILE_PATH):
-        try:
-            df_logs = pd.read_csv(LOG_FILE_PATH)
-            st.markdown("### 📊 Recorded Practitioner Logs")
-            st.dataframe(df_logs, use_container_width=True)
-
-            with open(LOG_FILE_PATH, "rb") as csv_file:
-                st.download_button(
-                    label="Download CSV Log File",
-                    data=csv_file,
-                    file_name="kinetic_session_logs.csv",
-                    mime="text/csv",
-                )
-        except Exception as e:
-            st.error(f"Error reading session log file: {e}")
-    else:
-        st.info("No logs created yet.")
+                    st.balloons()
+                    st.markdown("### 🎉 Routine Session Complete!")
+                    rating = st.slider("Rate post-session tension reduction (1 = Low, 10 = High):", 1, 10, 8)
+                    notes = st.text_input("Session Feedback / Notes:")
+                    if st.button("Complete & Save Log", type="primary"):
+                        log_session_to_csv(
+                            st.session_state.user_name,
+                            st.session_state.selected_protocol,
+                            rating,
+                            notes,
+                        )
+                        st.session_state.trigger_flash = True
+                        st.session_state.app_page = PAGE_PROGRAM_CHOICE
+                        st.session_state.current_step_index = 0
+                        scroll_to_top()
+                        st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Logout Admin", type="secondary"):
-        st.session_state.admin_authenticated = False
-        st.session_state.app_page = PAGE_PROFILE
+    if st.button("⬅️ Exit Session", type="secondary"):
+        st.session_state.timer_running = False
+        st.session_state.trigger_flash = True
+        st.session_state.app_page = PAGE_PROGRAM_CHOICE
         scroll_to_top()
         st.rerun()
