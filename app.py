@@ -1,6 +1,8 @@
+import base64
 import csv
 import html
 import os
+import random
 import time
 from datetime import datetime
 
@@ -27,6 +29,68 @@ PAGE_PROGRAM_CHOICE = 6  # PRE-SELECTION & PROGRAM PAGE
 
 PAYMENT_URL = "https://ko-fi.com/kineticpulseapp"
 LOG_FILE_PATH = "kinetic_session_logs.csv"
+
+# ==========================================
+# 1B. SUBLIMINAL FLASH CONFIGURATION & HELPER
+# ==========================================
+FLASH_IMAGES = [
+    "flash1.png",
+    "flash2.png",
+    "flash3.png",
+    "flash4.png",
+    "flash5.png",
+]
+
+
+def render_13ms_random_flash():
+    """Picks a random image from FLASH_IMAGES and flashes it full-screen for 13ms."""
+    selected_file = random.choice(FLASH_IMAGES)
+    image_src = selected_file
+
+    if os.path.exists(selected_file):
+        ext = os.path.splitext(selected_file)[1].replace(".", "").lower()
+        mime = "svg+xml" if ext == "svg" else ext
+        with open(selected_file, "rb") as f:
+            encoded = base64.b64encode(f.read()).decode("utf-8")
+            image_src = f"data:image/{mime};base64,{encoded}"
+
+    components.html(
+        f"""
+        <script>
+            (function() {{
+                var parentDoc = window.parent.document;
+                var oldOverlay = parentDoc.getElementById("kp-flash-overlay");
+                if (oldOverlay) {{ oldOverlay.remove(); }}
+
+                var overlay = parentDoc.createElement("div");
+                overlay.id = "kp-flash-overlay";
+                overlay.style.position = "fixed";
+                overlay.style.top = "0";
+                overlay.style.left = "0";
+                overlay.style.width = "100vw";
+                overlay.style.height = "100vh";
+                overlay.style.zIndex = "9999999";
+                overlay.style.backgroundColor = "#000000";
+                overlay.style.backgroundImage = "url('{image_src}')";
+                overlay.style.backgroundSize = "contain";
+                overlay.style.backgroundPosition = "center";
+                overlay.style.backgroundRepeat = "no-repeat";
+                overlay.style.pointerEvents = "none";
+
+                parentDoc.body.appendChild(overlay);
+
+                setTimeout(function() {{
+                    if (overlay && overlay.parentNode) {{
+                        overlay.parentNode.removeChild(overlay);
+                    }}
+                }}, 13);
+            }})();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+
 
 # ==========================================
 # 2. SECRETS & SECURITY HELPERS
@@ -104,6 +168,7 @@ def render_safety_gate() -> bool:
         use_container_width=True,
     ):
         st.session_state["disclaimer_accepted"] = True
+        st.session_state["trigger_flash"] = True
         st.rerun()
 
     return False
@@ -553,13 +618,20 @@ _defaults = {
     "session_logged": False,
     "selected_rest_day": "Sunday",
     "user_mode_choice": "weekly_program",
+    "trigger_flash": False,
 }
 for key, default_val in _defaults.items():
     if key not in st.session_state:
         st.session_state[key] = default_val
 
+# Execute Flash if Triggered (Runs on page transition)
+if st.session_state.trigger_flash:
+    render_13ms_random_flash()
+    st.session_state.trigger_flash = False
+
 # Floating Admin Access Button
 if st.button("Admin", key="floating_admin_btn"):
+    st.session_state.trigger_flash = True
     st.session_state.app_page = PAGE_ADMIN_LOGIN
     scroll_to_top()
     st.rerun()
@@ -1333,8 +1405,6 @@ def build_weekly_performance_schedule(rest_day: str):
 
     days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
-    # Template layout relative to training days (Primary High-Perf, Vascular, Breathwork)
-    # The selected rest_day will be assigned 'Rest & Recovery', and the remaining 6 days get assigned 1 protocol each.
     standard_pattern = [
         {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION"},
         {"proto": p_som2, "tag": "Somatic Maintenance"},
@@ -1391,6 +1461,7 @@ if st.session_state.app_page == PAGE_PROFILE:
         if entered_name.strip():
             st.session_state.user_name = sanitize_text(entered_name.strip(), max_len=80)
             st.session_state.session_notes = sanitize_text(entered_notes.strip(), max_len=500)
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_PROGRAM_CHOICE
             scroll_to_top()
             st.rerun()
@@ -1426,6 +1497,7 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
         st.session_state.user_mode_choice = "custom"
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Go to Protocol Browser ➔", type="primary"):
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_SELECT
             scroll_to_top()
             st.rerun()
@@ -1496,12 +1568,14 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
                     st.session_state.selected_protocol = proto_name
                     st.session_state.current_step_index = 0
                     st.session_state.session_logged = False
+                    st.session_state.trigger_flash = True
                     st.session_state.app_page = PAGE_SESSION
                     scroll_to_top()
                     st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("⬅️ Back to Profile Setup", type="secondary"):
+        st.session_state.trigger_flash = True
         st.session_state.app_page = PAGE_PROFILE
         scroll_to_top()
         st.rerun()
@@ -1533,6 +1607,7 @@ elif st.session_state.app_page == PAGE_SELECT:
             ):
                 st.session_state.selected_protocol = p_name
                 st.session_state.current_step_index = 0
+                st.session_state.trigger_flash = True
                 scroll_to_top()
                 st.rerun()
         else:
@@ -1568,6 +1643,7 @@ elif st.session_state.app_page == PAGE_SELECT:
     col_back, col_next = st.columns(2)
     with col_back:
         if st.button("Back", type="secondary"):
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_PROGRAM_CHOICE
             scroll_to_top()
             st.rerun()
@@ -1578,6 +1654,7 @@ elif st.session_state.app_page == PAGE_SELECT:
             st.session_state.selected_protocol = chosen_option
             st.session_state.current_step_index = 0
             st.session_state.session_logged = False
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_SELECT if is_info_only else PAGE_SESSION
             scroll_to_top()
             st.rerun()
@@ -1592,6 +1669,7 @@ elif st.session_state.app_page == PAGE_SESSION:
     render_header("Routine Session")
 
     if st.button("Change Protocol / View Info", type="secondary"):
+        st.session_state.trigger_flash = True
         st.session_state.app_page = PAGE_PROGRAM_CHOICE
         st.session_state.current_step_index = 0
         scroll_to_top()
@@ -1741,6 +1819,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                     st.session_state.timer_start = None
                     st.session_state.side_switched_toast = False
                     st.session_state.phase_chime_played = False
+                    st.session_state.trigger_flash = True
                     scroll_to_top()
                     st.rerun()
         with col2:
@@ -1751,6 +1830,7 @@ elif st.session_state.app_page == PAGE_SESSION:
                 st.session_state.timer_start = None
                 st.session_state.side_switched_toast = False
                 st.session_state.phase_chime_played = False
+                st.session_state.trigger_flash = True
                 scroll_to_top()
                 st.rerun()
     else:
@@ -1785,6 +1865,7 @@ elif st.session_state.app_page == PAGE_SESSION:
         render_support_box()
 
         if st.button("Start New Session", type="primary"):
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_PROGRAM_CHOICE
             st.session_state.current_step_index = 0
             st.session_state.session_logged = False
@@ -1825,6 +1906,7 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
                 if admin_password == ADMIN_PASSWORD:
                     st.session_state.admin_authenticated = True
                     st.session_state.admin_attempts = 0
+                    st.session_state.trigger_flash = True
                     st.session_state.app_page = PAGE_ADMIN_VIEW
                     scroll_to_top()
                     st.rerun()
@@ -1840,6 +1922,7 @@ elif st.session_state.app_page == PAGE_ADMIN_LOGIN:
 
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("Back to App", type="secondary"):
+        st.session_state.trigger_flash = True
         st.session_state.app_page = PAGE_PROFILE
         scroll_to_top()
         st.rerun()
@@ -1850,6 +1933,7 @@ elif st.session_state.app_page == PAGE_ADMIN_VIEW:
     scroll_to_top()
     if not st.session_state.admin_authenticated:
         st.warning("🔒 You must be logged in to access this page.")
+        st.session_state.trigger_flash = True
         st.session_state.app_page = PAGE_ADMIN_LOGIN
         scroll_to_top()
         st.rerun()
@@ -1872,6 +1956,7 @@ elif st.session_state.app_page == PAGE_ADMIN_VIEW:
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("Logout / Back to App", type="secondary"):
             st.session_state.admin_authenticated = False
+            st.session_state.trigger_flash = True
             st.session_state.app_page = PAGE_PROFILE
             scroll_to_top()
             st.rerun()
