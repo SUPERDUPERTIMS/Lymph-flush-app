@@ -23,7 +23,7 @@ PAGE_SELECT = 2
 PAGE_SESSION = 3
 PAGE_ADMIN_LOGIN = 4
 PAGE_ADMIN_VIEW = 5
-PAGE_PROGRAM_CHOICE = 6  # NEW PRE-SELECTION & PROGRAM PAGE
+PAGE_PROGRAM_CHOICE = 6  # PRE-SELECTION & PROGRAM PAGE
 
 PAYMENT_URL = "https://ko-fi.com/kineticpulseapp"
 LOG_FILE_PATH = "kinetic_session_logs.csv"
@@ -551,7 +551,7 @@ _defaults = {
     "side_switched_toast": False,
     "phase_chime_played": False,
     "session_logged": False,
-    "selected_peak_day": "Monday Focus Window",
+    "selected_rest_day": "Sunday",
     "user_mode_choice": "weekly_program",
 }
 for key, default_val in _defaults.items():
@@ -1314,10 +1314,10 @@ def get_open_unlocked_protocols():
     return [name for name, details in PROTOCOLS.items() if details.get("enabled", False)]
 
 
-def build_weekly_performance_schedule(target_focus_day: str):
+def build_weekly_performance_schedule(rest_day: str):
     """
-    Dynamically arranges currently UNLOCKED protocols to maximize effectiveness
-    and trigger optimal mobility and neural recovery on specified days.
+    Dynamically arranges currently UNLOCKED protocols into a 7-day schedule.
+    Enforces EXACTLY ONE protocol or rest assignment per day based on the designated Rest Day.
     """
     open_protos = get_open_unlocked_protocols()
 
@@ -1331,39 +1331,31 @@ def build_weekly_performance_schedule(target_focus_day: str):
     p_som1 = p_somatic_1 if p_somatic_1 in open_protos else open_protos[0]
     p_som2 = p_somatic_2 if p_somatic_2 in open_protos else open_protos[-1]
 
-    if target_focus_day == "Monday Focus Window":
-        schedule = {
-            "Monday Morning": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
-            "Monday Evening": {"proto": "Rest & Integration", "tag": "Active Reset"},
-            "Tuesday": {"proto": p_som2, "tag": "Somatic Maintenance"},
-            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming"},
-            "Thursday": {"proto": p_decomp, "tag": "Secondary Performance Session"},
-            "Friday": {"proto": p_vasc, "tag": "Deep Tissue Prep"},
-            "Saturday": {"proto": p_vasc, "tag": "Primary Vascular & Neural Setup"},
-            "Sunday": {"proto": p_som1, "tag": "Parasympathetic Down-Regulation (Nerve Reset)"},
-        }
-    elif target_focus_day == "Tuesday Focus Window":
-        schedule = {
-            "Monday": {"proto": p_vasc, "tag": "Vascular Priming & Tissue Setup"},
-            "Monday Evening": {"proto": p_som1, "tag": "Parasympathetic Reset"},
-            "Tuesday Morning": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
-            "Wednesday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
-            "Thursday": {"proto": p_decomp, "tag": "Secondary Focus Session"},
-            "Friday": {"proto": p_som2, "tag": "Somatic Control"},
-            "Saturday": {"proto": p_vasc, "tag": "Vascular Maintenance"},
-            "Sunday": {"proto": "Rest & Recovery", "tag": "Complete Down-Regulation"},
-        }
-    else:  # "Thursday Focus Window"
-        schedule = {
-            "Monday": {"proto": p_vasc, "tag": "Vascular & Tissue Prep"},
-            "Tuesday": {"proto": p_som1, "tag": "Neuromuscular Activation"},
-            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming (24h Pre-Focus Setup)"},
-            "Wednesday Evening": {"proto": p_som2, "tag": "Neural Recovery Reset"},
-            "Thursday": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
-            "Friday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
-            "Saturday": {"proto": p_vasc, "tag": "Maintenance Priming"},
-            "Sunday": {"proto": p_som1, "tag": "Somatic Balance"},
-        }
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    # Template layout relative to training days (Primary High-Perf, Vascular, Breathwork)
+    # The selected rest_day will be assigned 'Rest & Recovery', and the remaining 6 days get assigned 1 protocol each.
+    standard_pattern = [
+        {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION"},
+        {"proto": p_som2, "tag": "Somatic Maintenance"},
+        {"proto": p_vasc, "tag": "Vascular Priming"},
+        {"proto": p_decomp, "tag": "Secondary Performance Session"},
+        {"proto": p_vasc, "tag": "Deep Tissue Prep"},
+        {"proto": p_som1, "tag": "Parasympathetic Down-Regulation"},
+    ]
+
+    schedule = {}
+    pattern_idx = 0
+
+    for day in days:
+        if day == rest_day:
+            schedule[day] = {
+                "proto": "Rest & Recovery",
+                "tag": "☕ Complete Down-Regulation & Reset",
+            }
+        else:
+            schedule[day] = standard_pattern[pattern_idx]
+            pattern_idx += 1
 
     return schedule
 
@@ -1442,41 +1434,56 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
         st.session_state.user_mode_choice = "weekly_program"
         st.markdown("---")
 
-        st.subheader("🎯 Configure Your Primary Focus Window")
+        st.subheader("🎯 Configure Your Weekly Rest Day")
         st.caption(
-            "The algorithm analyzes all currently unlocked protocols and constructs a backward-planned schedule so that tissue vascularity and neural responsiveness reach optimal levels for your target window."
+            "Select which day of the week you prefer as your complete rest day. The program will automatically build a balanced schedule around it, ensuring exactly ONE active protocol per training day with zero overlaps."
         )
 
-        selected_target = st.selectbox(
-            "Select your primary focus day/window:",
-            ["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"],
-            index=["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"].index(
-                st.session_state.selected_peak_day
-                if st.session_state.selected_peak_day in ["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"]
-                else "Monday Focus Window"
+        days_list = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        selected_rest = st.selectbox(
+            "Select your designated weekly Rest Day:",
+            days_list,
+            index=days_list.index(
+                st.session_state.selected_rest_day
+                if st.session_state.selected_rest_day in days_list
+                else "Sunday"
             ),
         )
 
-        st.session_state.selected_peak_day = selected_target
+        st.session_state.selected_rest_day = selected_rest
 
-        schedule = build_weekly_performance_schedule(selected_target)
+        schedule = build_weekly_performance_schedule(selected_rest)
 
         st.markdown("### 📅 Your Custom 7-Day Optimization Schedule")
 
-        for time_slot, details in schedule.items():
+        for day_name, details in schedule.items():
             proto_name = details["proto"]
             tag = details["tag"]
+            is_rest = proto_name == "Rest & Recovery"
             is_peak = "PRIMARY" in tag
 
-            border_style = "2px solid #ff9800" if is_peak else "1px solid #e2e8f0"
-            bg_style = "#fff8f0" if is_peak else "#ffffff"
+            if is_rest:
+                border_style = "2px dashed #cbd5e1"
+                bg_style = "#f8fafc"
+                badge_bg = "#e2e8f0"
+                badge_color = "#475569"
+            elif is_peak:
+                border_style = "2px solid #ff9800"
+                bg_style = "#fff8f0"
+                badge_bg = "#ffe0b2"
+                badge_color = "#d84315"
+            else:
+                border_style = "1px solid #e2e8f0"
+                bg_style = "#ffffff"
+                badge_bg = "#e0f2fe"
+                badge_color = "#0369a1"
 
             st.markdown(
                 f"""
                 <div style="background:{bg_style}; border:{border_style}; border-radius:18px; padding:16px; margin-bottom:12px;">
                     <div style="display:flex; justify-between:space-between; align-items:center;">
-                        <span style="font-weight:bold; font-size:1.1rem; color:#0c38ff;">{time_slot}</span>
-                        <span style="font-size:0.8rem; font-weight:bold; background:#ffe0b2; color:#d84315; padding:4px 10px; border-radius:12px;">{tag}</span>
+                        <span style="font-weight:bold; font-size:1.1rem; color:#0c38ff;">{day_name}</span>
+                        <span style="font-size:0.8rem; font-weight:bold; background:{badge_bg}; color:{badge_color}; padding:4px 10px; border-radius:12px;">{tag}</span>
                     </div>
                     <div style="font-weight:700; font-size:1.05rem; margin-top:8px; color:#1a1a1a;">{proto_name}</div>
                 </div>
@@ -1485,7 +1492,7 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
             )
 
             if proto_name in PROTOCOLS:
-                if st.button(f"Start Session for {time_slot}", key=f"btn_start_{time_slot}"):
+                if st.button(f"Start Session for {day_name}", key=f"btn_start_{day_name}"):
                     st.session_state.selected_protocol = proto_name
                     st.session_state.current_step_index = 0
                     st.session_state.session_logged = False
