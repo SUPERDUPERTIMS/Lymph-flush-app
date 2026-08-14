@@ -23,6 +23,7 @@ PAGE_SELECT = 2
 PAGE_SESSION = 3
 PAGE_ADMIN_LOGIN = 4
 PAGE_ADMIN_VIEW = 5
+PAGE_PROGRAM_CHOICE = 6  # NEW PRE-SELECTION & PROGRAM PAGE
 
 PAYMENT_URL = "https://ko-fi.com/kineticpulseapp"
 LOG_FILE_PATH = "kinetic_session_logs.csv"
@@ -550,6 +551,8 @@ _defaults = {
     "side_switched_toast": False,
     "phase_chime_played": False,
     "session_logged": False,
+    "selected_peak_day": "Monday Morning Peak",
+    "user_mode_choice": "weekly_program",
 }
 for key, default_val in _defaults.items():
     if key not in st.session_state:
@@ -1302,8 +1305,71 @@ DEFAULT_PLACEHOLDER_SVG = """
 </svg>
 """
 
+
 # ==========================================
-# 8. VIEW & ROUTING ENGINE
+# 8. WEEKLY PROGRAM GENERATION ENGINE
+# ==========================================
+def get_open_unlocked_protocols():
+    """Helper function to return only protocols that are currently unlocked."""
+    return [name for name, details in PROTOCOLS.items() if details.get("enabled", False)]
+
+
+def build_weekly_arousal_schedule(target_peak_day: str):
+    """
+    Dynamically arranges currently UNLOCKED protocols to maximize effectiveness
+    and trigger peak neural sensitization / arousal on specified days.
+    """
+    open_protos = get_open_unlocked_protocols()
+
+    p_decompression = "Pelvic Somatic Decompression Protocol"
+    p_vascular = "Advanced Lower Pelvic & Abdominal Protocol"
+    p_somatic_1 = "Somatic Breath & Pelvic Protocol"
+    p_somatic_2 = "Somatic Breath & Pelvic Protocol Alternative days version (Active Breathwork)"
+
+    p_decomp = p_decompression if p_decompression in open_protos else open_protos[0]
+    p_vasc = p_vascular if p_vascular in open_protos else open_protos[0]
+    p_som1 = p_somatic_1 if p_somatic_1 in open_protos else open_protos[0]
+    p_som2 = p_somatic_2 if p_somatic_2 in open_protos else open_protos[-1]
+
+    if target_peak_day == "Monday Morning Peak":
+        schedule = {
+            "Monday Morning": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Monday Evening": {"proto": "Rest & Integration", "tag": "Active Reset"},
+            "Tuesday": {"proto": p_som2, "tag": "Somatic Maintenance"},
+            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming"},
+            "Thursday": {"proto": p_decomp, "tag": "Secondary High-Sensation Session"},
+            "Friday": {"proto": p_vasc, "tag": "Deep Tissue Prep"},
+            "Saturday": {"proto": p_vasc, "tag": "Primary Vascular & Neural Setup"},
+            "Sunday": {"proto": p_som1, "tag": "Parasympathetic Down-Regulation (Nerve Reset)"},
+        }
+    elif target_peak_day == "Tuesday Morning Peak":
+        schedule = {
+            "Monday": {"proto": p_vasc, "tag": "Vascular Priming & Vascular Bed Setup"},
+            "Monday Evening": {"proto": p_som1, "tag": "Parasympathetic Reset (Pre-Peak Down-Regulation)"},
+            "Tuesday Morning": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Wednesday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
+            "Thursday": {"proto": p_decomp, "tag": "Secondary Intensity Focus"},
+            "Friday": {"proto": p_som2, "tag": "Somatic Control"},
+            "Saturday": {"proto": p_vasc, "tag": "Vascular Maintenance"},
+            "Sunday": {"proto": "Rest & Recovery", "tag": "Complete Down-Regulation"},
+        }
+    else:  # "Thursday Peak"
+        schedule = {
+            "Monday": {"proto": p_vasc, "tag": "Vascular & Tissue Prep"},
+            "Tuesday": {"proto": p_som1, "tag": "Neuromuscular Activation"},
+            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming (24h Pre-Peak Setup)"},
+            "Wednesday Evening": {"proto": p_som2, "tag": "Neural Sensitivity Reset"},
+            "Thursday": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Friday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
+            "Saturday": {"proto": p_vasc, "tag": "Maintenance Priming"},
+            "Sunday": {"proto": p_som1, "tag": "Somatic Balance"},
+        }
+
+    return schedule
+
+
+# ==========================================
+# 9. VIEW & ROUTING ENGINE
 # ==========================================
 
 # --- PAGE 1: USER PROFILE ---
@@ -1329,15 +1395,107 @@ if st.session_state.app_page == PAGE_PROFILE:
     render_support_box()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Continue to Protocols", type="primary"):
+    if st.button("Continue to Program Selection", type="primary"):
         if entered_name.strip():
             st.session_state.user_name = sanitize_text(entered_name.strip(), max_len=80)
             st.session_state.session_notes = sanitize_text(entered_notes.strip(), max_len=500)
-            st.session_state.app_page = PAGE_SELECT
+            st.session_state.app_page = PAGE_PROGRAM_CHOICE
             scroll_to_top()
             st.rerun()
         else:
             st.error("Please fill in your name to proceed.")
+
+
+# --- PAGE 6: PRE-SELECTION FORK (CHOOSE MODE / WEEKLY PROGRAM) ---
+elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
+    scroll_to_top()
+    render_header("Optimization Hub", f"Welcome, {st.session_state.user_name}")
+
+    st.markdown(
+        """
+        <div class="protocol-card">
+            <h3 style="margin-top:0; text-align:center;">How would you like to proceed?</h3>
+            <p style="color:#555; text-align:center;">Choose between a guided weekly program structured for progressive arousal & performance, or pick individual protocols directly.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    mode = st.radio(
+        "Select Application Mode:",
+        [
+            "⚡ Guided Weekly Optimization Program (Recommended)",
+            "📋 Choose My Own Protocols Directly",
+        ],
+        index=0 if st.session_state.user_mode_choice == "weekly_program" else 1,
+    )
+
+    if "Choose My Own" in mode:
+        st.session_state.user_mode_choice = "custom"
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Go to Protocol Browser ➔", type="primary"):
+            st.session_state.app_page = PAGE_SELECT
+            scroll_to_top()
+            st.rerun()
+
+    else:
+        st.session_state.user_mode_choice = "weekly_program"
+        st.markdown("---")
+
+        st.subheader("🎯 Configure Your Weekly Peak Target Window")
+        st.caption(
+            "The algorithm analyzes all currently unlocked protocols and constructs a backward-planned schedule so that tissue vascularity and neural sensitivity peak at your target time."
+        )
+
+        selected_target = st.selectbox(
+            "Select your primary peak target day/window:",
+            ["Monday Morning Peak", "Tuesday Morning Peak", "Thursday Peak"],
+            index=["Monday Morning Peak", "Tuesday Morning Peak", "Thursday Peak"].index(
+                st.session_state.selected_peak_day
+            ),
+        )
+
+        st.session_state.selected_peak_day = selected_target
+
+        schedule = build_weekly_arousal_schedule(selected_target)
+
+        st.markdown("### 📅 Your Custom 7-Day Optimization Schedule")
+
+        for time_slot, details in schedule.items():
+            proto_name = details["proto"]
+            tag = details["tag"]
+            is_peak = "PEAK" in tag
+
+            border_style = "2px solid #ff9800" if is_peak else "1px solid #e2e8f0"
+            bg_style = "#fff8f0" if is_peak else "#ffffff"
+
+            st.markdown(
+                f"""
+                <div style="background:{bg_style}; border:{border_style}; border-radius:18px; padding:16px; margin-bottom:12px;">
+                    <div style="display:flex; justify-between:space-between; align-items:center;">
+                        <span style="font-weight:bold; font-size:1.1rem; color:#0c38ff;">{time_slot}</span>
+                        <span style="font-size:0.8rem; font-weight:bold; background:#ffe0b2; color:#d84315; padding:4px 10px; border-radius:12px;">{tag}</span>
+                    </div>
+                    <div style="font-weight:700; font-size:1.05rem; margin-top:8px; color:#1a1a1a;">{proto_name}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            if proto_name in PROTOCOLS:
+                if st.button(f"Start Session for {time_slot}", key=f"btn_start_{time_slot}"):
+                    st.session_state.selected_protocol = proto_name
+                    st.session_state.current_step_index = 0
+                    st.session_state.session_logged = False
+                    st.session_state.app_page = PAGE_SESSION
+                    scroll_to_top()
+                    st.rerun()
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("⬅️ Back to Profile Setup", type="secondary"):
+        st.session_state.app_page = PAGE_PROFILE
+        scroll_to_top()
+        st.rerun()
 
 
 # --- PAGE 2: PROTOCOL SELECTOR ---
@@ -1401,7 +1559,7 @@ elif st.session_state.app_page == PAGE_SELECT:
     col_back, col_next = st.columns(2)
     with col_back:
         if st.button("Back", type="secondary"):
-            st.session_state.app_page = PAGE_PROFILE
+            st.session_state.app_page = PAGE_PROGRAM_CHOICE
             scroll_to_top()
             st.rerun()
     with col_next:
@@ -1425,7 +1583,7 @@ elif st.session_state.app_page == PAGE_SESSION:
     render_header("Routine Session")
 
     if st.button("Change Protocol / View Info", type="secondary"):
-        st.session_state.app_page = PAGE_SELECT
+        st.session_state.app_page = PAGE_PROGRAM_CHOICE
         st.session_state.current_step_index = 0
         scroll_to_top()
         st.rerun()
@@ -1618,7 +1776,7 @@ elif st.session_state.app_page == PAGE_SESSION:
         render_support_box()
 
         if st.button("Start New Session", type="primary"):
-            st.session_state.app_page = PAGE_PROFILE
+            st.session_state.app_page = PAGE_PROGRAM_CHOICE
             st.session_state.current_step_index = 0
             st.session_state.session_logged = False
             scroll_to_top()
