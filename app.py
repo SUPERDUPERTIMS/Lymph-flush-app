@@ -567,20 +567,20 @@ if st.button("Admin", key="floating_admin_btn"):
 
 pelvic_decompression_steps = [
     {
-        "step": "Step 0: Thermal Prime & Hands-Free Setup",
+        "step": "Step 0: Thermal Prime & Hands-Free / Hand-Supported Setup",
         "duration": 300,
         "image_file": "",
-        "positioning": "Lie flat on back with a heating pad over lower core. Prepare prop station for hands-free device positioning.",
+        "positioning": "Lie flat on back with a heating pad over lower core. Prepare prop station for hands-free or zero-tension device positioning.",
         "distance": "Lower core, sacrum, and inner thighs.",
         "where": "Abdominal wall, groin crease, and sacral base.",
         "action": (
             "• <b>Thermal Application:</b> Apply a warm heating pad or hot towel across your lower core and inner thighs for 5 minutes.\n"
-            "• <b>Hands-Free Rig Setup:</b> Place a high-density foam roller or a rigid yoga block alongside your hip. Notch the handle of your massage gun between two heavy cushions or under a folded blanket so the soft cushion head aims directly toward your target area.\n"
-            "• <b>Zero-Grip Calibration:</b> Adjust your position so your body weight gently rests against the head of the massage gun without needing to hold or grip the device. Keep hands flat and arms extended by your side."
+            "• <b>Hands-Free Rig Setup (Preferred):</b> Place a high-density foam roller or a rigid yoga block alongside your hip. Notch the handle of your massage gun between two heavy cushions or under a folded blanket so the cushion head aims toward your target area hands-free.\n"
+            "• <b>Hand-Supported Fallback (If Prop Rig Isn't Feasible):</b> If you must hold the device by hand, <b>fully rest your elbow, forearm, and wrist on a thick pillow or yoga block</b> so your arm is grounded and your shoulder and chest stay <b>100% limp</b> (never let your arm hover in the air). Avoid white-knuckling the handle—let the body of the gun rest flat in your open palm or hook it gently with two fingers, allowing gravity to press the cushion head softly against your target area."
         ),
-        "goal": "Pre-warms deep abdominal fascia while establishing a secure, hands-free rig to eliminate gripping tension during protocol execution.",
-        "encouragement": "🔥 <b>Settle into full relaxation.</b> Eliminating upper-body gripping allows deep core and parasympathetic release.",
-        "benefit_text": "💡 Pre-warming tissue combined with zero-grip positioning maximizes fascial elasticity and autonomic nervous system down-regulation.",
+        "goal": "Pre-warms deep abdominal fascia while establishing a secure, zero-tension setup that eliminates upper-body gripping and prevents muscle guarding.",
+        "encouragement": "🔥 <b>Settle into full relaxation.</b> Eliminating upper-body gripping and keeping your arms completely rested allows deep core and parasympathetic release.",
+        "benefit_text": "💡 Pre-warming tissue combined with zero-tension arm positioning maximizes fascial elasticity and down-regulates the autonomic nervous system.",
         "switch_sides": False,
     },
     {
@@ -609,13 +609,14 @@ pelvic_decompression_steps = [
         "distance": "Sit-bone pocket and inner groin fold.",
         "where": "Ischial tuberosity pocket (sit-bone) and adductor insertion crease.",
         "action": (
-            "• <b>Setup:</b> Set massage device to a low, broad, cushioned setting and rest it securely against your foam/cushion prop station.\n"
-            "• <b>Step A - Sit-Bone Pocket (90s):</b> Position your pelvis so the cushion head of the device rests hands-free against the soft tissue between sit-bone and tailbone. Rest hands on lower stomach and maintain 4s inhale / 8s exhale breathing.\n"
-            "• <b>Step B - Inner Leg Line (90s total / 45s per side):</b> Gently shift your hips so the device rests in the soft tissue crease where inner thigh meets groin fold. Let body weight and gravity create a light, stable contact."
+            "• <b>Setup:</b> Set massage device to a low, broad, cushioned setting and rest it securely against your cushion rig or hand-supported prop station.\n"
+            "• <b>Step A - Sit-Bone Pocket (90s):</b> Position your pelvis so the cushion head rests against the soft tissue between sit-bone and tailbone. Maintain 4s inhale / 8s exhale breathing.\n"
+            "• <b>Step B - Inner Leg Line (90s total / 45s per side):</b> Shift your hips so the device rests in the soft tissue crease where inner thigh meets groin fold.\n"
+            "• <b>Hand Positioning Reminder:</b> If holding the device, keep your forearm grounded on a cushion, avoid tight gripping, and let gravity create light, stable contact while keeping your shoulders 100% limp."
         ),
         "goal": "Uses low-frequency micro-percussion to release tight connective tissue around primary nerve pathways without triggering upper-body muscle guarding.",
-        "encouragement": "⚡ <b>Keep upper body completely limp.</b> Let gravity supply the contact pressure while your hands rest lightly on your stomach.",
-        "benefit_text": "💡 Hands-free low-frequency vibrations decompress sacral nerve pathways and unbind restrictive inner thigh fascia.",
+        "encouragement": "⚡ <b>Keep upper body completely limp.</b> If holding by hand, keep your forearm resting on a pillow so your shoulder stays totally relaxed.",
+        "benefit_text": "💡 Low-frequency vibrations decompress sacral nerve pathways and unbind restrictive inner thigh fascia when upper-body tension is eliminated.",
         "switch_sides": True,
     },
     {
@@ -626,8 +627,9 @@ pelvic_decompression_steps = [
         "distance": "Base of tailbone / sacrum.",
         "where": "Sacral base and lower lumbar junction.",
         "action": (
-            "• <b>Hands-Free Sacral Anchor:</b> Set massage device to a slow, gentle pulse setting. Lay flat on back and wedge the device head flat underneath your sacrum/tailbone (supported by a yoga block or towel wedge under the handle).\n"
-            "• <b>Backward Calculation Task:</b> Close your eyes. Rest arms flat on mat by your sides. Maintain slow 4s inhale / 8s exhale breathing rhythm.\n"
+            "• <b>Sacral Anchor:</b> Set massage device to a slow, gentle pulse setting. Lay flat on back and wedge the device head flat underneath your sacrum/tailbone (supported by a yoga block or towel wedge under the handle).\n"
+            "• <b>Hand Support Option:</b> If wedging is unstable and you must hold the base, ensure your elbow rests on the floor or a blanket so your hand simply rests in place without hovering.\n"
+            "• <b>Backward Calculation Task:</b> Close your eyes. Maintain slow 4s inhale / 8s exhale breathing rhythm.\n"
             "• <b>Rhythmic Mental Count:</b> On every exhalation, count backward in your head starting from <b>300, subtracting 7</b> (300 → 293 → 286 → 279...). Recite silently on the exhale."
         ),
         "goal": "Occupies working memory with a rhythmic mental task to suppress conscious monitoring and allow the autonomic nervous system to execute deep tissue release.",
@@ -643,7 +645,7 @@ pelvic_decompression_steps = [
         "distance": "Sacrum, pelvic bowl, and deep pelvic venous beds.",
         "where": "Deep pelvic core and sacral spinal base.",
         "action": (
-            "• <b>Anchor Device:</b> Keep pulsing massage device anchored softly under the base of your tailbone/sacrum without using hands.\n"
+            "• <b>Anchor Device:</b> Keep pulsing massage device anchored softly under the base of your tailbone/sacrum without using hand tension.\n"
             "• <b>Deep Exhale Sequence:</b> Inhale deeply into lower belly (4s) → Exhale every drop of air completely (8s).\n"
             "• <b>Visceral Expansion Hold (8-10s):</b> Hold breath OUT completely for 8–10 seconds. Consciously execute a Full Pelvic Drop, releasing every muscle in lower body.\n"
             "• <b>Somatic Release:</b> Allow any automatic tissue fluttering or involuntary micro-contractions to occur naturally. Repeat sequence twice."
@@ -1165,7 +1167,7 @@ PROTOCOLS = {
 <div class="metric-container">
 <b>🎯 Rationale & Long-Term Benefits:</b><br>
 Modern living—prolonged sitting, heavy training, and high-stress environments—places continuous downward compression on the pelvic floor and lower spine. Over time, this leads to <b>Pelvic Venous Stagnation</b> (nutrient-depleted blood pooling in pelvic veins) and <b>Sacral Hypertonicity</b> (chronic micro-contraction compressing local nerve pathways).<br><br>
-By combining thermal preparation, low-frequency micro-vibrations, hands-free supine positioning, 4-8 wave breathing, and backward mental calculation tasks, this protocol flushes deep vascular beds, decompresses sacral fascia, and triggers a complete autonomic nervous system reset.<br><br>
+By combining thermal preparation, low-frequency micro-vibrations, hands-free/zero-tension supine positioning, 4-8 wave breathing, and backward mental calculation tasks, this protocol flushes deep vascular beds, decompresses sacral fascia, and triggers a complete autonomic nervous system reset.<br><br>
 <b>⏱️ Recommended Frequency:</b> 2 to 3 times per week (ideally evening), or immediately following intense workouts and prolonged sitting.
 </div>
 """,
