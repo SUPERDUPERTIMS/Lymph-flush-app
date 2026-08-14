@@ -1,6 +1,6 @@
 import csv
 import html
- os
+import os
 import time
 from datetime import datetime
 
@@ -551,7 +551,7 @@ _defaults = {
     "side_switched_toast": False,
     "phase_chime_played": False,
     "session_logged": False,
-    "selected_peak_day": "Monday Morning Peak",
+    "selected_peak_day": "Monday Focus Window",
     "user_mode_choice": "weekly_program",
 }
 for key, default_val in _defaults.items():
@@ -745,7 +745,7 @@ female_somatic_steps = [
             "1. <b>Deep Inhale & Expansion (5 seconds):</b> Inhale deeply into the lower belly, allowing the abdomen to expand and the pelvic floor to fully open and decompress.<br>"
             "2. <b>Exhale & Active Engagement (8 seconds total):</b><br>"
             "   • <i>Staircase Lift (3s):</i> Begin exhaling while progressively lifting the pelvic floor (30% → 60% → 100%).<br>"
-            "   • <i>Peak Hold & Anchor (3s):</i> Hold 100% peak lift, draw navel to spine, and press tongue to roof of mouth.<br>"
+            "   • <i>Hold & Anchor (3s):</i> Hold 100% lift, draw navel to spine, and press tongue to roof of mouth.<br>"
             "   • <i>Micro-Flutters (2s):</i> Perform 3 to 4 rapid pulsing contractions as you finish emptying the breath.<br>"
             "3. <b>Full Decompression & Transition (5 seconds):</b> Completely release all pelvic and abdominal tension as you begin your next slow, deep inhalation."
         ),
@@ -1314,10 +1314,10 @@ def get_open_unlocked_protocols():
     return [name for name, details in PROTOCOLS.items() if details.get("enabled", False)]
 
 
-def build_weekly_arousal_schedule(target_peak_day: str):
+def build_weekly_performance_schedule(target_focus_day: str):
     """
     Dynamically arranges currently UNLOCKED protocols to maximize effectiveness
-    and trigger peak neural sensitization / arousal on specified days.
+    and trigger optimal mobility and neural recovery on specified days.
     """
     open_protos = get_open_unlocked_protocols()
 
@@ -1331,35 +1331,35 @@ def build_weekly_arousal_schedule(target_peak_day: str):
     p_som1 = p_somatic_1 if p_somatic_1 in open_protos else open_protos[0]
     p_som2 = p_somatic_2 if p_somatic_2 in open_protos else open_protos[-1]
 
-    if target_peak_day == "Monday Morning Peak":
+    if target_focus_day == "Monday Focus Window":
         schedule = {
-            "Monday Morning": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Monday Morning": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
             "Monday Evening": {"proto": "Rest & Integration", "tag": "Active Reset"},
             "Tuesday": {"proto": p_som2, "tag": "Somatic Maintenance"},
             "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming"},
-            "Thursday": {"proto": p_decomp, "tag": "Secondary High-Sensation Session"},
+            "Thursday": {"proto": p_decomp, "tag": "Secondary Performance Session"},
             "Friday": {"proto": p_vasc, "tag": "Deep Tissue Prep"},
             "Saturday": {"proto": p_vasc, "tag": "Primary Vascular & Neural Setup"},
             "Sunday": {"proto": p_som1, "tag": "Parasympathetic Down-Regulation (Nerve Reset)"},
         }
-    elif target_peak_day == "Tuesday Morning Peak":
+    elif target_focus_day == "Tuesday Focus Window":
         schedule = {
-            "Monday": {"proto": p_vasc, "tag": "Vascular Priming & Vascular Bed Setup"},
-            "Monday Evening": {"proto": p_som1, "tag": "Parasympathetic Reset (Pre-Peak Down-Regulation)"},
-            "Tuesday Morning": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Monday": {"proto": p_vasc, "tag": "Vascular Priming & Tissue Setup"},
+            "Monday Evening": {"proto": p_som1, "tag": "Parasympathetic Reset"},
+            "Tuesday Morning": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
             "Wednesday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
-            "Thursday": {"proto": p_decomp, "tag": "Secondary Intensity Focus"},
+            "Thursday": {"proto": p_decomp, "tag": "Secondary Focus Session"},
             "Friday": {"proto": p_som2, "tag": "Somatic Control"},
             "Saturday": {"proto": p_vasc, "tag": "Vascular Maintenance"},
             "Sunday": {"proto": "Rest & Recovery", "tag": "Complete Down-Regulation"},
         }
-    else:  # "Thursday Peak"
+    else:  # "Thursday Focus Window"
         schedule = {
             "Monday": {"proto": p_vasc, "tag": "Vascular & Tissue Prep"},
             "Tuesday": {"proto": p_som1, "tag": "Neuromuscular Activation"},
-            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming (24h Pre-Peak Setup)"},
-            "Wednesday Evening": {"proto": p_som2, "tag": "Neural Sensitivity Reset"},
-            "Thursday": {"proto": p_decomp, "tag": "🔥 PEAK SENSATION / AROUSAL WINDOW"},
+            "Wednesday": {"proto": p_vasc, "tag": "Vascular Priming (24h Pre-Focus Setup)"},
+            "Wednesday Evening": {"proto": p_som2, "tag": "Neural Recovery Reset"},
+            "Thursday": {"proto": p_decomp, "tag": "⚡ PRIMARY OPTIMIZATION WINDOW"},
             "Friday": {"proto": "Rest & Down-Regulation", "tag": "Active Reset"},
             "Saturday": {"proto": p_vasc, "tag": "Maintenance Priming"},
             "Sunday": {"proto": p_som1, "tag": "Somatic Balance"},
@@ -1415,7 +1415,7 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
         """
         <div class="protocol-card">
             <h3 style="margin-top:0; text-align:center;">How would you like to proceed?</h3>
-            <p style="color:#555; text-align:center;">Choose between a guided weekly program structured for progressive arousal & performance, or pick individual protocols directly.</p>
+            <p style="color:#555; text-align:center;">Choose between a guided weekly program structured for progressive tissue recovery & performance, or pick individual protocols directly.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -1442,29 +1442,31 @@ elif st.session_state.app_page == PAGE_PROGRAM_CHOICE:
         st.session_state.user_mode_choice = "weekly_program"
         st.markdown("---")
 
-        st.subheader("🎯 Configure Your Weekly Peak Target Window")
+        st.subheader("🎯 Configure Your Primary Focus Window")
         st.caption(
-            "The algorithm analyzes all currently unlocked protocols and constructs a backward-planned schedule so that tissue vascularity and neural sensitivity peak at your target time."
+            "The algorithm analyzes all currently unlocked protocols and constructs a backward-planned schedule so that tissue vascularity and neural responsiveness reach optimal levels for your target window."
         )
 
         selected_target = st.selectbox(
-            "Select your primary peak target day/window:",
-            ["Monday Morning Peak", "Tuesday Morning Peak", "Thursday Peak"],
-            index=["Monday Morning Peak", "Tuesday Morning Peak", "Thursday Peak"].index(
+            "Select your primary focus day/window:",
+            ["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"],
+            index=["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"].index(
                 st.session_state.selected_peak_day
+                if st.session_state.selected_peak_day in ["Monday Focus Window", "Tuesday Focus Window", "Thursday Focus Window"]
+                else "Monday Focus Window"
             ),
         )
 
         st.session_state.selected_peak_day = selected_target
 
-        schedule = build_weekly_arousal_schedule(selected_target)
+        schedule = build_weekly_performance_schedule(selected_target)
 
         st.markdown("### 📅 Your Custom 7-Day Optimization Schedule")
 
         for time_slot, details in schedule.items():
             proto_name = details["proto"]
             tag = details["tag"]
-            is_peak = "PEAK" in tag
+            is_peak = "PRIMARY" in tag
 
             border_style = "2px solid #ff9800" if is_peak else "1px solid #e2e8f0"
             bg_style = "#fff8f0" if is_peak else "#ffffff"
