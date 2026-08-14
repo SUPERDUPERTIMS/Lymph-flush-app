@@ -83,7 +83,7 @@ def render_13ms_random_flash():
                     if (overlay && overlay.parentNode) {{
                         overlay.parentNode.removeChild(overlay);
                     }}
-                }}, 13);
+                }}, 200);
             }})();
         </script>
         """,
