@@ -34,11 +34,10 @@ LOG_FILE_PATH = "kinetic_session_logs.csv"
 # 1B. SUBLIMINAL FLASH CONFIGURATION & HELPER (FIXED)
 # ==========================================
 FLASH_IMAGES = [
-    "flash1.png",
-    "flash2.png",
-    "flash3.png",
-    "flash4.png",
-    "flash5.png",
+    "flash_2.png",
+    "flash_3.png",
+    "flash_4.png",
+    "flash_5.png",
 ]
 
 
